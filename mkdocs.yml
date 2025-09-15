@@ -1,4 +1,4 @@
-site_name: 1º DAM/DAW - Bases de Datos - Curso 25/26
+site_name: Bases de Datos - Curso 25/26
 site_url: https://jssdocente.github.io/bd2526
 use_directory_urls: false
 
@@ -68,8 +68,11 @@ theme:
     - content.code.copy
     - content.code.select
     - navigation.top
+    - navigation.expand
+    - navigation.path
     - content.code.annotate
     - content.tooltips
+  custom_width: false
 
 extra:
   search:
@@ -82,6 +85,9 @@ extra:
   #analytics:
     #provider: google
     #property: G-X6D0LR7TC8
+
+extra_css:
+  - extra/css/extra.css
 
 plugins:
   - search
