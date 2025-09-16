@@ -38,11 +38,11 @@ Los diferentes resultados de aprendizaje (RA) trabajados junto con su peso aprox
 
 A partir de los RA, hemos definido 13 unidades de trabajo (UT).
 
-El módulo de _Base de Datos_ viene fijado con una carga lectiva de **190h**, repartidas en **6 sesiones semanales**, a lo largo de 32 semanas. 
+El módulo de _Base de Datos_ viene fijado con una carga lectiva de **190h**, repartidas en **6 sesiones semanales**, a lo largo de 28 semanas. 
 
 <!-- Este curso se ha planificado sobre un total de 28 semanas, dejando las últimas 4 semanas para el desarrollo, por parte del alumnado, del programa formativo dual en la empresa. Estas 28 semanas hacen un total de 140h lectivas. -->
 
-A continuación, en la siguiente tabla y a modo de mapa general, se muestran las diferentes UT y los RA que cubren, indicando la carga horaria empleada durante el presente curso en cada una de ellas: 
+<!-- A continuación, en la siguiente tabla y a modo de mapa general, se muestran las diferentes UT y los RA que cubren, indicando la carga horaria empleada durante el presente curso en cada una de ellas: 
 
 | Unidades de Trabajo | RA1 | RA2 | RA3 | RA4 | RA5 | RA6 | RA7 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ A continuación, en la siguiente tabla y a modo de mapa general, se muestran las
 | [11\. PL/SQL Avanzado](https://jssdocente.github.io/bd2526d/11triggers.html) |  |  |  |  | 14 |  |  |
 | [12\. Bases de datos NoSQL](https://jssdocente.github.io/bd2526d/12nosql.html) / [_Redis_](https://jssdocente.github.io/bd2526d/12redis.html) | 2 |  |  |  |  |  | 8 |
 | [13\. Bases de datos documentales. _MongoDB_](https://jssdocente.github.io/bd2526d/13mongodb.html) |  |  |  |  |  |  | 11 |
-| **Total - 140h** <br/> **Porcentaje** | 11 <br/> 8% | 11 <br/> 8% | 30 <br/> 21% | 11 <br/> 8% | 24 <br/> 18% | 34 <br/> 24% | 19 <br/> 13% |
+| **Total - 140h** <br/> **Porcentaje** | 11 <br/> 8% | 11 <br/> 8% | 30 <br/> 21% | 11 <br/> 8% | 24 <br/> 18% | 34 <br/> 24% | 19 <br/> 13% | -->
 
 
 ## Evaluación
@@ -73,9 +73,9 @@ Para la evaluación de cada RA, emplearemos diferentes Instrumentos de Evaluaci�
 - **Proyectos** ( PY), bien de desarrollo individual o en parejas, sobre un determinado RA. Normalmente calificados sobre 30 puntos.
 - **Pruebas objetivas** ( PO). En algunos RA, y no de forma generalizada, se realizará una prueba objetiva (ya sea escrita o en ordenador). Normalmente calificados sobre 30 puntos.
 
-Para calcular la calificación de cada resultado de aprendizaje, se realizará la media ponderada simple de los diferentes instrumentos de evaluación empleados en dicho RA. Para comprobar que se han cubierto todos los criterios de evaluación, puedes consultar la página de [validación](https://aitor-medrano.github.io/bd/validacion.html).
+<!-- Para calcular la calificación de cada resultado de aprendizaje, se realizará la media ponderada simple de los diferentes instrumentos de evaluación empleados en dicho RA. Para comprobar que se han cubierto todos los criterios de evaluación, puedes consultar la página de [validación](https://aitor-medrano.github.io/bd/validacion.html). -->
 
-Todas las calificaciones, tanto de los instrumentos de evaluación como de los propios RA, se podrá consultar en todo momento en la plataforma _Aules_ del curso.
+Todas las calificaciones, tanto de los instrumentos de evaluación como de los propios RA, se podrá consultar en todo momento en la plataforma _Moodle_ del curso.
 
 ## Materiales
 
@@ -85,4 +85,4 @@ Cada una de las UT comenzará con un resumen de la **Propuesta Didáctica** que 
 
 En la parte final de cada sesión, además de diferentes recursos de **Referencia** para ampliar conocimientos, se plantean una serie de **Actividades** que iremos trabajando en su mayor medida en el aula. Cada una de las actividades indica el RA que cubre, los CE que trabaja así como su calificación, la cual luego se verá reflejada en la rúbrica de la entrega dicha tarea en Aules. Además, las actividades están codificadas con el prefijo del tipo de instrumento de evaluación, así como la unidad que cubren (por ejemplo, la actividad AC207, será la 7ª actividad de clase de la unidad 2).
 
-Respecto a los recursos tecnológicos, aunque inicialmente trabajaremos mucho con papel y lápiz (para modelar es más rápido crear esbozos en papel), luego pasaremos a utilizar los SGBD de [MariaDB](https://mariadb.org/) y [PostgreSQL](https://www.postgresql.org/) indistintamente, tanto mediante contenedores [Docker](https://www.docker.com/) como con soluciones _cloud_ en [AWS](https://aws.amazon.com/). En las últimas unidades, trabajaremos con [Redis](https://redis.io/) y [MongoDB](https://www.mongodb.com/).        
+Respecto a los recursos tecnológicos, aunque inicialmente trabajaremos mucho con papel y lápiz (para modelar es más rápido crear esbozos en papel), luego pasaremos a utilizar los SGBD de [MariaDB](https://mariadb.org/) y [PostgreSQL](https://www.postgresql.org/) indistintamente, tanto mediante contenedores [Docker](https://www.docker.com/) o instalación local. En las últimas unidades, trabajaremos bases de datos NoSQL.
