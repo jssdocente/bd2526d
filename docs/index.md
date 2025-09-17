@@ -68,9 +68,9 @@ Para la evaluación del módulo de _Bases de Datos_ se ponderarán los resultado
 
 Para la evaluación de cada RA, emplearemos diferentes Instrumentos de Evaluación (IE), como pueden ser:
 
-- **Actividades de enseñanza/aprendizaje**, normalmente realizadas en el aula, acompañadas de una rúbrica. Distinguiremos las **actividades de clase** ( AC), las cuales se calificarán normalmente sobre una escala de 3 puntos, de las **actividades de refuerzo** ( AR), también sobre 3 puntos para consolidar uno o varios CE no conseguidos, así como **actividades de profundización** ( AP) que aportarán puntos extra al RA.
-- **Prácticas** ( PR) o **trabajo de investigación** ( TI), con una carga temporal variable, entre una semana o toda una unidad didáctica. Normalmente calificados sobre 10 puntos.
-- **Proyectos** ( PY), bien de desarrollo individual o en parejas, sobre un determinado RA. Normalmente calificados sobre 30 puntos.
+- **Actividades de enseñanza/aprendizaje**, normalmente realizadas en el aula, acompañadas de una rúbrica. Distinguiremos las **actividades de clase** ( AC), las cuales se calificarán normalmente sobre una escala de 3 puntos, de las **actividades de refuerzo** (AR), también sobre 3 puntos para consolidar uno o varios CE no conseguidos, así como **actividades de profundización** (AP) que aportarán puntos extra al RA.
+- **Prácticas** ( PR), con una carga temporal variable, entre una semana o toda una unidad didáctica. Normalmente calificados sobre 10 puntos.
+- **Proyectos** ( PY), bien de desarrollo individual o en parejas, sobre un determinado RA.
 - **Pruebas objetivas** ( PO). En algunos RA, y no de forma generalizada, se realizará una prueba objetiva (ya sea escrita o en ordenador). Normalmente calificados sobre 30 puntos.
 
 <!-- Para calcular la calificación de cada resultado de aprendizaje, se realizará la media ponderada simple de los diferentes instrumentos de evaluación empleados en dicho RA. Para comprobar que se han cubierto todos los criterios de evaluación, puedes consultar la página de [validación](https://aitor-medrano.github.io/bd/validacion.html). -->
@@ -83,6 +83,6 @@ A lo largo del curso, iremos trabajando diferentes materiales disponibles en est
 
 Cada una de las UT comenzará con un resumen de la **Propuesta Didáctica** que se plantea, los elementos que va a cubrir, tanto el RA a trabajar como sus criterios de evaluación (CE) asociados, así como un cuestionario inicial para reflexionar nuestro conocimiento previo.
 
-En la parte final de cada sesión, además de diferentes recursos de **Referencia** para ampliar conocimientos, se plantean una serie de **Actividades** que iremos trabajando en su mayor medida en el aula. Cada una de las actividades indica el RA que cubre, los CE que trabaja así como su calificación, la cual luego se verá reflejada en la rúbrica de la entrega dicha tarea en Aules. Además, las actividades están codificadas con el prefijo del tipo de instrumento de evaluación, así como la unidad que cubren (por ejemplo, la actividad AC207, será la 7ª actividad de clase de la unidad 2).
+En la parte final de cada sesión, además de diferentes recursos de **Referencia** para ampliar conocimientos, se plantean una serie de **Actividades** que iremos trabajando en su mayor medida en el aula. Cada una de las actividades indica el RA que cubre, los CE que trabaja así como su calificación. Además, las actividades están codificadas con el prefijo del tipo de instrumento de evaluación, así como la unidad que cubren (por ejemplo, la actividad AC207, será la 7ª actividad de clase de la unidad 2).
 
 Respecto a los recursos tecnológicos, aunque inicialmente trabajaremos mucho con papel y lápiz (para modelar es más rápido crear esbozos en papel), luego pasaremos a utilizar los SGBD de [MariaDB](https://mariadb.org/) y [PostgreSQL](https://www.postgresql.org/) indistintamente, tanto mediante contenedores [Docker](https://www.docker.com/) o instalación local. En las últimas unidades, trabajaremos bases de datos NoSQL.
