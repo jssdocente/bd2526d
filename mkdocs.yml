@@ -5,6 +5,7 @@ use_directory_urls: false
 nav:
   - "Inicio": "index.md"
   - "01 - Sistemas de Almacenamiento": temas/01/index.md
+  - "02 - Diseño conceptual: Modelo E/R": temas/02/index.md
   #   - "Introducción": temas/07/index.md
   #   - "1. Instalar Laravel": "temas/07/01.instalar-laravel.md"
   #   - "2. Configurar Tailwind": "temas/07/02.configurar-tailwind.md"
