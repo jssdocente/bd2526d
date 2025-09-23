@@ -1,0 +1,1012 @@
+<!DOCTYPE html><html lang="es" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02/index.html">
+      
+      
+        <link rel="prev" href="../01/index.html">
+      
+      
+      
+      <link rel="icon" href="../../imagenes/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>02 - Diseño conceptual: Modelo E/R - Bases de Datos - Curso 25/26</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../extra/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ut2-diseno-conceptual-modelo-entidad-relacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-header__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos - Curso 25/26
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 - Diseño conceptual: Modelo E/R
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo noche" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo día" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-nav__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    Bases de Datos - Curso 25/26
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    01 - Sistemas de Almacenamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    02 - Diseño conceptual: Modelo E/R
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    02 - Diseño conceptual: Modelo E/R
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-diseno-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Diseño de Bases de Datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-el-modelo-entidad-relacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. El modelo Entidad Relación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elaborando-el-modelo-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Elaborando el modelo I
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌱 Elaborando el modelo I">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grado" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Grado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧮 Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Tipos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-diseno-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Diseño de Bases de Datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-el-modelo-entidad-relacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. El modelo Entidad Relación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elaborando-el-modelo-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Elaborando el modelo I
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌱 Elaborando el modelo I">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grado" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Grado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧮 Cardinalidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Tipos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ut2-diseno-conceptual-modelo-entidad-relacion">UT2 <strong>Diseño Conceptual: Modelo Entidad Relación</strong><a class="headerlink" href="#ut2-diseno-conceptual-modelo-entidad-relacion" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Información de la unidad</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Contenidos</label><label for="__tabbed_1_2">Propuesta didáctica</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Bases de datos relacionales:</p>
+<ul>
+<li>Modelo de datos</li>
+</ul>
+<p>Interpretación de Diagramas Entidad/Relación:</p>
+<ul>
+<li>El modelo E/R. Entidades y relaciones. Cardinalidades. Debilidad.</li>
+<li>El modelo E/R ampliado. Generalización y especialización. Agregación.</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>En esta unidad vamos a comenzar a trabajar el RA6: <strong>Diseña modelos relacionales normalizados interpretando diagramas entidad/relación</strong>.</p>
+<p>Criterios de evaluación</p>
+<ul>
+<li><strong>CE6b</strong>: Se han identificado las tablas del diseño lógico.</li>
+<li><strong>CE6c</strong>: Se han identificado los campos que forman parte de las tablas del diseño lógico.</li>
+<li><strong>CE6d</strong>: Se han analizado las relaciones entre las tablas del diseño lógico.</li>
+<li><strong>CE6e</strong>: Se han identificado los campos clave.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- !!! question "Cuestionario inicial"
+
+    1. ¿Conoces algún modelo conceptual?
+    2. ¿Cuál es el propósito del modelo ER?
+    3. ¿Qué tres elementos son los más importantes en un modelo ER?
+    4. ¿Qué valores puede tomar la cardinalidad mínima? ¿Y la máxima?
+    5. ¿Qué diferencia una entidad fuerte de una débil?
+    6. A partir de la cardinalidad máxima, ¿Qué tres tipos de relaciones binarias se pueden dar?
+    7. ¿Qué tipos de atributos conoces?
+    8. ¿Cómo se representa una entidad con que se identifica mediante dos atributos?
+    9. ¿Tiene sentido que una relación tenga atributos? ¿Por qué?
+    10. ¿Qué es una relación reflexiva?
+    11. ¿Qué conceptos incluye el EER respecto al ER?
+    12. ¿Qué relación existe entre la generalización y la especialización?
+    13. ¿Qué relación existe entre una superclase y una subclase?
+    14. ¿Qué diferencia una restricción de identificación de una cardinalidad mínima a 1?
+    15. ¿Cuándo se utiliza una agregación o entidad asociativa? -->
+
+<!-- ### Programación de Aula (12h)[¶](https://aitor-medrano.github.io/bd/02er.html#programacion-de-aula-12h "Permanent link")
+
+  Esta unidad es la segunda, con lo que se imparte en la primera evaluación, con una duración estimada de 12 sesiones lectivas, durante la última semana de septiembre y la primera quincena de octubre:
+
+  | Sesión | Contenidos | Actividades | Criterios trabajados |
+  | --- | --- | --- | --- |
+  | 1 | [Modelo Entidad Relación](https://aitor-medrano.github.io/bd/02er.html#el-modelo-entidad-relacion). | [AC201](https://aitor-medrano.github.io/bd/02er.html#AC201) | CE6b, CE6c, CE6d |
+  | 2 | [Entidades](https://aitor-medrano.github.io/bd/02er.html#entidades). Relaciones - Cardinalidad |  |  |
+  | 3 | [Relaciones](https://aitor-medrano.github.io/bd/02er.html#relaciones) [1:1](https://aitor-medrano.github.io/bd/02er.html#relacion-11), [1:N](https://aitor-medrano.github.io/bd/02er.html#relacion-1n), [N:M](https://aitor-medrano.github.io/bd/02er.html#relacion-nm) | [AC203](https://aitor-medrano.github.io/bd/02er.html#AC203) | CE6b |
+  | 4 | [Atributos](https://aitor-medrano.github.io/bd/02er.html#atributos). Trabajando las cardinalidades | [AC204](https://aitor-medrano.github.io/bd/02er.html#AC204) | CE6b |
+  | 5 | [Atributos identificadores](https://aitor-medrano.github.io/bd/02er.html#identificadores). Modelados sencillos | [AC205](https://aitor-medrano.github.io/bd/02er.html#AC205) | CE6b, CE6c, CE6e |
+  | 6 | Completando modelos | [AC208](https://aitor-medrano.github.io/bd/02er.html#AC208) | CE6b, CE6c, CE6e |
+  | 7 | [Restricciones](https://aitor-medrano.github.io/bd/02er.html#restricciones) |  |  |
+  | 8 | [Modelado EER](https://aitor-medrano.github.io/bd/02er.html#el-modelo-entidad-relacion-extendido). Generalización. [Tipos](https://aitor-medrano.github.io/bd/02er.html#tipos_1) | [AC209](https://aitor-medrano.github.io/bd/02er.html#AC209) | CE6b, CE6c, CE6e |
+  | 9 | Modelados con generalizaciones | [AC210](https://aitor-medrano.github.io/bd/02er.html#AC210) | CE6b, CE6c, CE6e |
+  | 10 | [Agregaciones](https://aitor-medrano.github.io/bd/02er.html#agregacion) | [AC212](https://aitor-medrano.github.io/bd/02er.html#AC212) | CE6b, CE6c, CE6e |
+  | 11 | Interpretando modelos | [AC215](https://aitor-medrano.github.io/bd/02er.html#AC215) | CE6b, CE6c, CE6d, CE6e |
+  | 12 | Reto - Diseñando una BD | [PY216](https://aitor-medrano.github.io/bd/02er.html#PY216) | CE6b, CE6c, CE6d, CE6e | -->
+
+<h2 id="1-diseno-de-bases-de-datos"><strong>1. Diseño de Bases de Datos</strong><a class="headerlink" href="#1-diseno-de-bases-de-datos" title="Permanent link">¶</a></h2>
+<p>Una vez que hemos trabajado conceptos generales asociados a las bases de datos y los sistemas gestores de bases de datos, tenemos claro que existen diferentes modelos de datos que dan lugar a diferentes tipos de soluciones.</p>
+<p>Pero antes de entrar en uno de los modelos, conviene saber cual es el proceso de diseño de una base de datos. Es lógico que un buen diseño sobre los datos va a facilitar el posterior desarrollo de las aplicaciones que explotan la base de datos.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Sistema de información</p>
+<p>En la <em>introducción</em> de la unidad anterior estudiamos que un sistema de información define cómo funciona una empresa y el uso que hace de los datos. Veamos un ejemplo concreto sobre una empresa.</p>
+<p>Una empresa vende productos a varios clientes. Se necesita conocer los datos personales de los clientes (nombre, apellidos, dni, dirección y fecha de nacimiento). Cada producto tiene un nombre y un código, así como un precio unitario. Un cliente puede comprar varios productos a la empresa, y un mismo producto puede ser comprado por varios clientes.</p>
+<p>Los productos los suministran diferentes proveedores. Se debe tener en cuenta que un producto sólo puede ser suministrado por un proveedor, y que un proveedor puede suministrar diferentes productos. De cada proveedor se desea conocer el NIF, nombre y dirección.</p>
+</div>
+<p>El objetivo general del diseñar bases de datos es ofrecer una base de datos bien estructurada y eficiente que cumpla los requisitos de usuarios y empresas. Además de cumplir estos requisitos, un diseño diseño de bases de datos, generalmente, cumple cinco objetivos comunes (los cuales trabajaremos a lo largo del curso):</p>
+<ol>
+<li>Coherencia e integridad de los datos.</li>
+<li>Mantenibilidad y facilidad de uso.</li>
+<li>Rendimiento y optimización.</li>
+<li>Seguridad de los datos.</li>
+<li>Escalabilidad y flexibilidad.</li>
+</ol>
+<p>Así pues, antes de comenzar el diseño, el primer paso y más crítico es determinar los requisitos de la base de datos mediante un <strong>sistema de información</strong>, describiendo el problema que la base de datos debe cubrir. Este paso está más asociado a la ingeniería del software y lo estudiarás en detalle en el módulo de <em>Entornos de Desarrollo</em>.</p>
+<p>Las fases que se realizan a la hora de diseñar una base de datos son tres:</p>
+<ol>
+<li><strong>Diseño conceptual</strong>: a partir de los requisitos y entendido el problema (conocido como el mundo real), mediante un modelo conceptual de alto nivel (EER) crearemos el <strong>esquema conceptual</strong>.</li>
+<li><strong>Diseño lógico</strong>: transformación de un modelo conceptual a un modelo de datos concreto para poder representar el problema (relacional, jerárquico, ...). En este paso, ya nos tenemos que haber decidido por un modelo de datos, y en algunos casos, incluso por un SGBD concreto. El resultado del diseño lógico es el <strong>esquema lógico/canónico</strong>.</li>
+<li><strong>Diseño físico</strong>: sobre el modelo lógico de datos del punto anterior sobre un SGBD concreto, se define la representación física de las estructuras, obteniendo el <strong>esquema físico/interno</strong>.</li>
+</ol>
+<p>Estas tres fases se resumen en el siguiente gráfico:</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02modelos.png" data-desc-position="bottom"><img src="images/02modelos.png" width="80%"></a>
+<br>
+<figcaption>Del diseño a los modelos</figcaption>
+</figure>
+<p>En las siguientes unidades vamos a ir pasando de una fase del diseño a la siguiente. En nuestro caso, en el modelo conceptual aprenderemos el modelo Entidad Relación, como modelo lógico veremos el Modelo Relacional, y como modelo físico, usaremos el sublenguaje DDL de SQL, ya centrándonos en un SGBD concreto.</p>
+<p>Así pues, en esta unidad comenzamos con el diseño conceptual a través del modelo conceptual más extendido, el modelo Entidad-Relación.</p>
+<h2 id="2-el-modelo-entidad-relacion"><strong>2. El modelo Entidad Relación</strong><a class="headerlink" href="#2-el-modelo-entidad-relacion" title="Permanent link">¶</a></h2>
+<p>Entendemos como <strong>modelo conceptual</strong> el conjunto de conceptos y reglas que nos permiten aplicar una serie de abstracciones con el propósito de definir y manipular datos de la realidad, almacenándola en una base de datos.</p>
+<p>Centrándonos en el <strong>modelo entidad/relación</strong>, cuyo nombre completo es modelo entidad/interrelación (<em>entity/relationship</em> en inglés), es un modelo de datos conceptual de alto nivel, propuesto por <em>Peter Chen</em> en 1976, y vigente a día de hoy por su simplicidad y legibilidad, ya que el resultado del análisis del problema se representa de forma visual mediante diagramas entidad/relación, representado mediante cajas y líneas que las unen. Ha tenido numerosas extensiones y aportaciones de muchos otros autores, teniendo soporte por múltiples herramientas de software de diseño (CASE), lo que ha dado lugar a que no exista un único modelo ER, sino una familia de modelos.</p>
+<p>El modelo ER describe el <em>mundo real</em> como un conjunto de <strong>entidades</strong> y sus <strong>atributos</strong>, así como las <strong>relaciones</strong> existentes entre diferentes entidades.</p>
+<h4 id="nomenclatura">Nomenclatura<a class="headerlink" href="#nomenclatura" title="Permanent link">¶</a></h4>
+<p>A la hora de nombrar a los diferentes elementos, en todos los casos, es recomendable no utilizar espacios en blanco ni tildes, para facilitar la futura transformación al modelo físico.</p>
+<ul>
+<li>Las entidades suelen ser sustantivos y se nombran en singular y mayúsculas.</li>
+<li>Los atributos también en singular, pero en minúsculas.</li>
+<li>Las relaciones son verbos en mayúsculas.</li>
+<li>Para las palabras compuestas, utilizaremos la convención <a href="https://es.wikipedia.org/wiki/Camel_case"><em>camelCase</em></a>, que une las palabras poniendo la primera letra en mayúsculas. Ejemplos de atributos serían mediante <em>camelCase</em> serían <code>nombreCompleto</code> o <code>codigoPostal</code>.</li>
+</ul>
+<h4 id="elementos">Elementos<a class="headerlink" href="#elementos" title="Permanent link">¶</a></h4>
+<p>Una <strong>entidad</strong> es cualquier persona, concepto, suceso o evento (en definitiva, cualquier <em>cosa</em>) con existencia independiente sobre la cual se desea almacenar información. La entidad representa un tipo de objeto, el concepto que permite representar a un conjunto de objetos similares. Por ejemplo <code>Persona</code>, <code>Cliente</code>, <code>Alumno</code>, <code>Asignatura</code>, etc... serían entidades.</p>
+<p>Por otro lado, una entidad define de forma genérica a un conjunto de objetos a través de propiedades (o <strong>atributos</strong>): cualquier información que interesa guardar sobre las entidades. Se obtienen mediante un proceso de abstracción que se conoce como <em>clasificación</em>. Ejemplos de atributos serían <code>nombre</code>, <code>dirección</code>, <code>fecha de nacimiento</code>, <code>saldo</code>, <code>teléfono</code>, etc...</p>
+<p>Finalmente, una <strong>relación</strong> es una asociación entre entidades. Un tipo de relación en un modelo de datos permite representar un conjunto de relaciones de características similares. Igual que las entidades, las relaciones también pueden tener atributos, para representar información que no es propia de ninguno de los objetos participantes en la relación. Ejemplos de relaciones serían <code>Matricular</code>, <code>Contratar</code>, <code>Reservar</code>, etc...</p>
+<p>El modelo conceptual también define una serie de propiedades sobre los elementos, como son las propiedades:</p>
+<ul>
+<li>
+<p><strong><em>estáticas</em></strong>: restricciones sobre las entidades y relaciones. Por ejemplo, la restricción de integridad estática, limita las extensiones (ocurrencias) válidas (permitidas) para una propiedad. Existen varios tipos:</p>
+<ul>
+<li>Sobre atributos: valores posibles, valor no nulo.</li>
+<li>Sobre entidades: restricción de identificación.</li>
+<li>Sobre relaciones: restricciones de cardinalidad.</li>
+<li><strong><em>dinámicas</em></strong>: operaciones sobre los objetos o sus relaciones, relaciones entre operaciones (transacciones) y restricciones dinámicas sobre la evolución de los objetos y sus relaciones, como por ejemplo, "<em>El número de alumnado matriculado en una asignatura debe ser menor o igual a 20</em>".</li>
+</ul>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Operación vs Transacción</p>
+<p>Una <strong>operación</strong> es una acción elemental (indivisible) sobre un objeto o una relación. Las operaciones permiten crear, eliminar, modificar y consultar objetos y relaciones.</p>
+<p>Una <strong>transacción</strong> es una secuencia de operaciones que se considera atómica en lo que se refiere a su ejecución. Es decir, se ejecutan todas sus operaciones o ninguna de ellas, como por ejemplo, al realizar una transferencia bancaria.</p>
+</div>
+<h2 id="elaborando-el-modelo-i">🌱 Elaborando el modelo I<a class="headerlink" href="#elaborando-el-modelo-i" title="Permanent link">¶</a></h2>
+<p>Una vez conocemos a muy alto nivel los elementos de un modelo ER, nos podemos preguntar ¿Cómo los deducimos? Normalmente, tras diversas entrevistas con el cliente o a partir de la toma de requisitos previos, disponemos de un sistema de información que sirve de base del modelo. El primer paso es identificar las entidades mediante los sustantivos y las relaciones con los verbos. Con esta información, realizaremos un esbozo inicial centrándonos únicamente en las entidades y sus relaciones, sin tener en cuenta los atributos.</p>
+<p>Por ejemplo, supongamos el siguiente sistema de información sobre una empresa que se dedica al alquiler de bicicletas. A los usuarios del servicio, como puede ser <a href="https://bicielx.es/">BiciElx</a> o <a href="https://www.bicimad.com/">BiciMad</a>, se les entrega una tarjeta que contendrá sus datos personales, así como su saldo disponible. Todas las bicicletas tienen un código que las identifica, y se registra su estado actual (ya sea disponible o en uso), y la estación donde se encuentra. Cuando un usuario alquila una bicicleta, también se registra cuándo y dónde la recoge y devuelve.</p>
+<p>Analizando el texto, si en una frase aparecen dos sustantivos conectados por un verbo, es muy probable que los sustantivos sean entidades que estén relacionadas mediante un relación representado por el verbo.</p>
+<p>Entonces, sobre el sistema de información recién expuesto ¿Qué entidades hemos detectado? Claramente, tenemos <code>USUARIO</code> y <code>BICICLETA</code>, las cuales representaremos mediante un rectángulo y mediante un rombo con la relación <code>ALQUILAR</code>.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02elaborando1.png" data-desc-position="bottom"><img src="images/02elaborando1.png" width="60%"></a>
+<br>
+<figcaption>Modelo sencillo - primer esbozo</figcaption>
+</figure>
+<p>Una vez que tenemos una idea general de cómo llegar a elaborar un diseño, vamos a conocer en detalle los diferentes elementos y sus características.</p>
+<p>⏹️ <strong>Entidades</strong></p>
+<p>Una entidad es cualquier objeto (real o abstracto) sobre el que queremos almacenar información en la base de datos.</p>
+<p>Se representa mediante un rectángulo con el nombre de la entidad en singular y mayúsculas. Se suele identificar con un sustantivo y suelen estar asociados a objetos (coche, libro, vehículo, etc...), personas (cliente, empleado, proveedor, ...), lugares (ciudad, provincia, etc...), organizaciones (hospital, aula, empresa, ...), etc...</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02entidades.png" data-desc-position="bottom"><img src="images/02entidades.png" width="60%"></a>
+<br>
+<figcaption>Ejemplo con dos entidades</figcaption>
+</figure>
+<div class="admonition fire">
+<p class="admonition-title">Control de redundancia</p>
+<p>Cada entidad solo puede aparecer una única vez en el modelo, con lo que no podemos repetir el nombre de dos entidades en el mismo modelo.</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02fuerte-debil.png" data-desc-position="bottom"><img src="images/02fuerte-debil.png" width="15%" align="right"></a></p>
+<p>Existe dos tipos de entidades:</p>
+<ul>
+<li>Regulares o <strong>fuertes</strong>: existen por sí mismas, sin necesidad de otra entidad. Por ejemplo, los clientes de nuestra empresa. Se representan mediante un rectángulo simple.</li>
+<li>
+<p><strong>Débiles</strong>: su existencia depende de otra entidad. Por ejemplo, los familiares de los clientes sería una entidad débil, ya que no tiene sentido almacenarlos si ya no tenemos a los clientes. Se representan mediante un rectángulo doble.</p>
+<p>Una entidad débil se identifica por sus propiedades y por las propiedades de las entidades de las que depende. Además, al eliminar la entidad fuerte, también se elimina la entidad débil.</p>
+</li>
+</ul>
+<!-- <figure markdown="span">
+  <img src="images/02fuerte-debil.png" width="60%" align="right">
+  <figcaption>Entidad fuerte vs débil</figcaption>
+</figure> -->
+
+<p>Finalmente, el término ocurrencia (o instancia de entidad) indica un elemento de la entidad, un objeto en concreto. Por ejemplo, en la entidad <code>PRODUCTO</code>, una ocurrencia sería <code>Bolígrafo azul de gel</code> cuyo código es <code>BOLIAZUL01</code> y fecha de alta en el sistema el <code>1/1/24</code>.</p>
+<p><br></p>
+<p>⏹️ <strong>Relaciones</strong></p>
+<p>Una relación representa una asociación, relacionando los datos del modelo. Para ello, dibujaremos un rombo que unirá las entidades que participan en la relación, y la nombraremos mediante un verbo en mayúsculas:</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02ent02relacionidades.png" data-desc-position="bottom"><img src="images/02ent02relacionidades.png" width="60%"></a>
+<br>
+<figcaption>Ejemplo de relación</figcaption>
+</figure>
+<p>Realmente una relación entre dos entidades contiene dos direcciones, de manera que la relación <code>COMPRAR</code> se puede dividir en que:</p>
+<ul>
+<li>Un <code>CLIENTE</code> compra uno o más productos, de manera que la relación va de <code>CLIENTE</code> hacia <code>PRODUCTO</code>.</li>
+<li>Un <code>PRODUCTO</code> lo pueden comprar uno o más clientes, de manera que la relación va de <code>PRODUCTO</code> hacia <code>CLIENTE</code>.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Notación</p>
+<p>Existen múltiples notaciones para representar las relaciones (las entidades se suelen representar igual en todas las notaciones). En los apuntes vamos a utilizar tanto la notación empleada por la herramienta <a href="https://erdplus.com/">ERDPlus</a> (también conocida como de pata de gallo), la notación de Chen (con las cardinalidades mínima y máxima) así como diferentes notaciones empleadas de forma generalizada por las empresas.</p>
+<p>Una vez dominada una notación es muy fácil entender y cambiar a cualquiera de las otras. Eso sí, debes ser constante y modelar siempre con la misma notación.</p>
+</div>
+<h3 id="grado">👥 Grado<a class="headerlink" href="#grado" title="Permanent link">¶</a></h3>
+<p>Se denomina <strong>grado</strong> de una relación a la cantidad de entidades involucradas en una relación, lo que nos permite clasificarlas las relaciones en:</p>
+<ul>
+<li>binarias: son las más comunes, e implica la participación de dos entidades.</li>
+<li>ternarias: participan tres entidades. A ser posible, es mejor simplificarlas mediante el uso de varias relaciones binarias y agregaciones. Por ejemplo, la relación existente entre un libro, su autor y la editorial donde se publica el libro. En este curso no vamos a trabajar las relaciones ternarias y en su caso, cuando sea posible, haremos uso de agregaciones o entidades asociativas.</li>
+<li>n-arias: muy excepcionales, ya que involucran 4 o más entidades.</li>
+<li>reflexivas (unarias): son relaciones binarias entre la misma entidad. Por ejemplo, una persona se casa con otra persona.</li>
+</ul>
+<h3 id="cardinalidad">🧮 Cardinalidad<a class="headerlink" href="#cardinalidad" title="Permanent link">¶</a></h3>
+<p>La cardinalidad define la cantidad de <strong>ocurrencias</strong> de una entidad que se <strong>relacionan</strong> con una relación (que a su vez se relaciona con otra entidad).</p>
+<p>Para ello, definimos las cardinalidades:</p>
+<ul>
+<li><strong>mínima</strong> (también conocido como participación): indica el número mínimo de asociaciones en las que aparecerá cada ejemplar de la entidad. Los valores que puede tomar son <strong>cero</strong> (opcional) o <strong>uno</strong> (obligatorio)</li>
+<li><strong>máxima</strong>: indica el número máximo de relaciones en las que puede aparecer cada ejemplar de la entidad. Los valores pueden ser <strong>uno</strong> o <strong>N</strong> (muchos).</li>
+</ul>
+<p>La cardinalidad entre una entidad y una relación se representa entre paréntesis indicando el valor mínimo a la izquierda y el mayor a la derecha mediante <code>Card(E,R) = (min, max)</code>. Las posibles combinaciones son:</p>
+<ul>
+<li><code>(0, 1)</code> - Una ocurrencia de una entidad se puede relacionar con ninguna o una ocurrencia de otra/s entidad/es.</li>
+<li><code>(1, 1)</code> - Una ocurrencia de una entidad se relaciona siempre con una ocurrencia de otra/s entidad/es.</li>
+<li><code>(0, N)</code> - Una ocurrencia de una entidad se puede relacionar con ninguna o muchas ocurrencias de otra/s entidad/es.</li>
+<li><code>(1, N)</code> - Una ocurrencia de una entidad se puede relacionar con una o muchas ocurrencias de otra/s entidad/es.</li>
+</ul>
+<p>Para averiguar la cardinalidad entre dos entidades vía una relación, cogemos una ocurrencia de una entidad y nos preguntamos con cuantas ocurrencias de la otra entidad se va a relacionar.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo</p>
+<p>Pongamos un ejemplo. Si pensamos en la relación que existe un producto y la categoría a la que pertenece, tendremos dos cardinalidades para cada lado de la relación.</p>
+<p>Si tenemos un producto concreto 
+- ¿A cuántas categorías va a pertenecer como mínimo y como máximo? 
+- ¿El <code>Bolígrafo azul de gel</code> a cuantas categorías pertenece?</p>
+<blockquote>
+<p><code>Card(PRODUCTO, PERTENECER) = (1, 1)</code> - Un producto siempre pertenece a una categoría</p>
+</blockquote>
+<p>Y en el otro sentido, dada una categoría concreta, ¿cuántos productos van a pertenecer a esta categoría? Si pensamos en la categoría <code>Papelería</code>, tendremos muchos productos diferentes.</p>
+<blockquote>
+<p><code>Card(CATEGORIA, PERTENECER) = (0, N)</code> - Una categoría puede no tener productos, pero si tiene, pertenecerán muchos.</p>
+</blockquote>
+<p>Para representar la cardinalidad en el modelo ER, <strong>las cardinalidades se anotan en el extremo opuesto de la entidad</strong>, utilizándose la regla <em>Entidad, Relación, Cardinalidad, Entidad</em>:</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02card-producto-categoria.png" data-desc-position="bottom"><img src="images/02card-producto-categoria.png" width="50%"></a>
+  <figcaption>Cardinalidades en la relación</figcaption>
+</figure><p></p>
+<p>Así pues, si aplicamos la regla de izquierda a derecha tenemos </p>
+<blockquote>
+<p><code>PRODUCTO, PERTENECER, (1,1), CATEGORIA</code>, lo que significa que un producto pertenece siempre a una categoría y como mucho a una también. </p>
+</blockquote>
+<p>En cambio, si la aplicamos de derecha a izquierda tenemos </p>
+<blockquote>
+<p><code>CATEGORIA, PERTENECER, (0,N), PRODUCTO</code> indica que a una categoría puede no pertenecer ningún producto pero también muchos.</p>
+</blockquote>
+</div>
+<h3 id="tipos">📚 Tipos<a class="headerlink" href="#tipos" title="Permanent link">¶</a></h3>
+<p>Si nos fijamos en las cardinalidades máximas, tenemos tres tipos de relaciones binarias:</p>
+<ul>
+<li>1:1 (<strong>uno a uno</strong>) – Un elemento de la primera relación se corresponde con uno solo de la segunda y viceversa. Por ejemplo, una pantalla digital está en un aula y en un aula sólo hay una pantalla digital.</li>
+<li>1:N (<strong>uno a muchos</strong>) – Un elemento de la primera relación se corresponde con uno o varios de la segunda y uno de la segunda se relaciona con uno solo de la primera. Por ejemplo, un trabajador solo puede trabajar en una empresa y en la empresa puede haber muchos trabajadores.</li>
+<li>N:M (<strong>muchos a muchos</strong>) – Un elemento de la primera relación se corresponden con muchos de la segunda y viceversa. Por ejemplo, un alumno puede estar matriculado en varias asignaturas y en una asignatura puede haber muchos alumnos.</li>
+</ul>
+<p>Para representar las relaciones, además de la notación de <strong><em>Chen</em></strong> (indicando las cardinalidades en el lado opuesto), utilizaremos la notación de pata de gallo:</p>
+<table>
+<thead>
+<tr>
+<th>Descripción</th>
+<th>Símbolo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un anillo representa "<em>cero</em>"</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion0.png" data-desc-position="bottom"><img alt="Notación (0,1)" src="images/02notacion0.png"></a></td>
+</tr>
+<tr>
+<td>Un guion representa "<em>uno</em>"</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion1.png" data-desc-position="bottom"><img align="center" alt="Notación (1,1)" src="images/02notacion1.png"></a></td>
+</tr>
+<tr>
+<td>La pata de gallo representa "<em>muchos</em>" (N)</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacionn.png" data-desc-position="bottom"><img alt="Notación (1,1)" src="images/02notacionn.png"></a></td>
+</tr>
+</tbody>
+</table>
+<p>Para ello, dibujaremos la cardinalidad máxima lo más cerca de cada entidad y la mínima lo más separada. En la siguiente tabla se supone que tenemos la relación a la izquierda y la entidad a la derecha:</p>
+<table>
+<thead>
+<tr>
+<th>Descripción</th>
+<th>Cardinalidad</th>
+<th>Símbolo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anillo y guion</td>
+<td>(0, 1)</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion01.png" data-desc-position="bottom"><img alt="Notación (0,1)" src="images/02notacion01.png"></a></td>
+</tr>
+<tr>
+<td>Guion y guion</td>
+<td>(1, 1)</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion11.png" data-desc-position="bottom"><img alt="Notación (1,1)" src="images/02notacion11.png"></a></td>
+</tr>
+<tr>
+<td>Anillo y pata de gallo</td>
+<td>(0, N)</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion0n.png" data-desc-position="bottom"><img alt="Notación (0,1)" src="images/02notacion0n.png"></a></td>
+</tr>
+<tr>
+<td>Guion y pata de gallo</td>
+<td>(1, N)</td>
+<td><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02notacion1n.png" data-desc-position="bottom"><img alt="Notación (0,1)" src="images/02notacion1n.png"></a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="relacion-11">🤝 Relación 1:1<a class="headerlink" href="#relacion-11" title="Permanent link">¶</a></h4>
+<p>En las relaciones uno a uno, las dos cardinalidades máximas toman el valor 1, e indican que una ocurrencia de la entidad A se relaciona con sólo uno de la B, y viceversa.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relaciones11.png" data-desc-position="bottom"><img src="images/02relaciones11.png" width="60%"></a>
+<br>
+<figcaption>Relación 1:1</figcaption>
+</figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02ocurrencias11.png" data-desc-position="bottom"><img src="images/02ocurrencias11.png" width="27%" align="right"></a></p>
+<p>Si nos fijamos en las ocurrencias de las entidades, vemos como cada departamento tiene asignado siempre un empleado y sólo uno. Por ello, <code>Card(DPTO, DIRIGIR) = (1,1)</code>. En cambio, tenemos empleados que no tienen asignado ningún departamento, y en el caso de tenerlo, sólo tienen uno, lo que implica que <code>Card(EMPLEADO, DIRIGIR) = (0,1)</code>.</p>
+<p>Como las dos cardinalidades máximas son 1, decimos que la relación es uno a uno.</p>
+<div class="admonition question">
+<p class="admonition-title">Autoevaluación</p>
+<p>¿En qué cambiaría el gráfico de ocurrencias si las cardinalidades fueran <code>Card(DPTO, DIRIGIR) = (0,1)</code> y <code>Card(EMPLEADO, DIRIGIR) = (1,1)</code>?<br>
+¿Cuáles pueden quedarse sin relacionar? ¿Los departamentos? ¿Los empleados?</p>
+</div>
+<p>Todas las posibles combinaciones de cardinalidades de una relación 1:1 son:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion0101.png" data-desc-position="bottom"><img alt="Relación 1:1 (0,1)-(0,1)" src="images/02relacion0101.png"></a>
+    </p><p class="text-center">Relación 1:1 (0,1)-(0,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion1101.png" data-desc-position="bottom"><img alt="Relación 1:1 (1,1)-(0,1)" src="images/02relacion1101.png"></a>
+    </p><p class="text-center">Relación 1:1 ((1,1)-0,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion0111.png" data-desc-position="bottom"><img alt="Relación 1:1 (0,1)-(1,1)" src="images/02relacion0111.png"></a>
+    </p><p class="text-center">Relación 1:1 (0,1)-(1,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion1111.png" data-desc-position="bottom"><img alt="Relación 1:1 (1,1)-(1,1)" src="images/02relacion1111.png"></a>
+    </p><p class="text-center">Relación 1:1 (1,1)-(1,1)</p><p></p>
+</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">¿1:1 imposible?</p>
+<p>Imagina que tenemos una relación 1:1 con las dos cardinalidades mínimas también a 1.</p>
+<p>Si cuando damos de alta una ocurrencia de la entidad A necesitamos de otra ocurrencia de la entidad B, y viceversa, nos encontramos con la paradoja circular del dilema del <em>huevo y la gallina</em>.</p>
+<p>Para evitar este problema, una de las dos cardinalidades mínimas se deja a 0, aquella que consideremos menos crítica.</p>
+</div>
+<h4 id="relacion-1n">🤝 Relación 1:N<a class="headerlink" href="#relacion-1n" title="Permanent link">¶</a></h4>
+<p>En las relaciones uno a muchos, en un sentido hay una cardinalidad máxima de uno, y en la otra de N, es decir, una ocurrencia de la entidad A se relaciona con una de la entidad B, pero una ocurrencia de la entidad B lo hace con muchas de la entidad A.</p>
+<p>En el siguiente ejemplo, tenemos que cada producto tendrá una categoría y en cambio, que de una categoría, tendremos muchos productos.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02ocurrencias1n.png" data-desc-position="bottom"><img src="images/02ocurrencias1n.png" width="60%"></a>
+<br>
+<figcaption>Ocurrencias 1:N</figcaption>
+</figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relaciones1n.png" data-desc-position="bottom"><img src="images/02relaciones1n.png" width="27%" align="right"></a></p>
+<p>Si nos fijamos en las ocurrencias de las entidades, vemos como un producto pertenece a una categoría, y siempre a una. Por ello, <code>Card(PRODUCTO, PERTENECER) = (1,1)</code>. En cambio, tenemos categorías a las que pertenecen muchos productos, e incluso categorías sin productos, lo que implica que <code>Card(CATEGORIA, PERTENECER) = (0,N)</code>.</p>
+<p>Autoevaluación</p>
+<p>¿En qué cambiaría el gráfico de ocurrencias si las cardinalidades fueran <code>Card(PRODUCTO, PERTENECER) = (0,1)</code> y <code>Card(CATEGORIA, PERTENECER) = (1,N)</code>?</p>
+<p>¿Y si les damos la vuelta siendo <code>Card(PRODUCTO, PERTENECER) = (1,N)</code> y <code>Card(CATEGORIA, PERTENECER) = (0,1)</code>?</p>
+<p>Todas las posibles combinaciones de cardinalidades de una relación 1:N son:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion0n01.png" data-desc-position="bottom"><img alt="Relación 1:1 (0,1)-(0,1)" src="images/02relacion0n01.png"></a>
+    </p><p class="text-center text-small">Relación 1:1 (0,N)-(0,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion1n01.png" data-desc-position="bottom"><img alt="Relación 1:1 (1,1)-(0,1)" src="images/02relacion1n01.png"></a>
+    </p><p class="text-center text-small">Relación 1:N (1,N)-(0,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion0n11.png" data-desc-position="bottom"><img alt="Relación 1:1 (0,1)-(1,1)" src="images/02relacion0n11.png"></a>
+    </p><p class="text-center text-small">Relación 1:1 (0,N)-(1,1)</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacion1n11.png" data-desc-position="bottom"><img alt="Relación 1:1 (1,1)-(1,1)" src="images/02relacion1n11.png"></a>
+    </p><p class="text-center text-small">Relación 1:1 (0,N)-(1,1)</p><p></p>
+</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Supuesto I Empresa</p>
+<p>Queremos gestionar la información sobre los empleados de una empresa, a partir de las siguientes condiciones: para cada empleado dispondremos de su DNI, nombre, fecha de nacimiento, salario y departamento en el que trabaja.</p>
+<p>De cada departamento sabremos su nombre, el número del despacho en el que se ubica y conoceremos quien es el jefe de dicho departamento.</p>
+<details class="solution">
+<summary>Solución</summary>
+<p>El primero paso es, a partir del enunciado, identificar las entidades buscando los sustantivos.</p>
+<blockquote>
+<p>"Queremos gestionar la información sobre los empleados de una empresa, a partir de las siguientes condiciones: para cada <strong>empleado</strong> dispondremos de su DNI, nombre, fecha de nacimiento, salario y departamento en el que trabaja. De cada <strong>departamento</strong> sabremos su nombre, el número del despacho en el que se ubica y conoceremos quien es el jefe de dicho departamento."</p>
+</blockquote>
+<p>Tras su revisión, deducimos que tenemos empleados y departamentos, que serán nuestras dos entidades principales: <code>EMPLEADO</code> y <code>DPTO</code> (hemos reducido la palabra para reducir el tamaño del diagrama).</p>
+<p>El siguiente paso es localizar las relaciones. Para ello, buscaremos los verbos que relacionen las entidades localizadas.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02solucion-empresa.png" data-desc-position="bottom"><img src="images/02solucion-empresa.png" width="27%" align="right"></a></p>
+<blockquote>
+<p>"Queremos gestionar la información sobre los empleados de una empresa, a partir de las siguientes condiciones: para cada empleado dispondremos de su DNI, nombre, fecha de nacimiento, salario y departamento en el que <strong>trabaja</strong>. De cada departamento sabremos su nombre, el número del despacho en el que se ubica y conoceremos quien <strong>es el jefe</strong> de dicho departamento.".</p>
+</blockquote>
+<p>Así pues, tenemos dos relaciones: <code>TRABAJAR</code> y <code>SER_JEFE</code>.</p>
+<p>Y por último, localizamos los atributos de las entidades y de las relaciones. Para ello, buscaremos los adjetivos y complementos que describan a las entidades y relaciones:</p>
+<blockquote>
+<p>"Queremos gestionar la información sobre los empleados de una empresa, a partir de las siguientes condiciones: para cada empleado dispondremos de su <strong>DNI</strong>, <strong>nombre</strong>, <strong>fecha de nacimiento</strong>, <strong>salario</strong> y departamento en el que trabaja. De cada departamento sabremos su <strong>nombre</strong>, el <strong>número del despacho</strong> en el que se ubica y conoceremos quien es el jefe de dicho departamento.".</p>
+</blockquote>
+<p>Así pues, hemos localizado las siguientes entidades y sus atributos:</p>
+<ul>
+<li>Atributos de <code>EMPLEADO</code>: <code>dni</code> (atributo identificador), <code>nombre</code>, <code>fecha de nacimiento</code>, <code>salario</code>.</li>
+<li>Atributos de <code>DPTO</code>: <code>nombre</code>, <code>número de despacho</code>.</li>
+</ul>
+</details>
+</div>
+<h4 id="relacion-nm">🤝 Relación N:M<a class="headerlink" href="#relacion-nm" title="Permanent link">¶</a></h4>
+<p>En las relaciones muchos a muchos, en los dos sentidos hay una cardinalidad máxima de muchos, es decir, una ocurrencia de la entidad A se relaciona con muchas de la entidad B, y una ocurrencia de la entidad B lo hace con muchas de la entidad A.</p>
+<p>En el siguiente ejemplo, tenemos que cada empleado puede trabajar en muchos proyectos, y que en cada proyecto, pueden trabajar muchos empleados:</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02relacionesnm.png" data-desc-position="bottom"><img src="images/02relacionesnm.png" width="60%"></a>
+<br>
+<figcaption>Ocurrencias N:M</figcaption>
+</figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02ocurrenciasnm.png" data-desc-position="bottom"><img src="images/02ocurrenciasnm.png" width="27%" align="right"></a></p>
+<p><br><br></p>
+<p>Si nos fijamos en las ocurrencias de las entidades, vemos como un empleado trabaja en uno o más proyectos (o en ninguno). Por ello, <code>Card(EMPLEADO, TRABAJAR) = (0,N)</code>. En cambio, tenemos proyectos en los que trabajan varios empleados, o incluso proyectos sin empleados, lo que implica que <code>Card(PROYECTO, TRABAJAR) = (0,N)</code>.</p>
+<p><br></p>
+<div class="admonition question">
+<p class="admonition-title">Autoevaluación</p>
+<p>Igual que en las relaciones 1:1 y 1:N, ¿Serías capaz de anotar las combinaciones de cardinalidades y modelar todos los tipos de relaciones N:M posibles?<br>
+¿Tiene sentido que las cardinalidades mínimas, en las relaciones N:M, sean 1? ¿Por qué?</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2025-2026 Jesús García - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<jssgarcia.docente@gmail.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "content.tabs.link", "content.code.copy", "content.code.select", "navigation.top", "navigation.expand", "navigation.path", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
