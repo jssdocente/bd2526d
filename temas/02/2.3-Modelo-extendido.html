@@ -5,13 +5,13 @@
       
       
       
-        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02/index.html">
+        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02/2.3-Modelo-extendido.html">
       
       
-        <link rel="prev" href="../01/index.html">
+        <link rel="prev" href="2.2-Restricciones.html">
       
       
-        <link rel="next" href="2.1-ModeloER.html">
+        <link rel="next" href="2.A-Actividades.html">
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Inicio - Bases de Datos - Curso 25/26</title>
+        <title>2.3 Modelo Extendido - Bases de Datos - Curso 25/26</title>
       
     
     
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ut2-a-diseno-conceptual-modelo-entidad-relacion" class="md-skip">
+        <a href="#23-el-modelo-entidad-relacion-extendido" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Inicio
+              2.3 Modelo Extendido
             
           </span>
         </div>
@@ -326,32 +326,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Inicio
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   
@@ -362,50 +340,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contenido-de-la-unidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contenido de la unidad
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Contenido de la unidad">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#programacion-de-aula-12h" class="md-nav__link">
-    <span class="md-ellipsis">
-      Programación de Aula (12h)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -461,10 +395,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="2.3-Modelo-extendido.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    2.3 Modelo Extendido
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="2.3-Modelo-extendido.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -475,6 +431,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔷 Generalización
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔷 Generalización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Tipos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✖️ Agregación
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -537,19 +546,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contenido-de-la-unidad" class="md-nav__link">
+  <a href="#generalizacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Contenido de la unidad
+      🔷 Generalización
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Contenido de la unidad">
+    <nav class="md-nav" aria-label="🔷 Generalización">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#programacion-de-aula-12h" class="md-nav__link">
+  <a href="#tipos" class="md-nav__link">
     <span class="md-ellipsis">
-      Programación de Aula (12h)
+      📚 Tipos
     </span>
   </a>
   
@@ -557,6 +566,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✖️ Agregación
+    </span>
+  </a>
   
 </li>
       
@@ -576,130 +594,101 @@
 
 
 
-<h1 id="ut2-a-diseno-conceptual-modelo-entidad-relacion">UT2-A <strong>Diseño Conceptual: Modelo Entidad Relación</strong><a class="headerlink" href="#ut2-a-diseno-conceptual-modelo-entidad-relacion" title="Permanent link">¶</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Información de la unidad</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Contenidos</label><label for="__tabbed_1_2">Propuesta didáctica</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Bases de datos relacionales:</p>
+<h1 id="23-el-modelo-entidad-relacion-extendido"><strong>2.3 El modelo Entidad Relación Extendido</strong><a class="headerlink" href="#23-el-modelo-entidad-relacion-extendido" title="Permanent link">¶</a></h1>
+<p>Con el paso de los años, y dadas ciertas carencias del modelo entidad relación, a mediados de los años 80 se extendió con la incorporación de los conceptos de clase y subclase, junto con los conceptos de generalización y especialización, así como la agregación de entidades, dando lugar al modelo <em>Entidad Relación Extendido</em> (<strong>EER</strong>).</p>
+<h2 id="generalizacion">🔷 <strong>Generalización</strong><a class="headerlink" href="#generalizacion" title="Permanent link">¶</a></h2>
+<p>La descomposición de tipos de entidad en varios subtipos o subclases permite identificar jerarquías de entidades, entre una entidad general, que denominamos entidad superclase (o entidad padre), que se puede especializar en entidades subclase (o entidades hijas):</p>
 <ul>
-<li>Modelo de datos</li>
+<li>La entidad <strong>superclase</strong> modelan las características comunes de la entidad vista de una forma genérica.</li>
+<li>Las entidades <strong>subclase</strong> modelan las características propias de sus especializaciones.</li>
 </ul>
-<p>Interpretación de Diagramas Entidad/Relación:</p>
+<p>Es necesario que se cumpla que toda ocurrencia de una entidad subclase sea también una ocurrencia de su entidad superclase, propagando sus características de padres a hijos, lo que se denomina <em>herencia de propiedades</em>.</p>
+<p><strong>Generalización vs Especialización</strong></p>
+<p>Se dice que tenemos una <strong>generalización</strong>, cuando dos o más tipos de entidades van a compartir diferentes atributos. Para ello, la entidad superclase contendrá aquellos atributos comunes a las subclases. En cambio, se dice que realizamos una especialización cuando un tipo de entidad tiene algunos atributos que tienen sentido para algunas subclases, pero no para todas. Para ello, cada subclase contendrá sus atributos específicos, y los comunes se colocan en la superclase.</p>
+<p>Así pues, se dice que la generalización va de abajo hacia arriba, subiendo los atributos comunes al padre, y en consecuencia, la especialización va de arriba a abajo, colocando en los hijos los atributos específicos que no comparten todas las subclases.</p>
+<p>Con generalización y la especialización se establece una relación <strong><em>ES-UN</em></strong> (en inglés, <em>IS-A</em>), indicando que una entidad hijo ES-UN con la entidad padre. Por ejemplo, si la superclase es <code>VEHICULO</code>, ejemplos de subclases serían <code>CAMION</code>, <code>AUTOBUS</code>, <code>MOTO</code>, etc... ya que un <code>CAMION</code> es un <code>VEHICULO</code>.</p>
+<p>En la generalización/especialización, las características (atributos o interrelaciones) de la entidad superclase se propagan hacia las entidades subclase. Es lo que se denomina <strong>herencia de propiedades</strong>.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02generalizacion.png" data-desc-position="bottom"><img src="images/02generalizacion.png" width="80%"></a>
+<br>
+<figcaption>Generalización</figcaption>
+</figure>
+<p>Las <strong>generalizaciones</strong> siempre se representan en vertical, situando la entidad superclase arriba y las subclases debajo. Para conectarlas, se utiliza un círculo que puede contener la letra <code>d</code> o la letra <code>o</code> de forma similar al ejemplo que tenemos en el lateral, para indicar que la especialización es disjunta o solapada (<em>overlap</em>). Entre la clase padre y el círculo, si se utiliza una línea simple indicamos que es una especialización parcial y si es doble, que se trata de una generalización total.</p>
+<p>Finalmente, el circulo conecta con los hijos mediante una línea que contiene un arco indicando el sentido del padre a los hijos.</p>
+<p>Así pues, en el ejemplo tenemos que un <code>LIBRO</code> tiene un isbn y un título. Y que un <code>EBOOK</code> <em>ES-UN</em> <code>LIBRO</code> y que <code>EN_PAPEL</code> también <em>ES-UN</em> <code>LIBRO</code>. Un <code>EBOOK</code> en total tiene tres atributos, los dos que hereda del padre, más el formato del <em>ebook</em>. De forma similar, <code>EN_PAPEL</code>, también tiene tres atributos, los dos que hereda de <code>LIBRO</code> más el número de páginas de la copia impresa.</p>
+<h3 id="tipos">📚 Tipos<a class="headerlink" href="#tipos" title="Permanent link">¶</a></h3>
+<p>Cuando definimos una especialización es muy importante definir cómo se relacionan las superclases con las subclases.</p>
+<p>Vamos a centrarnos en un supuesto donde tenemos una superclase <code>EMPLEADO</code> y tenemos tres subclases: <code>DIRECTIVO</code>, <code>TECNICO</code> y <code>COMERCIAL</code>.</p>
+<p>Si nos centramos en la cantidad de subtipos posibles tenemos:</p>
 <ul>
-<li>El modelo E/R. Entidades y relaciones. Cardinalidades. Debilidad.</li>
-<li>El modelo E/R ampliado. Generalización y especialización. Agregación.</li>
+<li><strong>Total</strong>: La superclase pertenece obligatoriamente a alguna de las subclases. No puede haber un <code>EMPLEADO</code> que no sea ni <code>DIRECTIVO</code>, ni <code>TECNICO</code>, ni <code>COMERCIAL</code>. Se representa uniendo mediante una línea doble (<code>||</code>) la superclase con el círculo.</li>
+<li><strong>Parcial</strong>: La superclase puede no pertenecer a alguna de las subclases. Podríamos tener un <code>EMPLEADO</code> que no sea ni <code>DIRECTIVO</code>, ni <code>TECNICO</code>, ni <code>COMERCIAL</code>. Se representa uniendo mediante una línea sencilla (<code>|</code>) la superclase con el círculo.</li>
 </ul>
-</div>
-<div class="tabbed-block">
-<p>En esta unidad vamos a comenzar a trabajar el RA6: <strong>Diseña modelos relacionales normalizados interpretando diagramas entidad/relación</strong>.</p>
-<p>Criterios de evaluación</p>
+<p>Y si ponemos en foco en la exclusividad de las subclases:</p>
 <ul>
-<li><strong>CE6b</strong>: Se han identificado las tablas del diseño lógico.</li>
-<li><strong>CE6c</strong>: Se han identificado los campos que forman parte de las tablas del diseño lógico.</li>
-<li><strong>CE6d</strong>: Se han analizado las relaciones entre las tablas del diseño lógico.</li>
-<li><strong>CE6e</strong>: Se han identificado los campos clave.</li>
+<li><strong>Disjunta</strong> / Exclusiva: La superclase sólo pertenece a una de las subclases. Si un <code>EMPLEADO</code> es un <code>DIRECTIVO</code>, no puede ser un <code>TECNICO</code> ni un <code>COMERCIAL</code>. Se representa poniendo una <strong><code>d</code></strong> dentro del círculo.</li>
+<li><strong>Solapada</strong>: La superclase puede pertenecer a varias de las subclases a la vez. Un <code>EMPLEADO</code> puede ser un <code>DIRECTIVO</code> y un <code>COMERCIAL</code> a la vez. Se representa poniendo una <strong><code>o</code></strong> dentro del círculo.</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<h2 id="contenido-de-la-unidad"><strong>Contenido de la unidad</strong><a class="headerlink" href="#contenido-de-la-unidad" title="Permanent link">¶</a></h2>
-<p>El contenido de la unidad está repartido en los siguientes bloques.</p>
-<p>Índice:</p>
+<p>Con lo cual, se pueden dar las siguientes combianciones:</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02isa-tipos.png" data-desc-position="bottom"><img src="images/02isa-tipos.png" width="100%"></a>
+<br>
+<figcaption>Tipos de relaciones IS-a</figcaption>
+</figure>
+<details class="fix">
+<summary>Otras formas de representar este tipo de relaciones:</summary>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02isaTiposAlternative.png" data-desc-position="bottom"><img src="images/02isaTiposAlternative.png" width="100%"></a>
+  <figcaption>Tipos de relaciones IS-a (representación alternativa)</figcaption>
+</figure><p></p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Supuesto IV Tienda</p>
+<p>Se pide diseñar la base de datos de una tienda, la cual está organizada por departamentos, que contenga información sobre los trabajadores y los artículos que se ofertan.</p>
+<p>Se deben tener en cuenta las siguientes restricciones:</p>
+<p>De todos los trabajadores nos interesa almacenar su DNI, nombre completo y número de teléfono, así como el departamento en el que trabajan.
+Existen tres tipos de trabajadores: gerentes (del que guardaremos el bonus anual), jefes (nos interesa almacenar cuantos vendedores tiene a su cargo) y vendedores (de cada vendedor, guardaremos su sueldo base y la zona donde trabaja).
+Cada departamento lo dirige un gerente, aunque se puede dar el caso que tengamos gerentes que no dirijan ningún departamento, pero nunca dirigirán más de uno.
+Un gerente tiene a su cargo a un cierto número de jefes y éstos a su vez a un cierto número de vendedores.
+En cuanto a los productos nos interesa su código, nombre y precio, y departamento en el que se encuentran.
+Cada producto lo pueden vender muchos vendedores, y cada vendedor, a su vez, puede vender muchos productos. Además, cada vendedor le aplicará un determinado descuento a los productos con los que trabaja.</p>
+<details class="solution">
+<summary>Solución</summary>
+<p>Primero localizamos las entidades y sus atributos:</p>
 <ul>
-<li><a href="2.1-ModeloER.html">2.1 Modelo Entidad-Relación</a></li>
-<li><a href="2.2-Restricciones.html">2.2 Restricciones</a></li>
-<li><a href="2.3-Modelo-extendido.html">2.3 Modelo Extendido</a></li>
-<li><a href="2.A-Actividades.html">2.A Actividades</a></li>
+<li><strong>Entidades</strong>: TRABAJADOR, DPTO, PRODUCTO. Los trabajadores a su vez, se descomponen en las subclases VENDEDOR, JEFE y GERENTE.</li>
+<li><strong>Atributos</strong>: los trabajadores se identifican por su dni, mientras que los departamentos y los productos por su codigo.</li>
 </ul>
-<h3 id="programacion-de-aula-12h">Programación de Aula (12h)<a class="headerlink" href="#programacion-de-aula-12h" title="Permanent link">¶</a></h3>
-<p>Esta unidad es la segunda, con lo que se imparte en la primera evaluación, con una duración estimada de 12 sesiones lectivas:</p>
-<table>
-<thead>
-<tr>
-<th>Sesión</th>
-<th>Contenidos</th>
-<th>Actividades</th>
-<th>Criterios trabajados</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="2.1-ModeloER.html#2-el-modelo-entidad-relación">Modelo Entidad Relación</a>.</td>
-<td><a href="2.A-Actividades.html#ac201-rabd6--ce6b-ce6c">AC201</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr></td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="2.1-ModeloER.html#️entidades">Entidades</a>. Relaciones - Cardinalidad</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td><a href="2.1-ModeloER.html#relaciones">Relaciones</a> <a href="2.1-ModeloER.html#relacion-11">1:1</a>, <a href="2.1-ModeloER.html#relacion-1n">1:N</a>, <a href="2.1-ModeloER.html#relacion-nm">N:M</a></td>
-<td><a href="2.A-Actividades.html#ac203-rabd6--ce6d">AC203</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr></td>
-</tr>
-<tr>
-<td>4</td>
-<td><a href="2.1-ModeloER.html#atributos">Atributos</a>. Trabajando las cardinalidades</td>
-<td><a href="2.A-Actividades.html#ac204-rabd6--ce6d">AC204</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr></td>
-</tr>
-<tr>
-<td>5</td>
-<td><a href="2.1-ModeloER.html#identificadores">Atributos identificadores</a>. Modelados sencillos</td>
-<td><a href="2.A-Actividades.html#ac205-rabd6--ce6b-ce6c-ce6e">AC205</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>6</td>
-<td>Completando modelos</td>
-<td><a href="2.A-Actividades.html#ac208-rabd6--ce6b-ce6c-ce6e">AC208</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>7</td>
-<td><a href="2.2-Restricciones.html#22-restricciones">Restricciones</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>8</td>
-<td><a href="2.3-Modelo-extendido.html#23-el-modelo-entidad-relación-extendido">Modelado EER</a>. Generalización. <a href="2.3-Modelo-extendido.html#tipos">Tipos</a></td>
-<td><a href="2.A-Actividades.html#ac209-rabd6--ce6b-ce6c-ce6e">AC209</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>9</td>
-<td>Modelados con generalizaciones</td>
-<td><a href="2.A-Actividades.html#ac210-rabd6--ce6b-ce6c-ce6e">AC210</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>10</td>
-<td><a href="2.3-Modelo-extendido.html#agregacion">Agregaciones</a></td>
-<td><a href="2.A-Actividades.html#ac212-rabd6--ce6b-ce6c-ce6e">AC212</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>11</td>
-<td>Interpretando modelos</td>
-<td><a href="2.A-Actividades.html#ac215-rabd6--ce6b-ce6c-ce6d-ce6e">AC215</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>12</td>
-<td><a href="2.A-Actividades.html#reto-i---diseñamos">Reto - Diseñando una BD</a></td>
-<td><a href="2.A-Actividades.html#py216-rabd6--ce6b-ce6c-ce6d-ce6e">PY216</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-</tbody>
-</table>
+<p>Las relaciones son:</p>
+<ul>
+<li><strong>Relación 1:N</strong> nombrada como PERTENECER entre TRABAJADOR Y DPTO, ya que de los trabajadores nos interesa "el departamento en el que trabajan" y se entiende que a un departamento pertenecerán varios trabajadores.</li>
+<li>Generalización total y disjunta entre TRABAJADOR y sus hijos VENDEDOR, JEFE y GERENTE, cada uno con sus propios atributos. Destacar que el atributo de cantVendedores es derivado, ya que se obtiene de la cardinalidad de la relación SUPERVISAR.</li>
+<li><strong>Relación 1:1</strong> nombrada como DIRIGIR entre DPTO Y GERENTE, ya que "Cada departamento lo dirige un gerente, aunque se puede dar el caso que tengamos gerentes que no dirijan ningún departamento, pero nunca dirigirán más de uno"</li>
+<li><strong>Relación 1:N</strong> nombrada como MANDAR entre GERENTE Y JEFE, ya que "Un gerente tiene a su cargo a un cierto número de jefes".</li>
+<li><strong>Relación 1:N</strong> nombrada como SUPERVISAR entre JEFE Y VENDEDOR, continuando "y éstos (los jefes) a su vez a un cierto número de vendedores".</li>
+<li><strong>Relación 1:N</strong> nombrada como ENCONTRAR entre DPTO Y PRODUCTO, ya que "En cuanto a los productos nos interesa ... departamento en el que se encuentran", y entendemos que en un departamento encontraremos varios productos.</li>
+<li><strong>Relación N:M</strong> nombrada como VENDER entre VENDEDOR y PRODUCTO, ya que "Cada producto lo pueden vender muchos vendedores, y cada vendedor, a su vez, puede vender muchos productos". Además, añadimos el atributo descuento en la relación para almacenar el descuento que cada vendedor aplica a los productos.</li>
+</ul>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02solucion-tienda.png" data-desc-position="bottom"><img src="images/02solucion-tienda.png" width="100%"></a>
+  <figcaption>Solución</figcaption>
+</figure><p></p>
+</details>
+</div>
+<h2 id="agregacion">✖️ <strong>Agregación</strong><a class="headerlink" href="#agregacion" title="Permanent link">¶</a></h2>
+<p>La agregación surge de la limitación que existe en el modelo ER de no permitir expresar relaciones entre relaciones binarias, y en gran medida, haciendo uso de agregaciones podemos evitar hacer uso de relaciones ternarias.</p>
+<p>Así pues, una agregación se comporta como una entidad más, con un nivel de abstracción mayor que la propia relación.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo Agregación</p>
+<p>Por ejemplo, tengamos el caso de un docente que imparte clase en una determinada aula. El docente dará clase a varios grupos en el aula, y en el aula entran varios docentes. Queda claro que una relación N:M entre <code>DOCENTE</code> y <code>AULA</code> (por ejemplo, <code>IMPARTIR</code>) nos permite modelar este caso. Pero ¿y si queremos registrar las incidencias que se producen en el aula cuando un docente está dando clase? Si unimos la entidad <code>INCIDENCIA</code> con <code>DOCENTE</code> o con <code>AULA</code>, estaríamos perdiendo información.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02agregacion.png" data-desc-position="bottom"><img src="images/02agregacion.png" width="50%"></a>
+  <figcaption>Agregación</figcaption>
+</figure><p></p>
+<p>Así pues, creamos una <strong>entidad asociativa</strong> que funciona como una <strong>agregación</strong>, y la nombramos, por ejemplo como <code>SESION</code> (una sesión lectiva la imparte un docente en un aula) y ésta es la que relacionamos con la entidad <code>INCIDENCIA</code> mediante la relación <code>REGISTRAR</code>. Es importante destacar que la entidad asociativa no tiene atributo identificador, porque realmente es como si tuviera una restricción de identificación respecto a las otras entidades, a modo de entidad débil que necesita de todas las entidades con las que se asocia para identificarse.</p>
+</div>
+<p>El <strong>mecanismo de agregación</strong> lo que hace es abstraer las entidades y la relación que las asocia para obtener una <strong>entidad compleja</strong>, conocida como <strong>entidad asociativa</strong>, que a su vez puede relacionarse como una entidad normal con el resto de entidades de nuestro sistema.</p>
+<p>Aunque tiene muchos puntos de contacto con una relación ternaria, la agregación remarca la relación entre una determinada pareja de entidades, al mismo tiempo que <strong>no implica una necesaria asociación con la tercera entidad</strong>, como si ocurre en las ternarias.</p>
 
 
 

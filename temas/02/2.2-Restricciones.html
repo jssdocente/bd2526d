@@ -5,13 +5,13 @@
       
       
       
-        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02/index.html">
+        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02/2.2-Restricciones.html">
       
       
-        <link rel="prev" href="../01/index.html">
+        <link rel="prev" href="2.1-ModeloER.html">
       
       
-        <link rel="next" href="2.1-ModeloER.html">
+        <link rel="next" href="2.3-Modelo-extendido.html">
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Inicio - Bases de Datos - Curso 25/26</title>
+        <title>2.2 Restricciones - Bases de Datos - Curso 25/26</title>
       
     
     
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ut2-a-diseno-conceptual-modelo-entidad-relacion" class="md-skip">
+        <a href="#22-restricciones" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Inicio
+              2.2 Restricciones
             
           </span>
         </div>
@@ -326,32 +326,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Inicio
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
         
   
   
@@ -362,50 +340,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contenido-de-la-unidad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Contenido de la unidad
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Contenido de la unidad">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#programacion-de-aula-12h" class="md-nav__link">
-    <span class="md-ellipsis">
-      Programación de Aula (12h)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -438,10 +372,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="2.2-Restricciones.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    2.2 Restricciones
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="2.2-Restricciones.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -452,6 +408,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#existencia-e-identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🆔 Existencia e identificación
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -537,26 +522,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contenido-de-la-unidad" class="md-nav__link">
+  <a href="#existencia-e-identificacion" class="md-nav__link">
     <span class="md-ellipsis">
-      Contenido de la unidad
+      🆔 Existencia e identificación
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Contenido de la unidad">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#programacion-de-aula-12h" class="md-nav__link">
-    <span class="md-ellipsis">
-      Programación de Aula (12h)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -576,130 +546,101 @@
 
 
 
-<h1 id="ut2-a-diseno-conceptual-modelo-entidad-relacion">UT2-A <strong>Diseño Conceptual: Modelo Entidad Relación</strong><a class="headerlink" href="#ut2-a-diseno-conceptual-modelo-entidad-relacion" title="Permanent link">¶</a></h1>
+<h1 id="22-restricciones"><strong>2.2 Restricciones</strong><a class="headerlink" href="#22-restricciones" title="Permanent link">¶</a></h1>
+<p>En el apartado de <a href="2.1-ModeloER.html#️entidades">Entidades</a> vimos que tenemos entidades fuertes y débiles, y en las débiles su existencia depende de otra entidad, de manera que se identifica por sus propiedades y por las propiedades de las entidades de las que depende.</p>
+<h2 id="existencia-e-identificacion">🆔 <strong>Existencia e identificación</strong><a class="headerlink" href="#existencia-e-identificacion" title="Permanent link">¶</a></h2>
+<p>Las entidades débiles, que representamos mediante un doble rectángulo, presentan dos tipos de dependencia:</p>
+<ul>
+<li>
+<p>Dependencia en <strong>existencia</strong>: la entidad débil no puede existir sin la entidad débil, lo que implica que, si desaparece una instancia de entidad fuerte desaparecerán las instancias de entidad débiles que dependan de la primera. La representación de este tipo de dependencia incluirá una <code>E</code> en el conector o en el interior de la relación débil. En todos casos las restricciones de existencia implican que la cardinalidad mínima es 1.</p>
+</li>
+<li>
+<p>Dependencia en <strong>identificación</strong>: debe darse una dependencia en existencia y además, una ocurrencia de la entidad débil no puede identificarse por sí misma, debiendo hacerse mediante los atributos identificadores de la entidad fuerte asociada. La representación de este tipo de dependencia incluirá una <code>ID</code> en el conector o en el interior de la relación débil. También se puede representar con un rombo doble. Además de que la cardinalidad mínima será 1, es muy común que en estos casos, la relación tenga una cardinalidad de 1:N.</p>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02restriccion-id.png" data-desc-position="bottom"><img src="images/02restriccion-id.png" width="80%"></a>
+<br>
+<figcaption>Restricción de ID</figcaption>
+</figure>
+<p>En el ejemplo del gráfico tenemos una relación que tiene una <strong>restricción de identificación</strong> entre una línea de pedido (entidad débil) respecto a un pedido (entidad fuerte). El pedido tendrá un código y un montante total que se calcula a partir de los valores de las líneas de pedido. La propia restricción de identificación implica que las líneas de pedido realmente se identifican por su número de línea y por el código del pedido, por ejemplo la línea <code>1</code> del pedido <code>R2024A01</code>, la línea <code>2</code> del mismo pedido, etc... o la línea <code>1</code> de otro pedido diferente.</p>
+<p>En las <strong>restricciones de identificación</strong> es muy común que la entidad débil se identifique mediante un número o código secuencial, el cual se reinicia por cada cambio de la entidad fuerte. Por ejemplo, pensemos en que todos los apartamentos de un edificio empiezan desde el número <code>101</code>, pudiendo tener el apartamento <code>102</code> del edificio <code>E1</code> y el apartamento <code>102</code> del edificio <code>E2</code>, es decir, la entidad <code>APARTAMENTO</code> tiene una restricción de identificación con <code>EDIFICIO</code>.</p>
+<p>Pongamos otro ejemplo, si identificamos al alumnado por su número de lista y por el grupo al que pertenecen, tendremos que no será el mismo estudiante el número <code>1</code> del grupo <code>1K</code> que el estudiante <code>1</code> del grupo <code>2K</code>, de manera que tendremos una restricción de identificación entre la entidad <code>ESTUDIANTE</code> y la entidad <code>GRUPO</code>.</p>
+<div class="admonition question">
+<p class="admonition-title">Débil o fuerte</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02restriccion-id-fuerte.png" data-desc-position="bottom"><img src="images/02restriccion-id-fuerte.png" width="40%" align="right"></a></p>
+<p>Hay casos en los que una entidad tiene relación con varias entidades, comportándose como débil en una, y como fuerte en otras. Es por ello, que además de marcar la entidad como débil, debemos marcar la relación con un doble rombo.</p>
+<p>Veámoslo con un ejemplo. Si sobre la línea de pedido, añadimos una relación 1:N con observaciones sobre la misma, tendríamos el siguiente modelo, donde LINEA_PEDIDO es una entidad débil respecto a la relación CONTENER, pero hace de entidad fuerte respecto a la relación TENER.</p>
+</div>
 <div class="admonition info">
-<p class="admonition-title">Información de la unidad</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Contenidos</label><label for="__tabbed_1_2">Propuesta didáctica</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Bases de datos relacionales:</p>
+<p class="admonition-title">Cardinalidades exactas</p>
+<p>En ocasiones sabemos la cantidad exacta de ocurrencias con las que se puede relacionar una entidad. En dicho caso, seguirán siendo relaciones 1:N o N:M, pero en el modelo, indicaremos la cantidad de ocurrencias.</p>
+<p>Por ejemplo, si en una clase se matriculan un mínimo de 5 estudiantes y un máximo de 24, y un estudiante se matricula en al menos 2 clases y 6 como máximo, tendremos:</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02cardinalidades-exactas.png" data-desc-position="bottom"><img src="images/02cardinalidades-exactas.png" width="60%"></a>
+  <figcaption>Restricción de ID</figcaption>
+</figure><p></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Supuesto III Empresa</p>
+<p>Vamos a ampliar el sistema de información anterior para almacenar más información. El nuevo sistema es:</p>
 <ul>
-<li>Modelo de datos</li>
+<li>La empresa está organizada en <strong>departamentos</strong>. Cada uno tiene un nombre único, el número del despacho en el que se ubica y un empleado que lo dirige. Nos interesa la fecha que empezó a dirigirlo.</li>
+<li>Cada departamento <strong>controla una serie de proyectos</strong>, los cuales tienen nombre y número únicos.</li>
+<li>De cada <strong>empleado</strong> nos interesa el DNI, nombre, fecha de nacimiento, salario y departamento en el que trabaja. Cada empleado puede trabajar en más de un proyecto, dedicándole un determinado número de horas a la semana en cada proyecto.</li>
+<li>Finalmente, queremos guardar también los <strong>familiares de cada empleado</strong>, para administrar información relativa a las pólizas de seguros. De los familiares, queremos saber el nombre, fecha de nacimiento y parentesco con el empleado.</li>
 </ul>
-<p>Interpretación de Diagramas Entidad/Relación:</p>
+<details class="solution">
+<summary>Solución</summary>
+<p>Si volvemos a repetir el mismo proceso que hemos realizando anteriormente, vamos a localizar las entidades y las relaciones buscando los sustantivos y los verbos:</p>
 <ul>
-<li>El modelo E/R. Entidades y relaciones. Cardinalidades. Debilidad.</li>
-<li>El modelo E/R ampliado. Generalización y especialización. Agregación.</li>
+<li>La empresa está organizada en departamentos. Cada uno tiene un nombre único, el número del despacho en el que se ubica y un empleado que lo dirige. Nos interesa la fecha que empezó a dirigirlo.</li>
+<li>Cada departamento controla una serie de proyectos, los cuales tienen nombre y número únicos.</li>
+<li>De cada empleado nos interesa el DNI, nombre, fecha de nacimiento, salario y departamento en el que trabaja. Cada empleado puede dedicarse a más de un proyecto, facturando un determinado número de horas a la semana a cada proyecto.</li>
+<li>Finalmente, queremos guardar también los familiares que tiene cada empleado, para administrar información relativa a las pólizas de seguros. De los familiares, queremos saber el nombre, fecha de nacimiento y parentesco con el empleado.</li>
 </ul>
-</div>
-<div class="tabbed-block">
-<p>En esta unidad vamos a comenzar a trabajar el RA6: <strong>Diseña modelos relacionales normalizados interpretando diagramas entidad/relación</strong>.</p>
-<p>Criterios de evaluación</p>
+<p>Resumiendo, hemos localizado: </p>
 <ul>
-<li><strong>CE6b</strong>: Se han identificado las tablas del diseño lógico.</li>
-<li><strong>CE6c</strong>: Se han identificado los campos que forman parte de las tablas del diseño lógico.</li>
-<li><strong>CE6d</strong>: Se han analizado las relaciones entre las tablas del diseño lógico.</li>
-<li><strong>CE6e</strong>: Se han identificado los campos clave.</li>
+<li>Entidades: EMPLEADO, DPTO, PROYECTO y FAMILIAR.</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<h2 id="contenido-de-la-unidad"><strong>Contenido de la unidad</strong><a class="headerlink" href="#contenido-de-la-unidad" title="Permanent link">¶</a></h2>
-<p>El contenido de la unidad está repartido en los siguientes bloques.</p>
-<p>Índice:</p>
+<p>Relaciones:</p>
 <ul>
-<li><a href="2.1-ModeloER.html">2.1 Modelo Entidad-Relación</a></li>
-<li><a href="2.2-Restricciones.html">2.2 Restricciones</a></li>
-<li><a href="2.3-Modelo-extendido.html">2.3 Modelo Extendido</a></li>
-<li><a href="2.A-Actividades.html">2.A Actividades</a></li>
+<li>TRABAJAR entre EMPLEADO y DPTO.</li>
+<li>SER_JEFE entre EMPLEADO y DPTO.</li>
+<li>CONTROLAR entre DPTO y PROYECTO.</li>
+<li>DEDICAR entre EMPLEADO y PROYECTO.</li>
+<li>TENER entre EMPLEADO y FAMILIAR.</li>
 </ul>
-<h3 id="programacion-de-aula-12h">Programación de Aula (12h)<a class="headerlink" href="#programacion-de-aula-12h" title="Permanent link">¶</a></h3>
-<p>Esta unidad es la segunda, con lo que se imparte en la primera evaluación, con una duración estimada de 12 sesiones lectivas:</p>
-<table>
-<thead>
-<tr>
-<th>Sesión</th>
-<th>Contenidos</th>
-<th>Actividades</th>
-<th>Criterios trabajados</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="2.1-ModeloER.html#2-el-modelo-entidad-relación">Modelo Entidad Relación</a>.</td>
-<td><a href="2.A-Actividades.html#ac201-rabd6--ce6b-ce6c">AC201</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr></td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="2.1-ModeloER.html#️entidades">Entidades</a>. Relaciones - Cardinalidad</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td><a href="2.1-ModeloER.html#relaciones">Relaciones</a> <a href="2.1-ModeloER.html#relacion-11">1:1</a>, <a href="2.1-ModeloER.html#relacion-1n">1:N</a>, <a href="2.1-ModeloER.html#relacion-nm">N:M</a></td>
-<td><a href="2.A-Actividades.html#ac203-rabd6--ce6d">AC203</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr></td>
-</tr>
-<tr>
-<td>4</td>
-<td><a href="2.1-ModeloER.html#atributos">Atributos</a>. Trabajando las cardinalidades</td>
-<td><a href="2.A-Actividades.html#ac204-rabd6--ce6d">AC204</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr></td>
-</tr>
-<tr>
-<td>5</td>
-<td><a href="2.1-ModeloER.html#identificadores">Atributos identificadores</a>. Modelados sencillos</td>
-<td><a href="2.A-Actividades.html#ac205-rabd6--ce6b-ce6c-ce6e">AC205</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>6</td>
-<td>Completando modelos</td>
-<td><a href="2.A-Actividades.html#ac208-rabd6--ce6b-ce6c-ce6e">AC208</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>7</td>
-<td><a href="2.2-Restricciones.html#22-restricciones">Restricciones</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>8</td>
-<td><a href="2.3-Modelo-extendido.html#23-el-modelo-entidad-relación-extendido">Modelado EER</a>. Generalización. <a href="2.3-Modelo-extendido.html#tipos">Tipos</a></td>
-<td><a href="2.A-Actividades.html#ac209-rabd6--ce6b-ce6c-ce6e">AC209</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>9</td>
-<td>Modelados con generalizaciones</td>
-<td><a href="2.A-Actividades.html#ac210-rabd6--ce6b-ce6c-ce6e">AC210</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>10</td>
-<td><a href="2.3-Modelo-extendido.html#agregacion">Agregaciones</a></td>
-<td><a href="2.A-Actividades.html#ac212-rabd6--ce6b-ce6c-ce6e">AC212</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>11</td>
-<td>Interpretando modelos</td>
-<td><a href="2.A-Actividades.html#ac215-rabd6--ce6b-ce6c-ce6d-ce6e">AC215</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-<tr>
-<td>12</td>
-<td><a href="2.A-Actividades.html#reto-i---diseñamos">Reto - Diseñando una BD</a></td>
-<td><a href="2.A-Actividades.html#py216-rabd6--ce6b-ce6c-ce6d-ce6e">PY216</a></td>
-<td><abbr title="Se han identificado las tablas del diseño lógico.">CE6b</abbr>, <abbr title="Se han identificado los campos que forman parte de las tablas del diseño lógico.">CE6c</abbr>, <abbr title="Se han analizado las relaciones entre las tablas del diseño lógico.">CE6d</abbr>, <abbr title="Se han identificado los campos clave.">CE6e</abbr></td>
-</tr>
-</tbody>
-</table>
+<p>Si nos centramos en las cardinalidades de las relaciones, tenemos:</p>
+<ul>
+<li>Card(EMPLEADO, TRABAJAR) = (0, 1) y Card(DPTO, TRABAJAR) = (0, N)</li>
+<li>Card(EMPLEADO, SER_JEFE) = (0, 1) y Card(DPTO, SER_JEFE) = (1, 1)</li>
+<li>Card(DPTO, CONTROLAR) = (0, N) y Card(PROYECTO, CONTROLAR) = (1, 1)</li>
+<li>Card(EMPLEADO, DEDICAR) = (0, N) y Card(PROYECTO, DEDICAR) = (1, N)</li>
+<li>Card(EMPLEADO, TENER) = (0, N) y Card(FAMILIAR, TENER) = (1, 1)</li>
+</ul>
+<p>Finalmente, los atributos de las entidades y las relaciones son:</p>
+<ul>
+<li>Atributos de EMPLEADO: dni (atributo identificador), nombre, fecha de nacimiento, salario.</li>
+<li>Atributos de DPTO: nombre (atributo identificador), número de despacho.</li>
+<li>Atributos de PROYECTO: nombre y número (ambos atributos identificadores).</li>
+<li>Atributos de FAMILIAR: nombre (atributo identificador), fecha de nacimiento, parentesco.</li>
+</ul>
+<p>Atributos de las relaciones:</p>
+<ul>
+<li>SER_JEFE: fecha de inicio</li>
+<li>DEDICARSE: horas semanales</li>
+</ul>
+<p>Con estas consideraciones, el modelo resultante es:</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/02solucion-empresa2.png" data-desc-position="bottom"><img src="images/02solucion-empresa2.png" width="80%"></a>
+  <figcaption>Solución</figcaption>
+</figure><p></p>
+</details>
+</div>
+<h4 id="perdida-expresiva">Pérdida expresiva<a class="headerlink" href="#perdida-expresiva" title="Permanent link">¶</a></h4>
+<p>En ocasiones, los modelos conceptuales no son capaces de expresar todas las restricciones, relaciones o propiedades el mundo real, ya sea por algunas relaciones muy complejas, dependencias temporales o reglas de negocio.</p>
+<p>Para ello, en el pie de los modelos indicaremos con texto una frase del estilo <em>"Pérdida expresiva: Todo cliente debe haber nacido en la misma provincia que la tienda donde realiza el pedido"</em>.</p>
 
 
 
