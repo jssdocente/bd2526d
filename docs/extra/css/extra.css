@@ -10,3 +10,9 @@
 .text-small {
   font-size: small;
 }
+
+abbr[title] {
+  text-decoration: none; /* Quitamos el subrayado por defecto del navegador */
+  border-bottom: 1px dotted; /* Añadimos el subrayado punteado que quieres */
+  cursor: help; /* Cambia el cursor a un puntero con un '?' */
+}
