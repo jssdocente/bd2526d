@@ -48,7 +48,7 @@ El contenido de la unidad está repartido en los siguientes bloques.
 - [2.1 Modelo Entidad-Relación](./2.1-ModeloER.md)
 - [2.2 Restricciones](./2.2-Restricciones.md)
 - [2.3 Modelo Extendido](./2.3-Modelo-extendido.md)
-- [2.3 Actividades](./2.3-Actividades.md)
+- [2.A Actividades](./2.A-Actividades.md)
 
 
 ### Programación de Aula (12h)
@@ -63,10 +63,10 @@ El contenido de la unidad está repartido en los siguientes bloques.
   | 4 | [Atributos](2.1-ModeloER.md#atributos). Trabajando las cardinalidades | [AC204](./2.A-Actividades.md#ac204-rabd6--ce6d) | <abbr title="{{ CE6b }}">CE6b</abbr> |
   | 5 | [Atributos identificadores](2.1-ModeloER.md#identificadores). Modelados sencillos | [AC205](./2.A-Actividades.md#ac205-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
   | 6 | Completando modelos | [AC208](./2.A-Actividades.md#ac208-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 7 | [Restricciones](https://aitor-medrano.github.io/bd/02er.html#restricciones) |  |  |
-  | 8 | [Modelado EER](https://aitor-medrano.github.io/bd/02er.html#el-modelo-entidad-relacion-extendido). Generalización. [Tipos](https://aitor-medrano.github.io/bd/02er.html#tipos_1) | [AC209](./2.A-Actividades.md#ac209-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 7 | [Restricciones](./2.2-Restricciones.md#22-restricciones) |  |  |
+  | 8 | [Modelado EER](./2.3-Modelo-extendido.md#23-el-modelo-entidad-relación-extendido). Generalización. [Tipos](./2.3-Modelo-extendido.md#tipos) | [AC209](./2.A-Actividades.md#ac209-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
   | 9 | Modelados con generalizaciones | [AC210](./2.A-Actividades.md#ac210-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 10 | [Agregaciones](https://aitor-medrano.github.io/bd/02er.html#agregacion) | [AC212](./2.A-Actividades.md#ac212-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 10 | [Agregaciones](./2.3-Modelo-extendido.md#agregacion) | [AC212](./2.A-Actividades.md#ac212-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
   | 11 | Interpretando modelos | [AC215](./2.A-Actividades.md#ac215-rabd6--ce6b-ce6c-ce6d-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6d }}">CE6d</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 12 | Reto - Diseñando una BD | [PY216](./2.A-Actividades.md#py216-rabd6--ce6b-ce6c-ce6d-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6d }}">CE6d</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 12 | [Reto - Diseñando una BD](./2.A-Actividades.md#reto-i---diseñamos) | [PY216](./2.A-Actividades.md#py216-rabd6--ce6b-ce6c-ce6d-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6d }}">CE6d</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
 
