@@ -11,7 +11,7 @@
 {% set CE6g = "Se han aplicado reglas de normalización." %}
 {% set CE6h = "Se han analizado y documentado las restricciones que no pueden plasmarse en el diseño lógico." %}
 
-# UT2 **Diseño Conceptual: Modelo Entidad Relación**
+# UT2-A **Diseño Conceptual: Modelo Entidad Relación**
 
 !!! info "Información de la unidad"
 
