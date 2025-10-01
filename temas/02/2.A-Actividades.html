@@ -13,7 +13,7 @@
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -596,9 +596,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ap214-rabd6-ce6b-ce6c-ce6e" class="md-nav__link">
+  <a href="#ac214-rabd6-ce6b-ce6c-ce6e" class="md-nav__link">
     <span class="md-ellipsis">
-      AP214 (RABD.6 // CE6b, CE6c, CE6e)
+      AC214. (RABD.6 // CE6b, CE6c, CE6e)
     </span>
   </a>
   
@@ -806,9 +806,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ap214-rabd6-ce6b-ce6c-ce6e" class="md-nav__link">
+  <a href="#ac214-rabd6-ce6b-ce6c-ce6e" class="md-nav__link">
     <span class="md-ellipsis">
-      AP214 (RABD.6 // CE6b, CE6c, CE6e)
+      AC214. (RABD.6 // CE6b, CE6c, CE6e)
     </span>
   </a>
   
@@ -915,13 +915,13 @@
 <summary>Realiza el modelo ER de los siguientes sistemas de información</summary>
 <ul>
 <li>
-<p><code>205.1</code>: Una empresa ubicada en distintos edificios de distintos polígonos industriales desea registrar la distribución de sus departamentos.<br>
-    Un departamento puede estar distribuido en varios edificios. Del departamento tenemos su nombre y el número de empleados que lo integran.<br>
-    De los edificios sabemos su nombre y el número de despachos que tienen. En cada edificio (que está localizado en un polígono industrial, y del que se conoce su nombre y la ciudad en la que está situado) pueden ubicarse distintos departamentos.<br>
+<p><code>205.1</code>: Una empresa ubicada en distintos edificios de distintos polígonos industriales desea registrar la distribución de sus departamentos.
+    Un departamento puede estar distribuido en varios edificios. Del departamento tenemos su nombre y el número de empleados que lo integran.
+    De los edificios sabemos su nombre y el número de despachos que tienen. En cada edificio (que está localizado en un polígono industrial, y del que se conoce su nombre y la ciudad en la que está situado) pueden ubicarse distintos departamentos.
     Debido a esto, se desea controlar el número de despachos que cada departamento tiene en cada edificio.</p>
 </li>
 <li>
-<p><code>205.2</code>: Una pequeña empresa telefónica desea crear una base de datos para el control de las llamadas efectuadas exclusivamente entre sus clientes.<br>
+<p><code>205.2</code>: Una pequeña empresa telefónica desea crear una base de datos para el control de las llamadas efectuadas exclusivamente entre sus clientes.
     Dispondrá de información sobre las terminales de su red (si se trata de teléfonos móviles o fijos, el no de teléfono y el nombre del cliente), y de cada llamada realizada entre ellos se almacenará: números de teléfono del emisor y el receptor de la llamada, la hora de comienzo de la misma y su duración.</p>
 </li>
 </ul>
@@ -1017,8 +1017,14 @@
 <p>Además, se desea almacenar información de todos los partidos jugados por cada equipo: la fecha, el lugar, el equipo local y el resultado (número de goles del equipo local y del visitante).</p>
 <p>También, de cada gol marcado, el jugador que lo marca, el portero que lo encaja, el minuto de juego y el tipo de gol (de falta, de penalti, en jugada, etc...).</p>
 </details>
-<h3 id="ap214-rabd6-ce6b-ce6c-ce6e"><strong>AP214</strong> (RABD.6 // CE6b, CE6c, CE6e)<a class="headerlink" href="#ap214-rabd6-ce6b-ce6c-ce6e" title="Permanent link">¶</a></h3>
-<p>Estudia cómo se representan las generalizaciones y las agregaciones mediante otras notaciones utilizando los recursos recomendados en el apartado de <a href="2.1-ModeloER.html#referencias">Referencias</a>.</p>
+<h3 id="ac214-rabd6-ce6b-ce6c-ce6e"><strong>AC214</strong>. (RABD.6 // CE6b, CE6c, CE6e)<a class="headerlink" href="#ac214-rabd6-ce6b-ce6c-ce6e" title="Permanent link">¶</a></h3>
+<details class="abstract">
+<summary>Realiza el modelo ER sobre una Museo</summary>
+<p>Se desea almacenar por cada museo un código, nombre, provincia, dirección. Cada museo dispone de una serie de salas donde se muestran sus obras; cada sala se identifica con un número consecutivo dentro del código del museo al que pertenece, además se almacena su ubicación y tamaño en metros cuadrados. Cada museo dispondrá, al menos, de una sala de exposición.</p>
+<p>Se necesita personal para controlar el sistema, es decir, trabajadores especializados en tres diferentes funciones: personal de vigilancia al cual se le asigna un número de control y un número de arma, personal de conservación del cual se registra su función y personal de gestión para labores administrativas. Para todo el personal es necesario almacenar su DNI y el número de la seguridad social. Un trabajador tiene exclusividad en un museo. Cada sala está vigilada siempre por un solo trabajador del área de vigilancia. Cada vigilante tiene su propia sala de vigilancia de la que es responsable, aunque hay vigilantes que se encargan de otras áreas del museo. A veces, las labores del personal de vigilancia son delicadas, por ello hay un trabajador con funciones de coordinador para cada grupo de vigilantes, aunque no todos los trabajadores tienen coordinador ni todos los trabajadores son coordinadores. No hay más de un coordinador por grupo.</p>
+<p>Además, se quiere registrar las visitas del público; con respecto al visitante el DNI, nombre, teléfono y el museo o museos que ha visitado en una o varias fechas, teniendo en cuenta que el visitante puede entrar al museo o museos el mismo día varias veces en distintas horas. Es necesario registrar dichas fechas y horas.</p>
+<p>Todos los museos han sido inaugurados, abiertos al público y visitados desde hace tiempo.</p>
+</details>
 <h3 id="ac215-rabd6-ce6b-ce6c-ce6d-ce6e"><strong>AC215</strong>. (RABD.6 // CE6b, CE6c, CE6d, CE6e)<a class="headerlink" href="#ac215-rabd6-ce6b-ce6c-ce6d-ce6e" title="Permanent link">¶</a></h3>
 <details class="abstract">
 <summary>A partir del siguiente modelo EER sobre un concurso de cocina</summary>
