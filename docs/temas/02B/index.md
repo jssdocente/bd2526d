@@ -54,10 +54,8 @@ El contenido de la unidad está repartido en los siguientes bloques.
 
 Índice:
 
-- [2.1 Modelo Entidad-Relación](./2.1-ModeloER.md)
-- [2.2 Restricciones](./2.2-Restricciones.md)
-- [2.3 Modelo Extendido](./2.3-Modelo-extendido.md)
-- [2.A Actividades](./2.A-Actividades.md)
+- [2.4 Modelo relacional](./2.4-ModeloRelacional.md)
+- [2.B Actividades](./2.B-Actividades.md)
 
 
 ### Programación de Aula (9h)
@@ -66,12 +64,12 @@ El contenido de la unidad está repartido en los siguientes bloques.
 
   | Sesión | Contenidos | Actividades | Criterios trabajados |
   | --- | --- | --- | --- |
-  | 1 | [Modelo Relacional](2.1-ModeloER.md#2-el-modelo-entidad-relación). | [AC201](./2.A-Actividades.md#ac201-rabd6--ce6b-ce6c) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6d }}">CE6d</abbr> |
-  | 2 | [Elementos](2.1-ModeloER.md#️entidades) |  |  |
-  | 3 | [Restricciones](2.1-ModeloER.md#relaciones) | [AC203](./2.A-Actividades.md#ac203-rabd6--ce6d) | <abbr title="{{ CE6b }}">CE6b</abbr> |
-  | 4 | [Notacion](2.1-ModeloER.md#atributos) | [AC204](./2.A-Actividades.md#ac204-rabd6--ce6d) | <abbr title="{{ CE6b }}">CE6b</abbr> |
-  | 5 | [Interpretando modelos](2.1-ModeloER.md#identificadores) | [AC205](./2.A-Actividades.md#ac205-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 6 | Diccionario de datos | [AC208](./2.A-Actividades.md#ac208-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 7 | [Dependencias funcionales](./2.2-Restricciones.md#22-restricciones) |  |  |
-  | 8 | [Formas normales](./2.3-Modelo-extendido.md#23-el-modelo-entidad-relación-extendido) | [AC209](./2.A-Actividades.md#ac209-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
-  | 9 | Desnormalización | [AC210](./2.A-Actividades.md#ac210-rabd6--ce6b-ce6c-ce6e) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 1 | Modelo Relacional | [AC201.b](./2.B-Actividades.md#ac201b) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6d }}">CE6d</abbr> |
+  | 2 | [Elementos](./2.4-ModeloRelacional.md#elementos) |  |  |
+  | 3 | [Restricciones](./2.4-ModeloRelacional.md#restricciones-semánticas) | [AC203.b](./2.B-Actividades.md#ac203b) | <abbr title="{{ CE6b }}">CE6b</abbr> |
+  | 4 | [Notacion](./2.4-ModeloRelacional.md#notacion) | [AC205.b](./2.B-Actividades.md#ac205b) | <abbr title="{{ CE6b }}">CE6b</abbr> |
+  | 5 | Interpretando modelos | [AC209.b](./2.B-Actividades.md#ac209b) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 6 | Diccionario de datos | [AC208.b](./2.B-Actividades.md#ac208b) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 7 | [Dependencias funcionales](./2.4-ModeloRelacional.md#dependencias-funcionales) |  |  |
+  | 8 | [Formas normales](./2.4-ModeloRelacional.md#formas-normales) | [AC209.b](./2.B-Actividades.md#ac209b) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
+  | 9 | Desnormalización | [AC210.b](./2.B-Actividades.md#ac210b) | <abbr title="{{ CE6b }}">CE6b</abbr>, <abbr title="{{ CE6c }}">CE6c</abbr>, <abbr title="{{ CE6e }}">CE6e</abbr> |
