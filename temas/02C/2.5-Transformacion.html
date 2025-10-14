@@ -1,0 +1,1081 @@
+<!DOCTYPE html><html lang="es" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02C/2.5-Transformacion.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../imagenes/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>2.5. Transformación del modelo ER a MR - Bases de Datos - Curso 25/26</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../extra/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#25-transformacion-del-modelo-er-a-mr" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-header__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos - Curso 25/26
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.5. Transformación del modelo ER a MR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo noche" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo día" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-nav__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    Bases de Datos - Curso 25/26
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    01 - Sistemas de Almacenamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02.A - Diseño conceptual: Modelo E/R
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            02.A - Diseño conceptual: Modelo E/R
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.1-ModeloER.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.1 El modelo ER
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.2-Restricciones.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.2 Restricciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.3-Modelo-extendido.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.3 Modelo Extendido
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.A-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02.B - Diseño Lógico: Relacional
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            02.B - Diseño Lógico: Relacional
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/2.4-ModeloRelacional.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.4 El modelo relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/2.B-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atributos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atributos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claves-compuestas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Claves compuestas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacion-de-relaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformación de Relaciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformación de Relaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1n" class="md-nav__link">
+    <span class="md-ellipsis">
+      1:N
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformar-relacion-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformar relación 1:1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformacion-de-relacion-nm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformación de relación N:M
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="25-transformacion-del-modelo-er-a-mr"><strong>2.5. Transformación del modelo ER a MR</strong><a class="headerlink" href="#25-transformacion-del-modelo-er-a-mr" title="Permanent link">¶</a></h1>
+<p>👉 <strong>Pasos</strong></p>
+<p>Una vez conocido el modelo conceptual entidad-relación y el modelo lógico relacional, vamos a estudiar como transformar y pasar de uno a otro. Para ello, seguiremos los siguientes pasos:</p>
+<ol>
+<li>Las entidades pasan a ser tablas</li>
+<li>Los atributos pasar a ser columnas</li>
+<li>Los atributos identificadores pasar a ser claves primarias.</li>
+<li>Los atributos de las relaciones pasan a columnas detrás de las claves ajenas</li>
+<li>Las relaciones, dependiendo de la cardinalidad, pasarán a ser claves ajenas y/o tablas.</li>
+</ol>
+<h2 id="atributos">Atributos<a class="headerlink" href="#atributos" title="Permanent link">¶</a></h2>
+<p>Conviene recordar que dentro de una tabla, no se puede repetir el nombre de ningún atributo, pero sí en tablas diferentes.</p>
+<p>Algunos profesionales prefieren que no se repitan los identificadores entre diferentes tablas de una misma BD, aunque es cierto que las herramientas ORM de generación de modelos físicos a partir de definición de clases u objetos suelen nombrar todas las claves primarias como <code>id</code> o <code>_id</code>.</p>
+<p>En cuanto a los atributos <strong>compuestos</strong>, se separan como atributos individuales dentro de la tabla, pudiéndoles poner el prefijo del atributo compuesto o el propio nombre del atributo si no da pie a confusión.</p>
+<p>Para los atributos <strong>derivados</strong>, dependiendo del caso, bien no se añaden como atributo (ya que se obtendrán a partir de los datos de las relaciones), o bien se renombra el atributo para almacenar el dato en crudo sobre el cual se realiza el cálculo necesario.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04atributos.png" data-desc-position="bottom"><img align="right" alt="" src="images/04atributos.png" title="Transformación de atributos" width="40%"></a></p>
+<p>Transformación de atributos</p>
+<p>Por ejemplo, si partimos de un sencillo modelo ER de un cliente, su transformación al modelo relacional sería la siguiente:</p>
+<p><code>**CLIENTE** (dni, nombre, calle, numPiso, ciudad, fnac)</code><br>
+<code>· PK: (dni)</code></p>
+<p>Destacar que no hemos puesto el nombre del atributo compuesto, sino cada uno de sus atributos, y además, hemos renombrado <code>numero</code> a <code>numPiso</code> para evitar confusiones con otras entidades; respecto al atributo derivado edad, lo hemos cambiado por la fecha de nacimiento.</p>
+<p>Respecto a los atributos <strong>multivaluados</strong>, derivan en una relación uno a muchos (1:N), tal como veremos a continuación.</p>
+<h3 id="claves-compuestas">Claves compuestas<a class="headerlink" href="#claves-compuestas" title="Permanent link">¶</a></h3>
+<p>Normalmente, cada entidad tendrá un atributo identificador que traduciremos en una clave primaria. Pero puede darse el caso que una entidad tenga una clave compuesta, o tenga marcados dos atributos identificadores (en este caso, uno será la clave primaria y el otro será una clave alternativa que marcaremos como única).</p>
+<p>Por ejemplo, el siguiente diagrama representa un aula que se identifica mediante una clave compuesta:</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04claves-compuestas.png" data-desc-position="bottom"><img align="left" alt="" src="images/04claves-compuestas.png" title="Clave primaria compuesta vs claves candidatas" width="55%"></a></p>
+<p><code>**AULA** (edificio, numSala, numAsientos)</code><br>
+<code>· PK: (edificio, numSala)</code></p>
+<p>Sin embargo, también podemos tener un empleado con dos atributos identificadores:</p>
+<p><code>**EMPLEADO** (codigo, nif, nombre, salario)</code><br>
+<code>· PK: (codigo)</code><br>
+<code>· UK: (nif)</code><br></p>
+<h2 id="transformacion-de-relaciones">Transformación de Relaciones<a class="headerlink" href="#transformacion-de-relaciones" title="Permanent link">¶</a></h2>
+<p>Al transformar las relaciones, dependiendo de la cardinalidad deberemos colocar la clave ajena en un lugar u otro.</p>
+<h3 id="1n">1:N<a class="headerlink" href="#1n" title="Permanent link">¶</a></h3>
+<p>La clave primaria de la entidad con cardinalidad máxima a 1 se incluye en la entidad con cardinalidad máxima N como clave ajena.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relaciones1n.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relaciones1n.png" title="Transformación de relación 1:N" width="40%"></a></p>
+<p><code>**A** (a0, a1, b0*)</code><br>
+<code>· PK: (a0)   · FK: (b0) → B</code><br></p>
+<p><code>**B** (b0, b1)</code><br>
+<code>· PK: (b0)</code></p>
+<p>De esta manera, tenemos que dado un registro en A, tendremos uno en B. Y dado un B, podemos tener muchos en A, cumpliendo la cardinalidad de uno a muchos.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo 2: Relación 1:N. Personas y teléfonos</p>
+<p>Por ejemplo, si tenemos un modelo donde, en vez de un atributo multivaluado, hemos creado una entidad para modelar que una persona puede tener muchos teléfonos:</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo1n.png" data-desc-position="bottom"><img align="left" alt="" src="images/04ejemplo1n.png" title="Ejemplo de relación 1:N" width="30%"></a></p>
+<p>Si aplicamos la transformación recién vista, obtenemos el siguiente esquema lógico:</p>
+<p><code>**PERSONA** (dni, nombre, direccion)</code>
+<code>· PK: (dni)</code><br><br>
+<code>**TELEFONO** (numero, propio, dni*)</code>
+<code>· PK: (numero)</code><br>
+<code>· FK: (dni) → PERSONA</code><br></p>
+<p>Conviene recordar que la clave ajena será la clave primaria que nos hemos traido desde la entidad con cardinalidad máxima a 1 (en este caso, llevamos la clave primaria de <code>PERSONA</code> a <code>TELEFONO</code>), de manera que el atributo <code>TELEFONO.dni</code> representa la relación <code>TENER</code>.</p>
+<p>Las claves ajenas se colocan tras los atributos de cada tabla (en este caso, detrás de <code>numero</code> y <code>propio</code>), y normalmente, se nombran con el mismo nombre de la clave primaria. Si diera pie a confusión, es recomendable renombrarla pudiendo como sufijo el nombre de la tabla.</p>
+<p>Finalmente, si quisiéramos generar el diagrama relacional, obtendríamos una gráfico similar al siguiente, donde se puede ver como desde <code>TELEFONO.dni</code> se conecta con <code>PERSONA.dni</code>:</p>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo1n-mr.png" data-desc-position="bottom"><img src="images/04ejemplo1n-mr.png" width="80%"></a>
+    <figcaption>Esquema relacional en ERDPlus</figcaption>
+</figure><p></p>
+</div>
+<blockquote>
+<p>💡 Recordad la regla de integridad referencial del modelo relacional, donde cada valor de la clave ajena debe coincidir con un valor existente de la clave primaria a la que referencia (o ser nulo). De esta manera, no podemos tener un dni en la tabla TELEFONO que no exista previamente en la tabla PERSONA.</p>
+</blockquote>
+<div class="grid cards">
+<ul>
+<li>
+<p><code>PERSONA</code></p>
+<table>
+<thead>
+<tr>
+<th>dni</th>
+<th>nombre</th>
+<th>direccion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11111111A</td>
+<td>Pedro Casas</td>
+<td>Calle Mayor, 1</td>
+</tr>
+<tr>
+<td>22222222B</td>
+<td>Laura García</td>
+<td>Avda Libertad, 33</td>
+</tr>
+<tr>
+<td>33333333C</td>
+<td>Mireia Vidal</td>
+<td>Paseo de la Estación, 5</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>TELEFONO</code></p>
+<table>
+<thead>
+<tr>
+<th>numero</th>
+<th>propio</th>
+<th>dni<code>*</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>636111111</td>
+<td>true</td>
+<td>22222222B</td>
+</tr>
+<tr>
+<td>686222222</td>
+<td>true</td>
+<td>11111111A</td>
+</tr>
+<tr>
+<td>666333333</td>
+<td>false</td>
+<td>11111111A</td>
+</tr>
+<tr>
+<td>666444444</td>
+<td>true</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Renombrando claves ajenas</p>
+<p>Aunque es muy común que el nombre del atributo que hace de clave ajena coincida con la clave primaria a la que apunta, podemos renombrarla y ponerle un nombre que facilite su comprensión.</p>
+<p>En el caso de la tabla <code>TELEFONO</code>, el campo <code>dni</code> hace referencia al titular del teléfono, no es que un teléfono tenga un dni. Podríamos haber modelado la tabla renombrando el <code>TELEFONO.dni</code> como <code>TELEFONO.propietario</code> dando un valor semántico al atributo:</p>
+<p><code>**TELEFONO** (numero, propio, propietario*)</code><br>
+<code>· PK: (numero)</code><br>
+<code>· FK: (propietario) → PERSONA</code><br></p>
+<p>Lo que sí es obligatorio es que los dominios de las claves ajenas y las claves primarias coincidan.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Atributos multivaluados</p>
+<p>Cuando tenemos un atributo multivaluado, éste se mapea en una relación separada.</p>
+<p>Podemos crear una nueva tabla con un código o atributo identificador para cada registro y añadir una clave ajena a modo de relación 1:N.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04atributos-multivaluado.png" data-desc-position="bottom"><img align="right" alt="" src="images/04atributos-multivaluado.png" title="Atributo multivaluado" width="30%"></a></p>
+<p>Así pues, si tenemos un empleado que tiene muchos teléfonos mediante un atributo, generaremos dos tablas:</p>
+<p><code>**EMPLEADO** (nif, nombre)</code><br>
+<code>· PK: (nif)</code>
+<br></p>
+<p><code>**TELEFONO** (numero, dni*)</code><br>
+<code>· PK: (numero)</code><br>
+<code>· FK: (dni) → EMPLEADO</code><br></p>
+<p>Si fuera un valor que pudiese compartirse entre varios empleados, como pudiera ser que un empleado tiene muchos cargos, y ese mismo cargo lo pueden tener varios empleados (pero no nos interesa a priori modelarlo conceptualmente como una entidad), podríamos crear una clave primaria compuesta:</p>
+<p><code>**CARGO** (cargo, dni*)</code><br>
+<code>· PK: (cargo, dni)</code><br>
+<code>· FK: (dni) → EMPLEADO</code><br></p>
+</div>
+<hr>
+<h3 id="transformar-relacion-11">Transformar relación 1:1<a class="headerlink" href="#transformar-relacion-11" title="Permanent link">¶</a></h3>
+<p>En este caso, la clave ajena se pone en cualquier entidad y se añade como clave alternativa/única (<code>UK</code>).</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relaciones11.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relaciones11.png" title="Transformación de relación 1:1" width="40%"></a></p>
+<p>Transformación de relación 1:1</p>
+<p>Así pues, una posible solución sería llevar la clave ajena a A:</p>
+<p><code>**A** (a0, a1, b0*)</code><br>
+<code>· PK: (a0)</code><br>
+<code>· FK: (b0) → B</code><br>
+<code>· UK: (b0)</code><br></p>
+<p><code>**B** (b0, b1)</code>
+<code>· PK: (b0)</code><br></p>
+<p>Al hacer que el atributo que es clave ajena sea clave única, restringimos que dicho valor no se pueda repetir.</p>
+<p>Y la otra posible solución sería llevar la clave ajena a B:</p>
+<p><code>**A** (a0, a1)</code>
+<code>· PK: (a0)</code><br></p>
+<p><code>**B** (b0, b1, a0*)</code><br>
+<code>· PK: (b0)</code><br>
+<code>· FK: (a0) → A</code><br>
+<code>· UK: (a0)</code><br></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo11.png" data-desc-position="bottom"><img align="right" alt="" src="images/04ejemplo11.png" title="Ejemplo de relación 1:1" width="30%"></a></p>
+<p>Vamos a poner otro ejemplo. En este caso, tenemos la relación existente entre un vehículo y el empleado que lo conduce en una empresa, dando lugar a una relación 1:1 (fíjate como en este caso, hemos renombrado la clave ajena a <code>dniEmpleado</code> para facilitar la compresión):</p>
+<p><code>**EMPLEADO** (dni, nombre, dirección)</code><br>
+<code>· PK: (dni)</code><br><br>
+<code>**VEHICULO** (matrícula, marca, modelo)</code><br>
+<code>· PK: (matrícula)</code><br>
+<code>· UK: (dniEmpleado)</code><br>
+<code>· FK: (dniEmpleado) → EMPLEADO</code><br></p>
+<div class="admonition question">
+<p class="admonition-title">¿Sabrías...?</p>
+<p>¿Sabrías crear otra solución donde la clave ajena estuviera en la entidad <code>EMPLEADO</code>?<br>
+A continuación, rellena las dos tablas con datos y comprueba si la relación entre ambas entidades es 1:N o 1:1.</p>
+</div>
+<h3 id="transformacion-de-relacion-nm">Transformación de relación N:M<a class="headerlink" href="#transformacion-de-relacion-nm" title="Permanent link">¶</a></h3>
+<p>En el caso de las relaciones muchos a muchos, la relación se traduce en una nueva tabla, cuya clave primaria se compone de las claves primarias referenciadas, y cada clave primaria es una clave ajena.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relacionesnm.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relacionesnm.png" title="Transformación de relación N:M" width="60%"></a></p>
+<p>Transformación de relación N:M</p>
+<p><code>**A** (a0, a1)</code><br>
+<code>· PK: (a0)</code><br></p>
+<p><code>**B** (b0, b1)</code>
+<code>· PK: (b0)</code><br></p>
+<p><code>**R** (a0*, b0*)</code><br>
+<code>· PK: (a0, b0)</code><br>
+<code>· FK: (a0) → A</code><br>
+<code>· FK: (b0) → B</code><br></p>
+<p>Para este ejemplo, tenemos una empresa de transportes, donde un conductor conduce varios autobuses, y luego un autobus lo conducen varios conductores en diferentes trayectos, dando lugar a una relación muchos a muchos, donde en la relación añadimos el atributo <code>trayecto</code>:</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm.png" data-desc-position="bottom"><img align="left" alt="" src="images/04ejemplonm.png" title="Ejemplo de relación N:M" width="30%"></a></p>
+<p><code>**CONDUCTOR** (dni, nombre, experiencia)</code><br>
+<code>· PK: (dni)</code><br></p>
+<p><code>**AUTOBUS** (matricula, categoria)</code><br>
+<code>· PK: (matricula)</code><br></p>
+<p><code>**CONDUCIR** (dni*, matricula*, trayecto)</code><br>
+<code>· PK: (dni, matricula)</code><br>
+<code>· FK: (dni) → CONDUCTOR</code><br>
+<code>· FK: (matricula) → AUTOBUS</code><br></p>
+<p><br>
+<br>
+<br></p>
+<div class="admonition tip">
+<p class="admonition-title">El orden importa</p>
+<p>Cuando pasamos una relación uno a muchos o muchos a muchos de un modelo ER a un modelo relacional, primero crearemos las tablas que no tienen claves ajenas.</p>
+<p>En este caso, empezaremos por <code>CONDUCTOR</code> y <code>AUTOBUS</code>, definiendo sus claves primarias y atributos.</p>
+<p>A continuación, crearemos la/s tabla/s que contiene claves ajenas a las tablas ya creadas, esto es, la tabla <code>CONDUCIR</code> que apunta a <code>CONDUCTOR</code> y <code>AUTOBUS</code>.</p>
+</div>
+<p>En este caso, el diagrama del modelo relacional se traduce en tres tablas conectadas, colocando el atributo de la relación en la nueva tabla <code>CONDUCIR</code>. Destacar como la tabla tiene una clave primaria compuesta, donde de cada parte de la clave sale una clave ajena a cada una de las tablas que relaciona:</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm-mr.png" data-desc-position="bottom"><img src="images/04ejemplonm-mr.png" width="60%"></a>
+<br>
+<figcaption>Esquema relacional en ERDPlus</figcaption>
+</figure>
+<p>Y comprobamos con datos cómo sí se cumplen las cardinalidades:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><code>AUTOBUS</code></p>
+<table>
+<thead>
+<tr>
+<th>matricula<code>*</code></th>
+<th>categoria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1111ABC</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>2222BCD</td>
+<td>larga distancia</td>
+</tr>
+<tr>
+<td>3333DEF</td>
+<td>larga distancia</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>CONDUCTOR</code></p>
+<table>
+<thead>
+<tr>
+<th>nif<code>*</code></th>
+<th>nombre</th>
+<th>experiencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11111111A</td>
+<td>Andrés Checa</td>
+<td>1</td>
+</tr>
+<tr>
+<td>22222222B</td>
+<td>José Escrig</td>
+<td>2</td>
+</tr>
+<tr>
+<td>33333333B</td>
+<td>Marina Fernández</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>CONDUCIR</code></p>
+<table>
+<thead>
+<tr>
+<th>nif<code>*</code></th>
+<th>matricula<code>*</code></th>
+<th>trayecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11111111A</td>
+<td>1111ABC</td>
+<td>A</td>
+</tr>
+<tr>
+<td>22222222B</td>
+<td>1111ABC</td>
+<td>B</td>
+</tr>
+<tr>
+<td>11111111A</td>
+<td>3333DEF</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<h4 id="nm-con-dimension-temporal">N:M con dimensión temporal<a class="headerlink" href="#nm-con-dimension-temporal" title="Permanent link">¶</a></h4>
+<p>Si la relación tiene atributos de tipo fecha, será necesario incluir al menos uno en la clave primaria.</p>
+<p>Supongamos una empresa de alquiler de vehículos, donde tenemos que un cliente puede alquilar el mismo vehículo en fechas diferentes, o alquilar diferentes vehículos. Claramente, un vehículo lo pueden alquilar diferentes clientes en fechas diferentes. Para ello, creamos una relación muchos a muchos, colocando la fecha de inicio y de finalización del alquiler en la propia relación.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm-fecha.png" data-desc-position="bottom"><img src="images/04ejemplonm-fecha.png" width="90%"></a>
+<br>
+<figcaption>Relación N:M con dimensión temporal</figcaption>
+</figure>
+<p>Al crear el modelo relacional, tendremos las dos tablas de las entidades relacionadas:</p>
+<p><code>**CLIENTE** (dni, nombre)</code><br>
+<code>· PK: (dni)</code></p>
+<p><code>**VEHICULO** (matricula, kms)</code><br>
+<code>· PK: (matricula)</code></p>
+<p>Y la tabla que las relaciona con el atributo de fecha de inicio como parte de la clave primaria (de este modo, el cliente A puede alquilar el vehículo X en días diferentes):</p>
+<p><code>**ALQUILAR** (dni*, matricula*, finicio, ffin)</code><br>
+<code>· PK: (dni, matricula, finicio)</code><br>
+<code>· FK: (dni) → CLIENTE</code><br>
+<code>· FK: (matricula) → VEHICULO</code><br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2025-2026 Jesús García - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<jssgarcia.docente@gmail.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "content.tabs.link", "content.code.copy", "content.code.select", "navigation.top", "navigation.expand", "navigation.path", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

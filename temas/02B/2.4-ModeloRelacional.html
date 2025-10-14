@@ -11,6 +11,8 @@
         <link rel="prev" href="index.html">
       
       
+        <link rel="next" href="2.B-Actividades.html">
+      
       
       <link rel="icon" href="../../imagenes/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
@@ -655,8 +657,80 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diccionario-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diccionario de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anomalias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomalías
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-funcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencias funcionales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-normales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formas Normales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo Paso a Paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desnormalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desnormalización
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
+    </span>
+  </a>
   
 </li>
       
@@ -664,6 +738,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2.B-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Actividades
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -796,8 +893,80 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diccionario-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diccionario de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalización
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anomalias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomalías
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-funcionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencias funcionales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-normales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formas Normales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo Paso a Paso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desnormalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desnormalización
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
+    </span>
+  </a>
   
 </li>
       
@@ -1531,13 +1700,19 @@
 <li>Predeterminado (<code>DEFAULT</code>): valor por defecto para cuando no se inserta ningún valor.</li>
 </ul>
 <p>Por ejemplo, un esquema lógico en modelo relacional que relaciona un libro con un autor, y un autor con muchos libros (relación 1:N) podría ser el siguiente:</p>
-<p><code>**AUTOR** (codigo: autonumérico, nombre: texto, fnac: fecha, nacionalidad: texto)   · PK: (codigo)</code></p>
-<p><code>**LIBRO** (isbn: texto, titulo: texto, descripcion: texto, autor`*`: numérico, editorial: texto, pvp: real)   · PK: (isbn)   · FK: (autor) → AUTOR</code></p>
+<p><code>**AUTOR** (codigo: autonumérico, nombre: texto, fnac: fecha, nacionalidad: texto)</code><br>
+<code>· PK: (codigo)</code></p>
+<p><code>**LIBRO** (isbn: texto, titulo: texto, descripcion: texto, autor*: numérico, editorial: texto, pvp: real)</code><br>
+<code>· PK: (isbn)</code><br>
+<code>· FK: (autor) → AUTOR</code><br></p>
 <p>Por legibilidad, vamos a omitir los dominios y representar las tablas únicamente con el nombre de los campos, y posteriormente, en el diccionario de datos, definiremos sus tipos. De este modo, quedaría así:</p>
-<p><code>**AUTOR** (codigo, nombre, fnac, pais)   · PK: (codigo)</code></p>
-<p><code>**LIBRO** (isbn, titulo, autor`*`, editorial, pvp)   · PK: (isbn)   · FK: (autor) → AUTOR</code></p>
+<p><code>**AUTOR** (codigo, nombre, fnac, pais)</code>
+<code>· PK: (codigo)</code></p>
+<p><code>**LIBRO** (isbn, titulo, autor*, editorial, pvp)</code>
+<code>· PK: (isbn)</code> <br>
+<code>· FK: (autor) → AUTOR</code></p>
 <div class="admonition fact">
-<p class="admonition-title">DBML - Database Markup Language"</p>
+<p class="admonition-title">DBML - Database Markup Language</p>
 <p>Tenemos que el autor se identifica por un código, el cual es su clave primaria. En cambio, los libros se identifican por su ISBN, y tienen un atributo <code>autor</code> que referencia a la clave primaria de <code>AUTOR</code> (y por tanto, deben tener el mismo dominio). De esta relación, deducimos que el nombre del atributo de la clave ajena no tiene por qué coincidir con el nombre de la clave primaria, pero sí su dominio.</p>
 <p>Si analizamos las cardinalidades de las tablas, tenemos:</p>
 <ul>
@@ -1671,7 +1846,7 @@
     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/03erdplus-relationhip.gif" data-desc-position="bottom"><img src="images/03erdplus-relationhip.gif" width="90%"></a>
     <figcaption>Clave ajena con ERDPlus</figcaption>
 </figure>
-<p>### Diccionario de datos</p>
+<h3 id="diccionario-de-datos">Diccionario de datos<a class="headerlink" href="#diccionario-de-datos" title="Permanent link">¶</a></h3>
 <p>El diccionario de datos de un modelo relacional es un repositorio central que almacena metadatos sobre los elementos de una base de datos.</p>
 <p>En un sistema de bases de datos relacional, el diccionario de datos incluye detalles sobre las estructuras de las tablas, las relaciones entre las tablas, las columnas, los índices, las restricciones, los procedimientos almacenados y otros objetos de la base de datos. Es esencialmente un <em>catálogo</em> que describe la estructura lógica y la organización de la base de datos.</p>
 <p>Las funciones del diccionario de datos son:</p>
@@ -1686,7 +1861,7 @@
 <h4 id="componentes">Componentes<a class="headerlink" href="#componentes" title="Permanent link">¶</a></h4>
 <ol>
 <li>
-<p><strong>Tablas y columnas</strong>: Describe las tablas en la base de datos, los nombres de las columnas, tipos de datos (los diferentes <a href="https://aitor-medrano.github.io/bd/05ddl.html#tipos-de-datos">tipos de datos</a> los estudiaremos en detalle en la <em>unidad 3</em>, tamaños y si permiten valores nulos.</p>
+<p><strong>Tablas y columnas</strong>: Describe las tablas en la base de datos, los nombres de las columnas, tipos de datos (los diferentes <a href="#todo">tipos de datos</a> los estudiaremos en detalle en la <em>unidad 3</em>, tamaños y si permiten valores nulos.</p>
 </li>
 <li>
 <p><strong>Relaciones y claves</strong>: Define las relaciones entre tablas y especifica las claves primarias y ajenas.</p>
@@ -1697,7 +1872,7 @@
 </ol>
 <p>Si nos centramos en los modelos físicos, podríamos incluir otros componentes como índices, vistas, procedimientos almacenados y funciones o <em>triggers</em>, así como usuarios y permisos.</p>
 <h4 id="ejemplo">Ejemplo<a class="headerlink" href="#ejemplo" title="Permanent link">¶</a></h4>
-<p>Para este ejemplo, nos vamos a basar en el mismo ejemplo que hemos utilizado en el apartado de <a href="https://aitor-medrano.github.io/bd/03mr.html#notacion">Notación</a>, donde un <code>AUTOR</code> escribe muchos <code>LIBRO</code>, pero un <code>LIBRO</code> sólo lo escribe un <code>AUTOR</code>.</p>
+<p>Para este ejemplo, nos vamos a basar en el mismo ejemplo que hemos utilizado en el apartado de <a href="#notación">Notación</a>, donde un <code>AUTOR</code> escribe muchos <code>LIBRO</code>, pero un <code>LIBRO</code> sólo lo escribe un <code>AUTOR</code>.</p>
 <p>Para documentar el diccionario de datos, se utiliza una estructura de tabla con el nombre de la columna, el tipo de datos y una descripción del campo:</p>
 <ul>
 <li>
@@ -1784,15 +1959,1179 @@
 </ul>
 </li>
 </ul>
-<p>## Normalización</p>
+<hr>
+<h3 id="normalizacion">Normalización<a class="headerlink" href="#normalizacion" title="Permanent link">¶</a></h3>
 <p>Un principio del diseño relacional es que "<em>hechos distintos se deben almacenar en objetos distintos</em>".</p>
-<p>Para conseguir este objetivo, la <strong>normalización</strong> es una técnica dentro del diseño de bases de datos relacionales que consiste en la separación de atributos en tablas lo más simples posibles para suprimir dependencias erróneas entre atributos, reducir la redundancia así como optimizar los procesos de inserción, modificación y borrado en la bases de datos, evitando las anomalías previamente comentadas, lo que maximiza la integridad de los datos y su consistencia.</p>
-<p>Podemos simplificar el objetivo de la normalización en maximizar la integridad de los datos, reduciendo su redundancia.</p>
+<p>Para conseguir este objetivo, la <strong>normalización</strong> es una técnica dentro del diseño de bases de datos relacionales que consiste en la separación de atributos en tablas lo más simples posibles para <strong>suprimir dependencias erróneas entre atributos, reducir la redundancia así como optimizar los procesos de inserción, modificación y borrado en la bases de datos</strong>, evitando las anomalías previamente comentadas, lo que maximiza la integridad de los datos y su consistencia.</p>
+<p>Podemos simplificar el objetivo de la normalización en <strong>maximizar la integridad de los datos, reduciendo su redundancia</strong>.</p>
 <p>Para conseguirlo, se basa en el análisis de dependencias entre atributos mediante un proceso que consiste en identificar y aplicar una serie de reglas a las relaciones obtenidas del esquema relacional.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Supuesto Comerciales</p>
+<p>Supongamos los siguientes datos sobre ventas que realizan una serie de comerciales de los cuales tenemos su código y nombre, su estado laboral (con un código y una descripción), la ciudad y la provincia donde realizan las ventas, así como las poblaciones de dichas ciudades y provincias.</p>
+<table>
+<thead>
+<tr>
+<th>comercialID</th>
+<th>comercialNom</th>
+<th>estadoID</th>
+<th>estadoDesc</th>
+<th>ciudad</th>
+<th>provincia</th>
+<th>ciudadPob</th>
+<th>provinciaPob</th>
+<th>ventas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Carlos Suarez</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>230.000</td>
+<td>1.800.000</td>
+<td>33</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>Carlos Suarez</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Denia</td>
+<td>Alicante</td>
+<td>42.000</td>
+<td>1.800.000</td>
+<td>22</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Manoli Campos</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>230.000</td>
+<td>1.800.000</td>
+<td>55</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Manoli Campos</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Aspe</td>
+<td>Alicante</td>
+<td>22.000</td>
+<td>1.800.000</td>
+<td>44</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Carlos Suarez</td>
+<td>JPM</td>
+<td>Jornada Partida Mañanas</td>
+<td>Cartagena</td>
+<td>Murcia</td>
+<td>218.000</td>
+<td>1.520.000</td>
+<td>17</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Sonia Sánchez</td>
+<td>JPT</td>
+<td>Jornada Partida Tardes</td>
+<td>Gandía</td>
+<td>Valencia</td>
+<td>73.000</td>
+<td>2.550.000</td>
+<td>27</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Marina Vidal</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Valencia</td>
+<td>Valencia</td>
+<td>807.000</td>
+<td>1.800.000</td>
+<td>37</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Michael Johnson</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+<td>Valencia</td>
+<td>California</td>
+<td>63.000</td>
+<td>38.940.000</td>
+<td>47</td>
+</tr>
+</tbody>
+</table>
+<p>Claramente, tenemos datos redundantes. Si reorganizamos los datos de otra manera podríamos evitar dependencias.</p>
+</div>
+<h3 id="anomalias">Anomalías<a class="headerlink" href="#anomalias" title="Permanent link">¶</a></h3>
+<p>Una <strong>anomalía</strong> se refiere a una inconsistencia o problema que puede surgir en una base de datos, especialmente cuando no está normalizada. Estas anomalías pueden manifestarse de diversas maneras, afectando la integridad y consistencia de la información almacenada.</p>
+<p>Los tipos de anomalías en bases de datos son:</p>
+<ul>
+<li><strong>anomalías de actualización</strong>: ocurren cuando se intenta actualizar un registro en múltiples ubicaciones y no todas las copias se actualizan correctamente, generando discrepancias en los datos.</li>
+<li><strong>anomalías de inserción</strong>: surgen cuando no se puede insertar un nuevo registro en una tabla sin introducir datos redundantes o violar ciertas restricciones. Por ejemplo, si tenemos una tabla que almacena información de estudiantes y cursos, si no hay una clave principal que identifique de forma única cada registro, se podrían generar anomalías al intentar insertar nueva información.</li>
+<li><strong>anomalías de eliminación</strong>: se producen cuando se elimina información importante al intentar eliminar un registro específico, lo que puede llevar a la pérdida de datos. Siguiendo con el ejemplo anterior, si se elimina un registro de estudiante y este registro también contiene información sobre un curso, podría perderse la información del curso si no se toman precauciones.</li>
+</ul>
+<p>Para <em>solucionar</em> las anomalías, debemos <strong>normalizar las tablas</strong>.</p>
+<h3 id="dependencias-funcionales">Dependencias funcionales<a class="headerlink" href="#dependencias-funcionales" title="Permanent link">¶</a></h3>
+<p>Antes de entrar a conocer los pasos de la normalización, previamente tenemos que definir una serie de conceptos:</p>
+<ul>
+<li>
+<p><strong>Dependencia funcional</strong> (DF): es la relación semántica existente entre atributos de una misma tabla. Decimos que <strong>A → B</strong>, es decir, que <strong>B depende funcionalmente de A</strong> (o A determina a B), si y solo si para cada valor de A sólo puede existir un B.</p>
+<p>El sentido de la relación no es bidireccional. Que para una valor de A sólo exista un B, no significa que dado B, siempre obtengamos A. Por ejemplo, la dependencia <code>dni → nombre, apellidos</code> es correcta, ya que tanto el nombre de una persona como sus apellidos dependen funcionalmente de su DNI, pero no al revés. ¿Dado un nombre de una persona, podemos saber su DNI?</p>
+</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">DF - Supuesto Comerciales</p>
+<p>El primer paso es para cada columna, identificar las dependencias que hay entre los atributos.</p>
+<p>Por ejemplo, cogemos el nombre del comercial, y detectamos que dependen funcionalmente del identificador del comercial, por lo tanto: <code>comercialID → comercialNom</code>. Pero si nos fijamos bien en los nombres de los comerciales, no podemos decir lo mismo en el sentido contrario, ya que tenemos un nombre repetido en diferentes códigos de comercial (¡qué casualidad!), con lo que no es correcto decir <code>comercialNom → comercialID</code>.</p>
+<p>Si hacemos lo mismo con el identificador del estado del comercial, deducimos que depende también del identificador, obteniendo <code>comercialID → estadoID</code>.</p>
+<p>Y lo mismo con la descripción del estado. En este caso, se cumplen que tanto el identificador del comercial como el identificador del estado permiten obtener la descripción del estado, obteniendo <code>comercialID → estadoDesc</code> y <code>estadoID → estadoDesc</code>.</p>
+<p>Si continuamos con todos los atributos y agrupamos las dependencias funcionales tenemos:</p>
+<ul>
+<li><code>comercialID → comercialNom, estadoID, estadoDesc</code></li>
+<li><code>estadoID → estadoDesc</code></li>
+<li><code>estadoDesc → estadoID</code></li>
+<li><code>provincia → provinciaPob</code></li>
+<li><code>ciudad, provincia → ciudadPob</code>, por ejemplo, tenemos dos ciudades <code>Valencia</code> en provincias diferentes</li>
+<li><code>comercialID , ciudad, provincia → ventas</code></li>
+</ul>
+<p>Tal como hemos comentado previamente, cuando agrupamos los atributos, la dependencia <code>comercialID → comercialNom, estadoID, estadoDesc</code> significa que tanto el nombre del comercial, como el código de su estado y el estado dependen del identificador del comercial.</p>
+</div>
+<ul>
+<li>
+<p><strong>Dependencia funcional completa</strong> (DFC): cuando tenemos que <em>A1, A2, ...AN → B</em> (B tiene una dependencia funcional del conjunto A1, A2, ...AN), pero no de ninguno de sus subconjuntos.</p>
+<p>Es decir, B depende de la combinación completa de atributos, y no de un parte de la clave.</p>
+<p>DFC - Supuesto Comerciales</p>
+<p>Tenemos que las ventas dependen de la combinación <code>comercialID, ciudad, provincia</code> y no de un subconjunto de ellas, es decir, <code>comercialID, ciudad, provincia → ventas</code>.</p>
+</li>
+<li>
+<p><strong>Dependencia funcional transitiva</strong> (DFT): se dice que hay un DFT entre A y C, si A → B y B → C, siendo B y C columnas no claves. Dicho de otro modo, cuando tenemos columnas no claves que determinan otras columnas no clave.</p>
+<p>DFT - Supuesto Comerciales</p>
+<p>Tenemos que <code>comercialID → comercialNom, estadoID, estadoDesc</code> y que <code>estadoID → estadoDesc</code>, por lo que tenemos una dependencia transitiva de <code>comercialID</code> a <code>estadoDesc</code>, ya que <code>comercialID → estadoID → estadoDesc</code>.</p>
+</li>
+</ul>
+<details class="example">
+<summary>Ejemplos de dependencias funcionales</summary>
+<p><u>Ejemplo 1: El Gimnasio del Barrio - Entendiendo la <strong>Dependencia Funcional</strong></u></p>
+<p>En el gimnasio "Siempre en Forma", tienen una hoja de cálculo para registrar a sus miembros. Es muy sencilla.</p>
+<p><strong>Tabla: <code>MIEMBROS_GIMNASIO</code></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Socio</th>
+<th style="text-align: left;">Nombre</th>
+<th style="text-align: left;">Apellido</th>
+<th style="text-align: left;">Fecha_Nacimiento</th>
+<th style="text-align: left;">Tipo_Suscripcion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">SOC-001</td>
+<td style="text-align: left;">Elena</td>
+<td style="text-align: left;">Ramírez</td>
+<td style="text-align: left;">1995-03-15</td>
+<td style="text-align: left;">Mensual</td>
+</tr>
+<tr>
+<td style="text-align: left;">SOC-002</td>
+<td style="text-align: left;">Marcos</td>
+<td style="text-align: left;">Vidal</td>
+<td style="text-align: left;">1988-11-20</td>
+<td style="text-align: left;">Anual</td>
+</tr>
+<tr>
+<td style="text-align: left;">SOC-003</td>
+<td style="text-align: left;">Carla</td>
+<td style="text-align: left;">Soler</td>
+<td style="text-align: left;">2001-07-30</td>
+<td style="text-align: left;">Mensual</td>
+</tr>
+</tbody>
+</table>
+<p>Aquí, el <code>ID_Socio</code> es único para cada persona. Pensemos como la base de datos:</p>
+<ul>
+<li><strong>Si te doy <code>SOC-001</code>, ¿puedes decirme el nombre?</strong> Sí, es Elena. No hay duda.<ul>
+<li><code>ID_Socio -&gt; Nombre</code></li>
+</ul>
+</li>
+<li><strong>Si te doy <code>SOC-001</code>, ¿puedes decirme la <code>Fecha_Nacimiento</code>?</strong> Sí, 1995-03-15.<ul>
+<li><code>ID_Socio -&gt; Fecha_Nacimiento</code></li>
+</ul>
+</li>
+<li><strong>Pero, si te digo que busques a la persona con suscripción "Mensual", ¿puedes darme un <code>ID_Socio</code> único?</strong> No, porque tanto Elena como Carla tienen esa suscripción. Por lo tanto, <code>Tipo_Suscripcion</code> no determina el <code>ID_Socio</code>.</li>
+</ul>
+<p><strong>Conclusión del ejemplo:</strong> La Dependencia Funcional es una regla de negocio que dice: "Este valor (o conjunto de valores) me sirve como una 'llave' para encontrar exactamente un solo valor de este otro campo". Aquí, <code>ID_Socio</code> es la llave para todos los demás datos del miembro.</p>
 <hr>
+<p><u>Ejemplo 2: La Pizzería "Mamma Mia" - Descubriendo la <strong>Dependencia Funcional Completa vs. Parcial</strong></u></p>
+<p>La pizzería quiere registrar qué ingredientes extra añade cada cliente a sus pizzas en cada pedido. Su tabla inicial es un desastre.</p>
+<p><strong>Tabla: <code>EXTRAS_PEDIDO</code></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nro_Pedido</th>
+<th style="text-align: left;">Pizza_ID</th>
+<th style="text-align: left;">Nombre_Pizza</th>
+<th style="text-align: left;">Ingrediente_Extra</th>
+<th style="text-align: left;">Precio_Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1001</td>
+<td style="text-align: left;">P01</td>
+<td style="text-align: left;">Margarita</td>
+<td style="text-align: left;">Champiñones</td>
+<td style="text-align: left;">1.50</td>
+</tr>
+<tr>
+<td style="text-align: left;">1001</td>
+<td style="text-align: left;">P01</td>
+<td style="text-align: left;">Margarita</td>
+<td style="text-align: left;">Aceitunas</td>
+<td style="text-align: left;">1.00</td>
+</tr>
+<tr>
+<td style="text-align: left;">1001</td>
+<td style="text-align: left;">P02</td>
+<td style="text-align: left;">Barbacoa</td>
+<td style="text-align: left;">Doble Queso</td>
+<td style="text-align: left;">2.00</td>
+</tr>
+<tr>
+<td style="text-align: left;">1002</td>
+<td style="text-align: left;">P01</td>
+<td style="text-align: left;">Margarita</td>
+<td style="text-align: left;">Champiñones</td>
+<td style="text-align: left;">1.50</td>
+</tr>
+</tbody>
+</table>
+<p>La clave para identificar una línea de forma única es la combinación de <code>{Nro_Pedido, Pizza_ID, Ingrediente_Extra}</code>. ¡Una clave de tres columnas!</p>
+<p>Ahora, analicemos qué depende de qué:</p>
+<ol>
+<li>
+<p><strong>Dependencia del <code>Precio_Extra</code></strong>: ¿Cuánto cuesta el extra "Champiñones"? Cuesta 1.50. ¿Necesito saber el número de pedido para saber eso? No. ¿Necesito saber el tipo de pizza? No. El precio del extra solo depende del ingrediente en sí.</p>
+<ul>
+<li><code>Ingrediente_Extra -&gt; Precio_Extra</code>
+Esta es una <strong>dependencia parcial</strong>, porque <code>Precio_Extra</code> depende de <code>Ingrediente_Extra</code>, que es solo un trocito de nuestra larga clave primaria.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dependencia del <code>Nombre_Pizza</code></strong>: Para saber que la "P01" es una "Margarita", ¿necesito el número de pedido o el ingrediente? No, solo necesito el <code>Pizza_ID</code>.</p>
+<ul>
+<li><code>Pizza_ID -&gt; Nombre_Pizza</code>
+Esta es otra <strong>dependencia parcial</strong>. <code>Nombre_Pizza</code> depende de <code>Pizza_ID</code>, que es otra parte de la clave.</li>
+</ul>
+</li>
+</ol>
+<p><strong>¿Existe alguna dependencia completa aquí?</strong> En esta tabla, tal como está diseñada, no hay ningún atributo que necesite las tres partes de la clave para ser determinado. Esto nos indica que el diseño es muy deficiente y necesita ser descompuesto. Por ejemplo, si añadiéramos un campo <code>Comentario_Cliente</code> ("sin cortar"), ese campo sí podría depender de la clave completa: <code>{Nro_Pedido, Pizza_ID, Ingrediente_Extra} -&gt; Comentario_Cliente</code>, porque el comentario es específico para un ingrediente en una pizza de un pedido concreto.</p>
+<p><strong>Conclusión del ejemplo:</strong> Una dependencia es completa solo si necesita <strong>todos</strong> los componentes de la clave compuesta para funcionar. Si le sobra aunque sea uno, es parcial. Las dependencias parciales son una señal de alarma que nos grita: "¡Divide esta tabla!".</p>
 <hr>
+<p><u>Ejemplo 3: La Academia de Idiomas - Identificando la <strong>Dependencia Funcional Transitiva</strong></u></p>
+<p>La academia "Polyglot" registra los cursos en los que se matriculan sus estudiantes.</p>
+<p><strong>Tabla: <code>MATRICULAS</code></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Matricula</th>
+<th style="text-align: left;">ID_Estudiante</th>
+<th style="text-align: left;">Nombre_Estudiante</th>
+<th style="text-align: left;">ID_Curso</th>
+<th style="text-align: left;">Nivel_Curso</th>
+<th style="text-align: left;">ID_Profesor</th>
+<th style="text-align: left;">Nombre_Profesor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">MAT-01</td>
+<td style="text-align: left;">EST-12</td>
+<td style="text-align: left;">Ana Sanz</td>
+<td style="text-align: left;">ING-B1</td>
+<td style="text-align: left;">Intermedio</td>
+<td style="text-align: left;">PROF-J</td>
+<td style="text-align: left;">John Smith</td>
+</tr>
+<tr>
+<td style="text-align: left;">MAT-02</td>
+<td style="text-align: left;">EST-15</td>
+<td style="text-align: left;">Luis Prado</td>
+<td style="text-align: left;">FRA-A2</td>
+<td style="text-align: left;">Básico</td>
+<td style="text-align: left;">PROF-S</td>
+<td style="text-align: left;">Sophie Dubois</td>
+</tr>
+<tr>
+<td style="text-align: left;">MAT-03</td>
+<td style="text-align: left;">EST-12</td>
+<td style="text-align: left;">Ana Sanz</td>
+<td style="text-align: left;">FRA-A2</td>
+<td style="text-align: left;">Básico</td>
+<td style="text-align: left;">PROF-S</td>
+<td style="text-align: left;">Sophie Dubois</td>
+</tr>
+</tbody>
+</table>
+<p>La clave primaria que identifica cada acto de matriculación es <code>ID_Matricula</code>.</p>
+<p>Vamos a seguir la cadena de dependencias:</p>
+<ol>
+<li>
+<p><code>ID_Matricula</code> determina el estudiante (<code>ID_Estudiante</code>) y el curso (<code>ID_Curso</code>). ¡Correcto!</p>
+<ul>
+<li><code>ID_Matricula -&gt; ID_Estudiante</code></li>
+<li><code>ID_Matricula -&gt; ID_Curso</code></li>
+</ul>
+</li>
+<li>
+<p>Ahora bien, <code>Nombre_Estudiante</code> no depende directamente de la matrícula, sino del estudiante.</p>
+<ul>
+<li><code>ID_Estudiante -&gt; Nombre_Estudiante</code></li>
+</ul>
+</li>
+<li>
+<p>Y aquí viene lo interesante. El profesor asignado (<code>ID_Profesor</code> y <code>Nombre_Profesor</code>) no depende de la matrícula en sí, sino del curso impartido. Cada curso tiene un profesor asignado.</p>
+<ul>
+<li><code>ID_Curso -&gt; ID_Profesor</code></li>
+<li><code>ID_Profesor -&gt; Nombre_Profesor</code></li>
+</ul>
+</li>
+</ol>
+<p>¡Hemos encontrado la transitividad!</p>
+<ul>
+<li><code>ID_Matricula</code> (la clave) -&gt; <code>ID_Curso</code> (atributo no clave)</li>
+<li><code>ID_Curso</code> (atributo no clave) -&gt; <code>Nombre_Profesor</code> (atributo no clave)</li>
+</ul>
+<p>El <code>Nombre_Profesor</code> depende de la <code>ID_Matricula</code>, pero de forma <strong>indirecta</strong>, a través del <code>ID_Curso</code>. Esto es una <strong>dependencia transitiva</strong>.</p>
+<p><strong>¿Cuál es el peligro?</strong> Si la profesora Sophie Dubois se va de la academia y es reemplazada por "Pierre Martin" en el curso FRA-A2, tendríamos que buscar todas las matrículas de ese curso (la de Luis, la de Ana y la de cualquier otro alumno) para actualizar el nombre del profesor. Si nos dejamos una sola fila sin actualizar, tendremos datos inconsistentes.</p>
+<p><strong>Conclusión del ejemplo:</strong> La dependencia transitiva es como un "amigo de un amigo". Un atributo no clave no debería darnos información sobre otro atributo no clave. Cada concepto (estudiantes, cursos, profesores) debería tener su propia tabla para evitar estas peligrosas dependencias en cadena.</p>
+<p><em>El objetivo final de identificar estas dependencias es guiarnos para crear un diseño de base de datos normalizado, donde cada pieza de información esté en su lugar lógico y solo en uno.</em></p>
+</details>
+<h3 id="formas-normales">Formas Normales<a class="headerlink" href="#formas-normales" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/03FN.png" data-desc-position="bottom"><img align="right" alt="" src="images/03FN.png" title="Formas normales" width="40%"></a></p>
+<p>La normalización consiste en una serie de pasos, cada uno de los cuales se corresponde a una forma normal (FN). Conforme se va avanzando en la normalización, las tablas tienen una estructura más limpia y con menor redundancia.</p>
+<p><em>Codd</em> propuso en 1972 tres formas normales, a las que se sumó la forma normal de <em>Boyce-Codd</em> en 1974, y luego se añadieron dos más por parte de <em>Fagin</em> entre 1977 y 1979. En este curso, nos vamos a centrar en las tres primeras, que cubren la mayoría de casos con los que nos vamos a encontrar, ya que se considera que una base de datos que está en 3FN es una base de datos correctamente diseñada</p>
+<p>Todas las formas normales se construyen sobre una forma normal previa, de forma que se anidan unas dentro de otras:</p>
+<ul>
+<li>
+<p><strong>1FN</strong>: Una relación está en primera forma normal si, y sólo si, todos sus dominios contienen valores atómicos. Supone la eliminación de todos los campos multivaluados.</p>
+<p>Por lo general, si tenemos una tabla de un modelo relacional, por las propias restricciones semánticas del modelo relacional, no deberíamos tener ningún campo con varios valores, ya que deberían haberse transformado en relaciones 1:N.</p>
+<p>1FN - Supuesto Comerciales</p>
+<p>Como ninguna columna tiene más de un valor, la tabla ya está en 1FN.</p>
+<div class="admonition abstract">
+<p class="admonition-title">1FN - Supuesto Comerciales</p>
+<p>Como ninguna columna tiene más de un valor, la tabla ya está en 1FN.</p>
+</div>
+</li>
+<li>
+<p><strong>2FN</strong>: una relación está en segunda forma normal si está en 1FN y todas las columnas que no son clave tienen un DFC de la clave primaria.</p>
+<p>Para ello, descompondremos la tabla en varias subtablas, y comprobaremos que ningún subconjunto de los atributos no clave determinan campos no principales.</p>
+<p>Si todas las claves candidatas de las tablas en 1FN son simples (unitarias), automáticamente las tablas ya están en 2FN. En cambio, si la clave primaria es compuesta, deberemos comprobar que todos los atributos dependen de la clave primaria compuesta y no de un subconjunto de esta.</p>
+<details class="abstract">
+<summary>2FN - Supuesto Comerciales</summary>
+<p>Si revisamos las dependencia funcionales, hemos de comprobar que todos los atributos no clave dependan de toda la clave primaria. Para ello, necesitamos crear al menos tres tablas:</p>
+<p><code>**COMERCIAL** (comercialID, comercialNom, estadoID, estadoDesc)</code><br>
+<code>· PK: (codigo)</code><br><br></p>
+<p><code>**CIUDAD** (ciudad, provincia, ciudadPob, provinciaPob)</code><br><br>
+<code>· PK: (ciudad)</code></p>
+<p><code>**REGISTRO** (comercialID*, ciudad*, provincia*, ventas)</code>
+<code>· PK: (comercialID, ciudad, provincia)   · FK: (comercialID) → COMERCIAL   · FK: (ciudad, provincia) → CIUDAD</code><br><br></p>
+<p>Dando como resultado las siguientes tablas con datos:</p>
+<ul>
+<li>
+<p><code>COMERCIAL</code></p>
+<table>
+<thead>
+<tr>
+<th>comercialID</th>
+<th>comercialNom</th>
+<th>estadoID</th>
+<th>estadoDesc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Carlos Suarez</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Manoli Campos</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Carlos Suarez</td>
+<td>JPM</td>
+<td>Jornada Partida Mañanas</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Sonia Sánchez</td>
+<td>JPT</td>
+<td>Jornada Partida Tardes</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Marina Vidal</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Michael Johnson</td>
+<td>JC</td>
+<td>Jornada Completa</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>CIUDAD</code></p>
+<table>
+<thead>
+<tr>
+<th>ciudad</th>
+<th>provincia</th>
+<th>ciudadPob</th>
+<th>provinciaPob</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elche</td>
+<td>Alicante</td>
+<td>230.000</td>
+<td>1.800.000</td>
+</tr>
+<tr>
+<td>Denia</td>
+<td>Alicante</td>
+<td>42.000</td>
+<td>1.800.000</td>
+</tr>
+<tr>
+<td>Aspe</td>
+<td>Alicante</td>
+<td>22.000</td>
+<td>1.800.000</td>
+</tr>
+<tr>
+<td>Cartagena</td>
+<td>Murcia</td>
+<td>218.000</td>
+<td>1.520.000</td>
+</tr>
+<tr>
+<td>Gandía</td>
+<td>Valencia</td>
+<td>73.000</td>
+<td>2.550.000</td>
+</tr>
+<tr>
+<td>Valencia</td>
+<td>Valencia</td>
+<td>807.000</td>
+<td>1.800.000</td>
+</tr>
+<tr>
+<td>Valencia</td>
+<td>California</td>
+<td>63.000</td>
+<td>38.940.000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>REGISTRO</code></p>
+<table>
+<thead>
+<tr>
+<th>comercialID<code>*</code></th>
+<th>ciudad<code>*</code></th>
+<th>provincia<code>*</code></th>
+<th>ventas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>33</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>Denia</td>
+<td>Alicante</td>
+<td>22</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>55</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Aspe</td>
+<td>Alicante</td>
+<td>44</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Cartagena</td>
+<td>Murcia</td>
+<td>17</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Gandía</td>
+<td>Valencia</td>
+<td>27</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Valencia</td>
+<td>Valencia</td>
+<td>37</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Valencia</td>
+<td>California</td>
+<td>47</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</details>
+</li>
+<li>
+<p><strong>3FN</strong>: 2FN + todo atributo que no es clave primaria no tiene una dependencia funcional transitiva de otro atributo no clave, es decir, depende únicamente de la clave primaria de modo no transitivo.</p>
+<details class="abstract">
+<summary>3FN - Supuesto Comerciales</summary>
+<p>Ahora revisamos que no haya atributos que dependan de forma transitiva de la clave primaria. Tanto <code>COMERCIAL.estadoDesc</code> como <code>CIUDAD.provinciaPob</code> dependen de forma transitiva de un atributo no que es clave en sus tablas (<code>COMERCIAL.estadoID</code> y <code>CIUDAD.provincia</code>, respectivamente). Es decir, tenemos las DFT <code>comercialID → estadoID → estadoDesc</code> y <code>ciudad → provincia → provinciaPob</code>.</p>
+<p>Así pues, para deshacer las dependencias funcionales transitivas dividimos las tablas <code>COMERCIAL</code> y <code>CIUDAD</code> en dos nuevas tablas (<code>ESTADO</code>y <code>PROVINCIA</code>):</p>
+<p><code>**ESTADO** (estadoID, estadoDesc)</code><br>
+<code>· PK: (codigo)</code></p>
+<p><code>**COMERCIAL** (comercialID, comercialNom, estadoID*)</code><br>
+<code>· PK: (codigo)   · FK: (estadoID) → ESTADO</code>
+<br>
+<code>**PROVINCIA** (provincia, provinciaPob)</code><br>
+<code>· PK: (provincia)</code></p>
+<p><code>**CIUDAD** (ciudad, provincia*, ciudadPob)</code><br>
+<code>· PK: (ciudad)   · FK: (provincia) → PROVINCIA</code><br></p>
+<p><code>**REGISTRO** (comercialID*, ciudad*, provincia*, ventas)</code><br>
+<code>· PK: (comercialID, ciudad, provincia)</code><br>
+<code>· FK: (comercialID) → COMERCIAL</code><br>
+<code>· FK: (ciudad, provincia) → CIUDAD</code><br></p>
+<p>Dando como resultado las siguientes tablas con datos:</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p><code>ESTADO</code></p>
+<table>
+<thead>
+<tr>
+<th>estadoID</th>
+<th>estadoDesc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JC</td>
+<td>Jornada Completa</td>
+</tr>
+<tr>
+<td>JPM</td>
+<td>Jornada Partida Mañanas</td>
+</tr>
+<tr>
+<td>JPT</td>
+<td>Jornada Partida Tardes</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>COMERCIAL</code></p>
+<table>
+<thead>
+<tr>
+<th>comercialID</th>
+<th>comercialNom</th>
+<th>estadoID<code>*</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Carlos Suarez</td>
+<td>JC</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Manoli Campos</td>
+<td>JC</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Carlos Suarez</td>
+<td>JPM</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Sonia Sánchez</td>
+<td>JPT</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Marina Vidal</td>
+<td>JC</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Michael Johnson</td>
+<td>JC</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>PROVINCIA</code></p>
+<table>
+<thead>
+<tr>
+<th>provincia</th>
+<th>provinciaPob</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alicante</td>
+<td>1.800.000</td>
+</tr>
+<tr>
+<td>Murcia</td>
+<td>1.520.000</td>
+</tr>
+<tr>
+<td>Valencia</td>
+<td>2.550.000</td>
+</tr>
+<tr>
+<td>California</td>
+<td>38.940.000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>CIUDAD</code></p>
+<table>
+<thead>
+<tr>
+<th>ciudad</th>
+<th>provincia<code>*</code></th>
+<th>ciudadPob</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elche</td>
+<td>Alicante</td>
+<td>230.000</td>
+</tr>
+<tr>
+<td>Denia</td>
+<td>Alicante</td>
+<td>42.000</td>
+</tr>
+<tr>
+<td>Aspe</td>
+<td>Alicante</td>
+<td>22.000</td>
+</tr>
+<tr>
+<td>Cartagena</td>
+<td>Murcia</td>
+<td>218.000</td>
+</tr>
+<tr>
+<td>Gandía</td>
+<td>Valencia</td>
+<td>73.000</td>
+</tr>
+<tr>
+<td>Valencia</td>
+<td>Valencia</td>
+<td>807.000</td>
+</tr>
+<tr>
+<td>Valencia</td>
+<td>California</td>
+<td>63.000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>REGISTRO</code></p>
+<table>
+<thead>
+<tr>
+<th>comercialID<code>*</code></th>
+<th>ciudad<code>*</code></th>
+<th>provincia<code>*</code></th>
+<th>ventas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>33</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>Denia</td>
+<td>Alicante</td>
+<td>22</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Elche</td>
+<td>Alicante</td>
+<td>55</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Aspe</td>
+<td>Alicante</td>
+<td>44</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Cartagena</td>
+<td>Murcia</td>
+<td>17</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Gandía</td>
+<td>Valencia</td>
+<td>27</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Valencia</td>
+<td>Valencia</td>
+<td>37</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Valencia</td>
+<td>California</td>
+<td>47</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</details>
+<p>El problema de la 3FN es que no maneja relaciones que:</p>
+<ul>
+<li>Tienen varias claves candidatas,</li>
+<li>Esas claves candidatas son compuestas, y</li>
+<li>Las claves candidatas tienen por lo menos un atributo en común.
+<br><br></li>
+</ul>
+</li>
+<li>
+<p><strong>FNBC</strong>: Es una mejora de la 3FN donde, si tenemos más de una clave candidata y estas son compuestas y comparten algún atributo entonces, ningún atributo, sea clave o no, puede depender de algo que no sea la clave primaria.</p>
+<p>Si la clave no es compuesta y no existe más de una clave candidata (sólo tenemos la clave primaria), la FNBC es equivalente a la 3FN.</p>
+<p>El objetivo de la FNBC es asegurar que cada dato de una tabla depende únicamente de una clave real y completa, y no de otra cosa.</p>
+<details class="abstract">
+<summary>FNBC - Supuesto Comerciales</summary>
+<p>En nuestro caso, no tenemos más de una clave candidata, por lo que la FNBC es equivalente a la 3FN.</p>
+</details>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">En resumen</p>
+<p>En la práctica, cuando todas las tablas están en FNBC, se puede considerar que la base de datos está totalmente normalizada. Una tabla en FNBC ya está desde 1FN hasta 3FN y tiene las siguientes características:</p>
+<ul>
+<li>Tiene una clave primaria.</li>
+<li>No tiene columnas multivaluadas.</li>
+<li>Todas las columnas dependen de una clave pero nada más.</li>
+<li>No contiene ninguna dependencia transitiva.</li>
+</ul>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/03normalizacion.png" data-desc-position="bottom"><img src="images/03normalizacion.png" width="90%"></a>
+    <figcaption>Proceso de normalización</figcaption>
+</figure><p></p>
+</div>
+<h3 id="ejemplo-paso-a-paso">Ejemplo Paso a Paso<a class="headerlink" href="#ejemplo-paso-a-paso" title="Permanent link">¶</a></h3>
+<details class="example">
+<summary>Ejemplo 1: Paso a paso. Consultora de software</summary>
+<p>Una pequeña consultora de software, "Código Veloz", registra los datos de los proyectos en una única tabla. Vuestro objetivo es sanear y normalizar esta tabla para evitar problemas de redundancia e inconsistencia.</p>
+<p><strong>Normalización de una Tabla de Proyectos</strong></p>
+<p>Una pequeña consultora de software, "Código Veloz", registra los datos de los proyectos en una única tabla. Vuestro objetivo es sanear y normalizar esta tabla para evitar problemas de redundancia e inconsistencia.</p>
+<p><u>La Tabla Inicial: <code>PROYECTOS_DESORDENADOS</code></u></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Proyecto</th>
+<th style="text-align: left;">Nombre_Proyecto</th>
+<th style="text-align: left;">ID_Empleado</th>
+<th style="text-align: left;">Nombre_Empleado</th>
+<th style="text-align: left;">Horas_Trabajadas</th>
+<th style="text-align: left;">ID_Departamento</th>
+<th style="text-align: left;">Jefe_Departamento</th>
+<th style="text-align: left;">Salario_Base_Empleado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">P100</td>
+<td style="text-align: left;">App Móvil</td>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">Juan Pérez</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">Ana Torres</td>
+<td style="text-align: left;">40.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">P100</td>
+<td style="text-align: left;">App Móvil</td>
+<td style="text-align: left;">E02</td>
+<td style="text-align: left;">María Sol</td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">Ana Torres</td>
+<td style="text-align: left;">55.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">P200</td>
+<td style="text-align: left;">Web Cliente</td>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">Juan Pérez</td>
+<td style="text-align: left;">120</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">Ana Torres</td>
+<td style="text-align: left;">40.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">P300</td>
+<td style="text-align: left;">Sistema IA</td>
+<td style="text-align: left;">E03</td>
+<td style="text-align: left;">Luis Rey</td>
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">D02</td>
+<td style="text-align: left;">Pedro Soto</td>
+<td style="text-align: left;">60.000</td>
+</tr>
+</tbody>
+</table>
+<p><u>Paso 0: Identificación de Dependencias y Clave</u></p>
+<p>Antes de empezar, asumimos que esta tabla ya está en <strong>Primera Forma Normal (1FN)</strong>, pues no hay grupos repetitivos ni atributos multivaluados (cada celda contiene un solo valor atómico).</p>
+<ol>
+<li>
+<p><strong>Clave Primaria (CP):</strong> Para identificar de forma única cada fila (es decir, las horas que <em>un</em> empleado dedicó a <em>un</em> proyecto), necesitamos la combinación: <code>{ID_Proyecto, ID_Empleado}</code>.</p>
+</li>
+<li>
+<p><strong>Dependencias Funcionales (DFs) Observadas:</strong></p>
+<ul>
+<li><code>ID_Proyecto -&gt; Nombre_Proyecto</code> (El ID del proyecto determina su nombre).</li>
+<li><code>ID_Empleado -&gt; Nombre_Empleado, ID_Departamento, Salario_Base_Empleado</code> (El ID del empleado determina sus datos personales y salariales).</li>
+<li><code>ID_Departamento -&gt; Jefe_Departamento</code> (El departamento determina quién es su jefe).</li>
+</ul>
+</li>
+</ol>
 <hr>
+<p><u>Paso 1: De 1FN a 2FN (Eliminar Dependencias Parciales)</u></p>
+<p><strong>REGLA DE LA 2FN:</strong> Todos los atributos no clave deben ser completamente dependientes de <strong>toda</strong> la Clave Primaria.</p>
+<p><em>Identificando las dependencias parciales:</em></p>
+<ol>
+<li><code>ID_Proyecto -&gt; Nombre_Proyecto</code>: El nombre del proyecto depende solo de <code>ID_Proyecto</code> (una parte de la clave). <strong>Dependencia Parcial.</strong></li>
+<li><code>ID_Empleado -&gt; Nombre_Empleado, ID_Departamento, Salario_Base_Empleado</code>: Los datos del empleado dependen solo de <code>ID_Empleado</code> (otra parte de la clave). <strong>Dependencia Parcial.</strong></li>
+</ol>
+<p><em>Acción: Descomponer la tabla para eliminar las dependencias parciales.</em></p>
+<p><strong>Tabla 1.1: <code>ASIGNACION_PROYECTO</code></strong> (Retiene la clave primaria original y los atributos que dependen de ella de forma COMPLETA).
+*   <strong>DF Remanente:</strong> <code>{ID_Proyecto, ID_Empleado} -&gt; Horas_Trabajadas</code>
+*   <strong>CP:</strong> <code>{ID_Proyecto, ID_Empleado}</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Proyecto</th>
+<th style="text-align: left;">ID_Empleado</th>
+<th style="text-align: left;">Horas_Trabajadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">P100</td>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr>
+<td style="text-align: left;">P100</td>
+<td style="text-align: left;">E02</td>
+<td style="text-align: left;">80</td>
+</tr>
+<tr>
+<td style="text-align: left;">P200</td>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">120</td>
+</tr>
+<tr>
+<td style="text-align: left;">P300</td>
+<td style="text-align: left;">E03</td>
+<td style="text-align: left;">90</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tabla 1.2: <code>PROYECTOS</code></strong> (Extrae la información que solo depende de <code>ID_Proyecto</code>).
+*   <strong>DF Remanente:</strong> <code>ID_Proyecto -&gt; Nombre_Proyecto</code>
+*   <strong>CP:</strong> <code>{ID_Proyecto}</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Proyecto</th>
+<th style="text-align: left;">Nombre_Proyecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">P100</td>
+<td style="text-align: left;">App Móvil</td>
+</tr>
+<tr>
+<td style="text-align: left;">P200</td>
+<td style="text-align: left;">Web Cliente</td>
+</tr>
+<tr>
+<td style="text-align: left;">P300</td>
+<td style="text-align: left;">Sistema IA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tabla 1.3: <code>EMPLEADOS</code></strong> (Extrae la información que solo depende de <code>ID_Empleado</code>).
+*   <strong>DF Remanente:</strong> <code>ID_Empleado -&gt; Nombre_Empleado, ID_Departamento, Salario_Base_Empleado</code>
+*   <strong>CP:</strong> <code>{ID_Empleado}</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Empleado</th>
+<th style="text-align: left;">Nombre_Empleado</th>
+<th style="text-align: left;">ID_Departamento</th>
+<th style="text-align: left;">Salario_Base_Empleado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">Juan Pérez</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">40.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">E02</td>
+<td style="text-align: left;">María Sol</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">55.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">E03</td>
+<td style="text-align: left;">Luis Rey</td>
+<td style="text-align: left;">D02</td>
+<td style="text-align: left;">60.000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultado:</strong> Las tres tablas están ahora en <strong>2FN</strong>.</p>
 <hr>
+<p><u>Paso 2: De 2FN a 3FN (Eliminar Dependencias Transitivas)</u></p>
+<p><strong>REGLA DE LA 3FN:</strong> No debe existir ninguna dependencia funcional transitiva. Un atributo no clave no puede depender de otro atributo no clave.</p>
+<p><em>Identificando las dependencias transitivas:</em></p>
+<p>Revisamos las tablas 1.1 y 1.2 (que ya están perfectas) y nos centramos en la <strong>Tabla 1.3: <code>EMPLEADOS</code></strong>.</p>
+<ul>
+<li><strong>DF Observada:</strong> <code>ID_Departamento -&gt; Jefe_Departamento</code></li>
+<li><strong>Análisis:</strong><ul>
+<li><code>ID_Empleado</code> es la clave primaria.</li>
+<li><code>ID_Departamento</code> es un atributo no clave.</li>
+<li><code>Jefe_Departamento</code> es un atributo no clave.</li>
+<li>El <code>Jefe_Departamento</code> depende de <code>ID_Departamento</code>, que a su vez depende de la clave primaria (<code>ID_Empleado</code>). ¡<strong>Dependencia Transitiva</strong>!</li>
+<li><code>ID_Empleado -&gt; ID_Departamento -&gt; Jefe_Departamento</code></li>
+</ul>
+</li>
+</ul>
+<p><em>Acción: Crear una nueva tabla para romper la cadena transitiva.</em></p>
+<p><strong>Tabla 2.1: <code>DEPARTAMENTOS</code></strong> (Extrae la información de la dependencia transitiva).</p>
+<ul>
+<li><strong>DF Remanente:</strong> <code>ID_Departamento -&gt; Jefe_Departamento</code></li>
+<li><strong>CP:</strong> <code>{ID_Departamento}</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Departamento</th>
+<th style="text-align: left;">Jefe_Departamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">Ana Torres</td>
+</tr>
+<tr>
+<td style="text-align: left;">D02</td>
+<td style="text-align: left;">Pedro Soto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tabla 2.2: <code>EMPLEADOS_NORMALIZADOS</code></strong> (Actualiza la tabla de empleados).</p>
+<ul>
+<li><strong>DF Remanente:</strong> <code>ID_Empleado -&gt; Nombre_Empleado, ID_Departamento, Salario_Base_Empleado</code></li>
+<li><strong>CP:</strong> <code>{ID_Empleado}</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ID_Empleado</th>
+<th style="text-align: left;">Nombre_Empleado</th>
+<th style="text-align: left;">ID_Departamento</th>
+<th style="text-align: left;">Salario_Base_Empleado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">E01</td>
+<td style="text-align: left;">Juan Pérez</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">40.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">E02</td>
+<td style="text-align: left;">María Sol</td>
+<td style="text-align: left;">D01</td>
+<td style="text-align: left;">55.000</td>
+</tr>
+<tr>
+<td style="text-align: left;">E03</td>
+<td style="text-align: left;">Luis Rey</td>
+<td style="text-align: left;">D02</td>
+<td style="text-align: left;">60.000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultado:</strong> Ahora tenemos cuatro tablas (ASIGNACION_PROYECTO, PROYECTOS, DEPARTAMENTOS, EMPLEADOS_NORMALIZADOS) que están en <strong>3FN</strong>.</p>
+<hr>
+<p><u>Paso 3: De 3FN a FNBC (Boyce-Codd)</u></p>
+<p><strong>REGLA DE LA FNBC:</strong> Para cada dependencia funcional no trivial $X \rightarrow A$, $X$ debe ser una <strong>superclave</strong> (o sea, una clave candidata o un conjunto de atributos que la contienen).</p>
+<p>En la mayoría de los casos de la vida real, si una tabla está en 3FN, también lo estará en FNBC. La FNBC solo es más estricta cuando existen <strong>múltiples claves candidatas que se solapan</strong>.</p>
+<p><em>Identificando la posibilidad de FNBC:</em></p>
+<p>Revisamos las cuatro tablas para buscar dependencias donde el determinante ($X$) no sea una superclave:</p>
+<ol>
+<li><strong><code>ASIGNACION_PROYECTO</code></strong>: DF: <code>{ID_Proyecto, ID_Empleado} -&gt; Horas_Trabajadas</code>. El determinante es la CP. <strong>OK</strong>.</li>
+<li><strong><code>PROYECTOS</code></strong>: DF: <code>ID_Proyecto -&gt; Nombre_Proyecto</code>. El determinante es la CP. <strong>OK</strong>.</li>
+<li><strong><code>DEPARTAMENTOS</code></strong>: DF: <code>ID_Departamento -&gt; Jefe_Departamento</code>. El determinante es la CP. <strong>OK</strong>.</li>
+<li><strong><code>EMPLEADOS_NORMALIZADOS</code></strong>: DF: <code>ID_Empleado -&gt; Nombre_Empleado, ID_Departamento, Salario_Base_Empleado</code>. El determinante es la CP. <strong>OK</strong>.</li>
+</ol>
+<p><strong>¡PERO ESPERA!</strong> ¿Qué pasaría si la regla de negocio fuera: <em>Cada Salario Base determina un Nivel de Empleado, y solo los Jefes de Departamento pueden tener un Nivel 5</em>?</p>
+<ul>
+<li>Si añadiéramos un atributo <code>Nivel_Empleado</code> a la tabla <code>EMPLEADOS_NORMALIZADOS</code> y existiera la DF: <code>Salario_Base_Empleado -&gt; Nivel_Empleado</code> (donde $X$ no es la clave), esto podría forzarnos a aplicar FNBC.</li>
+</ul>
+<p><em>Ejemplo Hipotético para romper FNBC (No aplica al caso anterior, pero es didáctico):</em></p>
+<p>Imaginemos que en la tabla de empleados existe una regla donde el <strong>Nombre del Empleado</strong> debe ser único. Tendríamos dos claves candidatas: <code>ID_Empleado</code> y <code>Nombre_Empleado</code>.</p>
+<ul>
+<li><strong>Claves Candidatas (CC):</strong> <code>{ID_Empleado}</code> y <code>{Nombre_Empleado}</code></li>
+<li><strong>DFs:</strong> <code>ID_Empleado -&gt; Nombre_Empleado</code> y <code>Nombre_Empleado -&gt; ID_Empleado</code></li>
+</ul>
+<p>Si existiera la DF: <code>Nombre_Empleado -&gt; Salario_Base_Empleado</code>. El determinante (<code>Nombre_Empleado</code>) es una clave candidata (Superclave). <strong>Por lo tanto, sigue estando en FNBC.</strong></p>
+<p><strong>Conclusión del ejercicio:</strong> En este caso práctico, al llegar a la <strong>3FN</strong> hemos satisfecho todos los requisitos de la <strong>FNBC</strong>.</p>
+<p>RESUMEN FINAL DE LAS TABLAS NORMALIZADAS (FNBC)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tabla</th>
+<th style="text-align: left;">Clave Primaria (CP)</th>
+<th style="text-align: left;">Atributos</th>
+<th style="text-align: left;">Dependencias Funcionales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ASIGNACION_PROYECTO</strong></td>
+<td style="text-align: left;"><code>{ID\_Proyecto, ID\_Empleado}</code></td>
+<td style="text-align: left;"><code>Horas\_Trabajadas</code></td>
+<td style="text-align: left;"><strong>Completa:</strong> <code>{ID\_Proyecto, ID\_Empleado} -&gt; Horas\_Trabajadas</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PROYECTOS</strong></td>
+<td style="text-align: left;"><code>ID\_Proyecto</code></td>
+<td style="text-align: left;"><code>Nombre\_Proyecto</code></td>
+<td style="text-align: left;"><code>ID\_Proyecto -&gt; Nombre\_Proyecto</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DEPARTAMENTOS</strong></td>
+<td style="text-align: left;"><code>ID\_Departamento</code></td>
+<td style="text-align: left;"><code>Jefe\_Departamento</code></td>
+<td style="text-align: left;"><code>ID\_Departamento -&gt; Jefe\_Departamento</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>EMPLEADOS</strong></td>
+<td style="text-align: left;"><code>ID\_Empleado</code></td>
+<td style="text-align: left;"><code>Nombre\_Empleado, ID\_Departamento, Salario\_Base\_Empleado</code></td>
+<td style="text-align: left;"><code>ID\_Empleado -&gt; Nombre\_Empleado, ID\_Departamento, Salario\_Base\_Empleado</code></td>
+</tr>
+</tbody>
+</table>
+<p>¡Con esto, hemos pasado de una tabla redundante y propensa a errores a un modelo relacional sólido, limpio y eficiente! Recordad, la normalización es la clave para la integridad de vuestros datos.</p>
+</details>
+<h3 id="desnormalizacion">Desnormalización<a class="headerlink" href="#desnormalizacion" title="Permanent link">¶</a></h3>
+<p>El concepto de <strong>desnormalizar</strong> un modelo relacional consiste en transformar una base de datos a una forma normal menor, siempre con el objetivo de mejorar el rendimiento de las operaciones de consulta de datos, a costa de aceptar cierta redundancia de datos</p>
+<p>Por ejemplo, podemos unir varias relaciones en una si se usan juntas frecuentemente mediante operaciones <em>join</em>.</p>
+<p>Además del rendimiento en las consultas, podemos desnormalizar nuestros modelos para simplificar el esquema o reducir la complejidad de ciertas consultas.</p>
+<p>Un caso muy común es unir los datos de dos tablas que tienen una relación 1:1 en una única tabla (siempre que la semántica de las relaciones lo permita).</p>
+<hr>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Herramienta gráfica <a href="https://erdplus.com/">ERDPlus</a> para la realización de diagramas de modelos relacionales.</p>
+</li>
+<li>
+<p>Materiales sobre el módulo de BD:</p>
+<ul>
+<li><em><a href="https://ioc.xtec.cat/materials/FP/Recursos/fp_dam_m02_/web/fp_dam_m02_htmlindex/WebContent/u3/a1/continguts.html">Model Relacional</a> - Institut Obert de Catalunya</em></li>
+<li><a href="https://jorgesanchez.net/manuales/gbd/modelo-relacional.html">Modelo Relacional</a> de <em>Jorge Sánchez</em></li>
+<li><a href="https://apuntes-daw.javiergutierrez.trade/bases-de-datos/ut3/recopila.html">Bases de datos relacionales</a> de <em>Javier Gutiérrez</em></li>
+<li><a href="https://gestionbasesdatos.readthedocs.io/es/latest/Tema2/index.html">Diseño de modelo lógicos normalizados</a> de gestionbasesdatos.readthedocs.io</li>
+<li><a href="https://www.cs.us.es/cursos/bd-2023/temas/BD-Tema-2.pdf">Diseño lógico</a> y <a href="https://www.cs.us.es/cursos/bd-2023/temas/BD-Tema-6.pdf">Normalización</a> de la <em>Universidad de Sevilla</em></li>
+</ul>
+</li>
+</ul>
 
 
 
