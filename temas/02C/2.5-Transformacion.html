@@ -585,11 +585,11 @@
         <li class="md-nav__item">
   <a href="#atributos" class="md-nav__link">
     <span class="md-ellipsis">
-      Atributos
+      📁 Atributos
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Atributos">
+    <nav class="md-nav" aria-label="📁 Atributos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -607,19 +607,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformacion-de-relaciones" class="md-nav__link">
+  <a href="#transformacion-de-relaciones-fuertes" class="md-nav__link">
     <span class="md-ellipsis">
-      Transformación de Relaciones
+      ⚡ Transformación de Relaciones (fuertes)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transformación de Relaciones">
+    <nav class="md-nav" aria-label="⚡ Transformación de Relaciones (fuertes)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1n" class="md-nav__link">
+  <a href="#transforma-relacion-1n" class="md-nav__link">
     <span class="md-ellipsis">
-      1:N
+      ↘️ Transforma relacion 1:N
     </span>
   </a>
   
@@ -628,7 +628,16 @@
           <li class="md-nav__item">
   <a href="#transformar-relacion-11" class="md-nav__link">
     <span class="md-ellipsis">
-      Transformar relación 1:1
+      ↘️ Transformar relación 1:1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformacion-relaciones-reflexivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      ↘️ Transformación Relaciones Reflexivas
     </span>
   </a>
   
@@ -637,7 +646,40 @@
           <li class="md-nav__item">
   <a href="#transformacion-de-relacion-nm" class="md-nav__link">
     <span class="md-ellipsis">
-      Transformación de relación N:M
+      ↘️ Transformación de relación N:M
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad-minima-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad mínima 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identificación
     </span>
   </a>
   
@@ -667,14 +709,23 @@
 <h1 id="25-transformacion-del-modelo-er-a-mr"><strong>2.5. Transformación del modelo ER a MR</strong><a class="headerlink" href="#25-transformacion-del-modelo-er-a-mr" title="Permanent link">¶</a></h1>
 <p>👉 <strong>Pasos</strong></p>
 <p>Una vez conocido el modelo conceptual entidad-relación y el modelo lógico relacional, vamos a estudiar como transformar y pasar de uno a otro. Para ello, seguiremos los siguientes pasos:</p>
+<ul>
+<li>Entidades  →  Tablas</li>
+<li>Atributos  →  Columnas</li>
+<li>Atributos identificadores  →  Claves primarias</li>
+<li>Atributos de relaciones  →  Columnas detrás de claves ajenas</li>
+<li>Relaciones  →  Claves ajenas y/o tablas</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Resumen de transformación</p>
+</div>
 <ol>
-<li>Las entidades pasan a ser tablas</li>
-<li>Los atributos pasar a ser columnas</li>
-<li>Los atributos identificadores pasar a ser claves primarias.</li>
-<li>Los atributos de las relaciones pasan a columnas detrás de las claves ajenas</li>
-<li>Las relaciones, dependiendo de la cardinalidad, pasarán a ser claves ajenas y/o tablas.</li>
+<li>Toda <strong>entidad</strong> se transforma en una <strong>relación</strong>.</li>
+<li>Las <strong>interrelaciones N:M</strong> se transforman en una <strong>relación</strong>.</li>
+<li>Las <strong>interrelaciones 1:N</strong> dan lugar o bien a una propagación de clave o bien a una relación</li>
+<li>Las <strong>interrelaciones 1:1</strong> dan lugar a la propagación de la clave de una entidad a la otra</li>
 </ol>
-<h2 id="atributos">Atributos<a class="headerlink" href="#atributos" title="Permanent link">¶</a></h2>
+<h2 id="atributos">📁 Atributos<a class="headerlink" href="#atributos" title="Permanent link">¶</a></h2>
 <p>Conviene recordar que dentro de una tabla, no se puede repetir el nombre de ningún atributo, pero sí en tablas diferentes.</p>
 <p>Algunos profesionales prefieren que no se repitan los identificadores entre diferentes tablas de una misma BD, aunque es cierto que las herramientas ORM de generación de modelos físicos a partir de definición de clases u objetos suelen nombrar todas las claves primarias como <code>id</code> o <code>_id</code>.</p>
 <p>En cuanto a los atributos <strong>compuestos</strong>, se separan como atributos individuales dentro de la tabla, pudiéndoles poner el prefijo del atributo compuesto o el propio nombre del atributo si no da pie a confusión.</p>
@@ -696,9 +747,25 @@
 <p><code>**EMPLEADO** (codigo, nif, nombre, salario)</code><br>
 <code>· PK: (codigo)</code><br>
 <code>· UK: (nif)</code><br></p>
-<h2 id="transformacion-de-relaciones">Transformación de Relaciones<a class="headerlink" href="#transformacion-de-relaciones" title="Permanent link">¶</a></h2>
+<h2 id="transformacion-de-relaciones-fuertes">⚡ Transformación de Relaciones (fuertes)<a class="headerlink" href="#transformacion-de-relaciones-fuertes" title="Permanent link">¶</a></h2>
 <p>Al transformar las relaciones, dependiendo de la cardinalidad deberemos colocar la clave ajena en un lugar u otro.</p>
-<h3 id="1n">1:N<a class="headerlink" href="#1n" title="Permanent link">¶</a></h3>
+<p>Cada entidad se transforma en una tabla, donde los atributos de la entidad se convierten en columnas de la tabla, y el atributo identificador se convierte en la clave primaria de la tabla.</p>
+<ul>
+<li><strong>Entidades.</strong> Las entidades pasan a ser tablas</li>
+<li><strong>Atributos</strong>. Los atributos pasan a ser columnas o atributos de la tabla.<ul>
+<li><strong>Atributos identificadores</strong>. Pasan a ser claves primarias o alternativas.<ul>
+<li><strong>Claves primarias</strong>. Son aquellos atributos que identifican de forma única cada tupla de la tabla.</li>
+<li><strong>Claves alternativas</strong>. Son aquellos atributos que también identifican de forma única cada tupla de la tabla, pero no son la clave primaria. Estos atributos tendrán las restricciones <strong>UNIQUE</strong> y <strong>NOT NULL</strong>.</li>
+</ul>
+</li>
+<li><strong>Atributos compuestos</strong>. Se transforman en los atributos que los componen. Por ejemplo, si viéramos un atributo compuesto que fuera Dirección, que estuviera formado por calle, número, piso y puerta, se transformará en los atributos de la relación calle, número, piso y puerta.</li>
+<li><strong>Atributos obligatorios</strong>. Se convierten en atributos de la relación con la restricción de NOT NULL, es decir no puede ser nulo.</li>
+<li><strong>Atributos opcionales</strong>. Pueden tomar valores nulos.</li>
+<li><strong>Atributos multivaluados</strong>. Se transforman en una nueva tabla, cuya clave primaria está formada por la clave primaria de la entidad en la que se sitúa el atributo multivaluado más el nombre del atributo multivaluado. En ocasiones, si el atributo multivaluado no admite repeticiones, es suficiente éste como clave primaria.</li>
+</ul>
+</li>
+</ul>
+<h3 id="transforma-relacion-1n">↘️ Transforma relacion 1:N<a class="headerlink" href="#transforma-relacion-1n" title="Permanent link">¶</a></h3>
 <p>La clave primaria de la entidad con cardinalidad máxima a 1 se incluye en la entidad con cardinalidad máxima N como clave ajena.</p>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relaciones1n.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relaciones1n.png" title="Transformación de relación 1:N" width="40%"></a></p>
 <p><code>**A** (a0, a1, b0*)</code><br>
@@ -711,9 +778,9 @@
 <p>Por ejemplo, si tenemos un modelo donde, en vez de un atributo multivaluado, hemos creado una entidad para modelar que una persona puede tener muchos teléfonos:</p>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo1n.png" data-desc-position="bottom"><img align="left" alt="" src="images/04ejemplo1n.png" title="Ejemplo de relación 1:N" width="30%"></a></p>
 <p>Si aplicamos la transformación recién vista, obtenemos el siguiente esquema lógico:</p>
-<p><code>**PERSONA** (dni, nombre, direccion)</code>
+<p><code>**PERSONA** (dni, nombre, direccion)</code><br>
 <code>· PK: (dni)</code><br><br>
-<code>**TELEFONO** (numero, propio, dni*)</code>
+<code>**TELEFONO** (numero, propio, dni*)</code><br>
 <code>· PK: (numero)</code><br>
 <code>· FK: (dni) → PERSONA</code><br></p>
 <p>Conviene recordar que la clave ajena será la clave primaria que nos hemos traido desde la entidad con cardinalidad máxima a 1 (en este caso, llevamos la clave primaria de <code>PERSONA</code> a <code>TELEFONO</code>), de manera que el atributo <code>TELEFONO.dni</code> representa la relación <code>TENER</code>.</p>
@@ -787,7 +854,7 @@
 <tr>
 <td>666444444</td>
 <td>true</td>
-<td></td>
+<td>--error: un telefono debe pertenecer a una persona--</td>
 </tr>
 </tbody>
 </table>
@@ -821,63 +888,107 @@
 <code>· FK: (dni) → EMPLEADO</code><br></p>
 </div>
 <hr>
-<h3 id="transformar-relacion-11">Transformar relación 1:1<a class="headerlink" href="#transformar-relacion-11" title="Permanent link">¶</a></h3>
+<h3 id="transformar-relacion-11">↘️ Transformar relación 1:1<a class="headerlink" href="#transformar-relacion-11" title="Permanent link">¶</a></h3>
 <p>En este caso, la clave ajena se pone en cualquier entidad y se añade como clave alternativa/única (<code>UK</code>).</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relaciones11.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relaciones11.png" title="Transformación de relación 1:1" width="40%"></a></p>
-<p>Transformación de relación 1:1</p>
-<p>Así pues, una posible solución sería llevar la clave ajena a A:</p>
-<p><code>**A** (a0, a1, b0*)</code><br>
-<code>· PK: (a0)</code><br>
-<code>· FK: (b0) → B</code><br>
-<code>· UK: (b0)</code><br></p>
-<p><code>**B** (b0, b1)</code>
-<code>· PK: (b0)</code><br></p>
-<p>Al hacer que el atributo que es clave ajena sea clave única, restringimos que dicho valor no se pueda repetir.</p>
-<p>Y la otra posible solución sería llevar la clave ajena a B:</p>
-<p><code>**A** (a0, a1)</code>
-<code>· PK: (a0)</code><br></p>
-<p><code>**B** (b0, b1, a0*)</code><br>
-<code>· PK: (b0)</code><br>
-<code>· FK: (a0) → A</code><br>
-<code>· UK: (a0)</code><br></p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo11.png" data-desc-position="bottom"><img align="right" alt="" src="images/04ejemplo11.png" title="Ejemplo de relación 1:1" width="30%"></a></p>
-<p>Vamos a poner otro ejemplo. En este caso, tenemos la relación existente entre un vehículo y el empleado que lo conduce en una empresa, dando lugar a una relación 1:1 (fíjate como en este caso, hemos renombrado la clave ajena a <code>dniEmpleado</code> para facilitar la compresión):</p>
-<p><code>**EMPLEADO** (dni, nombre, dirección)</code><br>
-<code>· PK: (dni)</code><br><br>
-<code>**VEHICULO** (matrícula, marca, modelo)</code><br>
-<code>· PK: (matrícula)</code><br>
-<code>· UK: (dniEmpleado)</code><br>
-<code>· FK: (dniEmpleado) → EMPLEADO</code><br></p>
-<div class="admonition question">
-<p class="admonition-title">¿Sabrías...?</p>
-<p>¿Sabrías crear otra solución donde la clave ajena estuviera en la entidad <code>EMPLEADO</code>?<br>
-A continuación, rellena las dos tablas con datos y comprueba si la relación entre ambas entidades es 1:N o 1:1.</p>
+<p>Como <strong>norma general</strong>, las relaciones con cardinalidad 1:1 <strong>no generan una tabla</strong>, lo que haremos será que la clave primaria de una entidad pasará a formar parte de la tabla de la otra entidad, y pasará como un atributo.</p>
+<p>La <strong>participación</strong> de cada una de las entidades será lo que <strong>nos ayude a decidir</strong> cuál será la entidad que pasará
+su clave primaria a la otra entidad.</p>
+<blockquote>
+<p>🔥 <strong>Excepción</strong>: Sólo existe un caso donde una relación con cardinalidad 1:1 genera una nueva tabla, y será
+cuando la participación de las dos entidades sea de tipo (0,1) – (0,1).</p>
+</blockquote>
+<p>Veamos ejemplos de los distintos casos:</p>
+<div class="admonition success">
+<p class="admonition-title">Participación (1,1)-(0,1)</p>
+<p>En estos casos, la clave primaria de la entidad del lado (1,1) se propagaría la entidad del lado (0,1), es decir, la clave primaria de la entidad USUARIO pasa a la entidad CANAL_YOUTUBE, quedando las tablas del modelo así:</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.a.png" data-desc-position="bottom"><img align="left" alt="" src="images/mias/1-1.a.png" width="50%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.a.diagram.png" data-desc-position="bottom"><img align="right" alt="" src="images/mias/1-1.a.diagram.png" width="40%"></a></p>
 </div>
-<h3 id="transformacion-de-relacion-nm">Transformación de relación N:M<a class="headerlink" href="#transformacion-de-relacion-nm" title="Permanent link">¶</a></h3>
+<div class="admonition success">
+<p class="admonition-title">Participación (1,1)-(1,1)</p>
+<p>Estos casos podemos resolverlos de dos maneras distintas:</p>
+<ol>
+<li><strong>Propagando la clave primaria de cualquiera de las entidades a la otra</strong>. Da igual que entidad sea la que propague la clave. Este es la manera más habitual de proceder.</li>
+<li><strong>La clave primaria de cada entidad se propaga en la otra</strong> entidad, quedando algo así:</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.b.png" data-desc-position="bottom"><img align="left" alt="" src="images/mias/1-1.b.png" width="40%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.b.diagram.png" data-desc-position="bottom"><img align="right" alt="" src="images/mias/1-1.b.diagram.png" width="40%"></a></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Participación (0,1)-(0,1)</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.c.png" data-desc-position="bottom"><img align="center" alt="" src="images/mias/1-1.c.png" width="40%"></a></p>
+<p>En este caso tenemos dos opciones:</p>
+<ol>
+<li>
+<p>Propagamos la clave primaria de una entidad a la otra entidad. Esta es la solución más usada.</p>
+</li>
+<li>
+<p>Crear una nueva tabla en la que almacenaremos la relación entre las dos entidades. La clave primaria de esta entidad podría ser cualquiera de las claves primarias de la otras entidades.</p>
+</li>
+</ol>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.c.diagram-1.png" data-desc-position="bottom"><img alt="" src="images/mias/1-1.c.diagram-1.png"></a>
+    </p><p class="text-center">Optción 1</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/1-1.c.diagram-2.png" data-desc-position="bottom"><img alt="" src="images/mias/1-1.c.diagram-2.png"></a>
+    </p><p class="text-center">Optción 2</p><p></p>
+</li>
+</ul>
+</div>
+</div>
+<p><br><br></p>
+<h3 id="transformacion-relaciones-reflexivas">↘️ Transformación Relaciones Reflexivas<a class="headerlink" href="#transformacion-relaciones-reflexivas" title="Permanent link">¶</a></h3>
+<p><u>Interrelaciones Reflexivas 1:M</u></p>
+<p>La clave primaria se almacena en la misma tabla como atributo.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/reflexiva.a.png" data-desc-position="bottom"><img alt="" src="images/mias/reflexiva.a.png"></a>
+    </p><p class="text-center">Relación reflexiva</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/reflexiva.a.diagram.png" data-desc-position="bottom"><img alt="" src="images/mias/reflexiva.a.diagram.png"></a>
+    </p><p class="text-center">Transformación: Relación reflexiva</p><p></p>
+</li>
+</ul>
+</div>
+<p><u>Interrelaciones Reflexivas N:M</u></p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/reflexiva.b.png" data-desc-position="bottom"><img alt="" src="images/mias/reflexiva.b.png" width="90%"></a>
+    </p><p class="text-center">Relación reflexiva N:M</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/reflexiva.b.diagram.png" data-desc-position="bottom"><img alt="" src="images/mias/reflexiva.b.diagram.png" width="70%"></a>
+    </p><p class="text-center">Transformación: Relación reflexiva N:M</p><p></p>
+</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Claves ajenas compuestas</p>
+<p>¿Y si nuestra entidad tiene una clave primaria compuesta? En este caso, la clave ajena también deberá compuesta.
+Esto se aplica a cualquier transformación, 1:1, 1:N, N:M  o reflexivas.</p>
+</div>
+<h3 id="transformacion-de-relacion-nm">↘️ Transformación de relación N:M<a class="headerlink" href="#transformacion-de-relacion-nm" title="Permanent link">¶</a></h3>
 <p>En el caso de las relaciones muchos a muchos, la relación se traduce en una nueva tabla, cuya clave primaria se compone de las claves primarias referenciadas, y cada clave primaria es una clave ajena.</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04relacionesnm.png" data-desc-position="bottom"><img align="right" alt="" src="images/04relacionesnm.png" title="Transformación de relación N:M" width="60%"></a></p>
-<p>Transformación de relación N:M</p>
-<p><code>**A** (a0, a1)</code><br>
-<code>· PK: (a0)</code><br></p>
-<p><code>**B** (b0, b1)</code>
-<code>· PK: (b0)</code><br></p>
-<p><code>**R** (a0*, b0*)</code><br>
-<code>· PK: (a0, b0)</code><br>
-<code>· FK: (a0) → A</code><br>
-<code>· FK: (b0) → B</code><br></p>
+<p>En caso del que <strong>la interrelación tuviera un atributo</strong>, se convertiría en un <strong>atributo</strong> de la nueva relación. En algunos casos, sobre todo cuando las interrelaciones tienen atributos que denotan una <strong>dimensión temporal</strong> (generalmente atributos que recogen fechas, horas o intervalos de tiempo), estos deben formar <strong>parte de la clave primaria</strong> de la nueva relación.</p>
 <p>Para este ejemplo, tenemos una empresa de transportes, donde un conductor conduce varios autobuses, y luego un autobus lo conducen varios conductores en diferentes trayectos, dando lugar a una relación muchos a muchos, donde en la relación añadimos el atributo <code>trayecto</code>:</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm.png" data-desc-position="bottom"><img align="left" alt="" src="images/04ejemplonm.png" title="Ejemplo de relación N:M" width="30%"></a></p>
-<p><code>**CONDUCTOR** (dni, nombre, experiencia)</code><br>
-<code>· PK: (dni)</code><br></p>
-<p><code>**AUTOBUS** (matricula, categoria)</code><br>
-<code>· PK: (matricula)</code><br></p>
-<p><code>**CONDUCIR** (dni*, matricula*, trayecto)</code><br>
-<code>· PK: (dni, matricula)</code><br>
-<code>· FK: (dni) → CONDUCTOR</code><br>
-<code>· FK: (matricula) → AUTOBUS</code><br></p>
-<p><br>
-<br>
-<br></p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm.png" data-desc-position="bottom"><img alt="" src="images/04ejemplonm.png" width="50%"></a>
+    </p><p class="text-center">Relación N:M</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/N-M.diagram.png" data-desc-position="bottom"><img alt="" src="images/mias/N-M.diagram.png" width="70%"></a>
+    </p><p class="text-center">Transformación: Relación N:M</p><p></p>
+</li>
+</ul>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">El orden importa</p>
 <p>Cuando pasamos una relación uno a muchos o muchos a muchos de un modelo ER a un modelo relacional, primero crearemos las tablas que no tienen claves ajenas.</p>
@@ -885,11 +996,6 @@ A continuación, rellena las dos tablas con datos y comprueba si la relación en
 <p>A continuación, crearemos la/s tabla/s que contiene claves ajenas a las tablas ya creadas, esto es, la tabla <code>CONDUCIR</code> que apunta a <code>CONDUCTOR</code> y <code>AUTOBUS</code>.</p>
 </div>
 <p>En este caso, el diagrama del modelo relacional se traduce en tres tablas conectadas, colocando el atributo de la relación en la nueva tabla <code>CONDUCIR</code>. Destacar como la tabla tiene una clave primaria compuesta, donde de cada parte de la clave sale una clave ajena a cada una de las tablas que relaciona:</p>
-<figure>
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm-mr.png" data-desc-position="bottom"><img src="images/04ejemplonm-mr.png" width="60%"></a>
-<br>
-<figcaption>Esquema relacional en ERDPlus</figcaption>
-</figure>
 <p>Y comprobamos con datos cómo sí se cumplen las cardinalidades:</p>
 <div class="grid cards">
 <ul>
@@ -952,8 +1058,8 @@ A continuación, rellena las dos tablas con datos y comprueba si la relación en
 <table>
 <thead>
 <tr>
-<th>nif<code>*</code></th>
-<th>matricula<code>*</code></th>
+<th>conductorId<code>*</code></th>
+<th>autobusId<code>*</code></th>
 <th>trayecto</th>
 </tr>
 </thead>
@@ -981,21 +1087,145 @@ A continuación, rellena las dos tablas con datos y comprueba si la relación en
 <h4 id="nm-con-dimension-temporal">N:M con dimensión temporal<a class="headerlink" href="#nm-con-dimension-temporal" title="Permanent link">¶</a></h4>
 <p>Si la relación tiene atributos de tipo fecha, será necesario incluir al menos uno en la clave primaria.</p>
 <p>Supongamos una empresa de alquiler de vehículos, donde tenemos que un cliente puede alquilar el mismo vehículo en fechas diferentes, o alquilar diferentes vehículos. Claramente, un vehículo lo pueden alquilar diferentes clientes en fechas diferentes. Para ello, creamos una relación muchos a muchos, colocando la fecha de inicio y de finalización del alquiler en la propia relación.</p>
-<figure>
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm-fecha.png" data-desc-position="bottom"><img src="images/04ejemplonm-fecha.png" width="90%"></a>
-<br>
-<figcaption>Relación N:M con dimensión temporal</figcaption>
-</figure>
-<p>Al crear el modelo relacional, tendremos las dos tablas de las entidades relacionadas:</p>
-<p><code>**CLIENTE** (dni, nombre)</code><br>
-<code>· PK: (dni)</code></p>
-<p><code>**VEHICULO** (matricula, kms)</code><br>
-<code>· PK: (matricula)</code></p>
-<p>Y la tabla que las relaciona con el atributo de fecha de inicio como parte de la clave primaria (de este modo, el cliente A puede alquilar el vehículo X en días diferentes):</p>
-<p><code>**ALQUILAR** (dni*, matricula*, finicio, ffin)</code><br>
-<code>· PK: (dni, matricula, finicio)</code><br>
-<code>· FK: (dni) → CLIENTE</code><br>
-<code>· FK: (matricula) → VEHICULO</code><br></p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplonm-fecha.png" data-desc-position="bottom"><img alt="" src="images/04ejemplonm-fecha.png" width="100%"></a>
+    </p><p class="text-center">Relación N:M dimension temporal</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/N-M.diagram-temporal.png" data-desc-position="bottom"><img alt="" src="images/mias/N-M.diagram-temporal.png" width="100%"></a>
+    </p><p class="text-center">Transformación: Relación N:M dimension temporal</p><p></p>
+</li>
+</ul>
+</div>
+<p>Y la tabla que las relaciona con el atributo de fecha de inicio como parte de la clave primaria (de este modo, el cliente A puede alquilar el vehículo X en días diferentes)</p>
+<h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">¶</a></h2>
+<p>Una vez visto como se transforman los atributos y las relaciones, vamos a ver algunas particularidades a la hora de aplicar restricciones sobre las cardinalidades.</p>
+<h3 id="cardinalidad-minima-1">Cardinalidad mínima 1<a class="headerlink" href="#cardinalidad-minima-1" title="Permanent link">¶</a></h3>
+<p>Cuando la cardinalidad mínima es 1, independientemente de la cardinalidad máxima, estamos indicando que sí o sí dicha clave ajena debe tener un valor. Para cumplirla, únicamente debemos marcar la clave ajena como valor no nulo (VNN).</p>
+<div class="admonition example">
+<p class="admonition-title">Usuario y Post</p>
+<p>Un usuario puede escribir muchos Post y un Post debe ser escrito por un único usuario. Relación 1-N, con cardinalidad (1,1)-(1,N).</p>
+<p>En este caso, para indicar la cardinalidad mínima a 1 (un post debe tener un usuario), se indica el campo <code>usuarioId</code> (FK) en la tabla Post, como NN (Not Null)</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/CardinalidadMin.1N-11-erd.png" data-desc-position="bottom"><img alt="" src="images/mias/CardinalidadMin.1N-11-erd.png" width="100%"></a>
+    </p><p class="text-center">Cardinalidad mínima a 1</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/CardinalidadMin.1N-11.png" data-desc-position="bottom"><img alt="" src="images/mias/CardinalidadMin.1N-11.png" width="100%"></a>
+    </p><p class="text-center">Cardinalidad mínima a 1</p><p></p>
+</li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>🔥 En los casos de cardinalidad mínima en relaciones 1:1, que son las que cambian más la transformación ya lo vimos en los ejemplos de esos casos.</p>
+</blockquote>
+<h3 id="identificacion">Identificación<a class="headerlink" href="#identificacion" title="Permanent link">¶</a></h3>
+<p>En las restricciones de identificación, la entidad débil se identifica, completamente o en parte, con la entidad fuerte. Es decir, parte de la clave primaria de la entidad débil son los atributos clave de la entidad fuerte. Es por ello, que la clave ajena debe formar parte de la clave primaria, la cual se define como una clave compuesta por la combinación de la clave primaria de la entidad fuerte y la débil:</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04restric-id.png" data-desc-position="bottom"><img alt="" src="images/04restric-id.png" title="Restricción de ID" width="50%"></a></p>
+<p>Los atributos clave de la entidad débil que no apuntan a la entidad fuerte se conocen como clave parcial. En el ejemplo anterior, <code>a0</code> sería la clave parcial de la entidad débil <code>A</code>.</p>
+<p>En el siguiente ejemplo, tenemos que cada sala se identifica por el cine al que pertenece por un número de sala, el cual se reinicia por cada cine. Es decir, la sala 1 del cine IMF no es la misma tupla que la sala 1 del cine ABC:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/04ejemplo-id2.png" data-desc-position="bottom"><img alt="" src="images/04ejemplo-id2.png" width="100%"></a>
+    </p><p class="text-center">Ejemplo de restricción de IDdentificacion</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/Ident.a.diagram.png" data-desc-position="bottom"><img alt="" src="images/mias/Ident.a.diagram.png" width="100%"></a>
+    </p><p class="text-center">Ejemplo de restricción de IDdentificacion</p><p></p>
+</li>
+</ul>
+</div>
+<p>Las tablas de datos de ejemplo demuestran que aunque la entidad débil repita número, la clave de la entidad fuerte deshace la ambigüedad:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><code>CINE</code></p>
+<table>
+<thead>
+<tr>
+<th>codigo</th>
+<th>nombre</th>
+<th>direccion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ABC</td>
+<td>Elche</td>
+</tr>
+<tr>
+<td>2</td>
+<td>IMF</td>
+<td>Ondara</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Odeón</td>
+<td>Elche</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>SALA</code></p>
+<table>
+<thead>
+<tr>
+<th>numero</th>
+<th>cineId<code>*</code></th>
+<th>aforo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>50</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>60</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>70</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>55</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Ejemplo resuelto</p>
+<p>Supongamos el diagrama ER que vimos en la unidad 2 al tratar las [restricciones de ID]. Vamos a obtener el modelo MR del mismo, teniendo en cuenta que la entidad <code>LINEA_PEDIDO</code> es una entidad débil respecto a la relación <code>CONTENER</code>, pero hace de entidad fuerte respecto a la relación <code>TENER</code>:</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../02/images/02restriccion-id-fuerte.png" data-desc-position="bottom"><img alt="" src="../02/images/02restriccion-id-fuerte.png" width="100%"></a>
+    </p><p class="text-center">Restricción de ID</p><p></p>
+</li>
+<li>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/mias/Ident.b.diagram.png" data-desc-position="bottom"><img alt="" src="images/mias/Ident.b.diagram.png" width="100%"></a>
+    </p><p class="text-center">Restricción de IDdentificacion</p><p></p>
+</li>
+</ul>
+</div>
+<p>¿Qué ha pasado con el atributo <code>PEDIDO.total</code>?</p>
+</div>
 
 
 
