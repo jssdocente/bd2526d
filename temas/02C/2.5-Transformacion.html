@@ -8,6 +8,8 @@
         <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/02C/2.5-Transformacion.html">
       
       
+        <link rel="prev" href="index.html">
+      
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
@@ -15,7 +17,7 @@
     
     
       
-        <title>2.5. Transformación del modelo ER a MR - Bases de Datos - Curso 25/26</title>
+        <title>2.4 Transformación ER a MR - Bases de Datos - Curso 25/26</title>
       
     
     
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.5. Transformación del modelo ER a MR
+              2.4 Transformación ER a MR
             
           </span>
         </div>
@@ -544,6 +546,249 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02.C - Diseño Lógico: Transformación
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            02.C - Diseño Lógico: Transformación
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    2.4 Transformación ER a MR
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="2.5-Transformacion.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.4 Transformación ER a MR
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Atributos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Atributos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claves-compuestas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Claves compuestas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformacion-de-relaciones-fuertes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Transformación de Relaciones (fuertes)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Transformación de Relaciones (fuertes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transforma-relacion-1n" class="md-nav__link">
+    <span class="md-ellipsis">
+      ↘️ Transforma relacion 1:N
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformar-relacion-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ↘️ Transformar relación 1:1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformacion-relaciones-reflexivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      ↘️ Transformación Relaciones Reflexivas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformacion-de-relacion-nm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ↘️ Transformación de relación N:M
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad-minima-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cardinalidad mínima 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identificación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
