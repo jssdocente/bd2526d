@@ -15,9 +15,9 @@ nav:
     - "Inicio": temas/02B/index.md
     - "2.4 El modelo relacional": temas/02B/2.4-ModeloRelacional.md
     - "Actividades": temas/02B/2.B-Actividades.md
-  # - "02.C - Diseño Lógico: Transformación":
-  #   - "Inicio": temas/02C/index.md
-  #   - "2.4 Transformación ER a MR": temas/02C/2.5-Transformacion.md  
+  - "02.C - Diseño Lógico: Transformación":
+    - "Inicio": temas/02C/index.md
+    - "2.4 Transformación ER a MR": temas/02C/2.5-Transformacion.md  
   #   - "Actividades": temas/02C/2.C-Actividades.md
     # - "2.2 Restricciones": temas/02/2.2-Restricciones.md
     # - "2.3 Modelo Extendido": temas/02/2.3-Modelo-extendido.md
