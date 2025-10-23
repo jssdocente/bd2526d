@@ -755,11 +755,11 @@
         <li class="md-nav__item">
   <a href="#restricciones" class="md-nav__link">
     <span class="md-ellipsis">
-      Restricciones
+      ❌ Restricciones
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Restricciones">
+    <nav class="md-nav" aria-label="❌ Restricciones">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -775,6 +775,30 @@
   <a href="#identificacion" class="md-nav__link">
     <span class="md-ellipsis">
       Identificación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generalizacion-y-especializacion-jerarquias" class="md-nav__link">
+    <span class="md-ellipsis">
+      👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solapadatotal-o-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solapada/(Total o Parcial)
     </span>
   </a>
   
@@ -905,11 +929,11 @@
         <li class="md-nav__item">
   <a href="#restricciones" class="md-nav__link">
     <span class="md-ellipsis">
-      Restricciones
+      ❌ Restricciones
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Restricciones">
+    <nav class="md-nav" aria-label="❌ Restricciones">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -925,6 +949,30 @@
   <a href="#identificacion" class="md-nav__link">
     <span class="md-ellipsis">
       Identificación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generalizacion-y-especializacion-jerarquias" class="md-nav__link">
+    <span class="md-ellipsis">
+      👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solapadatotal-o-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solapada/(Total o Parcial)
     </span>
   </a>
   
@@ -1345,10 +1393,10 @@ Esto se aplica a cualquier transformación, 1:1, 1:N, N:M  o reflexivas.</p>
 </ul>
 </div>
 <p>Y la tabla que las relaciona con el atributo de fecha de inicio como parte de la clave primaria (de este modo, el cliente A puede alquilar el vehículo X en días diferentes)</p>
-<h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">¶</a></h2>
+<h2 id="restricciones">❌ Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">¶</a></h2>
 <p>Una vez visto como se transforman los atributos y las relaciones, vamos a ver algunas particularidades a la hora de aplicar restricciones sobre las cardinalidades.</p>
 <h3 id="cardinalidad-minima-1">Cardinalidad mínima 1<a class="headerlink" href="#cardinalidad-minima-1" title="Permanent link">¶</a></h3>
-<p>Cuando la cardinalidad mínima es 1, independientemente de la cardinalidad máxima, estamos indicando que sí o sí dicha clave ajena debe tener un valor. Para cumplirla, únicamente debemos marcar la clave ajena como valor no nulo (VNN).</p>
+<p>Cuando la cardinalidad mínima es 1, independientemente de la cardinalidad máxima, estamos indicando que <strong>sí o sí dicha clave ajena debe tener un valor</strong>. Para cumplirla, únicamente debemos marcar la clave ajena como valor no nulo (VNN).</p>
 <div class="admonition example">
 <p class="admonition-title">Usuario y Post</p>
 <p>Un usuario puede escribir muchos Post y un Post debe ser escrito por un único usuario. Relación 1-N, con cardinalidad (1,1)-(1,N).</p>
@@ -1471,6 +1519,69 @@ Esto se aplica a cualquier transformación, 1:1, 1:N, N:M  o reflexivas.</p>
 </div>
 <p>¿Qué ha pasado con el atributo <code>PEDIDO.total</code>?</p>
 </div>
+<h2 id="generalizacion-y-especializacion-jerarquias">👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)<a class="headerlink" href="#generalizacion-y-especializacion-jerarquias" title="Permanent link">¶</a></h2>
+<p>Existen varias soluciones para realizar el paso a tablas de una especialización. La solución que se elija en cada caso dependerá del tipo de especialización que estemos resolviendo: total, parcial, inclusiva o exclusiva.</p>
+<p>Las 3 soluciones posibles que podemos aplicar son las siguientes:</p>
+<ol>
+<li>
+<p>Crear <strong>una única tabla</strong> para la superclase. En este caso todos los atributos de las subclases se guardarían en la superclase. </p>
+<p>Adoptaremos esta solución cuando los subtipos se diferencian en muy pocos atributos y las relaciones que los asocian con el resto de entidades del esquema sean las mismas para todos los subtipos. </p>
+</li>
+<li>
+<p>Crear <strong>tablas sólo para las subclases</strong>. En este caso los atributos de la superclase habría que guardarlos en cada una de las subclases.
+   Elegiremos esta opción cuando existan muchos atributos distintos entre los subtipos.</p>
+</li>
+<li>
+<p>Crear <strong>una tabla para cada una de las entidades</strong>, tanto para la superclase como las subclases. En este caso las <strong>subclases</strong> tendrían que <strong>guardar la clave de la primaria de la superclase</strong>.</p>
+</li>
+</ol>
+<p>En resumen:</p>
+<ul>
+<li>Si es <code>Parcial</code> siempre hay que crear una tabla para la <code>superclase</code>, y las clases de los <code>subtipos</code> dependerá del número de atributos comunes. Si la mayoría son comunes habrá pocos <code>propios</code> de cada subtipo, y por tanto, poco valores nulos o por defecto en la <code>superclase</code>.</li>
+<li>Si es <code>Total</code>, siempre la <code>superclase</code> estará contenida el algún <code>subtipo</code>. La opción de crear o no la tabla para la <code>superclase</code> radica en el número de campos comunes entre la superclase y los subtipos. </li>
+<li>Poco comunes -&gt; Crear subtipos.</li>
+<li>Muchos comunes -&gt; No crear subtipos.</li>
+</ul>
+<div class="admonition tipo">
+<p class="admonition-title">Exclusiva/Total</p>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.png" width="80%"></a>
+    <figcaption>Exclusiva/Total</figcaption>
+</figure><p></p>
+<p>En este caso sería adecuado utilizar la solución 2 o 3. También sería posible utilizar la solución 1, pero al tratarse de una especialización exclusiva y total (las ocurrencias de la superclase están en una subclase y sólo en una) , tendríamos muchas columnas con valores nulos.</p>
+<p><strong>Solución 2: Crear una tabla para las subclases</strong></p>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
+<figcaption>Solución 2: Crear una tabla para todas las entidades</figcaption>
+</figure><p></p>
+<p><strong>Solución 3: Crear una tabla para todas las entidades</strong></p>
+<p>En este caso no existenn relaciones entre ambas tablas, y la tabla en sí misma indica el tipo.</p>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr2.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr2.png" width="80%"></a>
+<figcaption>Solución 3</figcaption>
+</figure><p></p>
+</div>
+<h3 id="solapadatotal-o-parcial">Solapada/(Total o Parcial)<a class="headerlink" href="#solapadatotal-o-parcial" title="Permanent link">¶</a></h3>
+<p>Si es solapada, imp</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.png" width="80%"></a>
+<br>
+<figcaption>Exclusiva/Total</figcaption>
+</figure>
+<p>En este caso sería adecuado utilizar la solución 2 o 3. También sería posible utilizar la solución 1, pero al tratarse de una especialización exclusiva y total (las ocurrencias de la superclase están en una subclase y sólo en una) , tendríamos muchas columnas con valores nulos.</p>
+<p><strong>Solución 2: Crear una tabla para las subclases</strong></p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
+<br>
+<figcaption>Solución 2: Crear una tabla para todas las entidades</figcaption>
+</figure>
+<p><strong>Solución 3: Crear una tabla para todas las entidades</strong></p>
+<p>En este caso no existenn relaciones entre ambas tablas, y la tabla en sí misma indica el tipo.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr2.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr2.png" width="80%"></a>
+<br>
+<figcaption>Solución 3</figcaption>
+</figure>
 
 
 
