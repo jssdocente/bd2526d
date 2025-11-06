@@ -794,21 +794,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#solapadatotal-o-parcial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solapada/(Total o Parcial)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -991,21 +976,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="👨‍👩‍👧‍👦 Generalización y Especialización (Jerarquías)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#solapadatotal-o-parcial" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solapada/(Total o Parcial)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1036,13 +1006,110 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Resumen de transformación</p>
+<blockquote>
+<p><strong>Transformación General</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Elemento Modelo ER</th>
+<th style="text-align: left;">Transformación a Modelo Relacional (Tablas)</th>
+<th style="text-align: left;">Tratamiento de Claves y Cardinalidad (Reglas)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Entidad Fuerte</strong></td>
+<td style="text-align: left;">Cada entidad se convierte en una tabla.</td>
+<td style="text-align: left;">La clave primaria (PK) de la tabla es el identificador de la entidad. Los demás atributos son columnas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Entidad Débil</strong></td>
+<td style="text-align: left;">Cada entidad débil se convierte en una tabla.</td>
+<td style="text-align: left;">La PK de la tabla es compuesta: la PK de la entidad fuerte propietaria (como FK) + el discriminante de la entidad débil.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación 1 a 1 (1:1)</strong></td>
+<td style="text-align: left;">Se añade una clave foránea (FK) en una de las dos tablas.</td>
+<td style="text-align: left;">• La columna FK debe tener <strong>siempre</strong> una restricción <strong>UNIQUE</strong>.<br>• <strong>Regla de Ubicación (para evitar NULLs):</strong> Si la cardinalidad es <code>(1,1)</code> en un lado y <code>(0,1)</code> en el otro, la FK <strong>siempre se coloca en la tabla del lado <code>(0,1)</code></strong>. De este modo, la FK puede ser declarada como <strong>NOT NULL</strong>.<br>• Si la cardinalidad es <code>(0,1)</code> en ambos lados, la FK puede ir en cualquiera de las dos tablas y <strong>debe admitir NULL</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación 1 a Muchos (1:N)</strong></td>
+<td style="text-align: left;">No se crea una tabla nueva para la relación.</td>
+<td style="text-align: left;">La PK de la entidad del lado "1" migra a la tabla de la entidad del lado "N" como una FK. Si la participación mínima del lado "1" es 0, la FK admite <strong>NULL</strong>. Si es 1, es <strong>NOT NULL</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Muchos a Muchos (M:N)</strong></td>
+<td style="text-align: left;"><strong>Siempre</strong> se crea una nueva tabla intermedia para la relación.</td>
+<td style="text-align: left;">• La tabla intermedia contiene como FK las PK de las dos entidades que relaciona.<br>• <strong>Si la relación tiene atributos propios, estos se convierten en columnas adicionales</strong> en esta misma tabla intermedia.<br>• La PK de la nueva tabla es, por lo general, la <strong>combinación de ambas FK</strong> (y a veces, también de algún atributo de la relación si es necesario para garantizar la unicidad).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Reflexiva 1:1</strong></td>
+<td style="text-align: left;">Se añade una columna en la propia tabla.</td>
+<td style="text-align: left;">La columna es una FK que referencia a la PK de la misma tabla. Debe tener la restricción <strong>UNIQUE</strong> y ser <strong>NULLABLE</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Reflexiva 1:N</strong></td>
+<td style="text-align: left;">Se añade una columna en la propia tabla.</td>
+<td style="text-align: left;">La columna es una FK que referencia a la PK de la misma tabla (Ej: <code>id_jefe</code> en la tabla <code>EMPLEADO</code>). Es <strong>NULLABLE</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Reflexiva M:N</strong></td>
+<td style="text-align: left;">Se crea una nueva tabla intermedia.</td>
+<td style="text-align: left;">La tabla intermedia tiene <strong>dos columnas FK</strong>, ambas referenciando a la PK de la tabla original. Sus atributos (si los tiene) también van en esta tabla.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Transformación de Jerarquías (Generalización / Especialización - ISA)</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Estrategia de Transformación</th>
+<th style="text-align: left;">Descripción de las Tablas Resultantes</th>
+<th style="text-align: left;">Cuándo Usarla (Ventajas / Desventajas)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1. Una Sola Tabla (Todo en la Superclase)</strong></td>
+<td style="text-align: left;">Se crea <strong>una única tabla</strong> para la superclase que contiene todos los atributos (comunes y específicos de todas las subclases). Se añade una columna "tipo" para discriminar.</td>
+<td style="text-align: left;"><strong>Ventaja:</strong> Consultas rápidas (no se necesitan JOINs).<br><strong>Desventaja:</strong> Mucho espacio desperdiciado por valores <strong>NULL</strong> en atributos no aplicables.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2. Tabla por cada Subclase (Herencia Concreta)</strong></td>
+<td style="text-align: left;">Se crea <strong>una tabla por cada subclase concreta</strong> (hija). No hay tabla para la superclase (padre). Cada tabla hija repite los atributos comunes además de los suyos específicos.</td>
+<td style="text-align: left;"><strong>Ventaja:</strong> No hay valores NULL. Consultas a una subclase son directas.<br><strong>Desventaja:</strong> Los atributos comunes están duplicados. Consultar sobre <em>todos</em> los tipos requiere uniones (<code>UNION</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3. Tabla por cada Clase (Herencia de Tablas)</strong></td>
+<td style="text-align: left;">Se crea <strong>una tabla para la superclase</strong> con los atributos comunes y <strong>una tabla por cada subclase</strong> con solo sus atributos específicos. La PK de la superclase migra como PK y FK a las tablas hijas.</td>
+<td style="text-align: left;"><strong>Ventaja:</strong> Modelo más normalizado y fiel al ER. Sin redundancia ni NULLs excesivos.<br><strong>Desventaja:</strong> Las consultas a menudo requieren <strong>JOINs</strong> entre la tabla padre y la hija, lo que puede ser más lento.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Transformación de Agregaciones</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Elemento ER</th>
+<th style="text-align: left;">Concepto Clave</th>
+<th style="text-align: left;">Transformación a Modelo Relacional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Agregación</strong></td>
+<td style="text-align: left;">Una agregación trata una <strong>relación existente como si fuera una entidad abstracta</strong> para poder participar en otra relación de nivel superior.</td>
+<td style="text-align: left;"><strong>Paso 1:</strong> Se transforma la relación interna (la que es agregada) siguiendo las reglas normales (ej. si es M:N, se crea una tabla intermedia <code>T_Interna</code>).<br><br><strong>Paso 2:</strong> Se transforma la relación externa (la que conecta con la agregación). Para ello, la clave primaria de la tabla <code>T_Interna</code> migra como FK a la tabla de la entidad externa (si es 1:N) o a una nueva tabla intermedia (si es M:N).</td>
+</tr>
+</tbody>
+</table>
 </div>
-<ol>
-<li>Toda <strong>entidad</strong> se transforma en una <strong>relación</strong>.</li>
-<li>Las <strong>interrelaciones N:M</strong> se transforman en una <strong>relación</strong>.</li>
-<li>Las <strong>interrelaciones 1:N</strong> dan lugar o bien a una propagación de clave o bien a una relación</li>
-<li>Las <strong>interrelaciones 1:1</strong> dan lugar a la propagación de la clave de una entidad a la otra</li>
-</ol>
+<hr>
 <h2 id="atributos">📁 Atributos<a class="headerlink" href="#atributos" title="Permanent link">¶</a></h2>
 <p>Conviene recordar que dentro de una tabla, no se puede repetir el nombre de ningún atributo, pero sí en tablas diferentes.</p>
 <p>Algunos profesionales prefieren que no se repitan los identificadores entre diferentes tablas de una misma BD, aunque es cierto que las herramientas ORM de generación de modelos físicos a partir de definición de clases u objetos suelen nombrar todas las claves primarias como <code>id</code> o <code>_id</code>.</p>
@@ -1552,25 +1619,36 @@ Esto se aplica a cualquier transformación, 1:1, 1:N, N:M  o reflexivas.</p>
 <p>Existen varias soluciones para realizar el paso a tablas de una especialización. La solución que se elija en cada caso dependerá del tipo de especialización que estemos resolviendo: total, parcial, inclusiva o exclusiva.</p>
 <p>Las 3 soluciones posibles que podemos aplicar son las siguientes:</p>
 <ol>
+<li>Crear <strong>una única tabla</strong> para la superclase. En este caso todos los atributos de las subclases se guardarían en la superclase. </li>
+</ol>
+<p>Adoptaremos esta solución cuando los subtipos se diferencian en muy pocos atributos y las relaciones que los asocian con el resto de entidades del esquema sean las mismas para todos los subtipos. SOLO APLICA A ESPECIALIZACIONES PARCIALES.</p>
+<ol start="2">
 <li>
-<p>Crear <strong>una única tabla</strong> para la superclase. En este caso todos los atributos de las subclases se guardarían en la superclase. </p>
-<p>Adoptaremos esta solución cuando los subtipos se diferencian en muy pocos atributos y las relaciones que los asocian con el resto de entidades del esquema sean las mismas para todos los subtipos. </p>
+<p>Crear <strong>tablas sólo para las subclases</strong>. En este caso los atributos de la superclase habría que guardarlos en cada una de las subclases. Elegiremos esta opción cuando existan muchos atributos distintos entre los subtipos. SOLO APLICA A ESPECIALIZACIONES TOTALES.</p>
 </li>
 <li>
-<p>Crear <strong>tablas sólo para las subclases</strong>. En este caso los atributos de la superclase habría que guardarlos en cada una de las subclases.
-   Elegiremos esta opción cuando existan muchos atributos distintos entre los subtipos.</p>
-</li>
-<li>
-<p>Crear <strong>una tabla para cada una de las entidades</strong>, tanto para la superclase como las subclases. En este caso las <strong>subclases</strong> tendrían que <strong>guardar la clave de la primaria de la superclase</strong>.</p>
+<p>Crear <strong>una tabla para cada una de las entidades</strong>, tanto para la superclase como las subclases. En este caso las <strong>subclases</strong> tendrían que <strong>guardar la clave de la primaria de la superclase</strong>. OPCIÓN VÁLIDA PARA ESPECIALIZACIONES TOTALES Y PARCIALES.</p>
 </li>
 </ol>
-<p>En resumen:</p>
+<div class="admonition tip">
+<p class="admonition-title">En resumen</p>
 <ul>
-<li>Si es <code>Parcial</code> siempre hay que crear una tabla para la <code>superclase</code>, y las clases de los <code>subtipos</code> dependerá del número de atributos comunes. Si la mayoría son comunes habrá pocos <code>propios</code> de cada subtipo, y por tanto, poco valores nulos o por defecto en la <code>superclase</code>.</li>
-<li>Si es <code>Total</code>, siempre la <code>superclase</code> estará contenida el algún <code>subtipo</code>. La opción de crear o no la tabla para la <code>superclase</code> radica en el número de campos comunes entre la superclase y los subtipos. </li>
+<li>
+<p><strong>Si es <code>Parcial</code></strong> siempre hay que crear una tabla para la <code>superclase</code>, y las clases de los <code>subtipos</code> dependerá del número de atributos comunes. Si la mayoría son comunes habrá pocos <code>propios</code> de cada subtipo, y por tanto, poco valores nulos o por defecto en la <code>superclase</code>. </p>
+<ul>
 <li>Poco comunes -&gt; Crear subtipos.</li>
 <li>Muchos comunes -&gt; No crear subtipos.</li>
 </ul>
+</li>
+<li>
+<p><strong>Si es <code>Total</code></strong>, siempre la <code>superclase</code> estará contenida el algún <code>subtipo</code>. La opción de crear o no la tabla para la <code>superclase</code> radica en el número de campos comunes entre la superclase y los subtipos. </p>
+<ul>
+<li>Poco comunes -&gt; Crear subtipos y crear tabla para la superclase.</li>
+<li>Muchos comunes -&gt; Crear tabla para la superclase y no crear subtipos.</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="admonition tipo">
 <p class="admonition-title">Exclusiva/Total</p>
 <p></p><figure markdown="span">
@@ -1579,38 +1657,39 @@ Esto se aplica a cualquier transformación, 1:1, 1:N, N:M  o reflexivas.</p>
 </figure><p></p>
 <p>En este caso sería adecuado utilizar la solución 2 o 3. También sería posible utilizar la solución 1, pero al tratarse de una especialización exclusiva y total (las ocurrencias de la superclase están en una subclase y sólo en una) , tendríamos muchas columnas con valores nulos.</p>
 <p><strong>Solución 2: Crear una tabla para las subclases</strong></p>
-<p></p><figure markdown="span">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
-<figcaption>Solución 2: Crear una tabla para todas las entidades</figcaption>
-</figure><p></p>
-<p><strong>Solución 3: Crear una tabla para todas las entidades</strong></p>
 <p>En este caso no existenn relaciones entre ambas tablas, y la tabla en sí misma indica el tipo.</p>
 <p></p><figure markdown="span">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr2.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr2.png" width="80%"></a>
-<figcaption>Solución 3</figcaption>
+<figcaption>Solución 2: Crear una tabla para las subclases</figcaption>
+</figure><p></p>
+<p><strong>Solución 3: Crear una tabla para todas las entidades</strong></p>
+<p>Todas las claves primarias de las subclases son claves ajenas que apuntan a la tabla de la superclase.</p>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
+<figcaption>Solución 3: Crear una tabla para todas las entidades</figcaption>
 </figure><p></p>
 </div>
-<h3 id="solapadatotal-o-parcial">Solapada/(Total o Parcial)<a class="headerlink" href="#solapadatotal-o-parcial" title="Permanent link">¶</a></h3>
-<p>Si es solapada, imp</p>
-<figure>
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.png" width="80%"></a>
-<br>
-<figcaption>Exclusiva/Total</figcaption>
-</figure>
-<p>En este caso sería adecuado utilizar la solución 2 o 3. También sería posible utilizar la solución 1, pero al tratarse de una especialización exclusiva y total (las ocurrencias de la superclase están en una subclase y sólo en una) , tendríamos muchas columnas con valores nulos.</p>
-<p><strong>Solución 2: Crear una tabla para las subclases</strong></p>
-<figure>
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
-<br>
-<figcaption>Solución 2: Crear una tabla para todas las entidades</figcaption>
-</figure>
-<p><strong>Solución 3: Crear una tabla para todas las entidades</strong></p>
+<div class="admonition tipo">
+<p class="admonition-title">Solapada/(Total o Parcial)</p>
+<p>Si es solapada, la mejor opción suele ser crear una única tabla para la superclase, ya que las ocurrencias pueden estar en varias subclases a la vez, y por tanto, no sería lo mejor crear tablas separadas para cada una de las subclases.</p>
+<p><strong>Solución 1: Una única tabla</strong></p>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr3.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr3.png" width="80%"></a>
+<figcaption>Solución 1: Crear una tabla para todas las entidades</figcaption>
+</figure><p></p>
+<p>Aunque también sería posible crear tablas para las subclases, pero en este caso, habría que repetir las claves primarias en cada una de las tablas de las subclases, y además, habría que permitir valores nulos en las tablas de las subclases, ya que una ocurrencia podría no estar en alguna de ellas.</p>
+<p><strong>Solución 2: Crear una tabla para las superclase y subclases</strong></p>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr1.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr1.png" width="80%"></a>
+<figcaption>Solución 2: Crear una tabla para las superclase y subclases</figcaption>
+</figure><p></p>
+<p><strong>Solución 3: Crear una tabla para todas las subclases</strong></p>
 <p>En este caso no existenn relaciones entre ambas tablas, y la tabla en sí misma indica el tipo.</p>
-<figure>
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr2.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr2.png" width="80%"></a>
-<br>
-<figcaption>Solución 3</figcaption>
-</figure>
+<p></p><figure markdown="span">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/jerarq/disj-total.er.digr2.png" data-desc-position="bottom"><img src="images/jerarq/disj-total.er.digr2.png" width="80%"></a>
+<figcaption>Solución 3: Crear una tabla para todas las subclases</figcaption>
+</figure><p></p>
+</div>
 
 
 
