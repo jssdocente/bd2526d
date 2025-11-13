@@ -1061,43 +1061,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ac312" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC312
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ac313" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC313
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#ac314" class="md-nav__link">
     <span class="md-ellipsis">
       
         AC314
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ac315" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC315
       
     </span>
   </a>
@@ -1268,43 +1235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ac312" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC312
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ac313" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC313
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#ac314" class="md-nav__link">
     <span class="md-ellipsis">
       
         AC314
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ac315" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AC315
       
     </span>
   </a>
@@ -1380,7 +1314,6 @@
 <h3 id="ac301"><strong>AC301</strong><a class="headerlink" href="#ac301" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC301</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1396,18 +1329,18 @@
 </tbody>
 </table>
 <p>Para cada uno de los siguientes requisitos de almacenamiento, elige el tipo de dato de MySQL más adecuado y justifica tu decisión, considerando el uso de memoria y la precisión necesaria:</p>
-<p>a) El número de identificación fiscal de una persona (NIF/DNI en España).
-b) El sueldo mensual de un empleado (puede tener decimales, hasta 6 cifras antes del punto y 2 después).
-c) Un identificador único para transacciones bancarias (cadena alfanumérica de 32 caracteres, como un UUID).
-d) Si un producto está en oferta o no.
-e) La cantidad de stock de un producto, que puede ir de 0 a 65535.
-f) La dirección IP de un usuario.
-g) El contenido de un comentario de blog (varios párrafos, pero limitado a 5000 caracteres).
-h) Coordenadas GPS (latitud y longitud con alta precisión).</p>
+<p>a) El número de identificación fiscal de una persona (NIF/DNI en España).<br>
+b) El sueldo mensual de un empleado (puede tener decimales, hasta 6 cifras antes del punto y 2 después).<br>
+c) Un identificador único para transacciones bancarias (cadena alfanumérica de 32 caracteres, como un UUID).<br>
+d) Si un producto está en oferta o no.<br>
+e) La cantidad de stock de un producto, que puede ir de 0 a 65535.<br>
+f) La dirección IP de un usuario.<br>
+g) El contenido de un comentario de blog (varios párrafos, pero limitado a 5000 caracteres).<br>
+h) Coordenadas GPS (latitud y longitud con alta precisión).<br></p>
+</details>
 <h3 id="ac302"><strong>AC302</strong><a class="headerlink" href="#ac302" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC302</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1423,10 +1356,13 @@ h) Coordenadas GPS (latitud y longitud con alta precisión).</p>
 </tbody>
 </table>
 <p>Se desea crear una tabla <code>Usuario</code> donde el campo <code>nombreUsuario</code> debe ser único y las búsquedas deben distinguir entre mayúsculas y minúsculas, así como acentos. La base de datos debe soportar el idioma español y caracteres especiales.</p>
-<p>a) ¿Qué <code>CHARACTER SET</code> recomendarías para la base de datos y/o la columna <code>nombreUsuario</code>?
-b) ¿Qué <code>COLLATION</code> específica dentro de ese juego de caracteres deberías usar para que las comparaciones sean sensibles a mayúsculas/minúsculas y acentos?
-c) Escribe la sentencia SQL para crear una tabla <code>Usuario</code> con un campo <code>nombreUsuario</code> de 50 caracteres que cumpla con estos requisitos de sensibilidad.</p>
+<p>a) ¿Qué <code>CHARACTER SET</code> recomendarías para la base de datos y/o la columna <code>nombreUsuario</code>?<br>
+b) ¿Qué <code>COLLATION</code> específica dentro de ese juego de caracteres deberías usar para que las comparaciones sean sensibles a mayúsculas/minúsculas y acentos?<br>
+c) Escribe la sentencia SQL para crear una tabla <code>Usuario</code> con un campo <code>nombreUsuario</code> de 50 caracteres que cumpla con estos requisitos de sensibilidad.<br></p>
+</details>
 <h3 id="ac303"><strong>AC303</strong><a class="headerlink" href="#ac303" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC303</summary>
 <table>
 <thead>
 <tr>
@@ -1442,16 +1378,16 @@ c) Escribe la sentencia SQL para crear una tabla <code>Usuario</code> con un cam
 </tbody>
 </table>
 <p>Imagina que estás diseñando una tabla <code>Evento</code>. Para cada campo, elige el tipo de dato más apropiado y sus atributos (ej. <code>NOT NULL</code>, <code>DEFAULT</code>, <code>UNSIGNED</code>, <code>ZEROFILL</code>, etc.) justificando tu elección:</p>
-<p>a) <code>id</code>: Un identificador numérico único para cada evento, que se genera automáticamente.
-b) <code>nombreEvento</code>: El nombre del evento (obligatorio).
-c) <code>fechaHoraInicio</code>: La fecha y hora exactas en que comienza el evento (obligatorio, por defecto la fecha y hora actual si no se especifica).
-d) <code>duracionMinutos</code>: La duración del evento en minutos (siempre un número positivo, hasta 32767 minutos).
-e) <code>esPrivado</code>: Un indicador de si el evento es privado o público.
-f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser muy larga (hasta 10.000 caracteres).</p>
+<p>a) <code>id</code>: Un identificador numérico único para cada evento, que se genera automáticamente.<br>
+b) <code>nombreEvento</code>: El nombre del evento (obligatorio).<br>
+c) <code>fechaHoraInicio</code>: La fecha y hora exactas en que comienza el evento (obligatorio, por defecto la fecha y hora actual si no se especifica).<br>
+d) <code>duracionMinutos</code>: La duración del evento en minutos (siempre un número positivo, hasta 32767 minutos).<br>
+e) <code>esPrivado</code>: Un indicador de si el evento es privado o público.<br>
+f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser muy larga (hasta 10.000 caracteres).<br></p>
+</details>
 <h3 id="ac304"><strong>AC304</strong><a class="headerlink" href="#ac304" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC304</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1474,10 +1410,10 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 <li><code>email</code>: Cadena de texto de hasta 255 caracteres, única.</li>
 <li><code>fechaNacimiento</code>: Fecha.</li>
 </ul>
+</details>
 <h3 id="ac305"><strong>AC305</strong><a class="headerlink" href="#ac305" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC305</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1500,10 +1436,10 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 <li><code>fechaMatricula</code>: Fecha, no nulo.</li>
 </ul>
 <p>La combinación de <code>alumnoId</code>, <code>asignaturaId</code> y <code>periodoAcademico</code> debe ser única.</p>
+</details>
 <h3 id="ac306"><strong>AC306</strong><a class="headerlink" href="#ac306" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC306</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1531,10 +1467,10 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 <li><code>departamentoId</code>: Entero, clave foránea que referencia a <code>id</code> de la tabla <code>Departamento</code>.</li>
 </ul>
 <p>Define la clave foránea para que, si un departamento es eliminado, los empleados asociados a ese departamento pasen a tener <code>NULL</code> en su <code>departamentoId</code>.</p>
+</details>
 <h3 id="ac307"><strong>AC307</strong><a class="headerlink" href="#ac307" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC307</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1559,10 +1495,10 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 <li><code>nombreAsignatura</code>: Cadena de texto de hasta 100 caracteres, no nulo.</li>
 </ul>
 <p>Escribe las sentencias SQL para crear las tres tablas (<code>Alumno</code>, <code>Asignatura</code> y <code>Matricula</code>) con sus respectivas claves foráneas. Para <code>Matricula</code>, asegúrate de que la clave foránea <code>alumnoId</code> referencie a <code>Alumno</code> y <code>asignaturaId</code> a <code>Asignatura</code>, con las acciones por defecto en caso de borrado o actualización.</p>
+</details>
 <h3 id="ac308"><strong>AC308</strong><a class="headerlink" href="#ac308" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC308</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1586,10 +1522,10 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 <li><code>fechaUltimaActualizacion</code>: Fecha y hora, con valor por defecto la fecha y hora actual.</li>
 </ul>
 <p>Incluye las restricciones <code>CHECK</code> necesarias para <code>precioUnitario</code> y <code>cantidadStock</code>.</p>
+</details>
 <h3 id="ac309"><strong>AC309</strong><a class="headerlink" href="#ac309" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC309</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1605,13 +1541,13 @@ f) <code>descripcion</code>: Una descripción opcional del evento, que puede ser
 </tbody>
 </table>
 <p>Después de crear las tablas de los ejercicios AC304, AC306 y AC308, utiliza la línea de comandos de MySQL para:</p>
-<p>a) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Cliente</code>.
-b) Mostrar la estructura detallada de la tabla <code>Empleado</code>.
-c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Producto</code>, verificando que las restricciones <code>CHECK</code> se hayan aplicado.</p>
+<p>a) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Cliente</code>.<br>
+b) Mostrar la estructura detallada de la tabla <code>Empleado</code>.<br>
+c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Producto</code>, verificando que las restricciones <code>CHECK</code> se hayan aplicado.<br></p>
+</details>
 <h3 id="ac310"><strong>AC310</strong><a class="headerlink" href="#ac310" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC310</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1626,11 +1562,10 @@ c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Pro
 </tr>
 </tbody>
 </table>
-<p>A la tabla <code>Cliente</code> (del Ejercicio AC304), añade una nueva columna llamada <code>telefono</code> de tipo cadena de texto de hasta 15 caracteres, que puede ser nula.</p>
+</details>
 <h3 id="ac311"><strong>AC311</strong><a class="headerlink" href="#ac311" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC311</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1645,46 +1580,16 @@ c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Pro
 </tr>
 </tbody>
 </table>
-<p>Modifica la columna <code>descripcion</code> de la tabla <code>Evento</code> (del Ejercicio AC303.C) para que ahora tenga un límite de 20.000 caracteres y sea de tipo <code>TEXT</code> en lugar del <code>VARCHAR</code> implícito.</p>
-<h3 id="ac312"><strong>AC312</strong><a class="headerlink" href="#ac312" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Criterios de Evaluación</th>
-<th>Ponderación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RABD.2 // CE2b, CE2h //</td>
-<td>3p</td>
-</tr>
-</tbody>
-</table>
-<p>De la tabla <code>Producto</code> (del Ejercicio AC308.C), elimina la columna <code>fechaUltimaActualizacion</code>.</p>
-<h3 id="ac313"><strong>AC313</strong><a class="headerlink" href="#ac313" title="Permanent link">¶</a></h3>
-<details>
-<summary>Ejercicio AC313</summary>
+<ul>
+<li>A la tabla <code>Cliente</code> (del Ejercicio AC304), añade una nueva columna llamada <code>telefono</code> de tipo cadena de texto de hasta 15 caracteres, que puede ser nula.</li>
+<li>Modifica la columna <code>descripcion</code> de la tabla <code>Evento</code> (del Ejercicio AC303.C) para que ahora tenga un límite de 20.000 caracteres y sea de tipo <code>TEXT</code> en lugar del <code>VARCHAR</code> implícito.</li>
+<li>De la tabla <code>Producto</code> (del Ejercicio AC308.C), elimina la columna <code>fechaUltimaActualizacion</code>.</li>
+<li>A la tabla <code>Empleado</code> (del Ejercicio AC306.C), añade una restricción <code>UNIQUE</code> a la combinación de <code>nombreEmpleado</code> y <code>apellidoEmpleado</code>. Esto significa que no puede haber dos empleados con el mismo nombre y apellido.</li>
+</ul>
 </details>
-<table>
-<thead>
-<tr>
-<th>Criterios de Evaluación</th>
-<th>Ponderación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RABD.2 // CE2e, CE2h //</td>
-<td>5p</td>
-</tr>
-</tbody>
-</table>
-<p>A la tabla <code>Empleado</code> (del Ejercicio AC306.C), añade una restricción <code>UNIQUE</code> a la combinación de <code>nombreEmpleado</code> y <code>apellidoEmpleado</code>. Esto significa que no puede haber dos empleados con el mismo nombre y apellido.</p>
 <h3 id="ac314"><strong>AC314</strong><a class="headerlink" href="#ac314" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC314</summary>
-</details>
 <table>
 <thead>
 <tr>
@@ -1699,28 +1604,11 @@ c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Pro
 </tr>
 </tbody>
 </table>
-<p>a) Renombra la columna <code>nombreProducto</code> de la tabla <code>Producto</code> (del Ejercicio AC308.C) a <code>nombre</code>.
-b) Renombra la tabla <code>Producto</code> a <code>Articulo</code>.</p>
-<h3 id="ac315"><strong>AC315</strong><a class="headerlink" href="#ac315" title="Permanent link">¶</a></h3>
-<details>
-<summary>Ejercicio AC315</summary>
+<p>a) Renombra la columna <code>nombreProducto</code> de la tabla <code>Producto</code> (del Ejercicio AC308.C) a <code>nombre</code>.<br>
+b) Renombra la tabla <code>Producto</code> a <code>Articulo</code>.<br>
+c) Elimina la clave foránea que relaciona la tabla <code>Empleado</code> con la tabla <code>Departamento</code>.<br>
+d) Elimina la tabla <code>Evento</code> (del Ejercicio AC303.C).<br></p>
 </details>
-<table>
-<thead>
-<tr>
-<th>Criterios de Evaluación</th>
-<th>Ponderación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RABD.2 // CE2b, CE2h //</td>
-<td>5p</td>
-</tr>
-</tbody>
-</table>
-<p>a) Elimina la clave foránea que relaciona la tabla <code>Empleado</code> con la tabla <code>Departamento</code>.
-b) Elimina la tabla <code>Evento</code> (del Ejercicio AC303.C).</p>
 
 
 

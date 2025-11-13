@@ -1,0 +1,2040 @@
+<!DOCTYPE html><html lang="es" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jssdocente.github.io/bd2526/temas/03/3.1-DisenoFisico-DML.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../imagenes/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>3.1 Diseño Físico y DDL - Bases de Datos - Curso 25/26</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../extra/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31-diseno-fisico-y-ddl" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-header__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de Datos - Curso 25/26
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.1 Diseño Físico y DDL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo noche" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="Teal" aria-label="Cambiar a modo día" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Bases de Datos - Curso 25/26" class="md-nav__button md-logo" aria-label="Bases de Datos - Curso 25/26" data-md-component="logo">
+      
+  <img src="../../imagenes/logofp.png" alt="logo">
+
+    </a>
+    Bases de Datos - Curso 25/26
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 - Sistemas de Almacenamiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02.A - Diseño conceptual: Modelo E/R
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02.A - Diseño conceptual: Modelo E/R
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.1-ModeloER.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 El modelo ER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.2-Restricciones.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Restricciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.3-Modelo-extendido.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Modelo Extendido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/2.A-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02.B - Diseño Lógico: Relacional
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02.B - Diseño Lógico: Relacional
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/2.4-ModeloRelacional.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 El modelo relacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02B/2.B-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02.C - Diseño Lógico: Transformación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    02.C - Diseño Lógico: Transformación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02C/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02C/2.5-Transformacion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Transformación ER a MR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02C/2.C-Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 - Diseño físico: DML y DCL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    03 - Diseño físico: DML y DCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="llll.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 DML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Actividades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actividades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es SQL?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="¿Qué es SQL?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica-de-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis básica de SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-sensitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case sensitive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-datos-la-base-de-todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de Datos: La base de todo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddl-data-definition-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DDL: Data Definition Language
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DDL: Data Definition Language">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación de MySQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía de almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motores-de-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motores de almacenamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#juego-de-caracteres-y-collation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Juego de caracteres y collation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-lenguaje-ddl-definiendo-la-estructura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Lenguaje DDL: Definiendo la estructura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricciones-constraints-las-reglas-del-juego" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricciones (Constraints): Las reglas del juego
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validaciones-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validaciones de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-restricciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de restricciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vistas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vistas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="31-diseno-fisico-y-ddl">3.1 Diseño Físico y DDL<a class="headerlink" href="#31-diseno-fisico-y-ddl" title="Permanent link">¶</a></h1>
+<h2 id="introduccion"><strong>Introducción</strong><a class="headerlink" href="#introduccion" title="Permanent link">¶</a></h2>
+<p>En este tema, después de haber aprendido sobre el diseño conceptual y lógico de bases de datos, nos adentraremos en el diseño físico. Este es el paso final antes de implementar nuestra base de datos en un sistema gestor de bases de datos (SGBD) real.</p>
+<p><strong>Repaso rápido de los modelos de datos:</strong></p>
+<ul>
+<li>
+<p><strong>Modelo Conceptual</strong>: Es el primer boceto, la visión de más alto nivel. Aquí nos centramos en entender el negocio y sus reglas, identificando las principales entidades (como "Clientes", "Productos", "Pedidos") y cómo se relacionan entre ellas. Una herramienta muy común en esta fase es el <strong>Diagrama Entidad-Relación (ERD)</strong>. El objetivo es que cualquier persona, técnica o no, pueda entenderlo.</p>
+</li>
+<li>
+<p><strong>Modelo Lógico</strong>: Este es el plano detallado. Transformamos las entidades y relaciones del modelo conceptual en una estructura más formal, como tablas, columnas y claves. Sin embargo, en esta fase todavía no pensamos en un sistema gestor de bases de datos (SGBD) específico. Definimos los tipos de datos de forma genérica (por ejemplo, "texto", "número entero") y establecemos las relaciones a través de claves primarias y foráneas.</p>
+</li>
+<li>
+<p><strong>Modelo Físico</strong>: ¡Aquí es donde ponemos los cimientos de nuestra "casa digital"! El modelo físico es la implementación real del modelo lógico en un SGBD concreto, como MySQL, PostgreSQL, Oracle, etc. En esta fase, tomamos decisiones técnicas importantes:</p>
+<ul>
+<li>Traducimos los tipos de datos genéricos a los tipos específicos que ofrece nuestro SGBD (por ejemplo, <code>VARCHAR(100)</code> en lugar de "texto").</li>
+<li>Definimos índices para acelerar las consultas.</li>
+<li>Consideramos aspectos de rendimiento, almacenamiento y seguridad.</li>
+<li>Finalmente, escribimos el código para crear toda esta estructura.</li>
+</ul>
+</li>
+</ul>
+<p>El lenguaje que usamos para crear y gestionar la estructura de la base de datos en el modelo físico es el <strong>SQL</strong>.</p>
+<h2 id="que-es-sql"><strong>¿Qué es SQL?</strong><a class="headerlink" href="#que-es-sql" title="Permanent link">¶</a></h2>
+<p>SQL (Structured Query Language o Lenguaje de Consulta Estructurado) es el lenguaje estándar utilizado para comunicarnos con las bases de datos relacionales. A pesar de ser un estándar, cada SGBD tiene sus propias pequeñas variaciones o extensiones, lo que se conoce como "dialectos".</p>
+<p><strong>Versiones más importantes del estándar SQL:</strong></p>
+<ul>
+<li><strong>SQL-86</strong>: La primera versión estandarizada por ANSI.</li>
+<li><strong>SQL-92 (SQL2)</strong>: Una revisión muy importante que introdujo muchas de las características que consideramos estándar hoy en día.</li>
+<li><strong>SQL:1999 (SQL3)</strong>: Añadió expresiones regulares, triggers y tipos de datos más avanzados.</li>
+<li><strong>Versiones posteriores (2003, 2008, 2011, 2016, 2023...)</strong>: Han ido añadiendo funcionalidades como funciones de ventana (window functions), mejor soporte para XML y JSON, y otras características avanzadas.</li>
+</ul>
+<p>Dentro de SQL, podemos agrupar las sentencias en cuatro sublenguajes principales:</p>
+<ul>
+<li><strong>DDL (Data Definition Language - Lenguaje de Definición de Datos)</strong>: Se utiliza para definir y gestionar la estructura de la base de datos. Comandos como <code>CREATE</code>, <code>ALTER</code> y <code>DROP</code> pertenecen a este grupo. Es el protagonista de nuestro tema de hoy.</li>
+<li><strong>DML (Data Manipulation Language - Lenguaje de Manipulación de Datos)</strong>: Permite insertar, actualizar, borrar y modificar los datos almacenados en las tablas. Los comandos principales son <code>INSERT</code>, <code>UPDATE</code> y <code>DELETE</code>.</li>
+<li><strong>DQL (Data Query Language - Lenguaje de Consulta de Datos)</strong>: Su principal y casi único comando es <code>SELECT</code>. Se utiliza para recuperar datos de la base de datos.</li>
+<li><strong>DCL (Data Control Language - Lenguaje de Control de Datos)</strong>: Se encarga de la seguridad y la gestión de permisos de los usuarios sobre la base de datos. Incluye comandos como <code>GRANT</code> (conceder permisos) y <code>REVOKE</code> (revocar permisos).</li>
+</ul>
+<h3 id="sintaxis-basica-de-sql">Sintaxis básica de SQL<a class="headerlink" href="#sintaxis-basica-de-sql" title="Permanent link">¶</a></h3>
+<p>La sintaxis de SQL está compuesta por una serie de instrucciones que tienen diferentes parámetros, unos obligatorios y otros opcionales. Para la expliacion de la sintaxis, se utilizará la siguiente convención:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Símbolo</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mayúsculas</td>
+<td>Indican palabras reservadas del lenguaje.</td>
+</tr>
+<tr>
+<td>Minúsculas</td>
+<td>Indican elementos definidos por el usuario.</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>Indica que el elemento es opcional.</td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td>Indica que se debe elegir una opción.</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>Indica una alternativa entre opciones.</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>Indica que el elemento puede repetirse.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo de sintaxis SQL</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">nombre_columna</span><span class="w"> </span><span class="n">tipo_dato</span><span class="w"> </span><span class="p">[</span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">restricción</span><span class="p">]</span><span class="w"> </span><span class="p">...,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">[</span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">restricción_tabla</span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+<p>Tenemos que destacar que cada instrucción SQL debe terminar con un punto y coma (<code>;</code>), que indica el final de la instrucción.</p>
+<h3 id="case-sensitive">Case sensitive<a class="headerlink" href="#case-sensitive" title="Permanent link">¶</a></h3>
+<p>SQL no es sensible a mayúsculas y minúsculas en las palabras reservadas, pero sí lo es en los nombres de tablas y columnas, dependiendo del sistema de gestión de bases de datos (SGBD) utilizado. Por ejemplo, en MySQL, los nombres de tablas son sensibles a mayúsculas y minúsculas en sistemas operativos que distinguen entre ellas (como Linux), mientras que en Windows no lo son. Es importante tener en cuenta estas diferencias al diseñar y consultar bases de datos para evitar errores inesperados.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Windows (por defecto)</th>
+<th>Linux (por defecto)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nombre de BD</strong></td>
+<td>No distingue mayúsculas/minúsculas</td>
+<td>Distingue mayúsculas/minúsculas</td>
+</tr>
+<tr>
+<td><strong>Nombre de tabla</strong></td>
+<td>No distingue mayúsculas/minúsculas</td>
+<td>Distingue mayúsculas/minúsculas</td>
+</tr>
+<tr>
+<td><strong>Nombre de columna / alias</strong></td>
+<td>No distingue mayúsculas/minúsculas</td>
+<td>No distingue mayúsculas/minúsculas</td>
+</tr>
+<tr>
+<td><strong>Cadenas en consultas (<code>WHERE</code>)</strong></td>
+<td>Depende de la <code>collation</code></td>
+<td>Depende de la <code>collation</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Recomendación</p>
+<p>Para evitar problemas de compatibilidad y confusión, es recomendable <strong>utilizar un estilo consistente para los nombres de tablas y columnas</strong>, como todo en minúsculas o todo en mayúsculas, y evitar el uso de espacios o caracteres especiales. <strong>Normalmente, aquellas palabras reservadas de SQL se escriben en mayúsculas para diferenciarlas de los nombres definidos por el usuario que están en minúsculas</strong>.</p>
+</div>
+<h3 id="tipos-de-datos-la-base-de-todo">Tipos de Datos: La base de todo<a class="headerlink" href="#tipos-de-datos-la-base-de-todo" title="Permanent link">¶</a></h3>
+<p>Antes de pasar a la definición de tablas, es importante entender los tipos de datos que se pueden utilizar en una base de datos relacional. Los tipos de datos definen la naturaleza de los datos que se almacenan en una columna específica.</p>
+<p>Elegir el tipo de dato correcto es una de las decisiones más importantes en el diseño físico. Afecta al almacenamiento, al rendimiento y a la integridad de los datos.</p>
+<p>Aquí tenéis una tabla comparativa con algunos de los tipos de datos más comunes en MySQL y PostgreSQL:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Categoría</th>
+<th style="text-align: left;">Tipo en MySQL</th>
+<th style="text-align: left;">Tipo en PostgreSQL</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Enteros</strong></td>
+<td style="text-align: left;"><code>TINYINT</code>, <code>SMALLINT</code>, <code>MEDIUMINT</code>, <code>INT</code>, <code>BIGINT</code></td>
+<td style="text-align: left;"><code>SMALLINT</code>, <code>INTEGER</code>, <code>BIGINT</code></td>
+<td style="text-align: left;">Números enteros sin decimales.</td>
+<td style="text-align: left;">Contadores, identificadores, cantidades (unidades de stock).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Decimales</strong></td>
+<td style="text-align: left;"><code>DECIMAL</code>, <code>NUMERIC</code></td>
+<td style="text-align: left;"><code>NUMERIC</code>, <code>DECIMAL</code></td>
+<td style="text-align: left;">Números con una precisión y escala fijas.</td>
+<td style="text-align: left;">Valores monetarios, cálculos financieros, donde la exactitud es crítica.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Flotantes</strong></td>
+<td style="text-align: left;"><code>FLOAT</code>, <code>DOUBLE</code></td>
+<td style="text-align: left;"><code>REAL</code>, <code>DOUBLE PRECISION</code></td>
+<td style="text-align: left;">Números con decimales de precisión aproximada.</td>
+<td style="text-align: left;">Cálculos científicos, mediciones donde una pequeña imprecisión es aceptable.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cadenas de Texto</strong></td>
+<td style="text-align: left;"><code>CHAR</code>, <code>VARCHAR</code>, <code>TEXT</code></td>
+<td style="text-align: left;"><code>CHAR</code>, <code>VARCHAR</code>, <code>TEXT</code></td>
+<td style="text-align: left;">Secuencias de caracteres. <code>CHAR</code> es de longitud fija, <code>VARCHAR</code> de longitud variable.</td>
+<td style="text-align: left;">Nombres, direcciones, descripciones, cualquier tipo de texto.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Binarios</strong></td>
+<td style="text-align: left;"><code>BINARY</code>, <code>VARBINARY</code>, <code>BLOB</code></td>
+<td style="text-align: left;"><code>BYTEA</code></td>
+<td style="text-align: left;">Datos binarios en crudo.</td>
+<td style="text-align: left;">Almacenar ficheros, imágenes, datos encriptados directamente en la BD.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fecha y Hora</strong></td>
+<td style="text-align: left;"><code>DATE</code>, <code>TIME</code>, <code>DATETIME</code>, <code>TIMESTAMP</code>, <code>YEAR</code></td>
+<td style="text-align: left;"><code>DATE</code>, <code>TIME</code>, <code>TIMESTAMP</code></td>
+<td style="text-align: left;">Para almacenar fechas, horas o combinaciones de ambas.</td>
+<td style="text-align: left;">Fechas de nacimiento, fechas de registro, marcas de tiempo de eventos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Booleanos</strong></td>
+<td style="text-align: left;"><code>BOOL</code>, <code>BOOLEAN</code> (alias de <code>TINYINT(1)</code>)</td>
+<td style="text-align: left;"><code>BOOLEAN</code></td>
+<td style="text-align: left;">Representa valores verdadero (<code>TRUE</code>) o falso (<code>FALSE</code>).</td>
+<td style="text-align: left;">Flags o indicadores de estado (ej: <code>es_activo</code>, <code>tiene_descuento</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Enumerados</strong></td>
+<td style="text-align: left;"><code>ENUM</code></td>
+<td style="text-align: left;"><code>ENUM</code> (se crea como un tipo aparte)</td>
+<td style="text-align: left;">Permite definir una lista de valores predefinidos para una columna.</td>
+<td style="text-align: left;">Días de la semana, estados de un pedido ('pendiente', 'enviado', 'entregado').</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Geométricos</strong></td>
+<td style="text-align: left;"><code>GEOMETRY</code>, <code>POINT</code>, etc.</td>
+<td style="text-align: left;"><code>POINT</code>, <code>LINE</code>, <code>POLYGON</code>, etc.</td>
+<td style="text-align: left;">Tipos de datos para almacenar información espacial.</td>
+<td style="text-align: left;">Mapas, geolocalización, GIS.</td>
+</tr>
+</tbody>
+</table>
+<p>Se puede consultar la documentación oficial de cada SGBD para obtener información más detallada sobre los tipos de datos y sus características específicas: <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">MySQL</a>, <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html">Oracle</a>, <a href="https://www.postgresql.org/docs/current/datatype.html">PostgreSQL</a> o <a href="https://mariadb.com/kb/en/data-types/">MariaDB</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c1">-- 5 dígitos en total, 2 decimales (ejemplo: 120.99)`</span>
+</span></code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">¿Que tipo de datos usar?</p>
+<p>Una de las decisiones más importantes al diseñar una base de datos es elegir el tipo de datos adecuado para cada columna. Esta elección afecta el rendimiento, la integridad y la eficiencia del almacenamiento de datos. Ademas del tipo de datos, <strong>es importante considerar el tamaño y la precisión necesarios para cada columna</strong>. Por ejemplo, si se espera almacenar números enteros pequeños, se puede utilizar <code>TINYINT</code> en lugar de <code>INT</code> para ahorrar espacio de almacenamiento.</p>
+</div>
+<hr>
+<h4 id="profundizando-en-las-categorias-de-datos">Profundizando en las Categorías de Datos<a class="headerlink" href="#profundizando-en-las-categorias-de-datos" title="Permanent link">¶</a></h4>
+<h5 id="cadenas-de-texto">Cadenas de Texto<a class="headerlink" href="#cadenas-de-texto" title="Permanent link">¶</a></h5>
+<ul>
+<li><strong><code>CHAR(longitud)</code></strong>: Longitud fija. Si defines <code>CHAR(10)</code> y guardas "Hola", ocupará 10 caracteres (rellenando con espacios). Es más rápido para datos de longitud siempre igual, como un código postal o un DNI.</li>
+<li><strong><code>VARCHAR(longitud)</code></strong>: Longitud variable. Si defines <code>VARCHAR(10)</code> y guardas "Hola", ocupará solo los 4 caracteres más un pequeño extra para guardar la longitud. Es ideal para la mayoría de textos como nombres o direcciones.</li>
+<li><strong><code>TEXT</code></strong>: Para textos largos como descripciones de productos o cuerpos de artículos de un blog. No se especifica una longitud máxima en la definición. Sin embargo, puede tener limitaciones en cuanto a la manipulación y el rendimiento en comparación con VARCHAR.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si queremos ordenar o buscar en una columna, es mejor usar <code>CHAR</code> o <code>VARCHAR</code>, ya que <code>TEXT</code> puede tener limitaciones en cuanto a la manipulación y el rendimiento.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En MySQL, el tamaño máximo de <code>VARCHAR</code> es 65,535 bytes, pero este límite depende del conjunto de caracteres utilizado y del tamaño total de la fila. Por ejemplo, si se utiliza UTF-8, cada carácter puede ocupar hasta 3 bytes, lo que reduce el número máximo de caracteres que se pueden almacenar en una columna <code>VARCHAR</code>. <code>TEXT</code> puede almacenar hasta 65,535 bytes, pero no se puede indexar completamente, lo que puede afectar el rendimiento de las consultas. Y por último, <code>CHAR</code> puede almacenar hasta 255 caracteres.</p>
+</div>
+<h4 id="numeros">Números<a class="headerlink" href="#numeros" title="Permanent link">¶</a></h4>
+<p>Los tipos de datos numéricos incluyen <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>BIGINT</code>, <code>FLOAT</code>, <code>DOUBLE</code> y <code>DECIMAL</code>. La elección entre estos tipos depende de la naturaleza de los datos que se van a almacenar y de los requisitos de precisión. Algunas consideraciones importantes son:</p>
+<ul>
+<li><strong>TINYINT, SMALLINT, INT, BIGINT</strong>: Se utilizan para almacenar números enteros de diferentes rangos. La elección entre estos tipos depende del rango de valores que se espera almacenar. Por ejemplo, <code>TINYINT</code> es adecuado para valores pequeños (de -128 a 127), mientras que <code>BIGINT</code> es adecuado para valores muy grandes (de -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807). <strong>"Nueve trillones doscientos veintitrés mil trescientos setenta y dos billones treinta y seis mil ochocientos cincuenta y cuatro millones setecientos setenta y cinco mil ochocientos siete."</strong> 😥​</li>
+<li><strong>FLOAT, DOUBLE</strong>: Se utilizan para almacenar números de punto flotante. <code>FLOAT</code> es adecuado para valores con menor precisión, mientras que <code>DOUBLE</code> es adecuado para valores con mayor precisión. Sin embargo, ambos tipos <strong>pueden introducir errores de redondeo debido a la naturaleza de los números de punto flotante</strong>.</li>
+<li><strong>DECIMAL</strong>: Se utiliza para almacenar números con una precisión exacta, como valores monetarios. <code>DECIMAL</code> permite especificar la precisión total y la cantidad de decimales, lo que lo hace adecuado para aplicaciones financieras <strong>donde la exactitud es crucial</strong>.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Con signo o sin signo</p>
+<p><strong>Signed vs Unsigned</strong>: <code>SIGNED</code> (por defecto) permite números negativos y positivos. <code>UNSIGNED</code> solo permite números positivos (y el cero), duplicando el rango máximo positivo. Es perfecto para claves primarias autoincrementales (<code>id</code>) que nunca serán negativas.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tipo MySQL</th>
+<th style="text-align: left;">Rango (Signed - con signo)</th>
+<th style="text-align: left;">Rango (Unsigned - sin signo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>TINYINT</code></strong></td>
+<td style="text-align: left;">-128 a 127</td>
+<td style="text-align: left;">0 a 255</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>SMALLINT</code></strong></td>
+<td style="text-align: left;">-32,768 a 32,767</td>
+<td style="text-align: left;">0 a 65,535</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>MEDIUMINT</code></strong></td>
+<td style="text-align: left;">-8,388,608 a 8,388,607</td>
+<td style="text-align: left;">0 a 16,777,215</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>INT</code></strong></td>
+<td style="text-align: left;">-2,147,483,648 a 2,147,483,647</td>
+<td style="text-align: left;">0 a 4,294,967,295</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>BIGINT</code></strong></td>
+<td style="text-align: left;">-9,223,372,036,854,775,808 a 9,223,372,036,854,775,807</td>
+<td style="text-align: left;">0 a 18,446,744,073,709,551,615</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fechas-y-horas">Fechas y Horas<a class="headerlink" href="#fechas-y-horas" title="Permanent link">¶</a></h4>
+<p>Los tipos de datos para fechas y horas incluyen <code>DATE</code>, <code>TIME</code>, <code>DATETIME</code> y <code>TIMESTAMP</code>. La elección entre estos tipos depende de la naturaleza de los datos que se van a almacenar y de los requisitos de precisión.</p>
+<ul>
+<li><strong><code>DATE</code></strong>: Almacena una fecha (año, mes, día). Formato: <code>YYYY-MM-DD</code>. Por ejemplo, <code>DATE</code> almacena valores en el formato 'YYYY-MM-DD', como '2023-10-15'.</li>
+<li><strong><code>TIME</code></strong>: Almacena una hora (horas, minutos, segundos). Formato: <code>HH:MM:SS</code>.Por ejemplo, <code>TIME</code> almacena valores en el formato 'HH:MM:SS', como '14:30:00'.</li>
+<li><strong><code>DATETIME</code></strong>: Combina fecha y hora. Formato: <code>YYYY-MM-DD HH:MM:SS</code>.Por ejemplo, <code>DATETIME</code> almacena valores en el formato 'YYYY-MM-DD HH:MM:SS', como '2023-10-15 14:30:00'.</li>
+<li><strong><code>TIMESTAMP</code></strong>: Similar a <code>DATETIME</code>, pero con un rango más limitado (desde 1970 hasta 2038). Tiene la particularidad de que se puede configurar para que se actualice automáticamente a la fecha y hora actual cada vez que la fila es modificada (<code>ON UPDATE CURRENT_TIMESTAMP</code>). Muy útil para campos como <code>fecha_modificacion</code>. Por ejemplo, <code>TIMESTAMP</code> almacena valores en el formato 'YYYY-MM-DD HH:MM:SS', pero <strong>se convierte automáticamente a la zona horaria del servidor</strong>.</li>
+</ul>
+<h4 id="enumerados-enum">Enumerados (<code>ENUM</code>)<a class="headerlink" href="#enumerados-enum" title="Permanent link">¶</a></h4>
+<p>Permite que una columna solo pueda tomar uno de los valores de una lista que tú defines. Por ejemplo: <code>estado ENUM('activo', 'inactivo', 'pendiente')</code>. Internamente, MySQL lo almacena como un número (1, 2, 3), lo que lo hace muy eficiente, pero muestra el texto que le corresponde, lo cual es muy legible.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">estado</span><span class="w"> </span><span class="n">ENUM</span><span class="p">(</span><span class="s1">'activo'</span><span class="p">,</span><span class="w"> </span><span class="s1">'inactivo'</span><span class="p">,</span><span class="w"> </span><span class="s1">'pendiente'</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Este tipo de datos <strong>no está definido en el estándar SQL</strong>, por lo que no es soportado por todos los SGBD. Esto produce problemas de portabilidad si se quiere migrar la base de datos a otro SGBD. Se recomienda usar restricciones <code>CHECK</code> en su lugar para asegurar la integridad de los datos.</p>
+</div>
+<h4 id="el-valor-null">El valor <code>NULL</code><a class="headerlink" href="#el-valor-null" title="Permanent link">¶</a></h4>
+<p>El valor <code>NULL</code> en SQL representa la ausencia de un valor o un valor desconocido. Es importante entender que <code>NULL</code> no es lo mismo que cero (0) o una cadena vacía (''). En SQL, <code>NULL</code> se utiliza para indicar que un campo no tiene ningún valor asignado.</p>
+<p>Cuando se define una columna en una tabla, se puede especificar si esa columna permite valores <code>NULL</code> o no. Por defecto, las columnas permiten valores <code>NULL</code>, pero se puede cambiar este comportamiento utilizando la restricción <code>NOT NULL</code>.</p>
+<hr>
+<h2 id="ddl-data-definition-language"><strong>DDL: Data Definition Language</strong><a class="headerlink" href="#ddl-data-definition-language" title="Permanent link">¶</a></h2>
+<p>El lenguaje de definición de datos (DDL) se utiliza para definir y modificar la estructura de una base de datos. Los comandos DDL más comunes son:</p>
+<ul>
+<li><code>CREATE</code>: Se utiliza para crear nuevas tablas, bases de datos, índices y otros objetos en la base de datos.</li>
+<li><code>ALTER</code>: Se utiliza para modificar la estructura de una tabla existente, como agregar, eliminar o modificar columnas.</li>
+<li><code>DROP</code>: Se utiliza para eliminar tablas, bases de datos, índices y otros objetos de la base de datos.</li>
+</ul>
+<h3 id="instalacion-de-mysql">Instalación de MySQL<a class="headerlink" href="#instalacion-de-mysql" title="Permanent link">¶</a></h3>
+<p>Para el desarrollo de las prácticas, se utilizará MySQL como sistema de gestión de bases de datos (SGBD). Puedes descargar e instalar <strong>MySQL Community Server</strong> desde su <a href="https://dev.mysql.com/downloads/mysql/">página oficial</a>. Durante la instalación, asegúrate de configurar una contraseña segura para el usuario <code>root</code>, ya que este usuario tiene privilegios administrativos completos en la base de datos.</p>
+<p>Para interactuar con MySQL, puedes utilizar la línea de comandos de MySQL o una herramienta gráfica como <strong>MySQL Workbench</strong>, que también está disponible en la página de descargas de MySQL. Puedes encontrar tutoriales y documentación en línea para ayudarte a instalar y configurar MySQL según tus necesidades.</p>
+<h3 id="base-de-datos">Base de datos<a class="headerlink" href="#base-de-datos" title="Permanent link">¶</a></h3>
+<p>Antes de crear tablas, es necesario crear una base de datos donde se almacenarán dichas tablas. Para crear una base de datos en MySQL, se utiliza el comando <code>CREATE DATABASE</code> seguido del nombre que se desea asignar a la base de datos. Por ejemplo, para crear una base de datos llamada <code>mi_base_de_datos</code>, se utilizaría la siguiente instrucción SQL:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">]</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="n">mi_base_de_datos</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Podemos mostrar las bases de datos existentes con el comando:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Y por otro lado, para eliminar una base de datos, se utiliza el comando <code>DROP DATABASE</code> seguido del nombre de la base de datos que se desea eliminar:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mi_base_de_datos</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>Una vez creada la base de datos, es necesario seleccionarla para poder trabajar con ella</strong>. Esto se hace con el comando <code>USE</code> seguido del nombre de la base de datos:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">USE</span><span class="w"> </span><span class="n">mi_base_de_datos</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="jerarquia-de-almacenamiento">Jerarquía de almacenamiento<a class="headerlink" href="#jerarquia-de-almacenamiento" title="Permanent link">¶</a></h3>
+<p>La jerarquía de almacenamiento de datos se organiza en varios niveles, desde el más general hasta el más específico. A continuación, se describe esta jerarquía con independencia del SGBD utilizado:</p>
+<ul>
+<li><strong>Tablespace</strong>: Es una estructura física de almacenamiento que agrupa varios archivos de datos. Un tablespace puede contener múltiples bases de datos y es gestionado por el SGBD.</li>
+<li><strong>Base de datos</strong>: Es un contenedor lógico que agrupa varias tablas y otros objetos relacionados. Cada base de datos tiene su propio conjunto de tablas, vistas, índices y otros objetos.</li>
+<li><strong>Esquema (schema)</strong>: Es una colección de objetos de base de datos, como tablas, vistas, procedimientos almacenados, etc., que pertenecen a un usuario específico. Un esquema ayuda a organizar y gestionar los objetos dentro de una base de datos. En MySQL, el esquema es sinónimo de base de datos.</li>
+<li><strong>Tabla</strong>: Es una estructura que almacena datos en filas y columnas. Cada tabla representa una entidad o concepto del mundo real y contiene datos relacionados.</li>
+</ul>
+<h3 id="motores-de-almacenamiento">Motores de almacenamiento<a class="headerlink" href="#motores-de-almacenamiento" title="Permanent link">¶</a></h3>
+<p>En los sistemas de gestión de bases de datos (SGBD) como MySQL, <strong>un motor de almacenamiento es el componente responsable de gestionar cómo se almacenan, recuperan y manipulan los datos en las tablas</strong>. MySQL soporta varios motores de almacenamiento, cada uno con sus propias características y ventajas. Algunos de los motores de almacenamiento más comunes en MySQL son:</p>
+<ul>
+<li><strong>InnoDB</strong>: Es el motor de almacenamiento predeterminado en MySQL. Soporta transacciones, claves foráneas y bloqueo a nivel de fila, lo que lo hace adecuado para aplicaciones que requieren integridad referencial y concurrencia.</li>
+<li><strong>MyISAM</strong>: Es un motor de almacenamiento más antiguo que no soporta transacciones ni claves foráneas. Es más rápido para operaciones de lectura, pero menos eficiente para operaciones de escritura y no garantiza la integridad referencial.</li>
+</ul>
+<p>Bloqueo a nivel de fila vs. tabla</p>
+<ul>
+<li><strong>Bloqueo a nivel de fila</strong>: Permite que múltiples transacciones accedan y modifiquen diferentes filas de una tabla simultáneamente, mejorando la concurrencia y el rendimiento en entornos con muchas operaciones de escritura.</li>
+<li><strong>Bloqueo a nivel de tabla</strong>: Bloquea toda la tabla durante una operación de escritura, lo que puede reducir la concurrencia y el rendimiento en entornos con muchas operaciones de escritura.</li>
+</ul>
+<h3 id="juego-de-caracteres-y-collation">Juego de caracteres y collation<a class="headerlink" href="#juego-de-caracteres-y-collation" title="Permanent link">¶</a></h3>
+<p>Un juego de caracteres (character set) es un conjunto de caracteres que se utilizan para representar texto en una base de datos. Cada juego de caracteres tiene un conjunto específico de caracteres y un esquema de codificación asociado. Algunos juegos de caracteres comunes en MySQL son:</p>
+<ul>
+<li><strong>utf8mb4</strong>: Es un juego de caracteres que soporta todos los caracteres Unicode, incluyendo emojis y otros caracteres especiales. Es el juego de caracteres recomendado para la mayoría de las aplicaciones.</li>
+<li><strong>latin1</strong>: Es un juego de caracteres que soporta caracteres occidentales y es más eficiente en términos de almacenamiento para textos en idiomas como el inglés, español, francés, etc.</li>
+<li><strong>ascii</strong>: Es un juego de caracteres que soporta solo caracteres ASCII (caracteres básicos en inglés). Es el más eficiente en términos de almacenamiento, pero no es adecuado para textos en otros idiomas.</li>
+</ul>
+<p>Una collation es un conjunto de reglas que determinan cómo se comparan y ordenan los caracteres en una base de datos. Cada juego de caracteres puede tener varias collations asociadas, que definen diferentes formas de comparar y ordenar los caracteres. Algunas collations comunes en MySQL son:</p>
+<ul>
+<li><strong>utf8mb4_general_ci</strong>: Es una collation que realiza comparaciones y ordenaciones de manera insensible a mayúsculas y minúsculas (case-insensitive) y no distingue entre acentos (accent-insensitive).</li>
+<li><strong>utf8mb4_bin</strong>: Es una collation que realiza comparaciones y ordenaciones basadas en el valor binario de los caracteres, lo que significa que es sensible a mayúsculas y minúsculas (case-sensitive) y distingue entre acentos (accent-sensitive).</li>
+</ul>
+<p>Nota</p>
+<p>Por defecto, MySQL utiliza el juego de caracteres <code>latin1</code> y la collation <code>latin1_swedish_ci</code>. Sin embargo, es recomendable utilizar <code>utf8mb4</code> y una collation adecuada para garantizar la compatibilidad con una amplia gama de caracteres y evitar problemas de codificación.</p>
+<p>La siguiente sentencia SQL crea una base de datos llamada <code>mi_base_de_datos</code> con el juego de caracteres <code>utf8mb4</code> y la collation <code>utf8mb4_general_ci</code>, y selecciona dicha base de datos para su uso:</p>
+<p><code>CREATE DATABASE mi_base_de_datos     CHARACTER SET utf8mb4     COLLATE utf8mb4_general_ci;  USE mi_base_de_datos;</code></p>
+<h3 id="el-lenguaje-ddl-definiendo-la-estructura">El Lenguaje DDL: Definiendo la estructura<a class="headerlink" href="#el-lenguaje-ddl-definiendo-la-estructura" title="Permanent link">¶</a></h3>
+<p>Ahora que conocemos los materiales (los tipos de datos), vamos a aprender a construir la estructura (las tablas) con DDL.</p>
+<h4 id="create-table-creando-la-estructura"><code>CREATE TABLE</code>: Creando la estructura<a class="headerlink" href="#create-table-creando-la-estructura" title="Permanent link">¶</a></h4>
+<p>Para crear una tabla en una base de datos, se utiliza el comando <code>CREATE TABLE</code>. La sintaxis básica para crear una tabla es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">]</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="n">base_de_datos</span><span class="p">.]</span><span class="n">nombre_tabla</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">columna1</span><span class="w"> </span><span class="n">tipo_dato1</span><span class="w"> </span><span class="p">[</span><span class="n">opciones</span><span class="p">],</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">columna2</span><span class="w"> </span><span class="n">tipo_dato2</span><span class="w"> </span><span class="p">[</span><span class="n">opciones</span><span class="p">],</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">[</span><span class="n">restricciones_tabla</span><span class="p">]</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">);</span>
+</span></code></pre></div>
+<p>Debemos tener algunas consideraciones al crear tablas:</p>
+<ul>
+<li><strong>Nombres de tablas</strong>: Los nombres de tablas deben ser únicos dentro de una base de datos. No se deben utilizar espacios ni caracteres especiales en los nombres de tablas. Ademas, no se deben utilizar palabras reservadas de SQL como nombres de tablas. Es recomendable utilizar nombres descriptivos y consistentes para facilitar la comprensión y el mantenimiento de la base de datos</li>
+</ul>
+<p>Algunos ejemplos de creacion de tablas con diferentes tipos de datos y restricciones:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">precio</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">stock</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">fecha_creacion</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="n">id_empleado</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="n">fecha_contratacion</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="n">salario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">salario</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="claves-primaria">Claves primaria<a class="headerlink" href="#claves-primaria" title="Permanent link">¶</a></h4>
+<p>Una clave primaria (Primary Key, PK) es una columna o conjunto de columnas que identifica de manera única cada fila en una tabla. Las claves primarias tienen las siguientes características:</p>
+<ul>
+<li><strong>Unicidad</strong>: Cada valor de clave primaria debe ser único en la tabla. No puede haber dos filas con el mismo valor de clave primaria.</li>
+<li><strong>No nulo</strong>: Los valores de clave primaria no pueden ser <code>NULL</code>. Cada fila debe tener un valor válido para la clave primaria.</li>
+<li><strong>Índice</strong>: Las claves primarias crean automáticamente un índice único en la columna o columnas que las componen, lo que mejora el rendimiento de las consultas que utilizan la clave primaria.</li>
+<li><strong>Inmutabilidad</strong>: Los valores de clave primaria no deben cambiar una vez asignados. Cambiar el valor de una clave primaria puede causar problemas de integridad referencial en la base de datos.</li>
+<li><strong>Simplicidad</strong>: Es recomendable que las claves primarias sean simples y fáciles de manejar. Evitar el uso de claves compuestas (claves primarias que consisten en múltiples columnas) a menos que sea absolutamente necesario.</li>
+<li><strong>Auto-incremento</strong>: En muchos casos, las claves primarias se definen como columnas de tipo entero con la opción <code>AUTO_INCREMENT</code>, lo que permite que el SGBD genere automáticamente un valor único para cada nueva fila insertada en la tabla.</li>
+<li><strong>Elección del tipo de dato</strong>: Es importante elegir un tipo de dato adecuado para la clave primaria, considerando el rango de valores que se espera almacenar y el tamaño del almacenamiento. Por ejemplo, si se espera almacenar un gran número de filas, es recomendable utilizar <code>BIGINT</code> en lugar de <code>INT</code>.</li>
+</ul>
+<p>Existen muchas formas de definir una clave primaria en una tabla. Dependiendo de dónde se coloque la restricción <code>PRIMARY KEY</code>, la sintaxis puede variar ligeramente. A continuación, se muestran algunos ejemplos de cómo definir una clave primaria en una tabla:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">);</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="n">precio</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_producto</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="p">);</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="n">id_empleado</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="n">fecha_contratacion</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="n">salario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">salario</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_empleados</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_empleado</span><span class="p">)</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="p">);</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ordenes</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">    </span><span class="n">id_orden</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">    </span><span class="n">fecha</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="n">total</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_orden</span><span class="p">,</span><span class="w"> </span><span class="n">id_cliente</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Clave primaria compuesta</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Resumen de creación de tablas</p>
+<p>Tabla resumen con diferente formas de crear tablas con claves primarias y otras opciones:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sintaxis / Variante</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Creación básica</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Empleados (id INT, nombre VARCHAR(100), fecha_contrato DATE);</code></td>
+<td style="text-align: left;">Crea una tabla simple con tres columnas y sus tipos de datos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Con Clave Primaria (PK)</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Empleados (id INT PRIMARY KEY, nombre VARCHAR(100));</code></td>
+<td style="text-align: left;">Define la columna <code>id</code> como clave primaria en la misma línea.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PK Separada</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Empleados (id INT, nombre VARCHAR(100), PRIMARY KEY(id));</code></td>
+<td style="text-align: left;">Define la clave primaria al final de la definición de columnas. Obligatorio para PK compuestas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PK Compuesta</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Pedido_Detalle (id_pedido INT, id_producto INT, cantidad INT, PRIMARY KEY(id_pedido, id_producto));</code></td>
+<td style="text-align: left;">Crea una clave primaria formada por dos o más columnas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Con valor por defecto</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Productos (id INT, nombre VARCHAR(50), stock INT DEFAULT 0);</code></td>
+<td style="text-align: left;">Si no se especifica un valor para <code>stock</code> al insertar una fila, se usará <code>0</code> por defecto.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Con autoincremento</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE Categorias (id INT PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(50));</code></td>
+<td style="text-align: left;">El SGBD asignará automáticamente un valor numérico secuencial a la columna <code>id</code> en cada nueva inserción.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="modificacion-de-tablas">Modificación de tablas<a class="headerlink" href="#modificacion-de-tablas" title="Permanent link">¶</a></h4>
+<p>Para modificar la estructura de una tabla existente, se utiliza el comando <code>ALTER TABLE</code>. La sintaxis básica para modificar una tabla es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="n">base_de_datos</span><span class="p">.]</span><span class="n">nombre_tabla</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="err">{</span><span class="k">ADD</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="n">tipo_dato</span><span class="w"> </span><span class="p">[</span><span class="n">opciones</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">FIRST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">nombreColumna</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">     </span><span class="k">DROP</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">     </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="n">tipo_dato</span><span class="w"> </span><span class="p">[</span><span class="n">opciones</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">     </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">restricción_tabla</span><span class="err">}</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Si queremos añadir una columna a una tabla usaremos <code>ADD</code>, por ejemplo:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AFTER</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+</span></code></pre></div>
+<p><small><em><code>FIRST</code> y <code>AFTER</code> se utilizan para especificar la posición de la nueva columna en la tabla. Si no se especifica ninguna de estas opciones, la nueva columna se añadirá al final de la tabla.</em></small></p>
+<p>Si lo que queremos es modificar una columna existente, usaremos <code>MODIFY</code>, por ejemplo:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Modificar una columna implica volver a definir el tipo de dato y las opciones de la columna.</p>
+</div>
+<p>En el caso de que queramos eliminar una columna, usaremos <code>DROP</code>, por ejemplo:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Podemos cambiar el nombre de una tabla utilizando <code>RENAME TO</code>, por ejemplo:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="n">base_de_datos</span><span class="p">.]</span><span class="n">nombre_tabla</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">nuevo_nombre_tabla</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Para cambiar el nombre de una columna, usaremos <code>CHANGE</code>, por ejemplo:</p>
+<p></p><div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">clientes</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">email_nuevo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></code></pre></div>
+<small><em>En el comando CHANGE, es necesario especificar el nombre actual de la columna seguido del nuevo nombre y el tipo de dato</em>.</small><p></p>
+<div class="admonition tip">
+<p class="admonition-title">Resumen de modificaciones con ALTER TABLE</p>
+<p>Resumen de las operaciones más comunes con <code>ALTER TABLE</code>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operación</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Añadir columna</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados ADD COLUMN salario DECIMAL(10, 2);</code></td>
+<td style="text-align: left;">Añade una nueva columna llamada <code>salario</code> a la tabla <code>Empleados</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar columna</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados DROP COLUMN fecha_contrato;</code></td>
+<td style="text-align: left;">Elimina la columna <code>fecha_contrato</code> y todos sus datos. ¡Cuidado, esta acción es irreversible!</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Renombrar columna</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados RENAME COLUMN nombre TO nombre_completo;</code></td>
+<td style="text-align: left;">Cambia el nombre de la columna <code>nombre</code> a <code>nombre_completo</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modificar tipo de dato</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados MODIFY COLUMN nombre_completo VARCHAR(150);</code></td>
+<td style="text-align: left;">Cambia el tipo de dato o la longitud de una columna existente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Añadir restricción</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados ADD CONSTRAINT uq_email UNIQUE (email);</code></td>
+<td style="text-align: left;">Añade una restricción de unicidad a la columna <code>email</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar restricción</strong></td>
+<td style="text-align: left;"><code>ALTER TABLE Empleados DROP CONSTRAINT uq_email;</code></td>
+<td style="text-align: left;">Elimina una restricción previamente creada.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<h4 id="borrado-de-tablas">Borrado de tablas<a class="headerlink" href="#borrado-de-tablas" title="Permanent link">¶</a></h4>
+<p>Para eliminar una tabla de una base de datos, se utiliza el comando <code>DROP TABLE</code>. La sintaxis básica para eliminar una tabla es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">base_de_datos</span><span class="p">.]</span><span class="n">nombre_tabla</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Como el borrado de una tabla implica la eliminación de los registros, debemos tener en cuenta que en una base de datos relacional, las tablas pueden estar relacionadas entre sí mediante claves foráneas. Si intentamos eliminar una tabla que está siendo referenciada por otra tabla a través de una clave foránea, el SGBD puede impedir la eliminación para mantener la integridad referencial. En estos casos, es necesario eliminar primero las relaciones de clave foránea antes de poder eliminar la tabla.</p>
+<div class="admonition tip">
+<p class="admonition-title">Resumen de borrado de tablas</p>
+<p>Resumen de las operaciones más comunes para borrar tablas:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operación</th>
+<th style="text-align: left;">Ejemplo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Borrar tabla</strong></td>
+<td style="text-align: left;"><code>DROP TABLE Empleados;</code></td>
+<td style="text-align: left;">Elimina permanentemente la tabla <code>Empleados</code>, su estructura y todos los datos que contiene.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Borrar si existe</strong></td>
+<td style="text-align: left;"><code>DROP TABLE IF EXISTS Empleados;</code></td>
+<td style="text-align: left;">Igual que la anterior, pero no dará un error si la tabla no existe. Muy útil en scripts.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="restricciones-constraints-las-reglas-del-juego">Restricciones (Constraints): Las reglas del juego<a class="headerlink" href="#restricciones-constraints-las-reglas-del-juego" title="Permanent link">¶</a></h3>
+<p>Las restricciones son reglas que aplicamos a las columnas de una tabla para garantizar la <strong>integridad y la calidad de los datos</strong>. Este tipo de restricciones se definen al momento de crear o modificar una tabla. A continuación, se describen algunas de las restricciones más comunes mediante la sintaxis SQL:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="n">tabla</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">campo1</span><span class="w"> </span><span class="n">tipo_dato1</span><span class="w"> </span><span class="p">[</span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">valor</span><span class="p">],</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="p">...,</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="p">[</span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">nombre_restriccion</span><span class="p">]</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="p">[</span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Innodb</span><span class="p">]</span><span class="w"> </span><span class="c1">-- motor de ejecución</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Recomendación</p>
+<p>Para mantener una estructura clara y legible, usaremos la definición de restricciones:</p>
+<ul>
+<li>a nivel de columna, para restricciones simples como <code>DEFAULT</code>, <code>AUTO_INCREMENT</code> y <code>NOT NULL</code>.</li>
+<li>mediante <code>CONSTRAINT</code>, para restricciones más complejas como <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>CHECK</code> y <code>UNIQUE</code>.</li>
+</ul>
+</div>
+<p>Las restricciones pueden aplicarse a nivel de columna o a nivel de tabla. A nivel de columna, las restricciones se definen directamente en la definición de la columna. A nivel de tabla, las restricciones se definen al final de la definición de la tabla utilizando la palabra clave <code>CONSTRAINT</code>.</p>
+<ul>
+<li>
+<p><strong>Clave Única (<code>UNIQUE</code>)</strong>: Asegura que todos los valores en una columna (o conjunto de columnas) sean únicos. Por ejemplo, el DNI o el email de un usuario. Una tabla puede tener varias restricciones <code>UNIQUE</code>. A diferencia de la Clave Primaria, sí puede contener un valor <code>NULL</code> (y varios, de hecho, en MySQL).</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Usuarios</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uq_username</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">username</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Otra forma de declararla</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">);</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Clave Foránea (<code>FOREIGN KEY</code>)</strong>: Es el mecanismo que nos permite relacionar tablas. Una clave foránea en una tabla (la tabla "hija") apunta a la clave primaria de otra tabla (la tabla "padre"). Esto garantiza la <strong>integridad referencial</strong>: no puedes tener un pedido para un cliente que no existe.</p>
+<p><strong>Creación al definir la tabla:</strong>
+</p><div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="n">fecha</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="c1">-- Opción 1: Sin nombre de constraint explícito</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Clientes</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">);</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LineasPedido</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="n">id_pedido</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="c1">-- Opción 2: Dando un nombre a la constraint (recomendado)</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_linea_pedido</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_pedido</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Pedidos</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="p">);</span>
+</span></code></pre></div><p></p>
+<p><strong>Creación en una tabla ya existente:</strong>
+</p><div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_pedidos_clientes</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Clientes</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></code></pre></div><p></p>
+</li>
+</ul>
+<h4 id="propagacion-de-acciones">Propagación de acciones<a class="headerlink" href="#propagacion-de-acciones" title="Permanent link">¶</a></h4>
+<p>Las acciones <code>ON DELETE</code> y <code>ON UPDATE</code> definen el comportamiento que se debe seguir cuando se elimina o actualiza un registro en la tabla referenciada. Las opciones disponibles son:</p>
+<ul>
+<li><strong>CASCADE</strong>: Si se elimina o actualiza un registro en la tabla referenciada, se eliminarán o actualizarán automáticamente los registros correspondientes en la tabla que contiene la clave foránea.</li>
+<li><strong>SET NULL</strong>: Si se elimina o actualiza un registro en la tabla referenciada, los valores de la clave foránea en la tabla que contiene la clave foránea se establecerán en <code>NULL</code>.</li>
+<li><strong>NO ACTION</strong>: No se permite la eliminación o actualización del registro en la tabla referenciada si existen registros relacionados en la tabla que contiene la clave foránea. Esta es la opción predeterminada si no se especifica ninguna acción.</li>
+<li><strong>SET DEFAULT</strong>: Si se elimina o actualiza un registro en la tabla referenciada, los valores de la clave foránea en la tabla que contiene la clave foránea se establecerán en su valor por defecto.</li>
+<li><strong>RESTRICT</strong>: Similar a <code>NO ACTION</code>, pero la verificación se realiza inmediatamente cuando se intenta eliminar o actualizar el registro en la tabla referenciada.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La diferencia principal entre NO ACTION y RESTRICT es el momento en que se realiza la verificación de integridad referencial. Con NO ACTION, la verificación se realiza al final de una transacción, mientras que con RESTRICT, la verificación se realiza inmediatamente.</p>
+</div>
+<ul>
+<li>
+<p><em>Ejemplo con SET NULL</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="n">fecha</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="n">id_cliente</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_cliente</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Clientes</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="p">);</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><em>Ejemplo con CASCADE</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LineasPedido</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="n">id_pedido</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_linea_pedido</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_pedido</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Pedidos</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">);</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><em>Ejemplo con RESTRICT</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Comentarios</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="n">comentario</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_producto</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Productos</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">RESTRICT</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="p">);</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="validaciones-de-datos">Validaciones de datos<a class="headerlink" href="#validaciones-de-datos" title="Permanent link">¶</a></h3>
+<p>Las restricciones <code>CHECK</code> se utilizan para validar los datos que se insertan o actualizan en una tabla. Estas restricciones permiten definir condiciones que los valores de una columna o conjunto de columnas deben cumplir para ser aceptados en la tabla. Si un valor no cumple con la condición definida en la restricción <code>CHECK</code>, el SGBD rechazará la operación de inserción o actualización y devolverá un error.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">id_empleado</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="n">fecha_contratacion</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="n">salario</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_empleados</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_empleado</span><span class="p">),</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">ck_salario</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">salario</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">-- El salario debe ser mayor o igual a 0</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="p">);</span>
+</span></code></pre></div>
+<p>De igual forma, podemos usar la restricción de verificación para comparar valores entre varias columnas:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">id_producto</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="n">precio</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">    </span><span class="n">stock</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_empleados</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_producto</span><span class="p">),</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="c1">-- El precio y el stock deben ser mayores o iguales a 0</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_precio_stock</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">precio</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="entre-un-rango-between">Entre un rango (BETWEEN)<a class="headerlink" href="#entre-un-rango-between" title="Permanent link">¶</a></h4>
+<p>La cláusula <code>BETWEEN</code> se utiliza en las restricciones <code>CHECK</code> para verificar si un valor se encuentra dentro de un rango específico. La sintaxis básica para utilizar <code>BETWEEN</code> en una restricción <code>CHECK</code> es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">nombre_restriccion</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">columna</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">valor_inferior</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">valor_superior</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Ambos valores, el inferior y el superior, son inclusivos. Por ejemplo, si queremos asegurarnos de que la columna <code>edad</code> en una tabla <code>personas</code> esté entre 0 y 120, podemos definir la restricción <code>CHECK</code> de la siguiente manera:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">personas</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">id_persona</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_personas</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_persona</span><span class="p">),</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_edad</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">120</span><span class="p">)</span><span class="w"> </span><span class="c1">-- La edad debe estar entre 0 y 120</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="conjunto-de-valores-in">Conjunto de valores (IN)<a class="headerlink" href="#conjunto-de-valores-in" title="Permanent link">¶</a></h4>
+<p>La cláusula <code>IN</code> se utiliza en las restricciones <code>CHECK</code> para verificar si un valor pertenece a un conjunto específico de valores. La sintaxis básica para utilizar <code>IN</code> en una restricción <code>CHECK</code> es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">nombre_restriccion</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">columna</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="n">valor3</span><span class="p">,</span><span class="w"> </span><span class="p">...))</span>
+</span></code></pre></div>
+<p>Por ejemplo, si queremos asegurarnos de que la columna <code>genero</code> en una tabla <code>usuarios</code> solo contenga los valores 'M' (masculino), 'F' (femenino) o 'O' (otro), podemos definir la restricción <code>CHECK</code> de la siguiente manera:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">usuarios</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">id_usuario</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="n">genero</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk_usuarios</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_usuario</span><span class="p">),</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_genero</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">genero</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'M'</span><span class="p">,</span><span class="w"> </span><span class="s1">'F'</span><span class="p">,</span><span class="w"> </span><span class="s1">'O'</span><span class="p">))</span><span class="w"> </span><span class="c1">-- El género debe ser 'M', 'F' o 'O'</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Ejemplos de validaciones de datos</p>
+<ul>
+<li>
+<p><strong><code>CHECK</code></strong>: Permite definir una condición que los datos deben cumplir.
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Productos</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="n">precio</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="n">stock</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_precio</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">precio</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_stock</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">stock</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="p">);</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong><code>BETWEEN</code></strong>: Se puede usar dentro de un <code>CHECK</code> para validar un rango.
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Empleados</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_edad</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">65</span><span class="p">);</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Conjunto de valores (<code>IN</code>)</strong>: También se usa con <code>CHECK</code> para limitar los valores a una lista.
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Pedidos</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_estado</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">estado</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'pendiente'</span><span class="p">,</span><span class="w"> </span><span class="s1">'enviado'</span><span class="p">,</span><span class="w"> </span><span class="s1">'entregado'</span><span class="p">));</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="c1">-- Aunque para esto, en MySQL es más eficiente y común usar ENUM.</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong><code>NULL</code> / <code>NOT NULL</code></strong>: La restricción más básica. <code>NOT NULL</code> obliga a que la columna siempre tenga un valor.
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Usuarios</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">);</span>
+</span></code></pre></div><p></p>
+</li>
+</ul>
+</div>
+<h3 id="gestion-de-restricciones">Gestión de restricciones<a class="headerlink" href="#gestion-de-restricciones" title="Permanent link">¶</a></h3>
+<p>Para añadir o borrar una restricción en una tabla , se utiliza el comando <code>ALTER TABLE</code> junto con la cláusula <code>ADD CONSTRAINT</code> y <code>DROP CONSTRAINT</code>.</p>
+<p>La sintaxis básica para añadir una restricción es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nombre_tabla</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">nombre_restriccion</span><span class="w"> </span><span class="n">tipo_restriccion</span><span class="w"> </span><span class="p">(</span><span class="n">columnas</span><span class="p">);</span>
+</span></code></pre></div>
+<p>La sintaxis básica para eliminar una restricción es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nombre_tabla</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">DROP</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">nombre_restriccion</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Si queremos ver las restricciones de una tabla, podemos usar el comando <code>SHOW CREATE TABLE</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nombre_tabla</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si añadimos una restricción tipo <code>CHECK</code> con datos existentes en la tabla, MySQL <strong>NO validará los datos existentes</strong>.<br>
+Solo se validarán los nuevos datos que se inserten o actualicen después de añadir la restricción.</p>
+<p>Por otro lado, si añadimos una restricción tipo <code>UNIQUE</code>, <code>NULL</code>, <code>NOT NULL</code>, <code>PRIMARY KEY</code> o <code>FOREIGN KEY</code> con datos existentes en la tabla, MySQL <strong>validará TODOS los datos existentes</strong>. Si algún dato no cumple con la restricción, MySQL devolverá un error y no se añadirá la restricción.</p>
+</div>
+<h3 id="vistas">Vistas<a class="headerlink" href="#vistas" title="Permanent link">¶</a></h3>
+<p>Una vista es una tabla virtual que se crea a partir de una consulta SQL. Las vistas permiten simplificar consultas complejas, mejorar la seguridad al restringir el acceso a ciertos datos y proporcionar una capa de abstracción sobre las tablas subyacentes.</p>
+<p>Las vistas se crean utilizando el comando <code>CREATE VIEW</code>. La sintaxis básica para crear una vista es la siguiente:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">nombre_vista</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">consulta_sql</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Por ejemplo, si tenemos una tabla <code>empleados</code> y queremos crear una vista que muestre solo los nombres y correos electrónicos de los empleados, podemos hacerlo de la siguiente manera:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">vista_empleados</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">email</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Dado que no se han estudiando las consultas SQL, regresaremos a las vistas en unidades posteriores.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2025-2026 Jesús García - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:&lt;jssgarcia.docente@gmail.com&gt;" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["header.autohide", "content.tabs.link", "content.code.copy", "content.code.select", "navigation.top", "navigation.expand", "navigation.path", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
