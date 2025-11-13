@@ -156,19 +156,10 @@
     b) Mostrar la estructura detallada de la tabla `Empleado`.<br>
     c) Mostrar la sentencia `CREATE TABLE` completa de la tabla `Producto`, verificando que las restricciones `CHECK` se hayan aplicado.<br>
 
+
 ### **AC310**
 
-??? "Ejercicio AC310"
-
-    | Criterios de Evaluación             | Ponderación |
-    | ----------------------------------- | ----------- |
-    | RABD.2 // CE2b, CE2c, CE2e, CE2h // | 3p          |
-
-
-
-### **AC311**
-
-??? "Ejercicio AC311"
+??? "Ejercicio AC31"
 
     | Criterios de Evaluación       | Ponderación |
     | ----------------------------- | ----------- |
@@ -180,9 +171,9 @@
     - A la tabla `Empleado` (del Ejercicio AC306.C), añade una restricción `UNIQUE` a la combinación de `nombreEmpleado` y `apellidoEmpleado`. Esto significa que no puede haber dos empleados con el mismo nombre y apellido.
 
 
-### **AC314**
+### **AC311**
 
-??? "Ejercicio AC314"
+??? "Ejercicio AC311"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
