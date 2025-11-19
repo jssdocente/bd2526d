@@ -1572,27 +1572,25 @@ objetivo es el tratamiento y administración de los datos.</p>
 </li>
 <li>
 <p><strong>Fichero Binario:</strong> Son todos los que no son de texto:</p>
-<ul>
-<li>De imagen:.jpg..gif,.</li>
+</li>
+<li>
+<p>De imagen:.jpg..gif,.</p>
+</li>
 <li>De vídeo:.mpg,.mov,.avi.</li>
 <li>Comprimidos o empaquetados: .zip,.tar,</li>
 <li>Ejecutables o compilados:.exe,.com.</li>
 <li>Procesadores de textos:.doc,.odt</li>
 </ul>
-</li>
-</ul>
 <h4 id="segun-su-funcion">Según su Función<a class="headerlink" href="#segun-su-funcion" title="Permanent link">¶</a></h4>
 <ul>
 <li>
 <p><strong>Ficheros Permanentes:</strong> Contienen información relevante para una aplicación. Es decir, los datos necesarios para el funcionamiento de ésta. Tienen un periodo de permanencia en el sistema amplio. Estos se pueden subdividir en:</p>
-<ul>
+</li>
 <li>
 <p><strong>Ficheros Maestros:</strong> Contiene el estado actual de los datos que pueden modificarse desde la aplicación. Es la parte central de la aplicación, su núcleo. Podría ser un archivo con los datos de los usuarios de una plataforma educativa.</p>
 </li>
 <li>
 <p><strong>Ficheros Constantes:</strong> Son aquellos que incluyen datos fijos para la aplicación. No suelen ser modificados y se accede a ellos para realización de consultas. Podría ser un archivo con códigos postales.</p>
-</li>
-</ul>
 </li>
 <li>
 <p><strong>Ficheros Temporales:</strong> Se utilizan para almacenar información útil para una parte de la aplicación, no para toda ella. Son generados a partir de datos de ficheros permanentes. Tienen un corto periodo de existencia.</p>
@@ -1644,14 +1642,12 @@ objetivo es el tratamiento y administración de los datos.</p>
 </li>
 <li>
 <p><strong>Seguridad:</strong> Podemos distinguir dos niveles:</p>
-<ul>
+</li>
 <li>
 <p><strong>Nivel Físico</strong>, donde podemos tener errores de Hardware (como pérdida del disco duro, se recupera con copias de respaldo) y errores de Software (como fallos lógicos del programa, se recupera a partir de ficheros Log).</p>
 </li>
 <li>
 <p><strong>Nivel Lógico</strong>, se refiere a la confidencialidad de los datos, se controla: ¿quién? (usuario), accede ¿a qué? información (tabla, columna), y ¿de qué? manera (leer, escribir, borrar).</p>
-</li>
-</ul>
 </li>
 </ul>
 <p>Una Base de Datos está formada por:</p>
@@ -1708,11 +1704,13 @@ objetivo es el tratamiento y administración de los datos.</p>
 </li>
 <li>
 <p><strong>Eficiencia en la restructuración de los datos</strong>. Al estar los datos estructurados según un modelo no se producen redundancias de datos. Es decir que un mismo dato no aparece en dos o más ficheros. Esto evita tres problemas:</p>
-<ul>
-<li><strong>No se desperdicia</strong> espacio en memoria almacenando la misma información varias veces.</li>
+</li>
+<li>
+<p><strong>No se desperdicia</strong> espacio en memoria almacenando la misma información varias veces.</p>
+</li>
 <li>Se <strong>ahorra tiempo de proceso</strong> al no tener que modificar el dato en varios ficheros.</li>
-<li>Se <strong>evita</strong> la corrupción de la Base de Datos ya que al modificar un dato habría que hacerlo en todos los ficheros en que aparece, y si no se modifica en algunos de los ficheros, la información de la Base de Datos sería inconsistente.</li>
-</ul>
+<li>
+<p>Se <strong>evita</strong> la corrupción de la Base de Datos ya que al modificar un dato habría que hacerlo en todos los ficheros en que aparece, y si no se modifica en algunos de los ficheros, la información de la Base de Datos sería inconsistente.</p>
 </li>
 <li>
 <p><strong>Reducción</strong> de espacio de <strong>almacenamiento en disco</strong>. Los sistemas de Base de Datos optimizan el espacio requerido para almacenar los datos en discos, hasta un 50% más que los sistemas de ficheros tradicionales.</p>
@@ -1726,59 +1724,54 @@ objetivo es el tratamiento y administración de los datos.</p>
 <li><strong>Control de accesos simultáneos</strong>. Ej. Reserva de billetes o entradas.</li>
 <li><strong>Recuperación de datos</strong> dañados ante procesos de actualización incompletos o erróneos. En los sistemas orientados a ficheros se utilizaban copias.</li>
 <li><strong>Mayor nivel informático</strong> Los sistemas de bases de datos ofrecen herramientas más potentes y más sencillas para la
-manipulación de los datos.</li>
+  manipulación de los datos.</li>
 </ul>
-<p>Los <strong>Sistemas de Bases de Datos</strong> está integrados en los entornos de desarrollo de <strong>cuarta generación</strong>, mientras que los Sistemas de Ficheros pertenecen a entornos de desarrollo de <strong>tercera generación</strong>. </p>
+<p>Los <strong>Sistemas de Bases de Datos</strong> está integrados en los entornos de desarrollo de <strong>cuarta generación</strong>, mientras que los Sistemas de Ficheros pertenecen a entornos de desarrollo de <strong>tercera generación</strong>.</p>
 <p>Según lo que hemos visto, podemos afirmar que los Sistemas de Gestión de Archivos son sistemas de información orientados hacia los procesos, existiendo una gran dependencia datos/aplicaciones. Por el contrario, en los Sistemas de Gestión de Bases de Datos existe total independencia entre los datos y las aplicaciones que los tratan</p>
 <h2 id="4-elementos-de-una-base-de-datos"><strong>4. Elementos de una Base de Datos</strong><a class="headerlink" href="#4-elementos-de-una-base-de-datos" title="Permanent link">¶</a></h2>
 <ul>
 <li>
 <p><strong>Los Datos.</strong>
-    Es el conjunto de datos estructurados y almacenados en un soporte magnético u óptico de acceso
-    directo. Este conjunto de datos es lo que suele denominarse Base de Datos.</p>
+  Es el conjunto de datos estructurados y almacenados en un soporte magnético u óptico de acceso
+  directo. Este conjunto de datos es lo que suele denominarse Base de Datos.</p>
 </li>
 <li>
 <p><strong>La Metabase.</strong>
-    Es la información sobre los datos de la Base de Datos. Es imprescindible para que el sistema
-    autodocumentado pueda suministrar a los usuarios, al administrador y al Sistema Gestor de Base de
-    Datos, la información que necesitan sobre los datos almacenados y su funcionamiento.</p>
+  Es la información sobre los datos de la Base de Datos. Es imprescindible para que el sistema
+  autodocumentado pueda suministrar a los usuarios, al administrador y al Sistema Gestor de Base de
+  Datos, la información que necesitan sobre los datos almacenados y su funcionamiento.</p>
+</li>
+</ul>
 <p>Los elementos fundamentales de la Metabase son:</p>
 <ul>
 <li><strong>Catálogo o Diccionario de Datos</strong>: descripción lógica de cada uno de los datos (es decir desde el punto de vista del usuario): tipo, fichero en el que se encuentra, relaciones entre ficheros, vistas, etc.</li>
 <li><strong>Directorio de Datos</strong>: descripción física que permite pasar de la representación externa a la interna.</li>
 <li><strong>Sistema de Seguridad</strong>: es a dos niveles.<ul>
 <li><em>Seguridad Lógica</em>: control de permisos de acceso de los usuarios a los datos.</li>
-<li><em>Seguridad Física</em>: consiste en registrar en unos ficheros llamados Log o Dietario, las operaciones realizadas en la Base de Datos con el objeto de poder deshacerlas en     caso de errores.</li>
+<li><em>Seguridad Física</em>: consiste en registrar en unos ficheros llamados Log o Dietario, las operaciones realizadas en la Base de Datos con el objeto de poder deshacerlas en caso de errores.</li>
 </ul>
 </li>
 <li>
 <p><strong>Software de Gestión del Sistema</strong> (Logical). Es el conjunto de programas, procedimientos, lenguajes etc., capaces de realizar todos los tratamientos exigidos para el funcionamiento del sistema.</p>
 <ul>
-<li>
-<p><strong>SGBD</strong>
-    Es el núcleo de un sistema de Base de Datos. Permite que el usuario pueda crear, actualizar y recuperar los datos contenidos en la Base de Datos. Es decir, interpreta las órdenes del usuario y las ejecuta físicamente.</p>
-<p>Está formado por:</p>
-<ul>
-<li>
-<p><strong>Gestor de almacenamiento</strong>: Es el módulo que proporciona la interfaz entre los datos almacenados y los programas de aplicación y consultas solicitadas al sistema.</p>
-<p>A su vez está consta de:</p>
-<ul>
-<li><strong>Gestor de Transacciones</strong>: Asegura que la Base de Datos sea consistente ante fallos en el sistema.</li>
-<li><strong>Gestor de Archivos</strong>: Gestiona la reserva de espacio de disco y las estructuras de datos para representar los datos almacenados en el disco.</li>
-<li><strong>Gestor de Memoria Intermedia</strong>: Se encarga de traer los datos desde el disco a la memoria principal y decidir qué datos se llevan a la memoria caché</li>
+<li><strong>SGBD</strong>
+  Es el núcleo de un sistema de Base de Datos. Permite que el usuario pueda crear, actualizar y recuperar los datos contenidos en la Base de Datos. Es decir, interpreta las órdenes del usuario y las ejecuta físicamente.</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>GESTOR DE CONSULTAS</strong>:</p>
 <p>Está formado por:</p>
+<div class="language-text highlight"><pre><span></span><code>  - **Gestor de almacenamiento**: Es el módulo que proporciona la interfaz entre los datos almacenados y los programas de aplicación y consultas solicitadas al sistema.
+
+    A su vez está consta de:
+
+    - **Gestor de Transacciones**: Asegura que la Base de Datos sea consistente ante fallos en el sistema.
+    - **Gestor de Archivos**: Gestiona la reserva de espacio de disco y las estructuras de datos para representar los datos almacenados en el disco.
+    - **Gestor de Memoria Intermedia**: Se encarga de traer los datos desde el disco a la memoria principal y decidir qué datos se llevan a la memoria caché
+</code></pre></div>
 <ul>
+<li><strong>GESTOR DE CONSULTAS</strong>:
+  Está formado por:</li>
 <li><strong>Intérprete del DDL</strong> (Lenguaje de Definición de Datos): Interpreta el DDL y graba las definiciones en el Diccionario de Datos.</li>
 <li><strong>Compilador del DML</strong> (Lenguaje de Manipulación de Datos): Traduce las consultas a instrucciones de bajo nivel que puedan ser ejecutadas por el motor de consultas. También optimiza las consultas.</li>
 <li><strong>Motor de Evaluación de Consultas</strong>: Ejecuta las instrucciones dadas por el Compilador DML.</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>
@@ -1786,10 +1779,8 @@ manipulación de los datos.</li>
 </li>
 <li>
 <p><strong>Herramientas de desarrollo de aplicaciones</strong>.
-PL/SQL (Procedural Language/Structured Query Language), generador de informes (report),
-de pantallas (forms), APEX, …</p>
-</li>
-</ul>
+    PL/SQL (Procedural Language/Structured Query Language), generador de informes (report),
+    de pantallas (forms), APEX, …</p>
 </li>
 </ul>
 <h2 id="5-niveles-de-abstraccion-de-la-bd-modelo-ansix3sparc"><strong>5. Niveles de Abstracción de la BD: Modelo ANSI/X3/SPARC</strong><a class="headerlink" href="#5-niveles-de-abstraccion-de-la-bd-modelo-ansix3sparc" title="Permanent link">¶</a></h2>
@@ -1801,9 +1792,9 @@ ocultar al usuario toda la complejidad del sistema y facilitarle la interacción
 <p>Estos 3 niveles de abstracción, desde el más cercano a la máquina hasta el más cercano al usuario final, son:</p>
 <ul>
 <li><strong>Nivel Interno o Físico</strong>: Es el nivel más bajo de abstracción y en el que existe realmente la Base de Datos. En él se describen como se almacenan los datos y la estructura de los mismos. Este nivel tiene que ver con la forma en que los datos están almacenados físicamente. Esta visión sólo la
-requiere el DBA.</li>
+  requiere el DBA.</li>
 <li><strong>Nivel Lógico o Conceptual</strong>: En él se describe cuáles son los <strong>datos</strong> que se almacenan y qué <strong>relaciones</strong> se establecen entre ellos, representando de forma completa la Base de Datos con estructuras simples. Es el <strong>primer paso</strong> a realizar al crear una Base de Datos. Cuando hablamos del diseño de una BD nos estamos refiriendo a este esquema.
-El esquema conceptual lo realiza Diseñadores/as o Analistas a partir de los requerimientos del cliente. Y luego es utilizado por los desarrolladores de aplicaciones.</li>
+  El esquema conceptual lo realiza Diseñadores/as o Analistas a partir de los requerimientos del cliente. Y luego es utilizado por los desarrolladores de aplicaciones.</li>
 <li><strong>Nivel Externo</strong>: Está formado por el conjunto de las <strong>vistas de usuario</strong>, siendo una vista de usuario la fracción de la Base de Datos que ve un usuario en concreto. En este nivel es donde trabajan los programas de aplicación de usuario. Se trata de la visión de los datos que se les ofrece a los usuarios finales (tablas, vistas, formularios, informes, ...). Estas vistas las obtienen los <strong>Desarrolladores de Aplicaciones</strong>, de modo que el usuario no conoce las relaciones entre los datos, como tampoco conoce todos los datos que realmente se almacenan. Así, cada usuario puede ver una base de datos diferente según sea el nivel de acceso que se le haya concedido</li>
 </ul>
 <p>En una Base de Datos determinada habrá un único esquema interno, un único esquema conceptual, pero
@@ -1813,10 +1804,10 @@ varios esquemas en el nivel externo.</p>
 <p>La independencia de los datos puede darse a dos niveles:</p>
 <ul>
 <li><strong>Independencia Física</strong>: consiste en modificar el nivel interno sin que se vea afectado el nivel
-conceptual. Por ejemplo, puede ser necesario reorganizar ciertos archivos físicos con el fin de
-mejorar el rendimiento de ciertas operaciones sobre los datos.</li>
+  conceptual. Por ejemplo, puede ser necesario reorganizar ciertos archivos físicos con el fin de
+  mejorar el rendimiento de ciertas operaciones sobre los datos.</li>
 <li><strong>Independencia Lógica</strong>: consiste en modificar el nivel lógico sin alterar el nivel físico. Por ejemplo, si
-se necesita eliminar una entidad, los Esquemas Externos que no se refieran a ella no deben ser afectados.</li>
+  se necesita eliminar una entidad, los Esquemas Externos que no se refieran a ella no deben ser afectados.</li>
 </ul>
 <figure>
     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/N01_5_10.png" data-desc-position="bottom"><img src="images/N01_5_10.png" alt="M" width="100%" align="center"></a>
@@ -1827,10 +1818,10 @@ se necesita eliminar una entidad, los Esquemas Externos que no se refieran a ell
 <p>Hoy día se espera de un SGBD que disponga de:</p>
 <ul>
 <li><strong>Lenguaje</strong> que permita crear todos los elementos de la Base de Datos y gestionar el diccionario de datos. Normalmente este lenguaje será SQL (aunque cada SGBD impone variantes al SQL estándar).
-Estará formado por lenguajes que permitan crear, manipular y controlar los datos.</li>
+  Estará formado por lenguajes que permitan crear, manipular y controlar los datos.</li>
 <li><strong>Herramientas gráficas</strong> que faciliten muchas tareas habituales tanto de gestión como de administración del sistema.</li>
 <li>Posibilidad de <strong>establecer reglas de integridad avanzadas</strong> e incluirlas como parte de la Base de Datos. Dentro de estas reglas están las restricciones estándar como: UNIQUE (unicidad, prohibir repetición de valores), CHECK (cumplimiento de condiciones simples), NOT NULL (obligatoriedad), PRIMARY KEY (establecimiento de las claves de las tablas) o la propia FOREIGN KEY (clave foránea); pero también restricciones más complejas como las que establecen los Triggers de los lenguajes
-procedimentales (como PL/SQL de Oracle) presentes en la mayoría de sistemas.</li>
+  procedimentales (como PL/SQL de Oracle) presentes en la mayoría de sistemas.</li>
 <li>Gestión de <strong>copias de seguridad</strong>. Una de las funciones críticas de la Base de Datos ya que permite la recuperación de información en caso de problemas.</li>
 <li>Aplicaciones de <strong>exportación e importación de datos</strong>. Para poder utilizar datos de otros SGBD u otro software.</li>
 <li>Posibilidad de <strong>recuperación en caso de desastre</strong>. Para evitar perder información en caso de problemas serios con el software (errores de hardware, apagones prolongados, …)</li>
@@ -1840,38 +1831,36 @@ procedimentales (como PL/SQL de Oracle) presentes en la mayoría de sistemas.</l
 <li><strong>Optimización de consultas</strong>. Busca el mínimo tiempo de respuesta para las operaciones sobre los datos.</li>
 <li><strong>Herramientas para automatizar tareas</strong>. Permiten realizar programaciones sobre operaciones habituales sobre la Base de Datos.</li>
 <li>Posibilidad de <strong>distribuir la Base de Datos</strong> entre diferentes máquinas, y así mejorar su alta
-disponibilidad.</li>
+  disponibilidad.</li>
 <li>
 <p><strong>Gestión de Transacciones</strong>, ACID (Atomicity, Consistency, Isolation, Durability). Es una norma obligatoria que deben de cumplir las bases de datos para que una transacción se pueda considerar como tal.</p>
-<ul>
-<li><strong>Atomicidad</strong>: Cada operación debe ejecutarse como una unidad (de forma atómica), o se
-realiza en su totalidad o no se realiza nada.</li>
+</li>
+<li>
+<p><strong>Atomicidad</strong>: Cada operación debe ejecutarse como una unidad (de forma atómica), o se
+    realiza en su totalidad o no se realiza nada.</p>
+</li>
 <li><strong>Consistencia</strong>: Las reglas de integridad definidas en la Base de Datos deben cumplirse.</li>
 <li><strong>Aislamiento</strong>: Esta propiedad asegura que un cambio en unos datos concretos no debe afectar al resto de los datos, o que la realización de dos transacciones sobre la misma información sea independiente y no generen ningún tipo de error.
-<strong>Persistencia</strong>: Esta propiedad asegura que, una vez realizada la operación, esta persistirá y no se podrá deshacer, aunque falle el sistema.</li>
-</ul>
-</li>
+    <strong>Persistencia</strong>: Esta propiedad asegura que, una vez realizada la operación, esta persistirá y no se podrá deshacer, aunque falle el sistema.</li>
 </ul>
 <h2 id="7-usuarios-de-la-bd"><strong>7. Usuarios de la BD</strong><a class="headerlink" href="#7-usuarios-de-la-bd" title="Permanent link">¶</a></h2>
 <p>Hay cuatro grupos de personas que intervienen en el entorno de una Base de Datos:</p>
 <ul>
-<li>
-<p><strong>Analistas</strong>.</p>
-<p>Son los encargados de controlar el desarrollo de la Base de Datos aprobada por la dirección. Normalmente son además los diseñadores de la Base de Datos, especialmente de los esquemas interno y conceptual debiendo identificar los datos, las relaciones entre datos y las restricciones.
-Para obtener un buen resultado, el diseñador de la Base de Datos debe implicar en el desarrollo del modelo de datos a todos los usuarios de la Base de Datos, tan pronto como sea posible. 
-El diseño lógico de la Base de Datos es independiente del SGBD concreto que se vaya a utilizar, es
-independiente de los programas de aplicación, de los lenguajes de programación y de cualquier otra
-consideración física.</p>
-</li>
-<li>
-<p><strong>Administrador de la Base de Datos (DBA)</strong></p>
-<p>Se encarga de realizar la implementación de la Base de Datos, realiza la gestión de los usuarios y permisos, copias de seguridad, restauración de las copias de seguridad en caso necesario y demás tareas necesarias para el correcto funcionamiento de la BD. El administrador debe conocer muy bien el SGBD que se está utilizando, así como el equipo informático sobre el que está funcionando.</p>
-</li>
-<li>
-<p><strong>Programadores de Aplicaciones</strong></p>
-<p>Una vez se ha diseñado e implementado la Base de Datos, los programadores se encargan de implementar los programas de aplicación que servirán a los usuarios finales. Estos programas de aplicación son los que permiten consultar datos, insertarlos, actualizarlos y eliminarlos.</p>
-</li>
+<li><strong>Analistas</strong>.</li>
 </ul>
+<p>Son los encargados de controlar el desarrollo de la Base de Datos aprobada por la dirección. Normalmente son además los diseñadores de la Base de Datos, especialmente de los esquemas interno y conceptual debiendo identificar los datos, las relaciones entre datos y las restricciones.
+  Para obtener un buen resultado, el diseñador de la Base de Datos debe implicar en el desarrollo del modelo de datos a todos los usuarios de la Base de Datos, tan pronto como sea posible.
+  El diseño lógico de la Base de Datos es independiente del SGBD concreto que se vaya a utilizar, es
+  independiente de los programas de aplicación, de los lenguajes de programación y de cualquier otra
+  consideración física.</p>
+<ul>
+<li><strong>Administrador de la Base de Datos (DBA)</strong></li>
+</ul>
+<p>Se encarga de realizar la implementación de la Base de Datos, realiza la gestión de los usuarios y permisos, copias de seguridad, restauración de las copias de seguridad en caso necesario y demás tareas necesarias para el correcto funcionamiento de la BD. El administrador debe conocer muy bien el SGBD que se está utilizando, así como el equipo informático sobre el que está funcionando.</p>
+<ul>
+<li><strong>Programadores de Aplicaciones</strong></li>
+</ul>
+<p>Una vez se ha diseñado e implementado la Base de Datos, los programadores se encargan de implementar los programas de aplicación que servirán a los usuarios finales. Estos programas de aplicación son los que permiten consultar datos, insertarlos, actualizarlos y eliminarlos.</p>
 
 
 
