@@ -1054,6 +1054,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ac312a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC312.A
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac313" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC313
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1211,6 +1233,28 @@
     <span class="md-ellipsis">
       
         AC311
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac312a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC312.A
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac313" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC313
       
     </span>
   </a>
@@ -1562,6 +1606,172 @@ c) Mostrar la sentencia <code>CREATE TABLE</code> completa de la tabla <code>Pro
 b) Renombra la tabla <code>Producto</code> a <code>Articulo</code>.<br>
 c) Elimina la clave foránea que relaciona la tabla <code>Empleado</code> con la tabla <code>Departamento</code>.<br>
 d) Elimina la tabla <code>Evento</code> (del Ejercicio AC303.C).<br></p>
+</details>
+<h3 id="ac312a"><strong>AC312.A</strong><a class="headerlink" href="#ac312a" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC312.A</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<p>A partir del siguiente modelo lógico:</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p>Módelo lógico</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">Table</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">nia</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"10 longitud fija"</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 50 caracteres"</span><span class="p">]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">apellidos</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 80 caracteres"</span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">fnac</span><span class="w"> </span><span class="n">fecha</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">grupoID</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="err">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">Table</span><span class="w"> </span><span class="n">Grupo</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="n">codigo</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">descripcion</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 500 longitud"</span><span class="p">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">delegadoID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"FK de estudiante"</span><span class="p">]</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="err">}</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">Table</span><span class="w"> </span><span class="n">Asignatura</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">codigo</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 100 longitud"</span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">docenteID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="err">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">Table</span><span class="w"> </span><span class="n">Docente</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">dni</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"9 longitud fija"</span><span class="p">]</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="p">]</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="err">}</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">Table</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">estudianteID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">asignaturaID</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="err">}</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Grupo"</span><span class="p">.</span><span class="ss">"codigo"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"grupoID"</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"nia"</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="ss">"Grupo"</span><span class="p">.</span><span class="ss">"delegadoID"</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"nia"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Matricula"</span><span class="p">.</span><span class="ss">"estudianteID"</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Asignatura"</span><span class="p">.</span><span class="ss">"codigo"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Matricula"</span><span class="p">.</span><span class="ss">"asignaturaID"</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Docente"</span><span class="p">.</span><span class="ss">"dni"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Asignatura"</span><span class="p">.</span><span class="ss">"docenteID"</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Diagrama módelo lógico</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="img/AC312.png" data-desc-position="bottom"><img alt="" src="img/AC312.png" title=""></a>    </p>
+</li>
+</ul>
+</div>
+<p>Realiza el modelo físico, creando un script único incluyendo los siguientes elementos:</p>
+<ul>
+<li>La creación de la BD, de nombre "AC312A"</li>
+<li>Cada tabla indicada en el modelo lógico con su nombre y atributos.</li>
+<li>Crea las restricciones de Foreign Key dando nombre a la restricción.
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="err">{</span><span class="n">nombre</span><span class="o">-</span><span class="n">restriccion</span><span class="err">}</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="err">{</span><span class="n">columna</span><span class="err">}</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="err">{</span><span class="n">tabla</span><span class="err">}</span><span class="p">(</span><span class="err">{</span><span class="n">columna</span><span class="err">}</span><span class="p">)</span>
+</span></code></pre></div></li>
+</ul>
+</details>
+<h3 id="ac313"><strong>AC313</strong><a class="headerlink" href="#ac313" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC313</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<p>A partir del siguiente modelo lógico:</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p>Módelo lógico</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">Table</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">nia</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"10 longitud fija"</span><span class="p">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 50 caracteres"</span><span class="p">]</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">apellidos</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 80 caracteres"</span><span class="p">]</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">fnac</span><span class="w"> </span><span class="n">fecha</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">grupoID</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="err">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">Table</span><span class="w"> </span><span class="n">Grupo</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">codigo</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">descripcion</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 500 longitud"</span><span class="p">]</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">delegadoID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"FK de estudiante"</span><span class="p">]</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="err">}</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">Table</span><span class="w"> </span><span class="n">Asignatura</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">codigo</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"max 100 longitud"</span><span class="p">]</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">cicloID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">docenteID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="err">}</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">Table</span><span class="w"> </span><span class="n">Ciclo</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="n">codigo</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"codigo de 3 digitos"</span><span class="p">]</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="n">tipo</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Valores posibles A,B,C,D,E"</span><span class="p">]</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="err">}</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="k">Table</span><span class="w"> </span><span class="n">Docente</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="n">dni</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="ss">"9 longitud fija"</span><span class="p">]</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="n">email</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="p">]</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="err">}</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="k">Table</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="n">estudianteID</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="n">asignaturaID</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">]</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="err">}</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Grupo"</span><span class="p">.</span><span class="ss">"codigo"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"grupoID"</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"nia"</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="ss">"Grupo"</span><span class="p">.</span><span class="ss">"delegadoID"</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Estudiante"</span><span class="p">.</span><span class="ss">"nia"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Matricula"</span><span class="p">.</span><span class="ss">"estudianteID"</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Asignatura"</span><span class="p">.</span><span class="ss">"codigo"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Matricula"</span><span class="p">.</span><span class="ss">"asignaturaID"</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Docente"</span><span class="p">.</span><span class="ss">"dni"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Asignatura"</span><span class="p">.</span><span class="ss">"docenteID"</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="ss">"Ciclo"</span><span class="p">.</span><span class="ss">"codigo"</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="ss">"Asignatura"</span><span class="p">.</span><span class="ss">"cicloID"</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Diagrama módelo lógico</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="img/AC313.png" data-desc-position="bottom"><img alt="" src="img/AC313.png" title=""></a>    </p>
+</li>
+</ul>
+</div>
+<p>Realiza el modelo físico, creando un script único incluyendo los siguientes elementos:</p>
+<ul>
+<li>La creación de la BD, de nombre "AC313"</li>
+<li>Cada tabla indicada en el modelo lógico con su nombre y atributos.</li>
+<li>Cada restricción se agrega utilizando la forma dando nombre a la restricción.</li>
+<li>Para las restricciones de Foreign Key, aplica la siguiente propagación:</li>
+<li>Al borrar un docente, el campo <code>docenteID</code> debe ser null.</li>
+<li>Al borrar un grupo, el campo <code>grupoID</code> debe ser null.</li>
+<li>Al eliminar un <code>estudiante</code> el campo <code>delegadoID</code> sea null.</li>
+<li>No se permita borrar <ul>
+<li>un ciclo si tiene asignaturas vinculadas.</li>
+<li>un estudiante si tiene matriculas</li>
+<li>una asignatura si tiene matriculas</li>
+</ul>
+</li>
+</ul>
 </details>
 
 
