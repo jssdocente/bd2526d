@@ -186,3 +186,153 @@
 
 
 
+### **AC312.A**
+
+??? "Ejercicio AC312.A"
+
+    |  Criterios de Evaluación  | Ponderación |
+    | --- | --- |
+    | RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h // | 5p          |
+
+
+    A partir del siguiente modelo lógico:
+
+    <div class="grid cards" markdown>
+
+    - Módelo lógico
+    
+        ```sql
+        Table Estudiante {
+            nia texto [pk, note:"10 longitud fija"]
+            nombre texto [not null, note:"max 50 caracteres"]
+            apellidos texto [not null, note:"max 80 caracteres"]
+            fnac fecha [not null]
+            grupoID numero [not null]
+        }
+
+        Table Grupo {
+            codigo numero [pk]
+            descripcion texto [not null, note:"max 500 longitud"]
+            delegadoID texto [null, note:"FK de estudiante"]
+        }
+
+        Table Asignatura {
+            codigo numero [pk]
+            nombre texto [not null, note:"max 100 longitud"]
+            docenteID texto [not null]
+        }
+
+        Table Docente {
+            dni texto [pk, note:"9 longitud fija"]
+            nombre texto [not null]
+            email texto [not null, unique]
+        }
+
+        Table Matricula {
+            estudianteID texto [pk]
+            asignaturaID numero [pk]
+        }
+
+        Ref: "Grupo"."codigo" < "Estudiante"."grupoID"
+        Ref: "Estudiante"."nia" - "Grupo"."delegadoID"
+        Ref: "Estudiante"."nia" < "Matricula"."estudianteID"
+        Ref: "Asignatura"."codigo" < "Matricula"."asignaturaID"
+        Ref: "Docente"."dni" < "Asignatura"."docenteID"
+        ```
+
+    - Diagrama módelo lógico
+        
+        ![](img/AC312.png"")    
+
+    </div>
+
+    Realiza el modelo físico, creando un script único incluyendo los siguientes elementos:
+
+    - La creación de la BD, de nombre "AC312A"
+    - Cada tabla indicada en el modelo lógico con su nombre y atributos.
+    - Crea las restricciones de Foreign Key dando nombre a la restricción.
+    ```sql
+    CONSTRAINT {nombre-restriccion} FOREIGN KEY ({columna}) REFERENCES {tabla}({columna})
+    ```
+
+### **AC313**
+
+??? "Ejercicio AC313"
+
+    |  Criterios de Evaluación  | Ponderación |
+    | --- | --- |
+    | RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h // | 5p          |
+
+    A partir del siguiente modelo lógico:
+
+    <div class="grid cards" markdown>
+
+    - Módelo lógico
+    
+        ```sql
+        Table Estudiante {
+        nia texto [pk, note:"10 longitud fija"]
+        nombre texto [not null, note:"max 50 caracteres"]
+        apellidos texto [not null, note:"max 80 caracteres"]
+        fnac fecha [not null]
+        grupoID numero [not null]
+        }
+
+        Table Grupo {
+        codigo numero [pk]
+        descripcion texto [not null, note:"max 500 longitud"]
+        delegadoID texto [null, note:"FK de estudiante"]
+        }
+
+        Table Asignatura {
+        codigo numero [pk]
+        nombre texto [not null, note:"max 100 longitud"]
+        cicloID texto [not null]
+        docenteID texto [not null]
+        }
+
+        Table Ciclo {
+        codigo texto [pk, note:"codigo de 3 digitos"]
+        nombre texto [not null]
+        tipo texto [note: "Valores posibles A,B,C,D,E"]
+        }
+
+        Table Docente {
+        dni texto [pk, note:"9 longitud fija"]
+        nombre texto [not null]
+        email texto [not null, unique]
+        }
+
+        Table Matricula {
+        estudianteID texto [pk]
+        asignaturaID numero [pk]
+        }
+
+        Ref: "Grupo"."codigo" < "Estudiante"."grupoID"
+        Ref: "Estudiante"."nia" - "Grupo"."delegadoID"
+        Ref: "Estudiante"."nia" < "Matricula"."estudianteID"
+        Ref: "Asignatura"."codigo" < "Matricula"."asignaturaID"
+        Ref: "Docente"."dni" < "Asignatura"."docenteID"
+        Ref: "Ciclo"."codigo" < "Asignatura"."cicloID"
+        ```
+
+    - Diagrama módelo lógico
+        
+        ![](img/AC313.png"")    
+
+    </div>
+
+
+    Realiza el modelo físico, creando un script único incluyendo los siguientes elementos:
+
+    - La creación de la BD, de nombre "AC313"
+    - Cada tabla indicada en el modelo lógico con su nombre y atributos.
+    - Cada restricción se agrega utilizando la forma dando nombre a la restricción.
+    - Para las restricciones de Foreign Key, aplica la siguiente propagación:
+    - Al borrar un docente, el campo `docenteID` debe ser null.
+    - Al borrar un grupo, el campo `grupoID` debe ser null.
+    - Al eliminar un `estudiante` el campo `delegadoID` sea null.
+    - No se permita borrar 
+        - un ciclo si tiene asignaturas vinculadas.
+        - un estudiante si tiene matriculas
+        - una asignatura si tiene matriculas
