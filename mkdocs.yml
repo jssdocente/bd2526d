@@ -19,10 +19,12 @@ nav:
     - "Inicio": temas/02C/index.md
     - "2.4 Transformación ER a MR": temas/02C/2.5-Transformacion.md  
     - "Actividades": temas/02C/2.C-Actividades.md
-  - "03 - Diseño físico: DML y DCL":
+  - "03 - Diseño físico: DDL y DCL":
     - "Inicio": temas/03/index.md
-    - "3.1 Diseño físico: DML": temas/03/3.1-DisenoFisico-DML.md  
-    - "Actividades": temas/03/Actividades.md  
+    - "3.1 Diseño físico: DDL": temas/03/3.1-DisenoFisico-DDL.md  
+    - "Actividades DDL": temas/03/Actividades-DDL.md 
+  - "1 Evaluación": "temas/03_1eval/Repaso.md"
+
     # - "2.2 Restricciones": temas/02/2.2-Restricciones.md
     # - "2.3 Modelo Extendido": temas/02/2.3-Modelo-extendido.md
     # - "Actividades": temas/02/2.A-Actividades.md  

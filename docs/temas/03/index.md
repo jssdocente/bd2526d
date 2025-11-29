@@ -49,6 +49,6 @@ El contenido de la unidad está repartido en los siguientes bloques.
 
 Índice:
 
-- [3.1 Lenguaje DML](./3.1-DisenoFisico-DML.md)
+- [3.1 Lenguaje DML](./3.1-DisenoFisico-DDL.md)
 - [3.2 Lenguaje DCL](./3.2-DCL.md)
-- [Actividades](./Actividades.md)
+- [Actividades-DDL](./Actividades-DDL.md)
