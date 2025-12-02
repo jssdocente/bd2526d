@@ -1057,10 +1057,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ac312a" class="md-nav__link">
+  <a href="#ac312" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AC312.A
+        AC312
       
     </span>
   </a>
@@ -1072,6 +1072,28 @@
     <span class="md-ellipsis">
       
         AC313
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac314" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC314
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac315" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC315
       
     </span>
   </a>
@@ -1269,10 +1291,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ac312a" class="md-nav__link">
+  <a href="#ac312" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AC312.A
+        AC312
       
     </span>
   </a>
@@ -1284,6 +1306,28 @@
     <span class="md-ellipsis">
       
         AC313
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac314" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC314
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac315" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC315
       
     </span>
   </a>
@@ -1636,7 +1680,11 @@ b) Renombra la tabla <code>Producto</code> a <code>Articulo</code>.<br>
 c) Elimina la clave foránea que relaciona la tabla <code>Empleado</code> con la tabla <code>Departamento</code>.<br>
 d) Elimina la tabla <code>Evento</code> (del Ejercicio AC303.C).<br></p>
 </details>
-<h3 id="ac312a"><strong>AC312.A</strong><a class="headerlink" href="#ac312a" title="Permanent link">¶</a></h3>
+<hr>
+<blockquote>
+<p>Exercicios tipo examen</p>
+</blockquote>
+<h3 id="ac312"><strong>AC312</strong><a class="headerlink" href="#ac312" title="Permanent link">¶</a></h3>
 <details>
 <summary>Ejercicio AC312.A</summary>
 <table>
@@ -1801,6 +1849,214 @@ d) Elimina la tabla <code>Evento</code> (del Ejercicio AC303.C).<br></p>
 </ul>
 </li>
 </ul>
+</details>
+<h3 id="ac314"><strong>AC314</strong><a class="headerlink" href="#ac314" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC314: La Superliga de Datos</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h //</td>
+<td>15p</td>
+</tr>
+</tbody>
+</table>
+<p>Te han contratado como Administrador de Base de Datos (DBA) para la nueva liga de fútbol. El equipo de análisis te ha entregado el modelo lógico inicial, pero como suele pasar en los proyectos reales, los requisitos van a cambiar sobre la marcha y tendrás que adaptar la base de datos sin perder información.</p>
+<p><strong>Parte 1: El Modelo Lógico Inicial</strong></p>
+<p>Analiza el siguiente código DBML. Presta atención a las notas sobre longitudes y tipos de datos.</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p>Módelo lógico</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">//</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">Datos</span><span class="p">:</span><span class="w"> </span><span class="n">LIGA_FUTBOL</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">Table</span><span class="w"> </span><span class="n">EQUIPO</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">cod_equipo</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Código de 3 letras, ej: RMA, BAR"</span><span class="p">]</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">nombre_oficial</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Nombre único del club"</span><span class="p">]</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">ciudad</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">anio_fundacion</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">web_oficial</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="err">}</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">Table</span><span class="w"> </span><span class="n">JUGADOR</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">dni</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"DNI con letra"</span><span class="p">]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">nombre</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">apellidos</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">dorsal</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">posicion</span><span class="w"> </span><span class="n">enum</span><span class="w"> </span><span class="p">[</span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Valores: 'PORTERO','DEFENSA','MEDIO','DELANTERO'"</span><span class="p">]</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">cod_equipo</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia EQUIPO"</span><span class="p">]</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="err">}</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">Table</span><span class="w"> </span><span class="n">ESTADIO</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">id_estadio</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="k">increment</span><span class="p">]</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">nombre</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">]</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="n">capacidad</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">]</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="n">cod_equipo</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia EQUIPO. Relación 1:1"</span><span class="p">]</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="err">}</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="o">//</span><span class="w"> </span><span class="n">Relaciones</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">EQUIPO</span><span class="p">.</span><span class="n">cod_equipo</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">JUGADOR</span><span class="p">.</span><span class="n">cod_equipo</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">EQUIPO</span><span class="p">.</span><span class="n">cod_equipo</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ESTADIO</span><span class="p">.</span><span class="n">cod_equipo</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Relación</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Diagrama módelo lógico</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="img/AC314.png" data-desc-position="bottom"><img alt="" src="img/AC314.png" title=""></a>    </p>
+</li>
+</ul>
+</div>
+<p><strong>Parte 2: Tareas de Implementación (DDL)</strong></p>
+<p>Realiza un <strong>único script SQL</strong> (.sql) que resuelva secuencialmente los siguientes apartados. Comenta cada paso en el código.</p>
+<p><em>A. Creación de la Estructura Base</em></p>
+<ol>
+<li>Crea la base de datos <code>SUPERLIGA</code> y selecciónala.</li>
+<li>Crea la tabla <strong><code>ESTADIO</code></strong> con su clave primaria.</li>
+<li>Crea la tabla <strong><code>EQUIPO</code></strong>.<ul>
+<li>Define la <code>PK</code> y la restricción <code>UNIQUE</code> de nombre (<code>uk_equipo_nombre</code>).</li>
+<li><strong>IMPORTANTE:</strong> Define la Clave Ajena <code>EstadioID</code> (<code>fk_equipo_estadio</code>) <strong>dentro</strong> de la sentencia <code>CREATE TABLE</code>.</li>
+</ul>
+</li>
+<li>Crea la tabla <strong><code>JUGADOR</code></strong>, pero <strong>NO definas la Clave Ajena</strong> <code>EquipoID</code> todavía (la añadiremos después).<ul>
+<li>Define la <code>PK</code>.</li>
+<li>Define una restricción <code>CHECK</code> llamada <code>chk_jugador_dorsal</code> para asegurar que el dorsal está entre <em>1 y 99</em>.</li>
+</ul>
+</li>
+</ol>
+<p><em>B. Modificación de la Estructura (ALTER)</em></p>
+<p>El cliente te llama con nuevos requisitos. Usa sentencias <code>ALTER TABLE</code> para aplicar los cambios:</p>
+<ol start="5">
+<li><strong>Agregar Restricción Olvidada:</strong> Añade la Clave Ajena <code>EquipoID</code> a la tabla <code>JUGADOR</code> que referencia a la tabla <code>EQUIPO</code>. Dale el nombre <code>fk_jugador_equipo</code>.</li>
+<li><strong>Agregar Columna:</strong> Añade una columna <code>email</code> a la tabla <code>JUGADOR</code> (Varchar 100, único). Asegúrate de crear la restricción <code>UNIQUE</code> con nombre <code>uk_jugador_email</code>.</li>
+<li><strong>Modificar Columna:</strong> Se han dado cuenta de que algunos nombres de estadios son muy largos. Modifica la columna <code>nombre</code> de la tabla <code>ESTADIO</code> para que admita hasta 150 caracteres.</li>
+<li><strong>Añadir Validación:</strong> Añade una restricción <code>CHECK</code> a la tabla <code>EQUIPO</code> llamada <code>chk_presupuesto_positivo</code> para asegurar que el <code>presupuesto</code> sea mayor o igual a 0.</li>
+<li><strong>Eliminar Columna:</strong> La columna <code>web</code> de la tabla <code>EQUIPO</code> ya no es necesaria. Elimínala.</li>
+<li><strong>Eliminar Restricción:</strong> Elimina la restricción <code>CHECK</code> del dorsal de la tabla <code>JUGADOR</code> (<code>chk_jugador_dorsal</code>) porque han fichado a un jugador que quiere llevar el 0.</li>
+</ol>
+<p><em>C. Operaciones Destructivas</em></p>
+<ol start="11">
+<li>Crea una tabla ficticia llamada <code>PATROCINADOR</code> con un campo <code>id</code> y <code>nombre</code>.</li>
+<li>Elimina la tabla <code>PATROCINADOR</code>.</li>
+</ol>
+</details>
+<h3 id="ac315"><strong>AC315</strong><a class="headerlink" href="#ac315" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC315: El marcador en tiempo real</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h //</td>
+<td>15p</td>
+</tr>
+</tbody>
+</table>
+<p>La "Liga de Fútbol Digital" te ha contratado como Ingeniero de Datos para construir el núcleo de su nuevo sistema de estadísticas. Necesitan una base de datos robusta capaz de registrar no solo los resultados finales, sino también quién pitó el partido, qué relación jerárquica tienen los árbitros entre sí y las incidencias minuto a minuto (goles, tarjetas, lesiones) asociadas a cada jugador.</p>
+<p><strong>Parte 1: El Modelo Lógico Inicial</strong></p>
+<p>Analiza el siguiente código DBML. Presta atención a las notas sobre longitudes y tipos de datos.</p>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p>Módelo lógico</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">//</span><span class="w"> </span><span class="n">Nombre</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">Datos</span><span class="p">:</span><span class="w"> </span><span class="n">LIGA_FUTBOL</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">Table</span><span class="w"> </span><span class="n">EQUIPO</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo CHAR(3). Ej: RMA, BAR"</span><span class="p">]</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">nombreLargo</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo VARCHAR(100)"</span><span class="p">]</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="err">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">Table</span><span class="w"> </span><span class="n">JUGADOR</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="k">increment</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Entero autoincremental"</span><span class="p">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo VARCHAR(100)"</span><span class="p">]</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">FK</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="n">equipoId</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia EQUIPO. Tipo CHAR(3)"</span><span class="p">]</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="err">}</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="k">Table</span><span class="w"> </span><span class="n">ARBITRO</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="k">increment</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Entero autoincremental"</span><span class="p">]</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo VARCHAR(50)"</span><span class="p">]</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="n">nivel</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo ENUM. Valores: 'FIFA', 'NACIONAL', 'REGIONAL'"</span><span class="p">]</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">Relación</span><span class="w"> </span><span class="n">Reflexiva</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="n">arbitroMentorId</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK reflexiva hacia ARBITRO. Entero."</span><span class="p">]</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="err">}</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">Table</span><span class="w"> </span><span class="n">PARTIDO</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="k">increment</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Entero autoincremental"</span><span class="p">]</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">    </span><span class="n">fecha</span><span class="w"> </span><span class="n">fecha</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo DATETIME"</span><span class="p">]</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="n">jornada</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Entero"</span><span class="p">]</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">Roles</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="n">equipoLocalId</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia EQUIPO. Tipo CHAR(3)"</span><span class="p">]</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">    </span><span class="n">equipoVisitanteId</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia EQUIPO. Tipo CHAR(3)"</span><span class="p">]</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="n">arbitroId</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"FK hacia ARBITRO. Entero"</span><span class="p">]</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="err">}</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="k">Table</span><span class="w"> </span><span class="n">INCIDENCIA</span><span class="w"> </span><span class="err">{</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">Tabla</span><span class="w"> </span><span class="n">intermedia</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="n">partidoId</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Parte de PK. Entero"</span><span class="p">]</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">    </span><span class="n">jugadorId</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Parte de PK. Entero"</span><span class="p">]</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">    </span><span class="n">minuto</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="p">[</span><span class="n">pk</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Parte de PK. Entero"</span><span class="p">]</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">    </span><span class="n">tipo</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="p">[</span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">note</span><span class="p">:</span><span class="w"> </span><span class="ss">"Tipo VARCHAR(20). Ej: 'GOL'"</span><span class="p">]</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="err">}</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="o">//</span><span class="w"> </span><span class="n">Relaciones</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">EQUIPO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">JUGADOR</span><span class="p">.</span><span class="n">equipoId</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">ARBITRO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ARBITRO</span><span class="p">.</span><span class="n">arbitroMentorId</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">EQUIPO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">PARTIDO</span><span class="p">.</span><span class="n">equipoLocalId</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">EQUIPO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">PARTIDO</span><span class="p">.</span><span class="n">equipoVisitanteId</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">ARBITRO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">PARTIDO</span><span class="p">.</span><span class="n">arbitroId</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">PARTIDO</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">INCIDENCIA</span><span class="p">.</span><span class="n">partidoId</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="k">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">JUGADOR</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">INCIDENCIA</span><span class="p">.</span><span class="n">jugadorId</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Diagrama módelo lógico</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="img/AC315.png" data-desc-position="bottom"><img alt="" src="img/AC315.png" title=""></a>    </p>
+</li>
+</ul>
+</div>
+<p><strong>Parte 2: Tareas de Implementación (DDL)</strong></p>
+<p>Crea un <strong>único script SQL</strong> para MySQL que realice secuencialmente los siguientes pasos.</p>
+<p><em>A. Creación de Tablas (CREATE)</em></p>
+<ol>
+<li>Crea la BD <code>RESULTADOS_FUTBOL</code>.</li>
+<li>Crea las tablas <strong><code>EQUIPO</code></strong> y <strong><code>JUGADOR</code></strong> respetando los tipos indicados en las notas. En <code>JUGADOR</code>, define la FK <code>fk_jugador_equipo</code> dentro del <code>CREATE</code>.</li>
+<li>Crea la tabla <strong><code>ARBITRO</code></strong>.<ul>
+<li>Define la columna <code>arbitroMentorId</code> (nullable).</li>
+<li>Define la <strong>FK Reflexiva</strong> llamada <code>fk_arbitro_mentor</code>.</li>
+</ul>
+</li>
+<li>Crea la tabla <strong><code>PARTIDO</code></strong>.<ul>
+<li>Presta atención a las columnas <code>equipoLocalId</code> y <code>equipoVisitanteId</code> (ambas son <code>CHAR(3)</code>).</li>
+<li>Define las restricciones <code>fk_partido_local</code>, <code>fk_partido_visitante</code> y <code>fk_partido_arbitro</code>.</li>
+</ul>
+</li>
+</ol>
+<p><em>B. Modificaciones (ALTER)</em></p>
+<ol start="5">
+<li><strong>Tabla Intermedia:</strong> Crea la tabla <strong><code>INCIDENCIA</code></strong> con su PK compuesta (<code>partidoId</code>, <code>jugadorId</code>, <code>minuto</code>). <strong>NO añadas las FKs todavía</strong>.</li>
+<li><strong>Añadir FKs:</strong> Usa <code>ALTER TABLE</code> para añadir las FKs a <code>INCIDENCIA</code> con los nombres:<ul>
+<li><code>fk_incidencia_partido</code></li>
+<li><code>fk_incidencia_jugador</code></li>
+</ul>
+</li>
+<li><strong>Añadir Columna:</strong> Se ha decidido registrar el tiempo añadido. Añade la columna <code>tiempoExtra</code> (<code>INT</code>, por defecto <code>0</code>) a la tabla <code>PARTIDO</code>.</li>
+<li><strong>Modificar Columna:</strong> El campo <code>tipo</code> de la tabla <code>INCIDENCIA</code> se definió como <code>VARCHAR</code>. Modifícalo para que sea un <code>ENUM</code> con los valores: <code>'GOL'</code>, <code>'AMARILLA'</code>, <code>'ROJA'</code>, <code>'LESION'</code>.</li>
+<li><strong>Añadir Validación:</strong> Añade una restricción CHECK llamada <code>chk_jornada_valida</code> en <code>PARTIDO</code> para asegurar que la jornada está entre 1 y 38.</li>
+<li><strong>Eliminar Restricción:</strong> La federación elimina el sistema de mentores. Borra la restricción FK <code>fk_arbitro_mentor</code> de la tabla <code>ARBITRO</code>.</li>
+</ol>
 </details>
 
 
