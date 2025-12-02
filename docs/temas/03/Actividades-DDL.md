@@ -184,9 +184,12 @@
     c) Elimina la clave foránea que relaciona la tabla `Empleado` con la tabla `Departamento`.<br>
     d) Elimina la tabla `Evento` (del Ejercicio AC303.C).<br>
 
+---
+
+> Exercicios tipo examen
 
 
-### **AC312.A**
+### **AC312**
 
 ??? "Ejercicio AC312.A"
 
@@ -336,3 +339,198 @@
         - un ciclo si tiene asignaturas vinculadas.
         - un estudiante si tiene matriculas
         - una asignatura si tiene matriculas
+
+
+### **AC314**
+
+??? "Ejercicio AC314: La Superliga de Datos"
+
+    |  Criterios de Evaluación  | Ponderación |
+    | --- | --- |
+    | RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h // | 15p          |
+
+    Te han contratado como Administrador de Base de Datos (DBA) para la nueva liga de fútbol. El equipo de análisis te ha entregado el modelo lógico inicial, pero como suele pasar en los proyectos reales, los requisitos van a cambiar sobre la marcha y tendrás que adaptar la base de datos sin perder información.
+
+    **Parte 1: El Modelo Lógico Inicial**
+
+    Analiza el siguiente código DBML. Presta atención a las notas sobre longitudes y tipos de datos.
+
+    <div class="grid cards" markdown>
+
+    - Módelo lógico
+    
+        ```sql
+        // Nombre de la Base de Datos: LIGA_FUTBOL
+
+        Table EQUIPO {
+        cod_equipo char(3) [pk, note: "Código de 3 letras, ej: RMA, BAR"]
+        nombre_oficial varchar(100) [not null, unique, note: "Nombre único del club"]
+        ciudad varchar(30) [not null]
+        anio_fundacion int [null]
+        web_oficial varchar(200) [null]
+        }
+
+        Table JUGADOR {
+        dni char(9) [pk, note: "DNI con letra"]
+        nombre varchar(50) [not null]
+        apellidos varchar(50) [not null]
+        dorsal int [not null]
+        posicion enum [note: "Valores: 'PORTERO','DEFENSA','MEDIO','DELANTERO'"]
+        cod_equipo char(3) [not null, note: "FK hacia EQUIPO"]
+        }
+
+        Table ESTADIO {
+        id_estadio int [pk, increment]
+        nombre varchar(100) [not null]
+        capacidad int [not null, default: 5000]
+        cod_equipo char(3) [not null, unique, note: "FK hacia EQUIPO. Relación 1:1"]
+        }
+
+        // Relaciones
+        Ref: EQUIPO.cod_equipo < JUGADOR.cod_equipo
+        Ref: EQUIPO.cod_equipo - ESTADIO.cod_equipo // Relación 1:1
+        ```
+
+    - Diagrama módelo lógico
+        
+        ![](img/AC314.png"")    
+
+    </div>
+
+    **Parte 2: Tareas de Implementación (DDL)**
+
+    Realiza un **único script SQL** (.sql) que resuelva secuencialmente los siguientes apartados. Comenta cada paso en el código.
+
+    *A. Creación de la Estructura Base*
+
+    1.  Crea la base de datos `SUPERLIGA` y selecciónala.
+    2.  Crea la tabla **`ESTADIO`** con su clave primaria.
+    3.  Crea la tabla **`EQUIPO`**.
+        *   Define la `PK` y la restricción `UNIQUE` de nombre (`uk_equipo_nombre`).
+        *   **IMPORTANTE:** Define la Clave Ajena `EstadioID` (`fk_equipo_estadio`) **dentro** de la sentencia `CREATE TABLE`.
+    4.  Crea la tabla **`JUGADOR`**, pero **NO definas la Clave Ajena** `EquipoID` todavía (la añadiremos después).
+        *   Define la `PK`.
+        *   Define una restricción `CHECK` llamada `chk_jugador_dorsal` para asegurar que el dorsal está entre *1 y 99*.
+
+    *B. Modificación de la Estructura (ALTER)*
+
+    El cliente te llama con nuevos requisitos. Usa sentencias `ALTER TABLE` para aplicar los cambios:
+
+    5.  **Agregar Restricción Olvidada:** Añade la Clave Ajena `EquipoID` a la tabla `JUGADOR` que referencia a la tabla `EQUIPO`. Dale el nombre `fk_jugador_equipo`.
+    6.  **Agregar Columna:** Añade una columna `email` a la tabla `JUGADOR` (Varchar 100, único). Asegúrate de crear la restricción `UNIQUE` con nombre `uk_jugador_email`.
+    7.  **Modificar Columna:** Se han dado cuenta de que algunos nombres de estadios son muy largos. Modifica la columna `nombre` de la tabla `ESTADIO` para que admita hasta 150 caracteres.
+    8.  **Añadir Validación:** Añade una restricción `CHECK` a la tabla `EQUIPO` llamada `chk_presupuesto_positivo` para asegurar que el `presupuesto` sea mayor o igual a 0.
+    9.  **Eliminar Columna:** La columna `web` de la tabla `EQUIPO` ya no es necesaria. Elimínala.
+    10. **Eliminar Restricción:** Elimina la restricción `CHECK` del dorsal de la tabla `JUGADOR` (`chk_jugador_dorsal`) porque han fichado a un jugador que quiere llevar el 0.
+
+    *C. Operaciones Destructivas*
+
+    11. Crea una tabla ficticia llamada `PATROCINADOR` con un campo `id` y `nombre`.
+    12. Elimina la tabla `PATROCINADOR`.
+
+
+### **AC315**
+
+??? "Ejercicio AC315: El marcador en tiempo real"
+
+    |  Criterios de Evaluación  | Ponderación |
+    | --- | --- |
+    | RABD.2 // CE2b, CE2c, CE2d, CE2e, CE2h // | 15p          |
+
+    La "Liga de Fútbol Digital" te ha contratado como Ingeniero de Datos para construir el núcleo de su nuevo sistema de estadísticas. Necesitan una base de datos robusta capaz de registrar no solo los resultados finales, sino también quién pitó el partido, qué relación jerárquica tienen los árbitros entre sí y las incidencias minuto a minuto (goles, tarjetas, lesiones) asociadas a cada jugador.
+
+    **Parte 1: El Modelo Lógico Inicial**
+
+    Analiza el siguiente código DBML. Presta atención a las notas sobre longitudes y tipos de datos.
+
+    <div class="grid cards" markdown>
+
+    - Módelo lógico
+    
+        ```sql
+        // Nombre de la Base de Datos: LIGA_FUTBOL
+        Table EQUIPO {
+            id texto [pk, note: "Tipo CHAR(3). Ej: RMA, BAR"]
+            nombreLargo texto [not null, note: "Tipo VARCHAR(100)"]
+        }
+
+        Table JUGADOR {
+            id numero [pk, increment, note: "Entero autoincremental"]
+            nombre texto [not null, note: "Tipo VARCHAR(100)"]
+            
+            // FK
+            equipoId texto [not null, note: "FK hacia EQUIPO. Tipo CHAR(3)"]
+        }
+
+        Table ARBITRO {
+            id numero [pk, increment, note: "Entero autoincremental"]
+            nombre texto [not null, note: "Tipo VARCHAR(50)"]
+            nivel texto [note: "Tipo ENUM. Valores: 'FIFA', 'NACIONAL', 'REGIONAL'"]
+            
+            // Relación Reflexiva
+            arbitroMentorId numero [null, note: "FK reflexiva hacia ARBITRO. Entero."]
+        }
+
+        Table PARTIDO {
+            id numero [pk, increment, note: "Entero autoincremental"]
+            fecha fecha [not null, note: "Tipo DATETIME"]
+            jornada numero [not null, note: "Entero"]
+            
+            // Roles
+            equipoLocalId texto [not null, note: "FK hacia EQUIPO. Tipo CHAR(3)"]
+            equipoVisitanteId texto [not null, note: "FK hacia EQUIPO. Tipo CHAR(3)"]
+            arbitroId numero [not null, note: "FK hacia ARBITRO. Entero"]
+        }
+
+        Table INCIDENCIA {
+            // Tabla intermedia
+            partidoId numero [pk, note: "Parte de PK. Entero"]
+            jugadorId numero [pk, note: "Parte de PK. Entero"]
+            minuto numero [pk, note: "Parte de PK. Entero"]
+            tipo texto [not null, note: "Tipo VARCHAR(20). Ej: 'GOL'"]
+        }
+
+        // Relaciones
+        Ref: EQUIPO.id < JUGADOR.equipoId
+        Ref: ARBITRO.id - ARBITRO.arbitroMentorId
+        Ref: EQUIPO.id < PARTIDO.equipoLocalId
+        Ref: EQUIPO.id < PARTIDO.equipoVisitanteId
+        Ref: ARBITRO.id < PARTIDO.arbitroId
+
+        Ref: PARTIDO.id < INCIDENCIA.partidoId
+        Ref: JUGADOR.id < INCIDENCIA.jugadorId
+        ```
+
+    - Diagrama módelo lógico
+        
+        ![](img/AC315.png"")    
+
+    </div>
+
+    **Parte 2: Tareas de Implementación (DDL)**
+
+    Crea un **único script SQL** para MySQL que realice secuencialmente los siguientes pasos.
+
+    *A. Creación de Tablas (CREATE)*
+
+    1.  Crea la BD `RESULTADOS_FUTBOL`.
+    2.  Crea las tablas **`EQUIPO`** y **`JUGADOR`** respetando los tipos indicados en las notas. En `JUGADOR`, define la FK `fk_jugador_equipo` dentro del `CREATE`.
+    3.  Crea la tabla **`ARBITRO`**.
+        *   Define la columna `arbitroMentorId` (nullable).
+        *   Define la **FK Reflexiva** llamada `fk_arbitro_mentor`.
+    4.  Crea la tabla **`PARTIDO`**.
+        *   Presta atención a las columnas `equipoLocalId` y `equipoVisitanteId` (ambas son `CHAR(3)`).
+        *   Define las restricciones `fk_partido_local`, `fk_partido_visitante` y `fk_partido_arbitro`.
+
+    *B. Modificaciones (ALTER)*
+
+    5.  **Tabla Intermedia:** Crea la tabla **`INCIDENCIA`** con su PK compuesta (`partidoId`, `jugadorId`, `minuto`). **NO añadas las FKs todavía**.
+    6.  **Añadir FKs:** Usa `ALTER TABLE` para añadir las FKs a `INCIDENCIA` con los nombres:
+        *   `fk_incidencia_partido`
+        *   `fk_incidencia_jugador`
+    7.  **Añadir Columna:** Se ha decidido registrar el tiempo añadido. Añade la columna `tiempoExtra` (`INT`, por defecto `0`) a la tabla `PARTIDO`.
+    8.  **Modificar Columna:** El campo `tipo` de la tabla `INCIDENCIA` se definió como `VARCHAR`. Modifícalo para que sea un `ENUM` con los valores: `'GOL'`, `'AMARILLA'`, `'ROJA'`, `'LESION'`.
+    9.  **Añadir Validación:** Añade una restricción CHECK llamada `chk_jornada_valida` en `PARTIDO` para asegurar que la jornada está entre 1 y 38.
+    10. **Eliminar Restricción:** La federación elimina el sistema de mentores. Borra la restricción FK `fk_arbitro_mentor` de la tabla `ARBITRO`.
+
+
