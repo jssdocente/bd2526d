@@ -76,4 +76,4 @@ La startup ha recibido una ronda de inversión y necesita profesionalizar la bas
     - Una vez entregado el pedido, el `USUARIO` puede dejar una valoración (estrellas y comentario).
     - La valoración va asociada al `PEDIDO` concreto (para saber si llegó frío, por ejemplo).
 
-> ▶️ Genera el nuevo diagrama E/R completo utilizando **Mermaid** o **[dbdiagram.io](https://dbdiagram.io/)**. Asegúrate de resolver la relación N:M entre Pedido y Platos mediante una entidad intermedia/asociativa.
+> ▶️ Genera el nuevo diagrama E/R completo.
