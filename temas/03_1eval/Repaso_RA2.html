@@ -1232,10 +1232,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-modificacion-de-tablas-alter-table" class="md-nav__link">
+  <a href="#5-tabla-resumen-ddl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Modificación de Tablas (ALTER TABLE)
+        5. Tabla Resumen DDL
       
     </span>
   </a>
@@ -1247,39 +1247,6 @@
     <span class="md-ellipsis">
       
         6. Otros conceptos importantes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#borrado-drop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🗑️ Borrado (DROP)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vistas-create-view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        👁️ Vistas (CREATE VIEW)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#diccionario-de-datos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📜 Diccionario de Datos
       
     </span>
   </a>
@@ -1398,10 +1365,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-modificacion-de-tablas-alter-table" class="md-nav__link">
+  <a href="#5-tabla-resumen-ddl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Modificación de Tablas (ALTER TABLE)
+        5. Tabla Resumen DDL
       
     </span>
   </a>
@@ -1413,39 +1380,6 @@
     <span class="md-ellipsis">
       
         6. Otros conceptos importantes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#borrado-drop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🗑️ Borrado (DROP)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vistas-create-view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        👁️ Vistas (CREATE VIEW)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#diccionario-de-datos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📜 Diccionario de Datos
       
     </span>
   </a>
@@ -1681,36 +1615,134 @@ En Windows, los nombres de tablas suelen ser insensibles a mayúsculas. En <stro
 </li>
 </ul>
 <hr>
-<h3 id="5-modificacion-de-tablas-alter-table">5. Modificación de Tablas (<code>ALTER TABLE</code>)<a class="headerlink" href="#5-modificacion-de-tablas-alter-table" title="Permanent link">¶</a></h3>
-<p>Usamos <code>ALTER</code> cuando la tabla ya existe y queremos cambiar su estructura.</p>
+<h3 id="5-tabla-resumen-ddl">5. Tabla Resumen DDL<a class="headerlink" href="#5-tabla-resumen-ddl" title="Permanent link">¶</a></h3>
+<p><strong>Intrucción CREATE (Creación)</strong></p>
+<p>Se utiliza para definir nuevos objetos. Lo más importante es saber definir los tipos de datos y, sobre todo, las restricciones con nombre personalizado.</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Acción</th>
-<th style="text-align: left;">Sintaxis</th>
-<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Sintaxis / Descripción</th>
+<th style="text-align: left;">Ejemplo Práctico</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Añadir columna</strong></td>
-<td style="text-align: left;"><code>ADD COLUMN email VARCHAR(50)</code></td>
-<td style="text-align: left;">Agrega un campo nuevo.</td>
+<td style="text-align: left;"><strong>Crear Base de Datos</strong></td>
+<td style="text-align: left;"><code>CREATE DATABASE [IF NOT EXISTS] nombre;</code></td>
+<td style="text-align: left;"><code>CREATE DATABASE TIENDA_DB;</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Borrar columna</strong></td>
-<td style="text-align: left;"><code>DROP COLUMN email</code></td>
-<td style="text-align: left;">Elimina campo y sus datos (¡Peligro!).</td>
+<td style="text-align: left;"><strong>Crear Tabla Básica</strong></td>
+<td style="text-align: left;"><code>CREATE TABLE nombre_tabla (columnas...);</code></td>
+<td style="text-align: left;"><code>CREATE TABLE PRODUCTO (id INT, nombre VARCHAR(50));</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Modificar tipo</strong></td>
-<td style="text-align: left;"><code>MODIFY COLUMN email TEXT</code></td>
-<td style="text-align: left;">Cambia el tipo o propiedades.</td>
+<td style="text-align: left;"><strong>PK (Simple)</strong></td>
+<td style="text-align: left;">Definir clave primaria al crear la columna o al final.</td>
+<td style="text-align: left;"><code>id INT AUTO_INCREMENT PRIMARY KEY</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PK (Compuesta)</strong></td>
+<td style="text-align: left;">Obligatorio definirla al final de la tabla.</td>
+<td style="text-align: left;"><code>PRIMARY KEY (pedido_id, producto_id)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Restricciones de Columna</strong></td>
+<td style="text-align: left;">Reglas directas: <code>NOT NULL</code>, <code>DEFAULT</code>, <code>UNIQUE</code>.</td>
+<td style="text-align: left;"><code>precio DECIMAL(10,2) NOT NULL DEFAULT 0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constraint: UNIQUE</strong></td>
+<td style="text-align: left;">Crear restricción de unicidad con <strong>nombre</strong>.</td>
+<td style="text-align: left;"><code>CONSTRAINT uk_usuario_email UNIQUE (email)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constraint: CHECK</strong></td>
+<td style="text-align: left;">Validar condiciones lógicas (MySQL 8.0+).</td>
+<td style="text-align: left;"><code>CONSTRAINT chk_edad_minima CHECK (edad &gt;= 18)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constraint: FK (Básica)</strong></td>
+<td style="text-align: left;">Clave Foránea apuntando a otra tabla.</td>
+<td style="text-align: left;"><code>CONSTRAINT fk_prod_cat FOREIGN KEY (cat_id) REFERENCES CATEGORIA(id)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constraint: FK (Avanzada)</strong></td>
+<td style="text-align: left;">FK con reglas de borrado/actualización (<code>CASCADE</code>, <code>SET NULL</code>, <code>RESTRICT</code>).</td>
+<td style="text-align: left;"><code>CONSTRAINT fk_hijo_padre FOREIGN KEY (padre_id) REFERENCES PADRE(id) ON DELETE CASCADE ON UPDATE CASCADE</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo completo <code>CREATE</code>:</strong>
+</p><div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">USUARIO</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">nick</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">grupo_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uk_usuario_nick</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">nick</span><span class="p">),</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_mayor_edad</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">),</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_usuario_grupo</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">grupo_id</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">GRUPO</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">);</span>
+</span></code></pre></div><p></p>
+<hr>
+<p><strong>Intrucción ALTER (Modificación)</strong></p>
+<p>Se usa cuando la tabla ya existe y necesitamos cambiar su estructura. Es vital distinguir entre columnas y constraints.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Acción</th>
+<th style="text-align: left;">Sintaxis / Descripción</th>
+<th style="text-align: left;">Ejemplo Práctico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Añadir Columna</strong></td>
+<td style="text-align: left;"><code>ADD COLUMN nombre tipo [atributos];</code></td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO ADD COLUMN email VARCHAR(100) UNIQUE;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modificar Columna</strong></td>
+<td style="text-align: left;"><code>MODIFY COLUMN nombre nuevo_tipo [atributos];</code> <br><em>(Cambia tipo, longitud o nulidad)</em></td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO MODIFY COLUMN nick VARCHAR(50) NOT NULL;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Renombrar Columna</strong></td>
+<td style="text-align: left;"><code>CHANGE COLUMN viejo nuevo nuevo_tipo;</code></td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO CHANGE COLUMN nick apodo VARCHAR(50);</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Renombrar/Cambiar</strong></td>
 <td style="text-align: left;"><code>CHANGE email nuevo_email VARCHAR(50)</code></td>
 <td style="text-align: left;">Renombra Y cambia el tipo a la vez.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Renombrar Tabla</strong></td>
+<td style="text-align: left;"><code>RENAME TO nueva_tabla</code></td>
+<td style="text-align: left;">Cambia el nombre de la tabla entera.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modificar tipo columna</strong></td>
+<td style="text-align: left;"><code>MODIFY COLUMN email TEXT</code></td>
+<td style="text-align: left;">Cambia el tipo o propiedades.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar Columna</strong></td>
+<td style="text-align: left;"><code>DROP COLUMN nombre;</code></td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO DROP COLUMN edad;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Añadir PK</strong></td>
+<td style="text-align: left;">Si la tabla no tenía PK.</td>
+<td style="text-align: left;"><code>ALTER TABLE TABLA ADD PRIMARY KEY (id);</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Añadir FK</strong></td>
+<td style="text-align: left;">Agregar relación a tabla existente.</td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO ADD CONSTRAINT fk_user_pais FOREIGN KEY (pais_id) REFERENCES PAIS(id);</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Añadir Constraint</strong></td>
@@ -1723,26 +1755,70 @@ En Windows, los nombres de tablas suelen ser insensibles a mayúsculas. En <stro
 <td style="text-align: left;">Elimina la regla.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Renombrar Tabla</strong></td>
-<td style="text-align: left;"><code>RENAME TO nueva_tabla</code></td>
-<td style="text-align: left;">Cambia el nombre de la tabla entera.</td>
+<td style="text-align: left;"><strong>Añadir UNIQUE</strong></td>
+<td style="text-align: left;">Agregar restricción de unicidad.</td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO ADD CONSTRAINT uk_email UNIQUE (email);</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar FK</strong></td>
+<td style="text-align: left;">Se usa <code>DROP FOREIGN KEY</code> + nombre del constraint.</td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO DROP FOREIGN KEY fk_user_pais;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar UNIQUE/Index</strong></td>
+<td style="text-align: left;">Se usa <code>DROP INDEX</code> + nombre del constraint.</td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO DROP INDEX uk_email;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar CHECK</strong></td>
+<td style="text-align: left;">Se usa <code>DROP CHECK</code> (MySQL 8.0+).</td>
+<td style="text-align: left;"><code>ALTER TABLE USUARIO DROP CHECK chk_mayor_edad;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>Intrucción DROP (Eliminación)</strong></p>
+<p>Cuidado: estas acciones son destructivas y borran tanto la estructura como los datos.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Acción</th>
+<th style="text-align: left;">Sintaxis / Descripción</th>
+<th style="text-align: left;">Ejemplo Práctico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Eliminar Base de Datos</strong></td>
+<td style="text-align: left;">Borra la BD completa.</td>
+<td style="text-align: left;"><code>DROP DATABASE IF EXISTS TIENDA_DB;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar Tabla</strong></td>
+<td style="text-align: left;">Borra la tabla y sus datos.</td>
+<td style="text-align: left;"><code>DROP TABLE IF EXISTS USUARIO;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Eliminar varias Tablas</strong></td>
+<td style="text-align: left;">Borra múltiples tablas a la vez (útil por dependencias).</td>
+<td style="text-align: left;"><code>DROP TABLE TABLA_HIJA, TABLA_PADRE;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Truncar Tabla</strong></td>
+<td style="text-align: left;"><strong>NO</strong> es DROP, pero vacía datos manteniendo estructura.</td>
+<td style="text-align: left;"><code>TRUNCATE TABLE USUARIO;</code></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h3 id="6-otros-conceptos-importantes">6. Otros conceptos importantes<a class="headerlink" href="#6-otros-conceptos-importantes" title="Permanent link">¶</a></h3>
-<h3 id="borrado-drop">🗑️ Borrado (<code>DROP</code>)<a class="headerlink" href="#borrado-drop" title="Permanent link">¶</a></h3>
-<ul>
-<li><code>DROP TABLE empleados;</code> -&gt; Elimina estructura y datos. Irreversible.</li>
-<li>Orden de borrado: Primero las tablas hijas (las que tienen la FK), luego las padres.</li>
-</ul>
-<h3 id="vistas-create-view">👁️ Vistas (<code>CREATE VIEW</code>)<a class="headerlink" href="#vistas-create-view" title="Permanent link">¶</a></h3>
+<h4 id="vistas-create-view">👁️ Vistas (<code>CREATE VIEW</code>)<a class="headerlink" href="#vistas-create-view" title="Permanent link">¶</a></h4>
 <ul>
 <li>Tablas virtuales basadas en una consulta <code>SELECT</code>.</li>
 <li>No almacenan datos físicos, solo la definición.</li>
 <li>Útiles para simplificar consultas complejas o por seguridad (ocultar columnas).</li>
 </ul>
-<h3 id="diccionario-de-datos">📜 Diccionario de Datos<a class="headerlink" href="#diccionario-de-datos" title="Permanent link">¶</a></h3>
+<h4 id="diccionario-de-datos">📜 Diccionario de Datos<a class="headerlink" href="#diccionario-de-datos" title="Permanent link">¶</a></h4>
 <ul>
 <li>Es donde el SGBD guarda la información sobre la estructura (metadatos).</li>
 <li>Comando útil: <code>SHOW CREATE TABLE nombre_tabla;</code> (te da el código exacto para recrear la tabla).</li>
