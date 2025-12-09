@@ -144,32 +144,84 @@ CONSTRAINT fk_pedido_cliente FOREIGN KEY (id_cliente)
 
 ---
 
-### 5. Modificación de Tablas (`ALTER TABLE`)
-Usamos `ALTER` cuando la tabla ya existe y queremos cambiar su estructura.
+### 5. Tabla Resumen DDL
 
-| Acción | Sintaxis | Descripción |
+**Intrucción CREATE (Creación)**
+
+Se utiliza para definir nuevos objetos. Lo más importante es saber definir los tipos de datos y, sobre todo, las restricciones con nombre personalizado.
+
+| Acción | Sintaxis / Descripción | Ejemplo Práctico |
 | :--- | :--- | :--- |
-| **Añadir columna** | `ADD COLUMN email VARCHAR(50)` | Agrega un campo nuevo. |
-| **Borrar columna** | `DROP COLUMN email` | Elimina campo y sus datos (¡Peligro!). |
-| **Modificar tipo** | `MODIFY COLUMN email TEXT` | Cambia el tipo o propiedades. |
-| **Renombrar/Cambiar**| `CHANGE email nuevo_email VARCHAR(50)` | Renombra Y cambia el tipo a la vez. |
-| **Añadir Constraint**| `ADD CONSTRAINT uk_email UNIQUE(email)` | Añade reglas (PK, FK, Check...). |
-| **Borrar Constraint**| `DROP CONSTRAINT nombre_constraint` | Elimina la regla. |
+| **Crear Base de Datos** | `CREATE DATABASE [IF NOT EXISTS] nombre;` | `CREATE DATABASE TIENDA_DB;` |
+| **Crear Tabla Básica** | `CREATE TABLE nombre_tabla (columnas...);` | `CREATE TABLE PRODUCTO (id INT, nombre VARCHAR(50));` |
+| **PK (Simple)** | Definir clave primaria al crear la columna o al final. | `id INT AUTO_INCREMENT PRIMARY KEY` |
+| **PK (Compuesta)** | Obligatorio definirla al final de la tabla. | `PRIMARY KEY (pedido_id, producto_id)` |
+| **Restricciones de Columna** | Reglas directas: `NOT NULL`, `DEFAULT`, `UNIQUE`. | `precio DECIMAL(10,2) NOT NULL DEFAULT 0` |
+| **Constraint: UNIQUE** | Crear restricción de unicidad con **nombre**. | `CONSTRAINT uk_usuario_email UNIQUE (email)` |
+| **Constraint: CHECK** | Validar condiciones lógicas (MySQL 8.0+). | `CONSTRAINT chk_edad_minima CHECK (edad >= 18)` |
+| **Constraint: FK (Básica)** | Clave Foránea apuntando a otra tabla. | `CONSTRAINT fk_prod_cat FOREIGN KEY (cat_id) REFERENCES CATEGORIA(id)` |
+| **Constraint: FK (Avanzada)** | FK con reglas de borrado/actualización (`CASCADE`, `SET NULL`, `RESTRICT`). | `CONSTRAINT fk_hijo_padre FOREIGN KEY (padre_id) REFERENCES PADRE(id) ON DELETE CASCADE ON UPDATE CASCADE` |
+
+**Ejemplo completo `CREATE`:**
+```sql
+CREATE TABLE USUARIO (
+    id INT AUTO_INCREMENT,
+    nick VARCHAR(20) NOT NULL,
+    edad INT,
+    grupo_id INT,
+    PRIMARY KEY (id),
+    CONSTRAINT uk_usuario_nick UNIQUE (nick),
+    CONSTRAINT chk_mayor_edad CHECK (edad >= 18),
+    CONSTRAINT fk_usuario_grupo FOREIGN KEY (grupo_id) 
+        REFERENCES GRUPO(id) ON DELETE SET NULL
+);
+```
+
+---
+**Intrucción ALTER (Modificación)**
+
+Se usa cuando la tabla ya existe y necesitamos cambiar su estructura. Es vital distinguir entre columnas y constraints.
+
+| Acción | Sintaxis / Descripción | Ejemplo Práctico |
+| :--- | :--- | :--- |
+| **Añadir Columna** | `ADD COLUMN nombre tipo [atributos];` | `ALTER TABLE USUARIO ADD COLUMN email VARCHAR(100) UNIQUE;` |
+| **Modificar Columna** | `MODIFY COLUMN nombre nuevo_tipo [atributos];` <br>*(Cambia tipo, longitud o nulidad)* | `ALTER TABLE USUARIO MODIFY COLUMN nick VARCHAR(50) NOT NULL;` |
+| **Renombrar Columna** | `CHANGE COLUMN viejo nuevo nuevo_tipo;` | `ALTER TABLE USUARIO CHANGE COLUMN nick apodo VARCHAR(50);` |
+| **Renombrar/Cambiar**| `CHANGE email nuevo_email VARCHAR(50)` | Renombra Y cambia el tipo a la vez. | |
 | **Renombrar Tabla** | `RENAME TO nueva_tabla` | Cambia el nombre de la tabla entera. |
+| **Modificar tipo columna** | `MODIFY COLUMN email TEXT` | Cambia el tipo o propiedades. | |
+| **Eliminar Columna** | `DROP COLUMN nombre;` | `ALTER TABLE USUARIO DROP COLUMN edad;` | |
+| **Añadir PK** | Si la tabla no tenía PK. | `ALTER TABLE TABLA ADD PRIMARY KEY (id);` |
+| **Añadir FK** | Agregar relación a tabla existente. | `ALTER TABLE USUARIO ADD CONSTRAINT fk_user_pais FOREIGN KEY (pais_id) REFERENCES PAIS(id);` |
+| **Añadir Constraint**| `ADD CONSTRAINT uk_email UNIQUE(email)` | Añade reglas (PK, FK, Check...). | |
+| **Borrar Constraint**| `DROP CONSTRAINT nombre_constraint` | Elimina la regla. | | 
+| **Añadir UNIQUE** | Agregar restricción de unicidad. | `ALTER TABLE USUARIO ADD CONSTRAINT uk_email UNIQUE (email);` |
+| **Eliminar FK** | Se usa `DROP FOREIGN KEY` + nombre del constraint. | `ALTER TABLE USUARIO DROP FOREIGN KEY fk_user_pais;` |
+| **Eliminar UNIQUE/Index** | Se usa `DROP INDEX` + nombre del constraint. | `ALTER TABLE USUARIO DROP INDEX uk_email;` |
+| **Eliminar CHECK** | Se usa `DROP CHECK` (MySQL 8.0+). | `ALTER TABLE USUARIO DROP CHECK chk_mayor_edad;` |
+
+---
+
+**Intrucción DROP (Eliminación)**
+
+Cuidado: estas acciones son destructivas y borran tanto la estructura como los datos.
+
+| Acción | Sintaxis / Descripción | Ejemplo Práctico |
+| :--- | :--- | :--- |
+| **Eliminar Base de Datos** | Borra la BD completa. | `DROP DATABASE IF EXISTS TIENDA_DB;` |
+| **Eliminar Tabla** | Borra la tabla y sus datos. | `DROP TABLE IF EXISTS USUARIO;` |
+| **Eliminar varias Tablas** | Borra múltiples tablas a la vez (útil por dependencias). | `DROP TABLE TABLA_HIJA, TABLA_PADRE;` |
+| **Truncar Tabla** | **NO** es DROP, pero vacía datos manteniendo estructura. | `TRUNCATE TABLE USUARIO;` |
 
 ---
 
 ### 6. Otros conceptos importantes
 
-### 🗑️ Borrado (`DROP`)
-*   `DROP TABLE empleados;` -> Elimina estructura y datos. Irreversible.
-*   Orden de borrado: Primero las tablas hijas (las que tienen la FK), luego las padres.
-
-### 👁️ Vistas (`CREATE VIEW`)
+#### 👁️ Vistas (`CREATE VIEW`)
 *   Tablas virtuales basadas en una consulta `SELECT`.
 *   No almacenan datos físicos, solo la definición.
 *   Útiles para simplificar consultas complejas o por seguridad (ocultar columnas).
 
-### 📜 Diccionario de Datos
+#### 📜 Diccionario de Datos
 *   Es donde el SGBD guarda la información sobre la estructura (metadatos).
 *   Comando útil: `SHOW CREATE TABLE nombre_tabla;` (te da el código exacto para recrear la tabla).
