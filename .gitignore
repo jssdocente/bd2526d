@@ -3,3 +3,4 @@ site/
 docs_bck/
 _bck/
 .DS_Store*
+**/temas/04/.support/*

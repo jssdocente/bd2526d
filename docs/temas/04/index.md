@@ -260,9 +260,17 @@ A continuación se muestran ejemplos detallados de cada operación. Utilizaremos
 
 Estas operaciones forman la base teórica de cómo las bases de datos relacionales manipulan los datos y son fundamentales para comprender el funcionamiento de lenguajes como SQL.
 
-### Consultas SQL
+## Consultas SQL
 
-En el tema anterior estudiamos tanto la parte DDL del lenguaje. En este tema y las siguientes nos vamos a centrar en las consultas, que formarían parte de DML, y más en concreto de DQL (_Data Query Language_). Para ello, utilizaremos la sentencia `SELECT` definiendo consultas que pueden ocupar una línea o varias decenas, que acceden a una única tabla (o vista), o a múltiples tablas combinadas mediante el uso de _joins_, e incluso que utiliza diversos esquemas dentro de la misma base de datos.
+!!! info "Preparando los datos"
+
+    La base de datos que vamos a utilizar a lo largo de los apuntes gestiona la liga de futbol.
+
+    ![liga_futbol](res/ligaER.png)
+    
+    A partir del [script DDL](res/liga_futbol.sql) puedes importar los datos a través de DbBearer o cualquier otro gestor de base de datos.
+
+En el tema anterior estudiamos la parte DDL del lenguaje. En este tema y las siguientes nos vamos a centrar en las consultas, que formarían parte de DML, y más en concreto de DQL (_Data Query Language_). Para ello, utilizaremos la sentencia `SELECT` definiendo consultas que pueden ocupar una línea o varias decenas, que acceden a una única tabla (o vista), o a múltiples tablas combinadas mediante el uso de _joins_, e incluso que utiliza diversos esquemas dentro de la misma base de datos.
 
 Así pues, entremos en detalle en la sentencia **`SELECT ... FROM`**. Su sintaxis completa, con las opciones más frecuentes, tanto para [MariaDB](https://mariadb.com/kb/en/select/) como para _PostgreSQL_ es:
 
@@ -626,6 +634,24 @@ SELECT nombre, FORMAT(presupuesto, 2) FROM Equipo LIMIT 3;
 
 También podemos emplear funciones para [encriptar o comprimir](https://mariadb.com/kb/en/encryption-hashing-and-compression-functions/), así como para trabajar con [coordenadas geográficas](https://mariadb.com/kb/en/geographic-functions/).
 
+!!! info "Resumen de funciones"
+
+    | Función | Descripción | Ejemplo |
+    | :--- | :--- | :--- |
+    | `COUNT(*)` / `COUNT(expr)` | Cuenta filas totales o no nulas de una expresión | `COUNT(*)` |
+    | `SUM(col)` | Suma los valores de una columna numérica | `SUM(peso)` |
+    | `AVG(col)` | Calcula el promedio | `AVG(altura)` |
+    | `MAX(col)` / `MIN(col)` | Obtiene el valor máximo o mínimo | `MAX(presupuesto)` |
+    | `CONCAT(s1, s2)` | Une cadenas de texto | `CONCAT(nombre, ' ', apellido)` |
+    | `UPPER(s)` / `LOWER(s)` | Convierte a mayúsculas o minúsculas | `UPPER(nombre)` |
+    | `LENGTH(s)` / `CHAR_LENGTH(s)` | Obtiene la longitud de la cadena | `LENGTH(nombre)` |
+    | `NOW()` / `CURDATE()` | Obtiene fecha/hora actual o solo fecha | `NOW()` |
+    | `TIMESTAMPDIFF(unit, d1, d2)` | Diferencia entre fechas en la unidad dada | `TIMESTAMPDIFF(YEAR, nac, CURDATE())` |
+    | `IFNULL(val, default)` | Si es nulo devuelve default, si no el valor | `IFNULL(mentorID, 'Sin Mentor')` |
+    | `COALESCE(val1, val2...)` | Devuelve el primer valor no nulo | `COALESCE(tel, movil, 'Sin contacto')` |
+    | `ROUND(num, dec)` | Redondea un número a `dec` decimales | `ROUND(altura, 2)` |
+
+
 
 ### Ordenando y Limitando
 
@@ -897,7 +923,7 @@ SELECT nombre, altura, peso FROM Jugador WHERE (posicion='Delantero' OR posicion
 | Mikel | 1.91 | 85 |
 | Rafa | 1.91 | 86 |
 
-Prioridad de los operadores
+##### Prioridad de los operadores
 
 Conviene recordar la [prioridad de los operadores](https://mariadb.com/kb/en/operator-precedence/) a la hora de evaluar una expresión:
 
@@ -910,8 +936,24 @@ Conviene recordar la [prioridad de los operadores](https://mariadb.com/kb/en/ope
 - `AND`.
 - `OR`.
 
+!!! info "Cuadro resumen SELECT"
 
-## Uniendo Tablas
+    | Opción | Descripción | Ejemplo |
+    | :--- | :--- | :--- |
+    | `DISTINCT` | Elimina filas duplicadas del resultado | `SELECT DISTINCT posicion ...` |
+    | `AS` | Define un alias para una columna o tabla | `SELECT nombre AS Nombre_Completo ...` |
+    | `CASE` | Estructura condicional if/else dentro de la proyección | `CASE WHEN esActiva THEN 'En Curso' ELSE 'Finalizada' END` |
+    | `ORDER BY` | Ordena los resultados por una o más columnas | `ORDER BY añoFundacion DESC` |
+    | `LIMIT` | Restringe el número de filas devueltas | `LIMIT 5` o `LIMIT 5 OFFSET 10` |
+    | `WHERE` | Filtra filas basándose en una condición | `WHERE altura > 1.90` |
+    | `BETWEEN` | Comprueba si un valor está dentro de un rango | `WHERE añoFundacion BETWEEN 1900 AND 1920` |
+    | `IN` | Comprueba si un valor coincide con una lista | `WHERE ciudad IN ('Madrid', 'Sevilla')` |
+    | `LIKE` | Busca un patrón de texto (`%` = varios, `_` = uno) | `WHERE nombre LIKE 'J%'` |
+    | `REGEXP` | Busca patrones complejos con expresiones regulares | `WHERE nombre REGEXP '^[AEIOU]'` |
+    | `IS NULL` | Comprueba si un valor es nulo | `WHERE mentorID IS NULL` |
+    | `AND` / `OR` / `NOT` | Conecta o niega condiciones lógicas | `WHERE (pos='Portero' OR pos='Defensa') AND altura > 1.90` |
+
+## **Uniendo Tablas**
 
 Hasta ahora nos hemos dedicaod a realizar consultas sobre uno o más atributos de una determinada tabla. El modelo relacional se basa en la relación de una o más tablas, y por lo tanto, necesitamos de un mecanismo que nos permite obtener información de tablas que están relacionadas.
 
@@ -950,7 +992,7 @@ Otra forma de expresar lo mismo es mediante `cross join`:
 SELECT NomEmp, NomDep FROM empleado CROSS JOIN departamento;
 ```
 
-### Composición interna
+### Composición interna (INNER JOIN)
 
 La operación `[INNER] JOIN` combina registros de dos tablas siempre que existan valores coincidentes en un campo común (clave ajena con clave primaria). Para ello, se indica una tabla seguida (opcionalmente con el prefijo `INNER`) de `JOIN` con la segunda tabla, y tras `ON`, igualamos la clave ajena con la primaria:
 
@@ -986,6 +1028,10 @@ En versiones antiguas de SQL era más común indicar las [tablas separadas por c
 
 ```sql
 --- SQL 86 (ejemplo de sintaxis antigua);
+SELECT NomEmp, NomDep 
+FROM empleado e, departamento d 
+WHERE e.CodDep=d.CodDep;
+
 --- SQL 92 (ejemplo de sintaxis moderna); 
 SELECT NomEmp, NomDep 
 FROM empleado e JOIN departamento d ON e.CodDep=d.CodDep;
@@ -994,7 +1040,8 @@ FROM empleado e JOIN departamento d ON e.CodDep=d.CodDep;
 Cuando coincide el nombre de los atributos podemos emplear la cláusula `USING (listaDeColumnas)` para simplificar la consulta:
 
 ```sql
-SELECT j.nombre, e.nombre FROM Jugador j JOIN Equipo e USING(id) LIMIT 3;
+SELECT j.nombre, e.nombre FROM Jugador j JOIN Equipo e 
+USING(id) LIMIT 3;
 ```
 
 | nombre | nombre |
@@ -1023,7 +1070,7 @@ SELECT j.nombre, e.nombre FROM Jugador j NATURAL JOIN Equipo e LIMIT 3;
 
 > **Nota**: Al igual que con `USING`, `NATURAL JOIN` une por columnas con el mismo nombre (`id` en este caso). El resultado es sintácticamente correcto pero semánticamente erróneo para nuestra lógica de negocio.
 
-#### Consultas sobre varias tablas
+#### Consultas sobre varias tablas (JOIN)
 
 Cuando necesitamos información que está en diferentes tablas, o necesitamos que los datos obtenidos dependan de las relaciones en las que participan, deberemos emparejar los campos que han de tener valores iguales (FKs con PKs)
 
@@ -1187,7 +1234,9 @@ SELECT j.nombre, p.codigo, ep.goles FROM Jugador j LEFT JOIN EstadisticaPartido 
 Pero ¿cómo lo solucionamos? Primero vamos a unir los partidos y estadísticas, y luego hacemos el _join_ por la derecha con todos los jugadores:
 
 ```sql
-SELECT j.nombre, p.codigo, ep.goles FROM Jugador j RIGHT JOIN EstadisticaPartido ep ON j.id = ep.jugadorID LEFT JOIN Partido p ON ep.partidoID = p.id;
+SELECT j.nombre, p.codigo, ep.goles 
+FROM Jugador j RIGHT JOIN EstadisticaPartido ep ON j.id = ep.jugadorID 
+LEFT JOIN Partido p ON ep.partidoID = p.id;
 ```
 
 | nombre | codigo | goles |
@@ -1199,7 +1248,9 @@ SELECT j.nombre, p.codigo, ep.goles FROM Jugador j RIGHT JOIN EstadisticaPartido
 Veamos otro ejemplo. Ahora quiero recuperar todas las estadísticas, y si lo hay, el jugador al que pertenecen. En este caso, pongo a la izquierda las estadísticas y hago dos _left joins_:
 
 ```sql
-SELECT j.nombre, ep.goles FROM EstadisticaPartido ep LEFT JOIN Jugador j ON ep.jugadorID = j.id LIMIT 3;
+SELECT j.nombre, ep.goles FROM EstadisticaPartido ep 
+LEFT JOIN Jugador j ON ep.jugadorID = j.id 
+LIMIT 3;
 ```
 
 | nombre | goles |
@@ -1281,6 +1332,17 @@ UNION
 SELECT * FROM t1 RIGHT JOIN t2 ON t1.id = t2.id
 ```
 
+!!! info "Resumen de Joins"
+
+    | Tipo de Join | Descripción | Ejemplo |
+    | :--- | :--- | :--- |
+    | `CROSS JOIN` | Producto cartesiano (combina todas las filas de A con todas las de B) | `Equipo CROSS JOIN Entrenador` |
+    | `INNER JOIN` | Devuelve sólo las filas donde hay coincidencia en ambas tablas | `Jugador JOIN Equipo ON ...` |
+    | `NATURAL JOIN` | Join automático (`INNER`) por columnas con el mismo nombre | `Jugador NATURAL JOIN Equipo` |
+    | `LEFT JOIN` | Devuelve todas las filas de la izquierda (A), y las coincidentes de la derecha (B) o NULL | `Jugador LEFT JOIN Estadistica ...` |
+    | `RIGHT JOIN` | Devuelve todas las filas de la derecha (B), y las coincidentes de la izquierda (A) o NULL | `Estadistica RIGHT JOIN Jugador ...` |
+
+
 ### Operadores de conjuntos
 
 Los operadores de conjuntos no operan sobre tipos de datos simples, sino sobre los resultados de dos o más consultas, las cuales deben tener la misma estructura, es decir, que la cantidad y los tipos de datos deben ser los mismos.
@@ -1292,9 +1354,7 @@ Los operadores de conjuntos son:
 - [`INTERSECT`](https://mariadb.com/kb/en/intersect/): Devuelve la intersección entre los dos conjuntos de filas.
 - [`EXCEPT`](https://mariadb.com/kb/en/except/): Devuelve todas aquellas filas de la primera consulta que no estén en la segunda.
 
-![](images/06union.png "Operadores de conjuntos")
-
-Operadores de conjuntos - https://jsmshaktisingh.medium.com/set-theory-for-sql-joins-9739b6943eb3
+![](img/06union.png "Operadores de conjuntos"){ align="center" }
 
 Veamos unos ejemplos sobre:
 
@@ -1303,11 +1363,3 @@ SELECT nombre FROM Equipo
 UNION 
 SELECT nombre FROM Estadio LIMIT 5;
 ```
-
-| nombre |
-| :--- |
-| Real Madrid CF |
-| FC Barcelona |
-| Atletico de Madrid |
-| Athletic Club |
-| Real Sociedad |
