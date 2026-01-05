@@ -29,6 +29,12 @@ nav:
       - "Activd.Repaso UT2ABC": "temas/03_1eval/UT2.abc_Actividades-Repaso.md"
     - "UT3":
       - "Resumen": "temas/03_1eval/Repaso_RA2.md"
+  - "04 - DML: Consultas Básicas": 
+    - "Inicio": temas/04/index.md
+    - "Actividades": temas/04/actividades.md
+  - "05 - DML: Consultas Avanzadas": 
+    - "Inicio": temas/05/index.md
+    - "Actividades": temas/05/actividades.md  
 
     # - "2.2 Restricciones": temas/02/2.2-Restricciones.md
     # - "2.3 Modelo Extendido": temas/02/2.3-Modelo-extendido.md
