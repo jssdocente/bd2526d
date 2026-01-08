@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dml-consultas-basicas" class="md-skip">
+        <a href="#sql-dml-consultas-basicas" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -1177,7 +1177,7 @@
   <span class="md-ellipsis">
     
   
-    04 - DML: Consultas Básicas
+    04 - SQL (DML): Consultas Básicas
   
 
     
@@ -1193,7 +1193,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    04 - DML: Consultas Básicas
+    04 - SQL (DML): Consultas Básicas
   
 
           </label>
@@ -1412,6 +1412,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1745,6 +1756,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1791,7 +1813,7 @@
         <a href="index.html" class="md-path__link">
           
   <span class="md-ellipsis">
-    04 - DML: Consultas Básicas
+    04 - SQL (DML): Consultas Básicas
   </span>
 
         </a>
@@ -1810,7 +1832,7 @@
 
 
 
-<h1 id="dml-consultas-basicas"><strong>DML. Consultas Básicas</strong><a class="headerlink" href="#dml-consultas-basicas" title="Permanent link">¶</a></h1>
+<h1 id="sql-dml-consultas-basicas"><strong>SQL (DML). Consultas Básicas</strong><a class="headerlink" href="#sql-dml-consultas-basicas" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Información de la unidad</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Contenidos</label><label for="__tabbed_1_2">Propuesta didáctica</label></div>
@@ -2467,6 +2489,10 @@
 </div>
 </div>
 <p>Estas operaciones forman la base teórica de cómo las bases de datos relacionales manipulan los datos y son fundamentales para comprender el funcionamiento de lenguajes como SQL.</p>
+<details class="note">
+<summary>Video explicativo</summary>
+<p><iframe width="780" height="440" src="https://www.youtube.com/embed/YkCDSdBECW0" title="Fundamentos de BD. Consultas con Álgebra Relacional." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+</details>
 <h2 id="consultas-sql">Consultas SQL<a class="headerlink" href="#consultas-sql" title="Permanent link">¶</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Preparando los datos</p>
@@ -3737,9 +3763,6 @@
 <li><em>natural join</em>: une dos tablas por campos que se llaman igual</li>
 <li><em>outer join</em>: une dos tablas, recuperando todos los elementos que están en una de ellas y de la segunda los que coinciden en valor. En este caso, podemos distinguir entre <em>left join</em> o <em>right join</em> dependiendo que tabla es la que aporta todos los elementos.</li>
 </ul>
-<p>En el siguiente gráfico tienes resumidas de forma visual todas las combinaciones posibles:</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="images/06joins-sql.svg" data-desc-position="bottom"><img alt="" src="images/06joins-sql.svg" title="Joins en SQL - De GermanX - Trabajo propio, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=55878387"></a></p>
-<p>Joins en SQL - De GermanX - Trabajo propio, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=55878387</p>
 <p>Veamos estas operaciones en detalle.</p>
 <h3 id="producto-cartesiano">Producto cartesiano<a class="headerlink" href="#producto-cartesiano" title="Permanent link">¶</a></h3>
 <p>El producto cartesiano (<em>cross join</em>) de dos tablas son todas las combinaciones de las filas de una tabla unidas a las filas de la otra tabla. Es decir, cada fila de A se cruza con todas las de B.</p>
@@ -3824,12 +3847,12 @@
 </tbody>
 </table>
 <p>En versiones antiguas de SQL era más común indicar las <a href="https://mariadb.com/kb/en/comma-vs-join/">tablas separadas por coma</a> y realizar el <em>join</em> en el <code>WHERE</code>, uniendo la clave ajena con la clave primaria de la tabla a la que referencia. Aunque a nivel funcional el resultado es el mismo, es recomendable utilizar la sintaxis <code>JOIN ... ON</code> por legibilidad, y es probable, que el optimizador de consultas del SGBD funcione mejor:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1">--- SQL 86 (ejemplo de sintaxis antigua);</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1">--- SQL (ejemplo de sintaxis antigua);</span>
 </span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">NomEmp</span><span class="p">,</span><span class="w"> </span><span class="n">NomDep</span><span class="w"> </span>
 </span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">departamento</span><span class="w"> </span><span class="n">d</span><span class="w"> </span>
 </span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">CodDep</span><span class="o">=</span><span class="n">d</span><span class="p">.</span><span class="n">CodDep</span><span class="p">;</span>
 </span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a>
-</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="c1">--- SQL 92 (ejemplo de sintaxis moderna); </span>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="c1">--- SQL 99 (ejemplo de sintaxis moderna); </span>
 </span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">NomEmp</span><span class="p">,</span><span class="w"> </span><span class="n">NomDep</span><span class="w"> </span>
 </span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departamento</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">CodDep</span><span class="o">=</span><span class="n">d</span><span class="p">.</span><span class="n">CodDep</span><span class="p">;</span>
 </span></code></pre></div>
@@ -4419,6 +4442,31 @@
 </span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="k">UNION</span><span class="w"> </span>
 </span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Estadio</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </span></code></pre></div>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Sintaxis SQL oficial de <a href="https://www.postgresql.org/docs/current/sql-commands.html">PostgreSQL</a> y <a href="https://mariadb.com/kb/en/sql-statements/">MariaDB</a>.</p>
+</li>
+<li>
+<p><em>Cheatsheets</em> de <a href="https://learnsql.com/">https://learnsql.com/</a> sobre:</p>
+<ul>
+<li><a href="https://learnsql.com/blog/sql-basics-cheat-sheet/sql-basics-cheat-sheet-a4.pdf">SQL Básico</a></li>
+<li><a href="https://learnsql.com/blog/standard-sql-functions-cheat-sheet/standard-sql-functions-cheat-sheet-a4.pdf">Funciones SQL</a></li>
+<li><a href="https://learnsql.com/blog/sql-join-cheat-sheet/joins-cheat-sheet-a4.pdf"><em>Joins</em> SQL</a></li>
+</ul>
+</li>
+<li>
+<p>Materiales sobre el módulo de BD:</p>
+<ul>
+<li><em>Consultes de selecció <a href="https://ioc.xtec.cat/materials/FP/Recursos/fp_dam_m02_/web/fp_dam_m02_htmlindex/WebContent/u4/a1/continguts.html">simple</a> i <a href="https://ioc.xtec.cat/materials/FP/Recursos/fp_dam_m02_/web/fp_dam_m02_htmlindex/WebContent/u4/a2/continguts.html">complexes</a> - Institut Obert de Catalunya</em>.</li>
+<li>Consultas <a href="https://josejuansanchez.org/bd/unidad-05-teoria/index.html">sobre una tabla</a>, sobre <a href="https://josejuansanchez.org/bd/unidad-06-teoria/index.html">varias tablas con composición interna</a>, y con <a href="https://josejuansanchez.org/bd/unidad-07-teoria/index.html">varias tablas con composición externa</a> de <em>José Juan Sánchez</em>.</li>
+<li><a href="https://jorgesanchez.net/manuales/sql/intro-sql-sql2016.html">Introducción a SQL</a>.</li>
+<li><a href="https://apuntes-daw.javiergutierrez.trade/bases-de-datos/ut4/recopila.html">Realización de consultas</a> de <em>Javier Gutiérrez</em>.</li>
+<li><a href="https://gestionbasesdatos.readthedocs.io/es/latest/Tema4/index.html">Consulta de bases de datos</a> de gestionbasesdatos.readthedocs.io</li>
+<li><a href="https://www.cs.us.es/cursos/bd-2023/temas/BD-Tema-5.pdf">Introducción a SQL</a>, por <em>Luis Valencia</em> y <em>David Orellana</em>, de la <em>Universidad de Sevilla</em>.</li>
+</ul>
+</li>
+</ul>
 
 
 
