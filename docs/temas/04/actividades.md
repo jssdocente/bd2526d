@@ -1,8 +1,8 @@
 # Actividades 
 
-### **AC601**
+### **AC401**
 
-??? "Ejercicio AC601"
+??? "Ejercicio AC401"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -19,9 +19,9 @@
     7. Lista el nombre de los equipos, el presupuesto en euros y también en dólares estadounidenses (asumiendo 1€ = 1.1$).
     8. A partir de la consulta anterior, utiliza los siguientes alias para las columnas: nombre de equipo, euros, dólares.
 
-### **AC602**
+### **AC402**
 
-??? "Ejercicio AC602"
+??? "Ejercicio AC402"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -38,9 +38,9 @@
     7. Lista los nombres de los jugadores y su altura truncada a 1 decimal (ej: 1.8).
     8. Muestra el nombre de los jugadores, su altura, y una categoría de altura: `Bajo` si mide menos de 1.75, `Medio` si mide entre 1.75 y 1.85, y `Alto` si mide más de 1.85.
 
-### **AC603**
+### **AC403**
 
-??? "Ejercicio AC603"
+??? "Ejercicio AC403"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -87,9 +87,9 @@
     18. Lista el nombre y el precio del producto más barato. (Utilice solamente las cláusulas `ORDER BY` y `LIMIT`)
     19. Lista el nombre y el precio del producto más caro. (Utilice solamente las cláusulas `ORDER BY` y `LIMIT`)
 
-### **AP605**
+### **AR405**
 
-??? "Ejercicio AR605"
+??? "Ejercicio AR405"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -118,9 +118,9 @@
     19. Devuelve una lista con el nombre y el gasto, de los 2 departamentos que tienen menor gasto.
     20. Devuelve una lista con 5 filas a partir de la tercera fila de la tabla empleado. La tercera fila se debe incluir en la respuesta. La respuesta debe incluir todas las columnas de la tabla empleado.  
 
-### **AC606**
+### **AC406**
 
-??? "Ejercicio AC606"
+??? "Ejercicio AC406"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -142,9 +142,9 @@
         b) Tienen menos de 20 años.
 
 
-### **AC607**
+### **AC407**
 
-??? "Ejercicio AC607"
+??? "Ejercicio AC407"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -165,9 +165,9 @@
     ```
 
 
-### **AR608**
+### **AR408**
 
-??? "Ejercicio AR608"
+??? "Ejercicio AR408"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -193,9 +193,9 @@
     35. Devuelve una lista con el nombre de todos los productos que contienen la cadena `Monitor` en el nombre y tienen un precio inferior a 215 €.
     36. Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
 
-### **AP609**
+### **AP409**
 
-??? "Ejercicio AP609"
+??? "Ejercicio AP409"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -221,9 +221,9 @@
     36. Lista los nombres, apellidos y nif de los empleados que trabajan en los departamentos `2`, `4` o `5`.
 
 
-### **AC610**
+### **AC410**
 
-??? "Ejercicio AC610"
+??? "Ejercicio AC410"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -247,9 +247,9 @@
     10. Recupera todos los jugadores que son capitaneados/mentorizados por otro jugador (tienen `mentorID` no nulo).
 
 
-### **AP611**
+### **AP411**
 
-??? "Ejercicio AP611"
+??? "Ejercicio AP411"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -270,9 +270,9 @@
     11. Listar el nombre de todos los equipos y la suma total de los montos de sus contratos de patrocinio. Si un equipo no tiene patrocinadores, debe aparecer con un total de 0.
 
 
-### **AC612**
+### **AC412**
 
-??? "Ejercicio AC612"
+??? "Ejercicio AC412"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |

@@ -1,4 +1,4 @@
-# **DML. Consultas Básicas**
+# **SQL (DML). Consultas Básicas**
 
 !!! info "Información de la unidad"
 
@@ -259,6 +259,10 @@ A continuación se muestran ejemplos detallados de cada operación. Utilizaremos
 
 
 Estas operaciones forman la base teórica de cómo las bases de datos relacionales manipulan los datos y son fundamentales para comprender el funcionamiento de lenguajes como SQL.
+
+??? note "Video explicativo"
+    <iframe  width="780" height="440" src="https://www.youtube.com/embed/YkCDSdBECW0" title="Fundamentos de BD. Consultas con Álgebra Relacional." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
 
 ## Consultas SQL
 
@@ -964,12 +968,6 @@ Dicho esto, para unir varias tablas (realizar un [_join_](https://mariadb.com/kb
 - _natural join_: une dos tablas por campos que se llaman igual
 - _outer join_: une dos tablas, recuperando todos los elementos que están en una de ellas y de la segunda los que coinciden en valor. En este caso, podemos distinguir entre _left join_ o _right join_ dependiendo que tabla es la que aporta todos los elementos.
 
-En el siguiente gráfico tienes resumidas de forma visual todas las combinaciones posibles:
-
-![](images/06joins-sql.svg "Joins en SQL - De GermanX - Trabajo propio, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=55878387")
-
-Joins en SQL - De GermanX - Trabajo propio, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=55878387
-
 Veamos estas operaciones en detalle.
 
 ### Producto cartesiano
@@ -1025,14 +1023,13 @@ SELECT en.nombre AS Entrenador, e.nombre AS Equipo FROM Entrenador en JOIN Equip
 En versiones antiguas de SQL era más común indicar las [tablas separadas por coma](https://mariadb.com/kb/en/comma-vs-join/) y realizar el _join_ en el `WHERE`, uniendo la clave ajena con la clave primaria de la tabla a la que referencia. Aunque a nivel funcional el resultado es el mismo, es recomendable utilizar la sintaxis `JOIN ... ON` por legibilidad, y es probable, que el optimizador de consultas del SGBD funcione mejor:
 
 
-
 ```sql
---- SQL 86 (ejemplo de sintaxis antigua);
+--- SQL (ejemplo de sintaxis antigua);
 SELECT NomEmp, NomDep 
 FROM empleado e, departamento d 
 WHERE e.CodDep=d.CodDep;
 
---- SQL 92 (ejemplo de sintaxis moderna); 
+--- SQL 99 (ejemplo de sintaxis moderna); 
 SELECT NomEmp, NomDep 
 FROM empleado e JOIN departamento d ON e.CodDep=d.CodDep;
 ```
@@ -1363,3 +1360,23 @@ SELECT nombre FROM Equipo
 UNION 
 SELECT nombre FROM Estadio LIMIT 5;
 ```
+
+
+## Referencias
+
+*   Sintaxis SQL oficial de [PostgreSQL](https://www.postgresql.org/docs/current/sql-commands.html) y [MariaDB](https://mariadb.com/kb/en/sql-statements/).
+    
+*   _Cheatsheets_ de [https://learnsql.com/](https://learnsql.com/) sobre:
+    
+    *   [SQL Básico](https://learnsql.com/blog/sql-basics-cheat-sheet/sql-basics-cheat-sheet-a4.pdf)
+    *   [Funciones SQL](https://learnsql.com/blog/standard-sql-functions-cheat-sheet/standard-sql-functions-cheat-sheet-a4.pdf)
+    *   [_Joins_ SQL](https://learnsql.com/blog/sql-join-cheat-sheet/joins-cheat-sheet-a4.pdf)
+
+*   Materiales sobre el módulo de BD:
+    
+    *   _Consultes de selecció [simple](https://ioc.xtec.cat/materials/FP/Recursos/fp_dam_m02_/web/fp_dam_m02_htmlindex/WebContent/u4/a1/continguts.html) i [complexes](https://ioc.xtec.cat/materials/FP/Recursos/fp_dam_m02_/web/fp_dam_m02_htmlindex/WebContent/u4/a2/continguts.html) - Institut Obert de Catalunya_.
+    *   Consultas [sobre una tabla](https://josejuansanchez.org/bd/unidad-05-teoria/index.html), sobre [varias tablas con composición interna](https://josejuansanchez.org/bd/unidad-06-teoria/index.html), y con [varias tablas con composición externa](https://josejuansanchez.org/bd/unidad-07-teoria/index.html) de _José Juan Sánchez_.
+    *   [Introducción a SQL](https://jorgesanchez.net/manuales/sql/intro-sql-sql2016.html).
+    *   [Realización de consultas](https://apuntes-daw.javiergutierrez.trade/bases-de-datos/ut4/recopila.html) de _Javier Gutiérrez_.
+    *   [Consulta de bases de datos](https://gestionbasesdatos.readthedocs.io/es/latest/Tema4/index.html) de gestionbasesdatos.readthedocs.io
+    *   [Introducción a SQL](https://www.cs.us.es/cursos/bd-2023/temas/BD-Tema-5.pdf), por _Luis Valencia_ y _David Orellana_, de la _Universidad de Sevilla_.

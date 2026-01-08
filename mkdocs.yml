@@ -29,7 +29,7 @@ nav:
       - "Activd.Repaso UT2ABC": "temas/03_1eval/UT2.abc_Actividades-Repaso.md"
     - "UT3":
       - "Resumen": "temas/03_1eval/Repaso_RA2.md"
-  - "04 - DML: Consultas Básicas": 
+  - "04 - SQL (DML): Consultas Básicas": 
     - "Inicio": temas/04/index.md
     - "Actividades": temas/04/actividades.md
   - "05 - DML: Consultas Avanzadas": 
