@@ -72,7 +72,6 @@
         nombre VARCHAR(50) NOT NULL,
         apellido VARCHAR(50) NOT NULL,
         fechaInicioArbitraje DATE NOT NULL,
-        experienciaAños INT GENERATED ALWAYS AS (TIMESTAMPDIFF(YEAR, fechaInicioArbitraje, CURDATE())) VIRTUAL,
         categoria VARCHAR(50)
     );
 
