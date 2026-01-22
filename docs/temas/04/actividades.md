@@ -237,7 +237,7 @@
     4. Muestra el nombre del equipo, la ciudad y el nombre de su estadio, del equipo que tenga el presupuesto más alto (o más bajo, a elección).
     5. Listar los jugadores del equipo `Real Madrid` (utilizando el nombre del equipo en la condición, no el código).
     6. Listar el nombre del jugador y el nombre de su mentor (tabla `Jugador` con auto-referencia a `mentorID`), para aquellos jugadores que tengan mentor.
-    7. Usando operadores de conjuntos (o simulación con JOINs/Subconsultas se espera en este nivel):
+    7. Usando operadores de conjuntos :
         
         1. Equipos que tienen jugadores registrados.
         2. Equipos que no tienen jugadores registrados (si hubiese).

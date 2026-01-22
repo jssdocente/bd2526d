@@ -37,6 +37,7 @@
 
     - [Liga de Fútbol](res/liga_futbol.md)
     - [Gestión de Ventas](res/gestion_ventas.md)
+    - [Tienda Informática](res/tienda_informatica.md)
     - [Jardinería](res/jardineria.md)
     - [Universidad A](res/UniversidadA.md)
     - [Universidad B](res/UniversidadB.md)
