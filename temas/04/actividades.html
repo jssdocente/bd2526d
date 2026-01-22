@@ -1423,6 +1423,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#aa413" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AA413
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1701,6 +1712,17 @@
     <span class="md-ellipsis">
       
         AC412
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aa413" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AA413
       
     </span>
   </a>
@@ -2099,9 +2121,9 @@ b) Tienen menos de 20 años.</p>
 <p>Sobre la base de datos <code>liga_futbol</code>, y utilizando composiciones internas, realiza las siguientes consultas:</p>
 <ol>
 <li>Muestra para cada jugador, su nombre, apellidos y el nombre del equipo al que pertenece.</li>
-<li>Muestra para cada equipo, su nombre y el nombre del estadio donde juega (tabla <code>Estadio</code>).</li>
+<li>Muestra para cada equipo, su nombre y el nombre del estadio donde juega.</li>
 <li>Muestra para cada jugador, su nombre, el nombre de su equipo y el nombre de su estadio.</li>
-<li>Muestra el nombre del equipo, la ciudad y el nombre de su estadio, del equipo que tenga el presupuesto más alto (o más bajo, a elección).</li>
+<li>Muestra el nombre del equipo, la ciudad y el nombre de su estadio, del equipo que tenga el presupuesto más alto.</li>
 <li>Listar los jugadores del equipo <code>Real Madrid</code> (utilizando el nombre del equipo en la condición, no el código).</li>
 <li>Listar el nombre del jugador y el nombre de su mentor (tabla <code>Jugador</code> con auto-referencia a <code>mentorID</code>), para aquellos jugadores que tengan mentor.</li>
 <li>
@@ -2182,6 +2204,33 @@ b) Tienen menos de 20 años.</p>
 <li>Obtén los identificadores de los árbitros que han pitado algún partido en la jornada 1 y que también han pitado algún partido en la jornada 2.</li>
 <li>Lista los nombres de los equipos que tienen un presupuesto superior a 100 millones <strong>unido</strong> a los equipos que se fundaron antes del año 1950.</li>
 <li>Devuelve un listado de todos los posibles resultados climáticos registrados en los partidos y todas las posiciones posibles de los jugadores (usando las columnas correspondientes), para ver la variedad de términos usados en la BD.</li>
+</ol>
+</details>
+<h3 id="aa413"><strong>AA413</strong><a class="headerlink" href="#aa413" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AA413: Actividad de Ampliación</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3c //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<p>Sobre la base de datos <code>liga_futbol</code>:</p>
+<ol>
+<li><strong>Transferencias caras</strong>: Lista el nombre completo del jugador (Nombre + " " + Apellido), el nombre del equipo de origen, el nombre del equipo de destino, y el costo del traspaso, para todos los traspasos que costaron más de 5.000.000 (asume la unidad monetaria de la BD) y ocurrieron antes del año 2024. Ordena los resultados por el costo de mayor a menor.</li>
+<li><strong>Partidos de Apertura</strong>: Lista el código del partido, la fecha (formato día/mes/año), el nombre del estadio, y el nombre del árbitro para todos los partidos de la 'Jornada 1' de cualquier temporada. Utiliza <code>DATE_FORMAT</code> para la fecha.</li>
+<li><strong>Expulsiones</strong>: Muestra el nombre y apellido del jugador, el nombre de su equipo y los minutos jugados, para aquellos registros de partido (<code>EstadisticaPartido</code>) donde el jugador haya recibido alguna tarjeta roja. Incluye también el nombre del árbitro que dirigió ese encuentro.</li>
+<li><strong>Condiciones Adversas</strong>: Lista los nombres de los dos equipos que se enfrentaron (Local vs Visitante) y el nombre del estadio, para todos los partidos donde el clima registrado contenga la palabra 'Lluvia' (usa <code>LIKE</code>) y el estadio tenga césped natural.</li>
+<li><strong>Cadena de Mando</strong>: Lista el nombre del jugador pupilo, su fecha de nacimiento, el nombre de su mentor, y la fecha de nacimiento del mentor. Filtra para mostrar solo aquellos casos donde el mentor es más joven que el pupilo (¡Curioso caso!).</li>
+<li><strong>Patrocinadores Principales</strong>: Lista el nombre del equipo, el nombre de la empresa patrocinadora y el monto total del contrato. Muestra solo los contratos firmados en el año actual (usa <code>YEAR</code> y <code>CURDATE</code> o un año fijo reciente) y cuya duración sea superior a 12 meses.</li>
 </ol>
 </details>
 
