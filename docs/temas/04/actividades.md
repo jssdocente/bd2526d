@@ -232,9 +232,9 @@
     Sobre la base de datos `liga_futbol`, y utilizando composiciones internas, realiza las siguientes consultas:
     
     1. Muestra para cada jugador, su nombre, apellidos y el nombre del equipo al que pertenece.
-    2. Muestra para cada equipo, su nombre y el nombre del estadio donde juega (tabla `Estadio`).
+    2. Muestra para cada equipo, su nombre y el nombre del estadio donde juega.
     3. Muestra para cada jugador, su nombre, el nombre de su equipo y el nombre de su estadio.
-    4. Muestra el nombre del equipo, la ciudad y el nombre de su estadio, del equipo que tenga el presupuesto más alto (o más bajo, a elección).
+    4. Muestra el nombre del equipo, la ciudad y el nombre de su estadio, del equipo que tenga el presupuesto más alto.
     5. Listar los jugadores del equipo `Real Madrid` (utilizando el nombre del equipo en la condición, no el código).
     6. Listar el nombre del jugador y el nombre de su mentor (tabla `Jugador` con auto-referencia a `mentorID`), para aquellos jugadores que tengan mentor.
     7. Usando operadores de conjuntos :
@@ -292,3 +292,20 @@
     10. Lista los nombres de los equipos que tienen un presupuesto superior a 100 millones **unido** a los equipos que se fundaron antes del año 1950.
     11. Devuelve un listado de todos los posibles resultados climáticos registrados en los partidos y todas las posiciones posibles de los jugadores (usando las columnas correspondientes), para ver la variedad de términos usados en la BD.
 
+
+### **AA413**
+
+??? "Ejercicio AA413: Actividad de Ampliación"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c // | 5p          |
+
+    Sobre la base de datos `liga_futbol`:
+
+    1. **Transferencias caras**: Lista el nombre completo del jugador (Nombre + " " + Apellido), el nombre del equipo de origen, el nombre del equipo de destino, y el costo del traspaso, para todos los traspasos que costaron más de 5.000.000 (asume la unidad monetaria de la BD) y ocurrieron antes del año 2024. Ordena los resultados por el costo de mayor a menor.
+    2. **Partidos de Apertura**: Lista el código del partido, la fecha (formato día/mes/año), el nombre del estadio, y el nombre del árbitro para todos los partidos de la 'Jornada 1' de cualquier temporada. Utiliza `DATE_FORMAT` para la fecha.
+    3. **Expulsiones**: Muestra el nombre y apellido del jugador, el nombre de su equipo y los minutos jugados, para aquellos registros de partido (`EstadisticaPartido`) donde el jugador haya recibido alguna tarjeta roja. Incluye también el nombre del árbitro que dirigió ese encuentro.
+    4. **Condiciones Adversas**: Lista los nombres de los dos equipos que se enfrentaron (Local vs Visitante) y el nombre del estadio, para todos los partidos donde el clima registrado contenga la palabra 'Lluvia' (usa `LIKE`) y el estadio tenga césped natural.
+    5. **Cadena de Mando**: Lista el nombre del jugador pupilo, su fecha de nacimiento, el nombre de su mentor, y la fecha de nacimiento del mentor. Filtra para mostrar solo aquellos casos donde el mentor es más joven que el pupilo (¡Curioso caso!).
+    6. **Patrocinadores Principales**: Lista el nombre del equipo, el nombre de la empresa patrocinadora y el monto total del contrato. Muestra solo los contratos firmados en el año actual (usa `YEAR` y `CURDATE` o un año fijo reciente) y cuya duración sea superior a 12 meses.
