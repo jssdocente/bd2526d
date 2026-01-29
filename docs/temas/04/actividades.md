@@ -309,3 +309,72 @@
     4. **Condiciones Adversas**: Lista los nombres de los dos equipos que se enfrentaron (Local vs Visitante) y el nombre del estadio, para todos los partidos donde el clima registrado contenga la palabra 'Lluvia' (usa `LIKE`) y el estadio tenga césped natural.
     5. **Cadena de Mando**: Lista el nombre del jugador pupilo, su fecha de nacimiento, el nombre de su mentor, y la fecha de nacimiento del mentor. Filtra para mostrar solo aquellos casos donde el mentor es más joven que el pupilo (¡Curioso caso!).
     6. **Patrocinadores Principales**: Lista el nombre del equipo, el nombre de la empresa patrocinadora y el monto total del contrato. Muestra solo los contratos firmados en el año actual (usa `YEAR` y `CURDATE` o un año fijo reciente) y cuya duración sea superior a 12 meses.
+    7. **El Gran Duelo**: Recupera la fecha (`fechaHora`) y el nombre del estadio de todos los partidos en los que se enfrentaron el equipo 'Real Madrid' y el equipo 'FC Barcelona' (en cualquier orden, local o visitante). Debes hacer los joins con la tabla `Equipo` dos veces.
+    8. **Estadios Vacíos**: Muestra el nombre de todos los estadios de la ciudad de 'Madrid' donde **no** se ha jugado nunca un partido registrado en la base de datos (utiliza `LEFT JOIN` y comprueba nulos en la tabla `Partido`).
+    9. **Agenda Deportiva**: Genera un listado único (usando `UNION`) que contenga una columna con el nombre completo (Nombre + " " + Apellido) y otra columna con el rol ('Jugador' o 'Árbitro') de todas las personas registradas en esas dos tablas. Ordena el resultado por el nombre completo.
+    10. **Vencimiento de Patrocinios**: Para los contratos de patrocinio firmados a partir del año 2023, calcula la fecha exacta de finalización del contrato sumando la `duracionMeses` a la `fechaFirma` (función `DATE_ADD` o `DATE_ADD(fecha, INTERVAL duracion MONTH)`). Muestra el nombre del equipo, el nombre del patrocinador y la fecha calculada de vencimiento.
+    11. **Fichajes Interurbanos**: Muestra el nombre del jugador y la fecha del traspaso de aquellos fichajes (`HistorialTraspaso`) donde el equipo de origen y el equipo de destino pertenecen a ciudades diferentes.
+    12. **Formato Oficial**: Muestra para todos los jugadores su nombre completo en formato "APELLIDO, Nombre" (todo el apellido en mayúsculas y el nombre tal cual está en la BD). Usa funciones de cadena (`UPPER`, `CONCAT`).
+    13. **Árbitros Veteranos**: Lista el nombre y los años de experiencia de los árbitros que llevan más de 10 años arbitrando. Calcula los años usando `TIMESTAMPDIFF` con la `fechaInicioArbitraje` y la fecha actual (`CURDATE`).
+    14. **Equipos Desamparados**: Utilizando una combinación externa (`LEFT JOIN`), lista el nombre de todos los equipos que **no** tienen ningún contrato de patrocinio activo actualmente.
+    15. **Partidos de Fin de Semana**: Lista el código del partido, el día de la semana (por nombre, ej: 'Saturday', 'Sunday' o índice, según la función usada como `DAYNAME`) y la fecha, para aquellos partidos que se jugaron en Sábado o Domingo.
+    16. **Mentoría Inversa**: Lista el nombre del jugador y el nombre de su mentor para aquellos casos donde el mentor mide menos (altura) que el jugador mentorizado.
+    17. **Categoría de Estadios**: Muestra el nombre del estadio, su ciudad y una **categoría de capacidad** calculada con `CASE`. Si la capacidad es mayor a 80.000 es 'Estadio Olímpico', si está entre 40.000 y 80.000 es 'Estadio Grande', y si es menor es 'Estadio Local'. Une con la tabla `Equipo` para mostrar también el nombre del equipo titular, ordenando por capacidad descendente.
+    18. **Evaluación de Asistencia**: Muestra el código del partido, la fecha (formateada día-mes-año) y una columna 'Nivel de Asistencia' que indique 'Lleno Total' si la `asistencia` supera el 95% de la `capacidad` del estadio, 'Buena Entrada' si supera el 70% y 'Baja' en caso contrario. Requiere unir `Partido` con `Estadio`.
+    19. **Fichajes Galácticos**: Lista el nombre del jugador, el equipo de origen, el equipo de destino y el costo del traspaso. Añade una columna 'Tipo de Fichaje' que sea: 'Gratis' (si costo es 0 o NULL), 'Accesible' (menor a 1 millón), 'Estrella' (entre 1 y 50 millones) o 'Galáctico' (mayor a 50 millones). Utiliza `IFNULL` o `COALESCE` para manejar los nulos en el costo antes del `CASE` si fuera necesario.
+
+
+
+### **AC414**
+
+??? "Ejercicio AC414: Actividad de Consolidación"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c // | 5p          | 
+
+    Utilizando la base de datos [`Universidad_A`](res/UniversidadA.md), realiza los siguientes ejercicios:
+
+    **Consultas sobre una tabla**
+
+    1. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre.
+        
+    2. Averigua el nombre y los dos apellidos de los alumnos que **no** han dado de alta su número de teléfono en la base de datos.
+        
+    3. Devuelve el listado de los alumnos que nacieron en `1999`.
+        
+    4. Devuelve el listado de profesores que **no** han dado de alta su número de teléfono en la base de datos y además su nif termina en `K`.
+        
+    5. Devuelve el listado de las asignaturas que se imparten en el primer cuatrimestre, en el tercer curso del grado que tiene el identificador `7`.
+        
+
+    **Consultas multitabla (Composición interna)**
+
+    1. Devuelve un listado con los datos de todas las **alumnas** que se han matriculado alguna vez en el `Grado en Ingeniería Informática (Plan 2015)`.
+        
+    2. Devuelve un listado con todas las asignaturas ofertadas en el `Grado en Ingeniería Informática (Plan 2015)`.
+        
+    3. Devuelve un listado de los profesores junto con el nombre del departamento al que están vinculados. El listado debe devolver cuatro columnas, primer apellido, segundo apellido, nombre y nombre del departamento. El resultado estará ordenado alfabéticamente de menor a mayor por los apellidos y el nombre.
+        
+    4. Devuelve un listado con el nombre de las asignaturas, año de inicio y año de fin del curso escolar del alumno con nif `26902806M`.
+        
+    5. Devuelve un listado con el nombre de todos los departamentos que tienen profesores que imparten alguna asignatura en el `Grado en Ingeniería Informática (Plan 2015)`.
+        
+    6. Devuelve un listado con todos los alumnos que se han matriculado en alguna asignatura durante el curso escolar 2018/2019.
+        
+
+    **Consultas multitabla (Composición externa)**
+
+    Resuelva todas las consultas utilizando las cláusulas `LEFT JOIN` y `RIGHT JOIN`.
+
+    1. Devuelve un listado con los nombres de **todos** los profesores y los departamentos que tienen vinculados. El listado también debe mostrar aquellos profesores que no tienen ningún departamento asociado. El listado debe devolver cuatro columnas, nombre del departamento, primer apellido, segundo apellido y nombre del profesor. El resultado estará ordenado alfabéticamente de menor a mayor por el nombre del departamento, apellidos y el nombre.
+        
+    2. Devuelve un listado con los profesores que no están asociados a un departamento.
+        
+    3. Devuelve un listado con los departamentos que no tienen profesores asociados.
+        
+    4. Devuelve un listado con los profesores que no imparten ninguna asignatura.
+        
+    5. Devuelve un listado con las asignaturas que no tienen un profesor asignado.
+        
+    6. Devuelve un listado con todos los departamentos que tienen alguna asignatura que no se haya impartido en ningún curso escolar. El resultado debe mostrar el nombre del departamento y el nombre de la asignatura que no se haya impartido nunca.
