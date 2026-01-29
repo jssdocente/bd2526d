@@ -1434,6 +1434,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ac414" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC414
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1723,6 +1734,17 @@
     <span class="md-ellipsis">
       
         AA413
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ac414" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AC414
       
     </span>
   </a>
@@ -2231,6 +2253,99 @@ b) Tienen menos de 20 años.</p>
 <li><strong>Condiciones Adversas</strong>: Lista los nombres de los dos equipos que se enfrentaron (Local vs Visitante) y el nombre del estadio, para todos los partidos donde el clima registrado contenga la palabra 'Lluvia' (usa <code>LIKE</code>) y el estadio tenga césped natural.</li>
 <li><strong>Cadena de Mando</strong>: Lista el nombre del jugador pupilo, su fecha de nacimiento, el nombre de su mentor, y la fecha de nacimiento del mentor. Filtra para mostrar solo aquellos casos donde el mentor es más joven que el pupilo (¡Curioso caso!).</li>
 <li><strong>Patrocinadores Principales</strong>: Lista el nombre del equipo, el nombre de la empresa patrocinadora y el monto total del contrato. Muestra solo los contratos firmados en el año actual (usa <code>YEAR</code> y <code>CURDATE</code> o un año fijo reciente) y cuya duración sea superior a 12 meses.</li>
+<li><strong>El Gran Duelo</strong>: Recupera la fecha (<code>fechaHora</code>) y el nombre del estadio de todos los partidos en los que se enfrentaron el equipo 'Real Madrid' y el equipo 'FC Barcelona' (en cualquier orden, local o visitante). Debes hacer los joins con la tabla <code>Equipo</code> dos veces.</li>
+<li><strong>Estadios Vacíos</strong>: Muestra el nombre de todos los estadios de la ciudad de 'Madrid' donde <strong>no</strong> se ha jugado nunca un partido registrado en la base de datos (utiliza <code>LEFT JOIN</code> y comprueba nulos en la tabla <code>Partido</code>).</li>
+<li><strong>Agenda Deportiva</strong>: Genera un listado único (usando <code>UNION</code>) que contenga una columna con el nombre completo (Nombre + " " + Apellido) y otra columna con el rol ('Jugador' o 'Árbitro') de todas las personas registradas en esas dos tablas. Ordena el resultado por el nombre completo.</li>
+<li><strong>Vencimiento de Patrocinios</strong>: Para los contratos de patrocinio firmados a partir del año 2023, calcula la fecha exacta de finalización del contrato sumando la <code>duracionMeses</code> a la <code>fechaFirma</code> (función <code>DATE_ADD</code> o <code>DATE_ADD(fecha, INTERVAL duracion MONTH)</code>). Muestra el nombre del equipo, el nombre del patrocinador y la fecha calculada de vencimiento.</li>
+<li><strong>Fichajes Interurbanos</strong>: Muestra el nombre del jugador y la fecha del traspaso de aquellos fichajes (<code>HistorialTraspaso</code>) donde el equipo de origen y el equipo de destino pertenecen a ciudades diferentes.</li>
+<li><strong>Formato Oficial</strong>: Muestra para todos los jugadores su nombre completo en formato "APELLIDO, Nombre" (todo el apellido en mayúsculas y el nombre tal cual está en la BD). Usa funciones de cadena (<code>UPPER</code>, <code>CONCAT</code>).</li>
+<li><strong>Árbitros Veteranos</strong>: Lista el nombre y los años de experiencia de los árbitros que llevan más de 10 años arbitrando. Calcula los años usando <code>TIMESTAMPDIFF</code> con la <code>fechaInicioArbitraje</code> y la fecha actual (<code>CURDATE</code>).</li>
+<li><strong>Equipos Desamparados</strong>: Utilizando una combinación externa (<code>LEFT JOIN</code>), lista el nombre de todos los equipos que <strong>no</strong> tienen ningún contrato de patrocinio activo actualmente.</li>
+<li><strong>Partidos de Fin de Semana</strong>: Lista el código del partido, el día de la semana (por nombre, ej: 'Saturday', 'Sunday' o índice, según la función usada como <code>DAYNAME</code>) y la fecha, para aquellos partidos que se jugaron en Sábado o Domingo.</li>
+<li><strong>Mentoría Inversa</strong>: Lista el nombre del jugador y el nombre de su mentor para aquellos casos donde el mentor mide menos (altura) que el jugador mentorizado.</li>
+<li><strong>Categoría de Estadios</strong>: Muestra el nombre del estadio, su ciudad y una <strong>categoría de capacidad</strong> calculada con <code>CASE</code>. Si la capacidad es mayor a 80.000 es 'Estadio Olímpico', si está entre 40.000 y 80.000 es 'Estadio Grande', y si es menor es 'Estadio Local'. Une con la tabla <code>Equipo</code> para mostrar también el nombre del equipo titular, ordenando por capacidad descendente.</li>
+<li><strong>Evaluación de Asistencia</strong>: Muestra el código del partido, la fecha (formateada día-mes-año) y una columna 'Nivel de Asistencia' que indique 'Lleno Total' si la <code>asistencia</code> supera el 95% de la <code>capacidad</code> del estadio, 'Buena Entrada' si supera el 70% y 'Baja' en caso contrario. Requiere unir <code>Partido</code> con <code>Estadio</code>.</li>
+<li><strong>Fichajes Galácticos</strong>: Lista el nombre del jugador, el equipo de origen, el equipo de destino y el costo del traspaso. Añade una columna 'Tipo de Fichaje' que sea: 'Gratis' (si costo es 0 o NULL), 'Accesible' (menor a 1 millón), 'Estrella' (entre 1 y 50 millones) o 'Galáctico' (mayor a 50 millones). Utiliza <code>IFNULL</code> o <code>COALESCE</code> para manejar los nulos en el costo antes del <code>CASE</code> si fuera necesario.</li>
+</ol>
+</details>
+<h3 id="ac414"><strong>AC414</strong><a class="headerlink" href="#ac414" title="Permanent link">¶</a></h3>
+<details>
+<summary>Ejercicio AC414: Actividad de Consolidación</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3c //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<p>Utilizando la base de datos <a href="res/UniversidadA.html"><code>Universidad_A</code></a>, realiza los siguientes ejercicios:</p>
+<p><strong>Consultas sobre una tabla</strong></p>
+<ol>
+<li>
+<p>Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre.</p>
+</li>
+<li>
+<p>Averigua el nombre y los dos apellidos de los alumnos que <strong>no</strong> han dado de alta su número de teléfono en la base de datos.</p>
+</li>
+<li>
+<p>Devuelve el listado de los alumnos que nacieron en <code>1999</code>.</p>
+</li>
+<li>
+<p>Devuelve el listado de profesores que <strong>no</strong> han dado de alta su número de teléfono en la base de datos y además su nif termina en <code>K</code>.</p>
+</li>
+<li>
+<p>Devuelve el listado de las asignaturas que se imparten en el primer cuatrimestre, en el tercer curso del grado que tiene el identificador <code>7</code>.</p>
+</li>
+</ol>
+<p><strong>Consultas multitabla (Composición interna)</strong></p>
+<ol>
+<li>
+<p>Devuelve un listado con los datos de todas las <strong>alumnas</strong> que se han matriculado alguna vez en el <code>Grado en Ingeniería Informática (Plan 2015)</code>.</p>
+</li>
+<li>
+<p>Devuelve un listado con todas las asignaturas ofertadas en el <code>Grado en Ingeniería Informática (Plan 2015)</code>.</p>
+</li>
+<li>
+<p>Devuelve un listado de los profesores junto con el nombre del departamento al que están vinculados. El listado debe devolver cuatro columnas, primer apellido, segundo apellido, nombre y nombre del departamento. El resultado estará ordenado alfabéticamente de menor a mayor por los apellidos y el nombre.</p>
+</li>
+<li>
+<p>Devuelve un listado con el nombre de las asignaturas, año de inicio y año de fin del curso escolar del alumno con nif <code>26902806M</code>.</p>
+</li>
+<li>
+<p>Devuelve un listado con el nombre de todos los departamentos que tienen profesores que imparten alguna asignatura en el <code>Grado en Ingeniería Informática (Plan 2015)</code>.</p>
+</li>
+<li>
+<p>Devuelve un listado con todos los alumnos que se han matriculado en alguna asignatura durante el curso escolar 2018/2019.</p>
+</li>
+</ol>
+<p><strong>Consultas multitabla (Composición externa)</strong></p>
+<p>Resuelva todas las consultas utilizando las cláusulas <code>LEFT JOIN</code> y <code>RIGHT JOIN</code>.</p>
+<ol>
+<li>
+<p>Devuelve un listado con los nombres de <strong>todos</strong> los profesores y los departamentos que tienen vinculados. El listado también debe mostrar aquellos profesores que no tienen ningún departamento asociado. El listado debe devolver cuatro columnas, nombre del departamento, primer apellido, segundo apellido y nombre del profesor. El resultado estará ordenado alfabéticamente de menor a mayor por el nombre del departamento, apellidos y el nombre.</p>
+</li>
+<li>
+<p>Devuelve un listado con los profesores que no están asociados a un departamento.</p>
+</li>
+<li>
+<p>Devuelve un listado con los departamentos que no tienen profesores asociados.</p>
+</li>
+<li>
+<p>Devuelve un listado con los profesores que no imparten ninguna asignatura.</p>
+</li>
+<li>
+<p>Devuelve un listado con las asignaturas que no tienen un profesor asignado.</p>
+</li>
+<li>
+<p>Devuelve un listado con todos los departamentos que tienen alguna asignatura que no se haya impartido en ningún curso escolar. El resultado debe mostrar el nombre del departamento y el nombre de la asignatura que no se haya impartido nunca.</p>
+</li>
 </ol>
 </details>
 
