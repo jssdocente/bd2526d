@@ -53,7 +53,7 @@
 
 
 
-#### **AC503: Consultas de resumen (Universidad)**
+#### **AC503: Consultas de resumen**
 
 ??? "Ejercicio AC503"
 
@@ -75,7 +75,7 @@
     8. Devuelve un listado que muestre cuántos alumnos se han matriculado de alguna asignatura en cada uno de los cursos escolares. El resultado deberá mostrar dos columnas, una columna con el año de inicio del curso escolar y otra con el número de alumnos matriculados.
     9. Devuelve un listado con el número de asignaturas que imparte cada profesor. El listado debe tener en cuenta aquellos profesores que no imparten ninguna asignatura. El resultado mostrará cinco columnas: id, nombre, primer apellido, segundo apellido y número de asignaturas. El resultado estará ordenado de mayor a menor por el número de asignaturas.
 
-#### **AC504: Resumen y agrupamiento (Liga de Fútbol)**
+#### **AC504: Resumen y agrupamiento**
 
 ??? "Ejercicio AC504"
 
@@ -135,7 +135,7 @@
 
 ---
 
-## 🪟 Funciones ventana (Window Functions)
+## 🪟 Funciones ventana
 
 #### **AC507: Análisis con funciones ventana**
 
@@ -175,9 +175,9 @@
 
 ---
 
-## 🖼️ Vistas (Views)
+## 🖼️ Vistas
 
-#### **AC509: Gestión de Vistas (Liga de Fútbol)**
+#### **AC509: Gestión de Vistas**
 
 ??? "Ejercicio AC509"
 
