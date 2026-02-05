@@ -6,12 +6,11 @@
 
         Realización de consultas:
 
-        - Proyección, selección y ordenación de registros.
-        - Operadores. Operadores de comparación. Operadores lógicos.
-        - Composiciones internas.
-        - Composiciones externas.
         - Consultas de resumen.
         - Agrupamiento de registros.
+        - Funciones ventana.
+        - Subconsultas.
+        - Optimización de consultas.
 
         Bases de datos relacionales:
 
@@ -36,7 +35,8 @@
     Aquí tienes los enlaces a las bases de datos de recursos para esta unidad:
 
     - [Sakila](bd/sakila/sakila.md)
-    - [NetflixDB](bd/netflix/netflix.md)
+    - [Universidad](../04/res/UniversidadA.md)
+    - [LigaFutbol](../04/res/liga_futbol.md)
 
 
 En este tema abordaremos 2 grandes bloques:
@@ -46,7 +46,7 @@ En este tema abordaremos 2 grandes bloques:
 
 ---
 
-## 📈 **1. Consultas agregadas o resumen** 📈
+## 📈 **1.1 Consultas agregadas o resumen**
 Vamos a recordar la sintaxis para realizar una consulta con la sentencia `SELECT` en MySQL:
 
 ```sql
@@ -90,7 +90,7 @@ En la [documentación oficial de MySQL](https://dev.mysql.com/doc/refman/5.7/en/
 
 > **Importante:** Las funciones de agregación sólo se pueden usar en las cláusulas `SELECT` Y `HAVING`.
 
-### Diferencia entre `COUNT(*)` y `COUNT(columna)`
+#### Diferencia entre `COUNT(*)` y `COUNT(columna)`
 
 - `COUNT(*)`: Calcula el número de filas que tiene el resultado de la consulta.
 - `COUNT(columna)`: Cuenta el número de valores no nulos que hay en esa columna.
@@ -132,7 +132,7 @@ FROM alumno;
 | --- |
 | 4 |
 
-### Contar valores distintos `COUNT(DISTINCT columna)`
+### Contar valores distintos
 
 Supongamos que tenemos los siguientes valores en la tabla `producto`:
 
@@ -157,7 +157,7 @@ Esta consulta devolverá:
 | 2 |
 
 
-## 👥 **La cláusula GROUP BY**
+### **La cláusula GROUP BY**
 
 La cláusula [`GROUP BY`](https://mariadb.com/kb/en/group-by/) se utiliza para agrupar filas que tienen valores iguales en una o más columnas. Esto permite aplicar funciones de agregación como `SUM`, `COUNT`, `AVG`, etc., a cada grupo, es decir, permite realizar cálculos en vertical, sobre el resultado de agrupar registros.
 
@@ -425,7 +425,7 @@ HAVING total > 50;
 
 Recuerda que `WHERE` filtra las filas antes de aplicar la agrupación, mientras que `HAVING` filtra los grupos después de que se han calculado las funciones de agregación.
 
-## ⚙️ **Orden de ejecución de las cláusulas**
+### ⚙️ **Orden de ejecución de las cláusulas**
 
 En este punto que ya hemos visto la mayoría de las cláusulas dentro de una consulta SQL, es conveniente tener claro su orden de ejecución.
 
@@ -452,7 +452,7 @@ ORDER BY c.CodCen                       -- 6
 LIMIT 1 OFFSET 2                        -- 7
 ```
 
-## ❌ **Errores comunes y buenas prácticas**
+### ❌ **Errores comunes y buenas prácticas**
 
 De forma general, los errores más comunes a la hora de realizar consultas son:
 
@@ -498,7 +498,7 @@ De forma general, los errores más comunes a la hora de realizar consultas son:
     
 - Uso incorrecto de agregaciones en `SELECT` sin `GROUP BY`: Puesto que `GROUP BY` se ejecuta antes que `HAVING` o `SELECT`, si no agrupas tus datos antes de aplicar una función de agregado, se producirán resultados incorrectos o errores. Comprender el orden de ejecución aclara por qué estas dos cláusulas deben ir juntas.
 
-## 🪟 Funciones ventana
+## 🪟 1.2 Funciones ventana
 
 Desde [SQL:2003](https://en.wikipedia.org/wiki/SQL:2003) podemos emplear las [funciones ventana](https://mariadb.com/kb/en/window-functions-overview/), las cuales son similares a las consultas `group by` en cuanto que permiten ejecutar funciones agregadas en varias filas. La diferencia es que permiten funciones de agregación incorporadas sin necesidad de agrupar cada campo en una sola fila, es decir, permiten realizar cálculos en horizontal.
 
@@ -587,7 +587,7 @@ Las funciones ventana se pueden dividir en tres tipos:
 2.  **Ranking o clasificación**: [`ROW_NUMBER()`](https://mariadb.com/kb/en/row_number/), [`RANK()`](https://mariadb.com/kb/en/rank/), [`NTILE()`](https://mariadb.com/kb/en/ntile/), etc.
 3.  **De valor**: [`LAG()`](https://mariadb.com/kb/en/lag/), [`LEAD()`](https://mariadb.com/kb/en/lead/), [`FIRST_VALUE()`](https://mariadb.com/kb/en/first_value/), [`LAST_VALUE()`](https://mariadb.com/kb/en/last_value/), etc...
 
-### Otros ejemplos con Sakila
+**Otros ejemplos con Sakila**
 
 - **Número de fila por categoría de precio** (mediante `ROW_NUMBER()`):<br>
     Esta consulta asigna un número secuencial a cada película, pero **reiniciando la cuenta** cada vez que cambia el precio de alquiler (`rental_rate`). Es muy útil para crear listados numerados por categorías.
@@ -661,7 +661,7 @@ Las funciones ventana son un aspecto avanzado. Si quieres profundizar, te recomi
 - [Documentación sobre marcos de ventana (Window Frames)](https://mariadb.com/kb/en/window-frames/)
 
 
-## 🖼️ **Vistas**
+## 🖼️ 1.3 **Vistas**
 
 Si retomamos la [arquitectura de tres niveles](https://aitor-medrano.github.io/bd/01intro.html#arquitectura-de-3-niveles) que estudiamos en la primera unidad, un esquema externo, que es a lo que accede el usuario final, se compone de un conjunto de tablas y vistas que luego se transforman en formularios e informes.
 
@@ -782,7 +782,7 @@ WHERE TABLE_SCHEMA = 'sakila';
 
 ---
 
-## Referencias
+### Referencias
 
 *   Sintaxis SQL oficial de [PostgreSQL](https://www.postgresql.org/docs/current/sql-commands.html) y [MariaDB](https://mariadb.com/kb/en/sql-statements/).
     
