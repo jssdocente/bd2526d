@@ -525,131 +525,153 @@ Para usar una función ventana, siempre seguimos esta estructura:
 3. **`ORDER BY`**: Es el orden dentro de ese grupo (quién va primero en la lista).
 
 
-**Ejemplos prácticos con Sakila**
+### **Sintaxis y Estructura**
 
-Vamos a realizar un ejemplo para entender mejor qué podemos obtener mediante su uso. Para ello, vamos a recuperar para cada película, cuántas películas pertenecen a su misma categoría (idioma), es decir, cuántas "compañeras" tiene en su idioma.
-
-Nuestra primera idea, para obtener cuántas películas hay por cada idioma, es agrupar por el código del idioma (`language_id`) y contar los registros:
+Para transformar una función normal en una función ventana, añadimos la cláusula `OVER`:
 
 ```sql
-SELECT language_id, COUNT(*) 
-FROM film 
-GROUP BY language_id;
+FUNCION_O_AGREGADO(...) OVER (
+    [PARTITION BY columnas_para_agrupar]
+    [ORDER BY columnas_para_ordenar]
+)
 ```
 
-| language_id | COUNT(*) |
-| :--- | :--- |
-| 1 | 1000 |
+1.  **`PARTITION BY`**: Define la "ventana" o grupo. Es similar al `GROUP BY`, pero solo para el cálculo de esa columna. El contador o acumulador se reinicia cuando cambia este valor.
+2.  **`ORDER BY`**: Define el orden dentro de la ventana. Es crucial para rankings o sumas acumuladas.
 
-Pero realmente queremos saber, para **cada película**, cuántas películas comparten su idioma, y por lo tanto, necesitamos obtener su título. Si intentamos seleccionar la columna `title` sin agrupar por ella en un `GROUP BY`, MariaDB nos devolvería el primer título que encuentre para ese idioma, perdiendo el resto:
+---
+
+### 🔄 **Interacción entre `GROUP BY` y Funciones Ventana**
+
+Una de las dudas más comunes es: **¿Puedo usar `GROUP BY` y Funciones Ventana en la misma consulta?**
+
+**SÍ.** Pero es vital entender el **orden de ejecución**.
+
+El motor de base de datos ejecuta las cláusulas en este orden:
+1.  `FROM` / `JOIN`
+2.  `WHERE`
+3.  **`GROUP BY`** (Aquí se comprimen las filas)
+4.  `HAVING`
+5.  **`WINDOW FUNCTIONS`** (Se calculan sobre las filas resultantes del agrupamiento)
+6.  `SELECT`
+7.  `ORDER BY`
+
+Esto significa que **la función ventana actúa sobre el resultado del agrupamiento**.
+
+!!! info "Caso 1: Funciones Ventana SIN `GROUP BY` (Datos en crudo)"
+    Aquí trabajamos sobre las filas originales. Podemos mezclar columnas normales con cálculos de ventana.
+
+    *Ejemplo: Listar cada película, su duración y la duración media de su categoría.*
+
+    ```sql
+    SELECT title, length, category_id,
+        AVG(length) OVER (PARTITION BY category_id) as media_categoria
+    FROM film f 
+    JOIN film_category fc USING(film_id);
+    ```
+    *Aquí no usamos `GROUP BY` porque queremos ver cada película individualmente.*
+
+!!! info "Caso 2: Funciones Ventana CON `GROUP BY` (Datos Agrupados)"
+    Aquí primero agrupamos los datos y luego aplicamos una función ventana (como un Ranking) sobre esos grupos resultantes.
+
+    *Ejemplo: Queremos un Ranking de las categorías con más películas. Primero contamos películas por categoría (`GROUP BY`) y luego asignamos el ranking (`RANK OVER`).*
+
+    ```sql
+    SELECT category_id, 
+        COUNT(*) as total_peliculas,  -- Agregación normal (colapsa filas)
+        RANK() OVER (ORDER BY COUNT(*) DESC) as ranking -- Ventana sobre el agrupado
+    FROM film_category
+    GROUP BY category_id; -- Obligatorio para usar COUNT(*)
+    ```
+
+    | category_id | total_peliculas | ranking |
+    | :--- | :--- | :--- |
+    | 15 | 74 | 1 |
+    | 9 | 73 | 2 |
+    | 8 | 68 | 3 |
+
+    > **Observa:** Dentro del `OVER (ORDER BY ...)` hemos puesto `COUNT(*)`. Esto es porque la función ventana necesita saber cómo ordenar los grupos ya creados.
+
+---
+
+### 🧮 **Tipos de Funciones Ventana**
+
+Podemos clasificar las funciones que usamos con `OVER` en tres tipos. Es importante notar que **las funciones de agregación clásicas (SUM, AVG) pueden comportarse como funciones ventana**.
+
+#### **1. Funciones de Agregación como Ventana (`SUM`, `AVG`, `COUNT`, `MAX`...)**
+Si usas `SUM(x)` sin `OVER`, necesitas `GROUP BY`. Si usas `SUM(x) OVER(...)`, es una función ventana.
+
+*   **Sin `ORDER BY` dentro del OVER:** Calcula el total del grupo y lo repite en cada fila.
+*   **Con `ORDER BY` dentro del OVER:** Calcula un **acumulado (Running Total)**.
+
+*Ejemplo: Suma acumulada de pagos por fecha.*
 
 ```sql
-SELECT title, language_id, COUNT(*) 
-FROM film 
-GROUP BY language_id;
+SELECT payment_date, amount,
+       SUM(amount) OVER (ORDER BY payment_date) as total_acumulado
+FROM payment
+LIMIT 5;
 ```
 
-| title | language_id | COUNT(*) |
+| payment_date | amount | total_acumulado |
 | :--- | :--- | :--- |
-| ACADEMY DINOSAUR | 1 | 1000 |
+| 2005-05-24... | 2.99 | 2.99 |
+| 2005-05-24... | 0.99 | 3.98 (2.99 + 0.99) |
+| 2005-05-24... | 5.99 | 9.97 (3.98 + 5.99) |
 
-Mientras que una cláusula `GROUP BY` devuelve un registro por cada grupo, una **función de ventana** no contrae los resultados, permitiendo devolver un registro distinto para cada fila original.
+#### **2. Funciones de Ranking (`ROW_NUMBER`, `RANK`, `DENSE_RANK`)**
+Estas funciones **solo** existen como funciones ventana. Sirven para enumerar filas.
 
-Así que, si quisiéramos obtener el título de todas las películas y, además, cuántas copias existen en su mismo idioma, usamos `OVER (PARTITION BY ...)`:
+*   `ROW_NUMBER()`: Numera 1, 2, 3, 4... (Sin empates).
+*   `RANK()`: Numera 1, 2, 2, 4... (Con empates y saltos).
+*   `DENSE_RANK()`: Numera 1, 2, 2, 3... (Con empates pero sin saltos).
+
+*Ejemplo: Ranking de clientes por gastos (usando GROUP BY y Ventana a la vez).*
 
 ```sql
-SELECT title, language_id, 
-       COUNT(*) OVER (PARTITION BY language_id) AS total_idioma 
-FROM film 
-LIMIT 5;
+SELECT customer_id, 
+       SUM(amount) as total_gastado,
+       RANK() OVER (ORDER BY SUM(amount) DESC) as posicion_ranking
+FROM payment
+GROUP BY customer_id
+LIMIT 3;
 ```
 
-| title | language_id | total_idioma |
+#### **3. Funciones de Valor (`LAG`, `LEAD`)**
+Permiten acceder a datos de una fila anterior (`LAG`) o posterior (`LEAD`) sin hacer subconsultas complejas.
+
+*Ejemplo: Comparar lo que pagó un cliente hoy vs lo que pagó la vez anterior.*
+
+```sql
+SELECT customer_id, payment_date, amount,
+       LAG(amount) OVER (PARTITION BY customer_id ORDER BY payment_date) as pago_anterior,
+       amount - LAG(amount) OVER (PARTITION BY customer_id ORDER BY payment_date) as diferencia
+FROM payment
+ORDER BY customer_id, payment_date;
+```
+
+---
+
+### 🧪 **Resumen: ¿Qué puedo mezclar en el SELECT?**
+
+A menudo surge la duda al construir el `SELECT`: *¿Qué columnas puedo poner?*
+
+| Escenario | Cláusulas | ¿Qué va en el SELECT? |
 | :--- | :--- | :--- |
-| ACADEMY DINOSAUR | 1 | 1000 |
-| ACE GOLDFINGER | 1 | 1000 |
-| ADAPTATION HOLES | 1 | 1000 |
-| AFFAIR PREJUDICE | 1 | 1000 |
-| AFRICAN EGG | 1 | 1000 |
+| **Agregación Simple** | `GROUP BY A` | Solo columna `A` y funciones agregadas como `SUM(B)`, `COUNT(*)`. No puedes poner `C` si no agrupas por ella. |
+| **Ventana Simple** | `OVER(...)` (Sin Group By) | Cualquier columna de la tabla (`A`, `B`, `C`) y cualquier función ventana `SUM(B) OVER(...)`. Mantiene todas las filas. |
+| **Híbrido** | `GROUP BY A` + `OVER(...)` | Solo columna `A`, agregaciones `SUM(B)` y funciones ventana aplicadas **sobre las agregaciones** `RANK() OVER (ORDER BY SUM(B))`. |
 
-### Sintaxis y tipos
-
-La [sintaxis](https://mariadb.com/docs/server/reference/sql-functions/special-functions/window-functions/window-functions-overview) básica que emplearemos es:
-
-```sql
-SELECT funcion_ventana() OVER (PARTITION BY campo ORDER BY campo) 
-FROM tabla;
-```
-
-Las funciones ventana se pueden dividir en tres tipos:
-
-1.  **Agregadas**: `SUM`, `COUNT`, `AVG`, etc.
-2.  **Ranking o clasificación**: [`ROW_NUMBER()`](https://mariadb.com/kb/en/row_number/), [`RANK()`](https://mariadb.com/kb/en/rank/), [`NTILE()`](https://mariadb.com/kb/en/ntile/), etc.
-3.  **De valor**: [`LAG()`](https://mariadb.com/kb/en/lag/), [`LEAD()`](https://mariadb.com/kb/en/lead/), [`FIRST_VALUE()`](https://mariadb.com/kb/en/first_value/), [`LAST_VALUE()`](https://mariadb.com/kb/en/last_value/), etc...
-
-**Otros ejemplos con Sakila**
-
-- **Número de fila por categoría de precio** (mediante `ROW_NUMBER()`):<br>
-    Esta consulta asigna un número secuencial a cada película, pero **reiniciando la cuenta** cada vez que cambia el precio de alquiler (`rental_rate`). Es muy útil para crear listados numerados por categorías.
-
-```sql
-SELECT ROW_NUMBER() OVER (PARTITION BY rental_rate ORDER BY title) AS num_en_precio,
-       title, rental_rate 
-FROM film 
-LIMIT 5;
-```
-
-| num_en_precio | title | rental_rate |
-| :--- | :--- | :--- |
-| 1 | ACADEMY DINOSAUR | 0.99 |
-| 2 | ADAPTATION HOLES | 0.99 |
-| 3 | ALAMO VIDEOTAPE | 0.99 |
-| 4 | AMISTAD REASON | 0.99 |
-| 5 | ANGELS LIFE | 0.99 |
-
-*En este caso, todas las películas de 0.99 se ordenan alfabéticamente y reciben un número del 1 al N.*
-
-- **Ranking de las películas más largas por categoría** (mediante `RANK()`):<br>
-    Aquí buscamos identificar cuáles son las películas de mayor duración dentro de cada género. A diferencia de `ROW_NUMBER()`, la función `RANK()` **asigna la misma posición en caso de empate**. Si dos películas miden lo mismo (como ocurre con el ranking 2 en el ejemplo), la siguiente posición saltará (pasando del 2 al 4).
-
-```sql
-SELECT title, length, category_id,
-       RANK() OVER (PARTITION BY category_id ORDER BY length DESC) AS ranking_duracion
-FROM film f
-JOIN film_category fc ON f.film_id = fc.film_id
-LIMIT 5;
-```
-
-| title | length | category_id | ranking_duracion |
-| :--- | :--- | :--- | :--- |
-| CHICAGO NORTH | 185 | 1 | 1 |
-| DARKO DORADO | 178 | 1 | 2 |
-| WORST BANGER | 178 | 1 | 2 |
-| CONSPIRACY SPIRIT | 171 | 1 | 4 |
-
-*Observa cómo `DARKO DORADO` y `WORST BANGER` empatan en el puesto 2, y por eso el siguiente es el 4.*
-
-- **Diferencia de precio con la película anterior y siguiente** (usando `LAG` y `LEAD`):<br>
-    Estas funciones nos permiten "mirar" hacia atrás o hacia adelante en el conjunto de resultados **sin necesidad de hacer un JOIN adicional**. En este ejemplo, comparamos el precio de una película con el de la película que iría antes y después en orden alfabético.
-
-```sql
-SELECT title, rental_rate,
-       LAG(rental_rate) OVER (ORDER BY title) AS precio_anterior,
-       LEAD(rental_rate) OVER (ORDER BY title) AS precio_siguiente,
-       rental_rate - LAG(rental_rate) OVER (ORDER BY title) AS diferencia
-FROM film
-LIMIT 5;
-```
-
-| title | rental_rate | precio_anterior | precio_siguiente | diferencia |
-| :--- | :--- | :--- | :--- | :--- |
-| ACADEMY DINOSAUR | 0.99 | NULL | 4.99 | NULL |
-| ACE GOLDFINGER | 4.99 | 0.99 | 2.99 | 4.00 |
-| ADAPTATION HOLES | 2.99 | 4.99 | 0.99 | -2.00 |
-| AFFAIR PREJUDICE | 0.99 | 2.99 | 2.99 | -2.00 |
-| AFRICAN EGG | 2.99 | 0.99 | 0.99 | 2.00 |
-
-*Fíjate que la primera película tiene `NULL` en `precio_anterior` porque no hay nadie antes que ella en la ventana.*
+!!! failure "Error Común"
+    ```sql
+    -- ESTO FALLARÁ
+    SELECT customer_id, 
+           amount, -- Error: 'amount' no está en GROUP BY y no tiene función agregada
+           RANK() OVER (ORDER BY amount) 
+    FROM payment
+    GROUP BY customer_id;
+    ```
+    *Solución:* O quitas el `GROUP BY` (si quieres ver cada pago), o aplicas `SUM(amount)` si quieres agrupar por cliente.
 
 ---
 
@@ -1236,7 +1258,7 @@ JOIN nombre_cte_2 ...;
     *Objetivo:* Encontrar los clientes cuyo total de pagos es superior al promedio de pagos totales de todos los clientes.
 
     *Solución paso a paso:*
-    
+
     1.  Calcular cuánto ha pagado cada cliente.
     2.  Calcular el promedio de esos pagos.
     3.  Filtrar quién supera ese promedio.
