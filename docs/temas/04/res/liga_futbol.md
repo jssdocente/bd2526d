@@ -583,7 +583,7 @@
     (55, 7, 4, '2022-06-07', 79000000.00);
 
 
-        INSERT INTO EstadisticaPartido (jugadorID, partidoID, minutosJugados, goles, asistencias, tarjetasAmarilla, tarjetasRoja) VALUES
+    INSERT INTO EstadisticaPartido (jugadorID, partidoID, minutosJugados, goles, asistencias, tarjetasAmarilla, tarjetasRoja) VALUES
     (58, 1, 90, 0, 0, 1, 0),
     (51, 1, 90, 0, 0, 0, 0),
     (60, 1, 90, 0, 0, 0, 0),
