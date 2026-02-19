@@ -15,7 +15,7 @@
 
 #### **AC501: Consultas agregadas básicas**
 
-??? "Ejercicio AC501"
+??? "Actividad AC501"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -35,7 +35,7 @@
 
 #### **AC502: Agrupamiento de registros (GROUP BY)**
 
-??? "Ejercicio AC502"
+??? "Actividad AC502"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -55,7 +55,7 @@
 
 #### **AC503: Consultas de resumen**
 
-??? "Ejercicio AC503"
+??? "Actividad AC503"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -77,7 +77,7 @@
 
 #### **AC504: Resumen y agrupamiento**
 
-??? "Ejercicio AC504"
+??? "Actividad AC504"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -99,7 +99,7 @@
 
 #### **AC505: Filtrado de grupos**
 
-??? "Ejercicio AC505"
+??? "Actividad AC505"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -117,7 +117,7 @@
 
 #### **AC506: Desafíos de consolidación**
 
-??? "Ejercicio AC506"
+??? "Actividad AC506"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -139,7 +139,7 @@
 
 #### **AC507: Análisis con funciones ventana**
 
-??? "Ejercicio AC507"
+??? "Actividad AC507"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -157,7 +157,7 @@
 
 #### **AC508: Análisis avanzado**
 
-??? "Ejercicio AC508"
+??? "Actividad AC508"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -179,7 +179,7 @@
 
 #### **AC509: Gestión de Vistas**
 
-??? "Ejercicio AC509"
+??? "Actividad AC509"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -197,7 +197,7 @@
 
 #### **AC510: Creación y gestión de vistas**
 
-??? "Ejercicio AC510"
+??? "Actividad AC510"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -212,3 +212,192 @@
     3. **Consulta sobre vista**: Utilizando `vista_peliculas_familiares`, obtén cuántas películas de ese tipo hay disponibles en la tienda número 1.
     4. **Gestión**: Muestra el comando para eliminar la vista `vista_mejores_clientes`.
     5. **Investigación**: Intenta realizar un `UPDATE` sobre una columna de la `vista_mejores_clientes` que contenga el cálculo del `SUM(amount)`. Explica qué ocurre y por qué, citando las restricciones de las vistas vistas en el tema.
+
+
+Aquí tienes la continuación del fichero de actividades, centrado exclusivamente en el bloque de **Subconsultas y CTEs**. He seguido la numeración y el estilo del documento anterior (`AC510` fue el último, así que empezamos en `AC511`).
+
+He diseñado las actividades para que cubran progresivamente los conceptos teóricos explicados, alternando entre las bases de datos disponibles (**Sakila**, **Universidad**, **LigaFutbol**) según qué esquema se adapte mejor a cada concepto.
+
+---
+
+## 📦 Subconsultas y CTE
+
+#### **AC511: Subconsultas Escalares y de Fila**
+
+??? "Actividad AC511"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 4p          |
+
+    **Concepto**: Subconsultas que devuelven un único valor (escalares) o un único registro (de fila) para comparaciones simples (`=`, `>`, `<`).
+
+    Sobre la base de datos **Sakila**, realiza las siguientes consultas:
+
+    1. **Por encima de la media**: Obtén el título y la duración de las películas que duran más que la duración promedio de todas las películas de la base de datos.
+    2. **El cliente que más paga**: Muestra el identificador, nombre y apellidos del cliente que ha realizado el pago individual de mayor importe registrado en la tabla `payment`. (Usa una subconsulta para encontrar el `MAX(amount)`).
+    3. **Mismo apellido**: Busca todos los actores que tengan el mismo apellido que el actor con `actor_id = 8`.
+    4. **Subconsulta de fila**: Encuentra si existe algún cliente en la tabla `customer` que tenga el mismo nombre y apellido que el actor 'Jamie Waugh'.
+    5. **Comparación de fechas**: Muestra los alquileres (`rental`) que se realizaron después del último alquiler registrado por el cliente con email 'JOYCE.EDWARDS@sakilacustomer.org'.
+
+#### **AC512: Subconsultas de Lista (IN, NOT IN)**
+
+??? "Actividad AC512"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 4p          |
+
+    **Concepto**: Filtrado de registros basándose en una lista de resultados devuelta por una subconsulta.
+
+    Sobre la base de datos **Universidad**, realiza las siguientes consultas:
+
+    1. **Matemáticos**: Devuelve el nombre y apellidos de los alumnos que se han matriculado en alguna asignatura del "Grado en Matemáticas (Plan 2010)".
+        *   *Pista*: Necesitarás subconsultas anidadas o joins en la subconsulta para llegar desde `asignatura` hasta `grado`.
+    2. **Profesores sin docencia**: Devuelve el listado de profesores (nombre y apellidos) que **no** imparten ninguna asignatura actualmente. Utiliza el operador `NOT IN`.
+    3. **Asignaturas de Informática**: Muestra el nombre de las asignaturas que están asociadas a algún profesor del departamento de 'Informática'.
+    4. **Alumnos sin beca (simulado)**: Supongamos que los alumnos con `id` 1, 3 y 5 tienen beca. Muestra todos los alumnos cuyo `id` **no** esté en esa lista fija `(1, 3, 5)` y que además sean mujeres.
+
+#### **AC513: Operadores Avanzados (ANY, ALL)**
+
+??? "Actividad AC513"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 4p          |
+
+    **Concepto**: Comparaciones cuantificadas contra conjuntos de valores.
+
+    Sobre la base de datos **LigaFutbol**, realiza las siguientes consultas:
+
+    1. **Gigantes económicos**: Muestra el nombre y presupuesto de los equipos cuyo presupuesto sea mayor que el de **todos** los equipos fundados antes de 1950.
+    2. **Jugadores altos**: Obtén el nombre y la altura de los jugadores que sean más altos que **cualquier** (al menos uno) jugador del equipo con código 'RMA' (Real Madrid).
+    3. **Salarios técnicos**: Muestra los entrenadores que cobran más que el salario promedio de los entrenadores de equipos cuyo estadio tiene una capacidad inferior a 30.000 espectadores (usa `ALL` o una escalar agregada, justifica tu elección).
+
+#### **AC514-A: Subconsultas Correlacionadas y EXISTS**
+
+??? "Actividad AC514"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 5p          |
+
+    **Concepto**: Subconsultas dependientes de la consulta externa y verificación de existencia.
+
+    Sobre la base de datos **Sakila**, realiza las siguientes consultas:
+
+    1. **Superiores a su categoría**: Muestra el título, la duración y el `rating` de las películas que duran más que el promedio de duración **de su propio rating**.
+    2. **Actores de Acción**: Utiliza `EXISTS` para listar el nombre y apellido de los actores que han participado en alguna película de la categoría 'Action'.
+    3. **Películas olvidadas**: Utiliza `NOT EXISTS` para obtener el título de las películas que **jamás** han sido alquiladas (no aparecen en la tabla `rental` a través del inventario).
+    4. **Clientes fieles**: Muestra los clientes que han realizado al menos un pago superior a 10$, pero usando `EXISTS` en lugar de un `JOIN` normal.
+    5. **Doble correlación (Reto)**: Encuentra las películas (`film`) que tienen el mismo precio de alquiler (`rental_rate`) y la misma duración (`length`) que alguna otra película distinta (es decir, parejas de películas idénticas en precio y duración).
+
+#### **AC514b: Subconsultas Correlacionadas (Comparativas de Grupo)**
+
+??? "Ejercicio AC514b"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 5p          |
+
+    **Concepto**: Subconsultas que dependen de la fila actual para realizar cálculos estadísticos (medias, conteos) específicos para el grupo al que pertenece dicha fila. **No utilices `GROUP BY` en la consulta principal**, la lógica debe residir en la subconsulta.
+
+    **Bloque A: Base de datos LigaFutbol**
+
+    1.  **Jugadores destacados en su equipo**:
+        Queremos encontrar a los "torres" de cada equipo. Muestra el nombre, apellido, altura y nombre del equipo de aquellos jugadores que son **más altos que la altura media de su propio equipo**.
+        *   *Pista*: La subconsulta debe calcular `AVG(altura)` filtrando por el `equipoID` del jugador que se está procesando en ese momento.
+
+    2.  **Partidos con alta asistencia local**:
+        Muestra los partidos (fecha y equipos rivales) cuya asistencia fue superior a la **asistencia promedio de todos los partidos jugados en ese mismo estadio**.
+        *   *Nota*: Esto permite ver qué partidos llenaron el estadio más de lo habitual para *ese* estadio en concreto.
+
+    3.  **El partido más "duro" de cada árbitro**:
+        Obtén el identificador del partido, la fecha y el nombre del árbitro de aquellos partidos donde se mostraron más tarjetas amarillas que en **ningún otro partido arbitrado por ese mismo árbitro**.
+        *   *Pista*: Compara las tarjetas del partido actual con el `MAX(tarjetas)` de la subconsulta filtrada por ese árbitro.
+
+    4.  **Cálculo en el SELECT (Escalar)**:
+        Muestra una lista con el nombre de todos los equipos y, en una columna extra llamada `goles_a_favor_local`, muestra el total de goles que han marcado **solo cuando han jugado como local**.
+        *   *Restricción*: No uses `JOIN`. Debes usar una subconsulta correlacionada dentro de la cláusula `SELECT`.
+
+    **Bloque B: Base de datos Universidad**
+
+    5.  **Asignaturas con mucha carga**:
+        Devuelve el nombre de la asignatura, los créditos y el nombre del grado al que pertenece. La condición es que la asignatura debe tener **más créditos que el promedio de créditos de las asignaturas de ese mismo grado**.
+
+    6.  **El benjamín del grupo**:
+        Queremos saber quién es el alumno más joven de cada ciudad. Muestra el nombre, apellidos, ciudad y fecha de nacimiento de los alumnos cuya fecha de nacimiento coincida con la fecha más reciente (`MAX`) de los alumnos **de su misma ciudad**.
+
+    7.  **Profesores con más carga que sus compañeros**:
+        Muestra el nombre y apellido de los profesores que imparten más asignaturas que la **media de asignaturas que imparten los profesores de su mismo departamento**.
+        *   *Nota*: Este es un ejercicio de doble nivel (conteo por profesor vs promedio del departamento). Si te resulta muy complejo, intenta primero mostrar los profesores que imparten más de 2 asignaturas usando correlación.
+
+---
+
+#### **AC515: CTE (Common Table Expressions)**
+
+??? "Actividad AC515"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c //       | 5p          |
+
+    **Concepto**: Uso de `WITH` para estructurar consultas complejas y evitar subconsultas en el `FROM`.
+
+    Sobre la base de datos **LigaFutbol**, realiza las siguientes consultas:
+
+    1. **Presupuesto Medio**: 
+        *   Crea una CTE llamada `medias_por_ciudad` que calcule el presupuesto medio de los equipos agrupados por la ciudad de su estadio.
+        *   Usa esa CTE para mostrar las ciudades cuyo presupuesto medio supere los 50.000.000€.
+    2. **Ranking de Goleadores**:
+        *   Crea una CTE `goles_totales` que sume los goles de cada jugador en la tabla `EstadisticaPartido`.
+        *   Muestra el nombre del jugador y sus goles, solo de aquellos que hayan marcado más de 10 goles en total.
+    3. **Comparativa de Equipos**:
+        *   Crea una primera CTE `resumen_equipos` que obtenga el nombre del equipo, el número total de jugadores y la altura media de su plantilla.
+        *   Crea una segunda CTE `media_global` que calcule la altura media de todos los jugadores de la liga.
+        *   Consulta final: Muestra los equipos cuya altura media sea superior a la `media_global`.
+
+#### **AC516: Actividad Resumen (Universidad)**
+
+??? "Actividad AC516"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c, CE3e // | 6p          |
+
+    **Concepto**: Consolidación de todos los tipos de subconsultas en un entorno académico.
+
+    Sobre la base de datos **Universidad**, resuelve:
+
+    1. **El estudiante más joven**: Devuelve todos los datos del alumno más joven de la universidad (Subconsulta escalar con `MAX` o `MIN` sobre fecha de nacimiento).
+    2. **Departamentos vacíos**: Devuelve el nombre de los departamentos que no tienen profesores asociados. (Debes hacerlo obligatoriamente con `NOT EXISTS` o `NOT IN`).
+    3. **Asignaturas masificadas**: Devuelve el nombre de las asignaturas que tienen un número de alumnos matriculados superior a la media de alumnos matriculados por asignatura. (Requiere contar matriculaciones primero).
+    4. **Profesores polivalentes**: Muestra el nombre y apellidos de los profesores que imparten asignaturas en más de un grado diferente. (Puedes usar subconsultas o CTEs).
+    5. **Créditos por tipo**: Usa una subconsulta en la cláusula `FROM` (o una CTE) para obtener una tabla temporal con la suma de créditos por cada `tipo` de asignatura, y luego muestra solo los tipos que suman más de 100 créditos totales.
+
+#### **AC517: El Desafío Final (Sakila Avanzado)**
+
+??? "Actividad AC517"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c, CE3e // | 4p          |
+
+    **Concepto**: Lógica de negocio compleja, CTEs múltiples y funciones de ventana.
+
+    Sobre la base de datos **Sakila**:
+
+    1. **Categorías abandonadas**: Queremos saber qué categorías de películas no han tenido ningún alquiler registrado en el último mes disponible en la base de datos (toma como referencia la fecha máxima de alquiler en toda la tabla `rental`).
+    
+    2. **El "Top 5" de cada tienda**: 
+        *   Utiliza una CTE para calcular el total gastado por cada cliente.
+        *   Utiliza funciones ventana (`RANK()` o `ROW_NUMBER()`) para asignar una posición a cada cliente dentro de su tienda (`store_id`) basándose en lo que han gastado.
+        *   Filtra para mostrar únicamente los 5 mejores clientes de cada tienda.
+
+    3. **Actores "Todoterreno" (División relacional)**: 
+        *   Encuentra los actores que han actuado en películas de **todas** las categorías existentes.
+        *   *Pista*: Un actor cumple esto si la cantidad de categorías distintas en las que ha trabajado es igual a la cantidad total de categorías en la tabla `category`.
+
+    4. **Comparativa mensual (Growth Rate)**:
+        *   Crea una CTE que agrupe los pagos por mes (Año-Mes) y sume el importe total.
+        *   En la consulta final, muestra para cada mes: el total ingresado, el total del mes anterior (usando `LAG`) y la diferencia porcentual de crecimiento respecto al mes anterior.
