@@ -1504,10 +1504,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sintaxis-y-tipos" class="md-nav__link">
+  <a href="#sintaxis-y-estructura" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sintaxis y tipos
+        Sintaxis y Estructura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaccion-entre-group-by-y-funciones-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Interacción entre GROUP BY y Funciones Ventana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-funciones-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧮 Tipos de Funciones Ventana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-que-puedo-mezclar-en-el-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Resumen: ¿Qué puedo mezclar en el SELECT?
       
     </span>
   </a>
@@ -1846,10 +1879,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sintaxis-y-tipos" class="md-nav__link">
+  <a href="#sintaxis-y-estructura" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sintaxis y tipos
+        Sintaxis y Estructura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaccion-entre-group-by-y-funciones-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Interacción entre GROUP BY y Funciones Ventana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-funciones-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧮 Tipos de Funciones Ventana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-que-puedo-mezclar-en-el-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Resumen: ¿Qué puedo mezclar en el SELECT?
       
     </span>
   </a>
@@ -2884,256 +2950,186 @@
 <li><strong><code>PARTITION BY</code></strong>: Es el "grupo" (como la clase del autobús). Si no lo pones, la ventana es toda la tabla.</li>
 <li><strong><code>ORDER BY</code></strong>: Es el orden dentro de ese grupo (quién va primero en la lista).</li>
 </ol>
-<p><strong>Ejemplos prácticos con Sakila</strong></p>
-<p>Vamos a realizar un ejemplo para entender mejor qué podemos obtener mediante su uso. Para ello, vamos a recuperar para cada película, cuántas películas pertenecen a su misma categoría (idioma), es decir, cuántas "compañeras" tiene en su idioma.</p>
-<p>Nuestra primera idea, para obtener cuántas películas hay por cada idioma, es agrupar por el código del idioma (<code>language_id</code>) y contar los registros:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">language_id</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">language_id</span><span class="p">;</span>
+<h3 id="sintaxis-y-estructura"><strong>Sintaxis y Estructura</strong><a class="headerlink" href="#sintaxis-y-estructura" title="Permanent link">¶</a></h3>
+<p>Para transformar una función normal en una función ventana, añadimos la cláusula <code>OVER</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">FUNCION_O_AGREGADO</span><span class="p">(...)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="p">[</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">columnas_para_agrupar</span><span class="p">]</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="p">[</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">columnas_para_ordenar</span><span class="p">]</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span>
 </span></code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">language_id</th>
-<th style="text-align: left;">COUNT(*)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-</tbody>
-</table>
-<p>Pero realmente queremos saber, para <strong>cada película</strong>, cuántas películas comparten su idioma, y por lo tanto, necesitamos obtener su título. Si intentamos seleccionar la columna <code>title</code> sin agrupar por ella en un <code>GROUP BY</code>, MariaDB nos devolvería el primer título que encuentre para ese idioma, perdiendo el resto:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">language_id</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">language_id</span><span class="p">;</span>
-</span></code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">title</th>
-<th style="text-align: left;">language_id</th>
-<th style="text-align: left;">COUNT(*)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">ACADEMY DINOSAUR</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-</tbody>
-</table>
-<p>Mientras que una cláusula <code>GROUP BY</code> devuelve un registro por cada grupo, una <strong>función de ventana</strong> no contrae los resultados, permitiendo devolver un registro distinto para cada fila original.</p>
-<p>Así que, si quisiéramos obtener el título de todas las películas y, además, cuántas copias existen en su mismo idioma, usamos <code>OVER (PARTITION BY ...)</code>:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">language_id</span><span class="p">,</span><span class="w"> </span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">language_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_idioma</span><span class="w"> </span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-</span></code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">title</th>
-<th style="text-align: left;">language_id</th>
-<th style="text-align: left;">total_idioma</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">ACADEMY DINOSAUR</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr>
-<td style="text-align: left;">ACE GOLDFINGER</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr>
-<td style="text-align: left;">ADAPTATION HOLES</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr>
-<td style="text-align: left;">AFFAIR PREJUDICE</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr>
-<td style="text-align: left;">AFRICAN EGG</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1000</td>
-</tr>
-</tbody>
-</table>
-<h3 id="sintaxis-y-tipos">Sintaxis y tipos<a class="headerlink" href="#sintaxis-y-tipos" title="Permanent link">¶</a></h3>
-<p>La <a href="https://mariadb.com/docs/server/reference/sql-functions/special-functions/window-functions/window-functions-overview">sintaxis</a> básica que emplearemos es:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">funcion_ventana</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">campo</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">campo</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Las funciones ventana se pueden dividir en tres tipos:</p>
 <ol>
-<li><strong>Agregadas</strong>: <code>SUM</code>, <code>COUNT</code>, <code>AVG</code>, etc.</li>
-<li><strong>Ranking o clasificación</strong>: <a href="https://mariadb.com/kb/en/row_number/"><code>ROW_NUMBER()</code></a>, <a href="https://mariadb.com/kb/en/rank/"><code>RANK()</code></a>, <a href="https://mariadb.com/kb/en/ntile/"><code>NTILE()</code></a>, etc.</li>
-<li><strong>De valor</strong>: <a href="https://mariadb.com/kb/en/lag/"><code>LAG()</code></a>, <a href="https://mariadb.com/kb/en/lead/"><code>LEAD()</code></a>, <a href="https://mariadb.com/kb/en/first_value/"><code>FIRST_VALUE()</code></a>, <a href="https://mariadb.com/kb/en/last_value/"><code>LAST_VALUE()</code></a>, etc...</li>
+<li><strong><code>PARTITION BY</code></strong>: Define la "ventana" o grupo. Es similar al <code>GROUP BY</code>, pero solo para el cálculo de esa columna. El contador o acumulador se reinicia cuando cambia este valor.</li>
+<li><strong><code>ORDER BY</code></strong>: Define el orden dentro de la ventana. Es crucial para rankings o sumas acumuladas.</li>
 </ol>
-<p><strong>Otros ejemplos con Sakila</strong></p>
-<ul>
-<li><strong>Número de fila por categoría de precio</strong> (mediante <code>ROW_NUMBER()</code>):<br>
-    Esta consulta asigna un número secuencial a cada película, pero <strong>reiniciando la cuenta</strong> cada vez que cambia el precio de alquiler (<code>rental_rate</code>). Es muy útil para crear listados numerados por categorías.</li>
-</ul>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">rental_rate</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_en_precio</span><span class="p">,</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">       </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">rental_rate</span><span class="w"> </span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span>
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<hr>
+<h3 id="interaccion-entre-group-by-y-funciones-ventana">🔄 <strong>Interacción entre <code>GROUP BY</code> y Funciones Ventana</strong><a class="headerlink" href="#interaccion-entre-group-by-y-funciones-ventana" title="Permanent link">¶</a></h3>
+<p>Una de las dudas más comunes es: <strong>¿Puedo usar <code>GROUP BY</code> y Funciones Ventana en la misma consulta?</strong></p>
+<p><strong>SÍ.</strong> Pero es vital entender el <strong>orden de ejecución</strong>.</p>
+<p>El motor de base de datos ejecuta las cláusulas en este orden:
+1.  <code>FROM</code> / <code>JOIN</code>
+2.  <code>WHERE</code>
+3.  <strong><code>GROUP BY</code></strong> (Aquí se comprimen las filas)
+4.  <code>HAVING</code>
+5.  <strong><code>WINDOW FUNCTIONS</code></strong> (Se calculan sobre las filas resultantes del agrupamiento)
+6.  <code>SELECT</code>
+7.  <code>ORDER BY</code></p>
+<p>Esto significa que <strong>la función ventana actúa sobre el resultado del agrupamiento</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">Caso 1: Funciones Ventana SIN <code>GROUP BY</code> (Datos en crudo)</p>
+<p>Aquí trabajamos sobre las filas originales. Podemos mezclar columnas normales con cálculos de ventana.</p>
+<p><em>Ejemplo: Listar cada película, su duración y la duración media de su categoría.</em></p>
+<p></p><div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">length</span><span class="p">,</span><span class="w"> </span><span class="n">category_id</span><span class="p">,</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="k">length</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">media_categoria</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w"> </span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">film_category</span><span class="w"> </span><span class="n">fc</span><span class="w"> </span><span class="k">USING</span><span class="p">(</span><span class="n">film_id</span><span class="p">);</span>
+</span></code></pre></div>
+<em>Aquí no usamos <code>GROUP BY</code> porque queremos ver cada película individualmente.</em><p></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Caso 2: Funciones Ventana CON <code>GROUP BY</code> (Datos Agrupados)</p>
+<p>Aquí primero agrupamos los datos y luego aplicamos una función ventana (como un Ranking) sobre esos grupos resultantes.</p>
+<p><em>Ejemplo: Queremos un Ranking de las categorías con más películas. Primero contamos películas por categoría (<code>GROUP BY</code>) y luego asignamos el ranking (<code>RANK OVER</code>).</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">category_id</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_peliculas</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Agregación normal (colapsa filas)</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="n">RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ranking</span><span class="w"> </span><span class="c1">-- Ventana sobre el agrupado</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film_category</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category_id</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Obligatorio para usar COUNT(*)</span>
 </span></code></pre></div>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">num_en_precio</th>
-<th style="text-align: left;">title</th>
-<th style="text-align: left;">rental_rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">ACADEMY DINOSAUR</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-<tr>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">ADAPTATION HOLES</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-<tr>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">ALAMO VIDEOTAPE</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-<tr>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">AMISTAD REASON</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-<tr>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">ANGELS LIFE</td>
-<td style="text-align: left;">0.99</td>
-</tr>
-</tbody>
-</table>
-<p><em>En este caso, todas las películas de 0.99 se ordenan alfabéticamente y reciben un número del 1 al N.</em></p>
-<ul>
-<li><strong>Ranking de las películas más largas por categoría</strong> (mediante <code>RANK()</code>):<br>
-    Aquí buscamos identificar cuáles son las películas de mayor duración dentro de cada género. A diferencia de <code>ROW_NUMBER()</code>, la función <code>RANK()</code> <strong>asigna la misma posición en caso de empate</strong>. Si dos películas miden lo mismo (como ocurre con el ranking 2 en el ejemplo), la siguiente posición saltará (pasando del 2 al 4).</li>
-</ul>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">length</span><span class="p">,</span><span class="w"> </span><span class="n">category_id</span><span class="p">,</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">       </span><span class="n">RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">length</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ranking_duracion</span>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span>
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">film_category</span><span class="w"> </span><span class="n">fc</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">film_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fc</span><span class="p">.</span><span class="n">film_id</span>
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-</span></code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">title</th>
-<th style="text-align: left;">length</th>
 <th style="text-align: left;">category_id</th>
-<th style="text-align: left;">ranking_duracion</th>
+<th style="text-align: left;">total_peliculas</th>
+<th style="text-align: left;">ranking</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">CHICAGO NORTH</td>
-<td style="text-align: left;">185</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">74</td>
 <td style="text-align: left;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">DARKO DORADO</td>
-<td style="text-align: left;">178</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">73</td>
 <td style="text-align: left;">2</td>
 </tr>
 <tr>
-<td style="text-align: left;">WORST BANGER</td>
-<td style="text-align: left;">178</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">2</td>
-</tr>
-<tr>
-<td style="text-align: left;">CONSPIRACY SPIRIT</td>
-<td style="text-align: left;">171</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">4</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">3</td>
 </tr>
 </tbody>
 </table>
-<p><em>Observa cómo <code>DARKO DORADO</code> y <code>WORST BANGER</code> empatan en el puesto 2, y por eso el siguiente es el 4.</em></p>
+<blockquote>
+<p><strong>Observa:</strong> Dentro del <code>OVER (ORDER BY ...)</code> hemos puesto <code>COUNT(*)</code>. Esto es porque la función ventana necesita saber cómo ordenar los grupos ya creados.</p>
+</blockquote>
+</div>
+<hr>
+<h3 id="tipos-de-funciones-ventana">🧮 <strong>Tipos de Funciones Ventana</strong><a class="headerlink" href="#tipos-de-funciones-ventana" title="Permanent link">¶</a></h3>
+<p>Podemos clasificar las funciones que usamos con <code>OVER</code> en tres tipos. Es importante notar que <strong>las funciones de agregación clásicas (SUM, AVG) pueden comportarse como funciones ventana</strong>.</p>
+<h4 id="1-funciones-de-agregacion-como-ventana-sum-avg-count-max"><strong>1. Funciones de Agregación como Ventana (<code>SUM</code>, <code>AVG</code>, <code>COUNT</code>, <code>MAX</code>...)</strong><a class="headerlink" href="#1-funciones-de-agregacion-como-ventana-sum-avg-count-max" title="Permanent link">¶</a></h4>
+<p>Si usas <code>SUM(x)</code> sin <code>OVER</code>, necesitas <code>GROUP BY</code>. Si usas <code>SUM(x) OVER(...)</code>, es una función ventana.</p>
 <ul>
-<li><strong>Diferencia de precio con la película anterior y siguiente</strong> (usando <code>LAG</code> y <code>LEAD</code>):<br>
-    Estas funciones nos permiten "mirar" hacia atrás o hacia adelante en el conjunto de resultados <strong>sin necesidad de hacer un JOIN adicional</strong>. En este ejemplo, comparamos el precio de una película con el de la película que iría antes y después en orden alfabético.</li>
+<li><strong>Sin <code>ORDER BY</code> dentro del OVER:</strong> Calcula el total del grupo y lo repite en cada fila.</li>
+<li><strong>Con <code>ORDER BY</code> dentro del OVER:</strong> Calcula un <strong>acumulado (Running Total)</strong>.</li>
 </ul>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">rental_rate</span><span class="p">,</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">       </span><span class="n">LAG</span><span class="p">(</span><span class="n">rental_rate</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">precio_anterior</span><span class="p">,</span>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">       </span><span class="n">LEAD</span><span class="p">(</span><span class="n">rental_rate</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">precio_siguiente</span><span class="p">,</span>
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">       </span><span class="n">rental_rate</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">rental_rate</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">diferencia</span>
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">film</span>
-</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<p><em>Ejemplo: Suma acumulada de pagos por fecha.</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">payment_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">payment_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_acumulado</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">payment</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </span></code></pre></div>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">title</th>
-<th style="text-align: left;">rental_rate</th>
-<th style="text-align: left;">precio_anterior</th>
-<th style="text-align: left;">precio_siguiente</th>
-<th style="text-align: left;">diferencia</th>
+<th style="text-align: left;">payment_date</th>
+<th style="text-align: left;">amount</th>
+<th style="text-align: left;">total_acumulado</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">ACADEMY DINOSAUR</td>
-<td style="text-align: left;">0.99</td>
-<td style="text-align: left;">NULL</td>
-<td style="text-align: left;">4.99</td>
-<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">2005-05-24...</td>
+<td style="text-align: left;">2.99</td>
+<td style="text-align: left;">2.99</td>
 </tr>
 <tr>
-<td style="text-align: left;">ACE GOLDFINGER</td>
-<td style="text-align: left;">4.99</td>
+<td style="text-align: left;">2005-05-24...</td>
 <td style="text-align: left;">0.99</td>
-<td style="text-align: left;">2.99</td>
-<td style="text-align: left;">4.00</td>
+<td style="text-align: left;">3.98 (2.99 + 0.99)</td>
 </tr>
 <tr>
-<td style="text-align: left;">ADAPTATION HOLES</td>
-<td style="text-align: left;">2.99</td>
-<td style="text-align: left;">4.99</td>
-<td style="text-align: left;">0.99</td>
-<td style="text-align: left;">-2.00</td>
-</tr>
-<tr>
-<td style="text-align: left;">AFFAIR PREJUDICE</td>
-<td style="text-align: left;">0.99</td>
-<td style="text-align: left;">2.99</td>
-<td style="text-align: left;">2.99</td>
-<td style="text-align: left;">-2.00</td>
-</tr>
-<tr>
-<td style="text-align: left;">AFRICAN EGG</td>
-<td style="text-align: left;">2.99</td>
-<td style="text-align: left;">0.99</td>
-<td style="text-align: left;">0.99</td>
-<td style="text-align: left;">2.00</td>
+<td style="text-align: left;">2005-05-24...</td>
+<td style="text-align: left;">5.99</td>
+<td style="text-align: left;">9.97 (3.98 + 5.99)</td>
 </tr>
 </tbody>
 </table>
-<p><em>Fíjate que la primera película tiene <code>NULL</code> en <code>precio_anterior</code> porque no hay nadie antes que ella en la ventana.</em></p>
+<h4 id="2-funciones-de-ranking-row_number-rank-dense_rank"><strong>2. Funciones de Ranking (<code>ROW_NUMBER</code>, <code>RANK</code>, <code>DENSE_RANK</code>)</strong><a class="headerlink" href="#2-funciones-de-ranking-row_number-rank-dense_rank" title="Permanent link">¶</a></h4>
+<p>Estas funciones <strong>solo</strong> existen como funciones ventana. Sirven para enumerar filas.</p>
+<ul>
+<li><code>ROW_NUMBER()</code>: Numera 1, 2, 3, 4... (Sin empates).</li>
+<li><code>RANK()</code>: Numera 1, 2, 2, 4... (Con empates y saltos).</li>
+<li><code>DENSE_RANK()</code>: Numera 1, 2, 2, 3... (Con empates pero sin saltos).</li>
+</ul>
+<p><em>Ejemplo: Ranking de clientes por gastos (usando GROUP BY y Ventana a la vez).</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_gastado</span><span class="p">,</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">       </span><span class="n">RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">posicion_ranking</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">payment</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span></code></pre></div>
+<h4 id="3-funciones-de-valor-lag-lead"><strong>3. Funciones de Valor (<code>LAG</code>, <code>LEAD</code>)</strong><a class="headerlink" href="#3-funciones-de-valor-lag-lead" title="Permanent link">¶</a></h4>
+<p>Permiten acceder a datos de una fila anterior (<code>LAG</code>) o posterior (<code>LEAD</code>) sin hacer subconsultas complejas.</p>
+<p><em>Ejemplo: Comparar lo que pagó un cliente hoy vs lo que pagó la vez anterior.</em></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">payment_date</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">,</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">       </span><span class="n">LAG</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">payment_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pago_anterior</span><span class="p">,</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">       </span><span class="n">amount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">payment_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">diferencia</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">payment</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">payment_date</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
+<h3 id="resumen-que-puedo-mezclar-en-el-select">🧪 <strong>Resumen: ¿Qué puedo mezclar en el SELECT?</strong><a class="headerlink" href="#resumen-que-puedo-mezclar-en-el-select" title="Permanent link">¶</a></h3>
+<p>A menudo surge la duda al construir el <code>SELECT</code>: <em>¿Qué columnas puedo poner?</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Escenario</th>
+<th style="text-align: left;">Cláusulas</th>
+<th style="text-align: left;">¿Qué va en el SELECT?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Agregación Simple</strong></td>
+<td style="text-align: left;"><code>GROUP BY A</code></td>
+<td style="text-align: left;">Solo columna <code>A</code> y funciones agregadas como <code>SUM(B)</code>, <code>COUNT(*)</code>. No puedes poner <code>C</code> si no agrupas por ella.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ventana Simple</strong></td>
+<td style="text-align: left;"><code>OVER(...)</code> (Sin Group By)</td>
+<td style="text-align: left;">Cualquier columna de la tabla (<code>A</code>, <code>B</code>, <code>C</code>) y cualquier función ventana <code>SUM(B) OVER(...)</code>. Mantiene todas las filas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Híbrido</strong></td>
+<td style="text-align: left;"><code>GROUP BY A</code> + <code>OVER(...)</code></td>
+<td style="text-align: left;">Solo columna <code>A</code>, agregaciones <code>SUM(B)</code> y funciones ventana aplicadas <strong>sobre las agregaciones</strong> <code>RANK() OVER (ORDER BY SUM(B))</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition failure">
+<p class="admonition-title">Error Común</p>
+<p></p><div class="language-sql highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">-- ESTO FALLARÁ</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">       </span><span class="n">amount</span><span class="p">,</span><span class="w"> </span><span class="c1">-- Error: 'amount' no está en GROUP BY y no tiene función agregada</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">       </span><span class="n">RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">payment</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span>
+</span></code></pre></div>
+<em>Solución:</em> O quitas el <code>GROUP BY</code> (si quieres ver cada pago), o aplicas <code>SUM(amount)</code> si quieres agrupar por cliente.<p></p>
+</div>
 <hr>
 <p>🎓 <strong>¿Quieres saber más?</strong></p>
 <p>Las funciones ventana son un aspecto avanzado. Si quieres profundizar, te recomiendo:</p>
