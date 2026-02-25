@@ -934,6 +934,20 @@ Este es, sin duda, el concepto más complejo pero potente de las subconsultas. M
     
     > **La clave:** El cálculo de referencia (el promedio) cambia para cada alumno dependiendo de su asignatura.
 
+
+Las subconsultas correlacionadas **permiten resolver problemas más complejos y refinados**, ya que proporcionan la capacidad de hacer referencias cruzadas entre la consulta principal y la subconsulta.​ Pueden ser utilizadas en diferentes partes de una consulta, como en las cláusulas **`SELECT`**, `FROM`, `WHERE` o `HAVING`.
+
+​Sus características principales son:
+
+1. **Dependencia de la Consulta Externa**: La subconsulta correlacionada hace referencia a columnas de la consulta principal. Su ejecución está ligada a los valores de cada fila de esa consulta.​
+2. **Ejecutada Varias Veces**: Se evalúa una vez por cada fila que procesa la consulta externa, lo que puede generar una mayor carga de procesamiento.​
+3. **Interacción entre Consultas**: A diferencia de las no correlacionadas, este tipo de subconsulta crea una interacción directa entre las dos consultas, ya que cada fila de la consulta principal afecta el resultado de la subconsulta.​
+
+Las **subconsultas pueden devolver**:
+
+- **Un solo valor** (realmente una tabla resultado de 1x1)
+- **Un conjunto de valores** (una tabla de resultados)
+
 #### **¿Cómo funciona técnicamente?**
 
 En una subconsulta correlacionada, la consulta interna utiliza una columna de la tabla de la consulta externa. Esto obliga al motor de base de datos a ejecutar la subconsulta **una vez por cada fila** de la consulta principal. Es un bucle "Fila a Fila".
@@ -1186,6 +1200,35 @@ Se usan habitualmente con **subconsultas correlacionadas**.
     ```
 > **Lógica:** Para cada cliente, busca en la tabla pagos si existe alguno > 10. Si `NOT EXISTS` es verdadero (no encontró ninguno), muestra al cliente.
 
+*   *Ejemplo (EXISTS):* Buscar actores que han participado en alguna película de la categoría 'Sci-Fi'.
+
+    ```sql
+    SELECT a.first_name, a.last_name
+    FROM actor a
+    WHERE EXISTS (
+        SELECT 1
+        FROM film_actor fa
+        JOIN film_category fc ON fa.film_id = fc.film_id
+        JOIN category cat ON fc.category_id = cat.category_id
+        WHERE fa.actor_id = a.actor_id
+        AND cat.name = 'Sci-Fi'
+    );
+    ```
+
+*   *Ejemplo (NOT EXISTS):* Listar películas que no tienen ningún actor asignado en la base de datos.
+
+    ```sql
+    SELECT f.title
+    FROM film f
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM film_actor fa
+        WHERE fa.film_id = f.film_id
+    );
+    ```
+> **Lógica:** Muestra el título de la película solo si, al buscar en la tabla `film_actor`, no se encuentra ninguna fila relacionada con su `film_id`.
+
+
 ---
 
 ### **2.3 Ubicación de las subconsultas**
@@ -1209,7 +1252,7 @@ Se utiliza para filtrar **grupos** después de un `GROUP BY`.
 #### **En la cláusula `FROM` (Tablas Derivadas)**
 Aquí la subconsulta genera una tabla temporal "al vuelo". **Es obligatorio ponerle un alias**.
 
-*   *Ejemplo:* Queremos saber el promedio de los pagos totales por cliente.
+*   *Ejemplo 1:* Queremos saber el promedio de los pagos totales por cliente.
     (Primero sumamos lo de cada cliente, y sobre esa "tabla", hacemos el promedio).
 
     ```sql
@@ -1219,6 +1262,35 @@ Aquí la subconsulta genera una tabla temporal "al vuelo". **Es obligatorio pone
         FROM payment
         GROUP BY customer_id
     ) AS tabla_totales; -- <--- El alias es obligatorio
+    ```
+
+*   *Ejemplo 2:* Queremos saber cuántas películas tiene el actor que más películas ha hecho.
+    (Primero contamos las películas de cada actor, y sobre ese resultado, buscamos el máximo).
+
+    ```sql
+    SELECT MAX(num_peliculas)
+    FROM (
+        SELECT actor_id, COUNT(*) AS num_peliculas
+        FROM film_actor
+        GROUP BY actor_id
+    ) AS recuento_por_actor;
+    ```
+
+*   *Ejemplo 3 (Joins con subconsultas):* Listar las películas que son más caras que el promedio de su categoría.
+    Aquí usamos la subconsulta para calcular los promedios y luego la unimos (`JOIN`) con la tabla de películas.
+
+    ```sql
+    SELECT f.title, f.rental_rate, cat_resumen.media_precio
+    FROM film f
+    JOIN film_category fc ON f.film_id = fc.film_id
+    JOIN (
+        -- Esta subconsulta genera una "tabla" con el precio medio por categoría
+        SELECT category_id, AVG(rental_rate) AS media_precio
+        FROM film
+        JOIN film_category USING (film_id)
+        GROUP BY category_id
+    ) AS cat_resumen ON fc.category_id = cat_resumen.category_id
+    WHERE f.rental_rate > cat_resumen.media_precio;
     ```
 
 ---

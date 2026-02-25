@@ -129,7 +129,7 @@ extra_css:
 
 plugins:
   - search
-  - macros
+  #- macros
   - glightbox:
        touchNavigation: true
        loop: false

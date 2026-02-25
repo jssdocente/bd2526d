@@ -272,11 +272,11 @@ He diseñado las actividades para que cubran progresivamente los conceptos teór
 
     1. **Gigantes económicos**: Muestra el nombre y presupuesto de los equipos cuyo presupuesto sea mayor que el de **todos** los equipos fundados antes de 1950.
     2. **Jugadores altos**: Obtén el nombre y la altura de los jugadores que sean más altos que **cualquier** (al menos uno) jugador del equipo con código 'RMA' (Real Madrid).
-    3. **Salarios técnicos**: Muestra los entrenadores que cobran más que el salario promedio de los entrenadores de equipos cuyo estadio tiene una capacidad inferior a 30.000 espectadores (usa `ALL` o una escalar agregada, justifica tu elección).
+    3. **Salarios técnicos**: Muestra los entrenadores que cobran más que el salario promedio de los entrenadores de equipos cuyo estadio tiene una capacidad inferior a 30.000 espectadores (usa `ALL`).
 
 #### **AC514-A: Subconsultas Correlacionadas y EXISTS**
 
-??? "Actividad AC514"
+??? "Actividad AC514-A"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -292,9 +292,9 @@ He diseñado las actividades para que cubran progresivamente los conceptos teór
     4. **Clientes fieles**: Muestra los clientes que han realizado al menos un pago superior a 10$, pero usando `EXISTS` en lugar de un `JOIN` normal.
     5. **Doble correlación (Reto)**: Encuentra las películas (`film`) que tienen el mismo precio de alquiler (`rental_rate`) y la misma duración (`length`) que alguna otra película distinta (es decir, parejas de películas idénticas en precio y duración).
 
-#### **AC514b: Subconsultas Correlacionadas (Comparativas de Grupo)**
+#### **AC514-B: Subconsultas Correlacionadas (Comparativas de Grupo)**
 
-??? "Ejercicio AC514b"
+??? "Ejercicio AC514-B"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -330,7 +330,7 @@ He diseñado las actividades para que cubran progresivamente los conceptos teór
 
     7.  **Profesores con más carga que sus compañeros**:
         Muestra el nombre y apellido de los profesores que imparten más asignaturas que la **media de asignaturas que imparten los profesores de su mismo departamento**.
-        *   *Nota*: Este es un ejercicio de doble nivel (conteo por profesor vs promedio del departamento). Si te resulta muy complejo, intenta primero mostrar los profesores que imparten más de 2 asignaturas usando correlación.
+        *   *Nota*: Este es un ejercicio de doble nivel (conteo por profesor vs promedio del departamento).
 
 ---
 
