@@ -104,26 +104,13 @@
     2. **Inserción de clientes (Múltiple)**: Inserta a todos los clientes propuestos (del 1 al 4) en una **única sentencia `INSERT`**, aprovechando la inserción masiva.
     3. **Inserción de productos**: Inserta los 5 productos referenciados cuidando de que la clave foránea (`proveedor_id`) apunte a la ID correcta. Si en algún momento tienes dudas, omite la columna `id` para aprovechar el `AUTO_INCREMENT`.
 
-#### **AC602: Inserciones avanzadas e IDs Auto-incrementales**
-
-??? "Actividad AC602"
-
-    | Criterios de Evaluación | Ponderación |
-    | ----------------------- | ----------- |
-    | CE4b                    | 1.5p        |
-
-    1. **Inserte Ignorando Errores**: Intenta insertar de nuevo a la cliente 'Ana García' con el mismo email (`ana@email.com`). Utiliza la cláusula `IGNORE` para que la base de datos salte el error de unicidad (`UNIQUE`) silenciando el fallo sin interrumpir ningún script.
-    2. **Actualizar al insertar (Upsert)**: El cliente 'Luis Perez' se vuelve a registrar con el correo `luis@email.com`. Realiza una inserción que incluya `ON DUPLICATE KEY UPDATE` de forma que, al detectar que el email ya existe, sencillamente le sume `5.00` a su `saldo` como regalo de retorno.
-    3. **Inserción con sintaxis SET**: MySQL permite insertar mediante asignaciones precisas. Añade un nuevo producto utilizando la sintaxis `INSERT INTO productos SET ...`, poniéndolo como 'Auriculares Inalámbricos', precio 29.99, stock 15 y asociado al proveedor número 2.
-    4. **Obtención de ID Autoincremental**: Un nuevo proveedor entra al sistema. Inserta al proveedor de nombre 'Componentes Sur' de la ciudad de 'Sevilla'. Inmediatamente después, diseña un `INSERT` para dar de alta el producto 'Cable HDMI 2M' (8.50€, 30 de stock) aprovechándote de la función `LAST_INSERT_ID()` para no tener que buscar manualmente la Primary Key del proveedor anterior.
-
 ---
 
 ### 🆙 2. Modificación de Datos (UPDATE)
 
-#### **AC603: Modificaciones simples y con subconsultas**
+#### **AC602: Modificaciones simples y con subconsultas**
 
-??? "Actividad AC603"
+??? "Actividad AC602"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -135,9 +122,9 @@
     4. **Incentivo de saldos**: Adelántate a la campaña de verano otorgando un bono adicional sumando el `10%` de saldo a los clientes que tengan actualmente **más de 100€** en el monedero de la tienda.
     5. **Actualización con Subconsulta**: Sube un `15%` el precio de todos los productos suministrados por el proveedor de nombre 'ElectroComponentes'. ¡Ojo! No sabes su `id` y está prohibido usar JOIN. Utiliza una **subconsulta** en la cláusula `WHERE` para obtener dinámicamente el `id` a partir de su nombre.
 
-#### **AC604: Borrados Lógicos y Prevención**
+#### **AC603: Borrados Lógicos y Prevención**
 
-??? "Actividad AC604"
+??? "Actividad AC603"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -152,9 +139,9 @@
 
 ### 🗑️ 3. Borrado Físico (DELETE)
 
-#### **AC605: Eliminación física**
+#### **AC604: Eliminación física**
 
-??? "Actividad AC605"
+??? "Actividad AC604"
 
     | Criterios de Evaluación | Ponderación |
     | ----------------------- | ----------- |
@@ -165,6 +152,20 @@
     1. **Purgado definitivo**: El cliente 'Marta Lopez' jamás ha comprado nada y quiere darse de baja definita de nuestra BD. Realiza un borrado físico y definitivo de su registro usando la instrucción adecuada. *(Comprueba luego con `SELECT` que ha desaparecido).*
     2. **Eliminación masiva condicional**: Borra permanentemente de una sola vez a todos los clientes cuyo `email` termine en la cadena `'@test.com'` (usando el operador `LIKE`).
     3. **Borrado Físico usando Subconsultas**: Elimina físicamente todos los productos cuyo proveedor original sea de la ciudad de 'Valencia' (TechAsia).  Debes utilizar una *subconsulta* referenciando a la tabla proveedores (`WHERE proveedor_id IN (SELECT ...)`).
+
+#### **AC605: Integridad Referencial en Borrados (CASCADE, SET NULL y RESTRICT)**
+
+??? "Actividad AC605"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | CE4d                    | 1.5p        |
+
+    La integridad referencial define cómo se comporta la base de datos cuando intentamos borrar registros que tienen dependencias.
+
+    1. **Bloqueo por Restricción (RESTRICT/NO ACTION)**: Intenta borrar físicamente al cliente 'Ana García' (ID 1). *Nota: Solo fallará si Ana ya tiene pedidos asociados. Si no tienes pedidos, inserta uno de prueba primero para observar el error de restricción.*
+    2. **Efecto Cascada (CASCADE)**: Inserta un pedido de prueba y una línea en `detalle_pedido`. A continuación, borra el pedido. Verifica si las líneas de detalle asociadas desaparecen automáticamente. ¿Qué ventaja tiene esto frente al borrado manual de cada línea?
+    3. **Anulación por Referencia (SET NULL)**: Crea un proveedor temporal llamado 'Proveedor Test' y un producto asociado a él. Borra el proveedor y observa el `proveedor_id` del producto. ¿En qué situaciones es mejor `SET NULL` que `CASCADE`?
 
 ---
 

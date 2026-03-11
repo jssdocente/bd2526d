@@ -158,25 +158,6 @@ Es una variante de MySQL. Si el registro existe (por PK o UNIQUE), **lo borra y 
 REPLACE INTO alumnos (id, nombre, edad) VALUES (1, 'Juan Antonio', 21);
 ```
 
-#### **D. Actualizar al insertar (ON DUPLICATE KEY UPDATE)**
-Es la opción "Upsert" (Update + Insert). Si el registro no existe, lo inserta. Si ya existe, ejecuta un `UPDATE` parcial.
-
-```sql
-INSERT INTO alumnos (id, nombre, email) 
-VALUES (1, 'Juan', 'contacto@juan.com')
-ON DUPLICATE KEY UPDATE email = 'nuevo_contacto@juan.com';
-```
-
-#### **E. Sintaxis SET**
-MySQL permite otra forma de insertar, similar a un `UPDATE`, que a veces es más legible:
-
-```sql
-INSERT INTO alumnos 
-SET nombre = 'Clara',
-    apellido = 'Mota',
-    edad = 24;
-```
-
 ---
 
 ## 🆙 **1.2 Modificar datos (UPDATE)**
