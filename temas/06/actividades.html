@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -1932,35 +1932,11 @@
 <li><strong>Inserción de productos</strong>: Inserta los 5 productos referenciados cuidando de que la clave foránea (<code>proveedor_id</code>) apunte a la ID correcta. Si en algún momento tienes dudas, omite la columna <code>id</code> para aprovechar el <code>AUTO_INCREMENT</code>.</li>
 </ol>
 </details>
-<h4 id="ac602-inserciones-avanzadas-e-ids-auto-incrementales"><strong>AC602: Inserciones avanzadas e IDs Auto-incrementales</strong><a class="headerlink" href="#ac602-inserciones-avanzadas-e-ids-auto-incrementales" title="Permanent link">¶</a></h4>
-<details>
-<summary>Actividad AC602</summary>
-<table>
-<thead>
-<tr>
-<th>Criterios de Evaluación</th>
-<th>Ponderación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CE4b</td>
-<td>1.5p</td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li><strong>Inserte Ignorando Errores</strong>: Intenta insertar de nuevo a la cliente 'Ana García' con el mismo email (<code>ana@email.com</code>). Utiliza la cláusula <code>IGNORE</code> para que la base de datos salte el error de unicidad (<code>UNIQUE</code>) silenciando el fallo sin interrumpir ningún script.</li>
-<li><strong>Actualizar al insertar (Upsert)</strong>: El cliente 'Luis Perez' se vuelve a registrar con el correo <code>luis@email.com</code>. Realiza una inserción que incluya <code>ON DUPLICATE KEY UPDATE</code> de forma que, al detectar que el email ya existe, sencillamente le sume <code>5.00</code> a su <code>saldo</code> como regalo de retorno.</li>
-<li><strong>Inserción con sintaxis SET</strong>: MySQL permite insertar mediante asignaciones precisas. Añade un nuevo producto utilizando la sintaxis <code>INSERT INTO productos SET ...</code>, poniéndolo como 'Auriculares Inalámbricos', precio 29.99, stock 15 y asociado al proveedor número 2.</li>
-<li><strong>Obtención de ID Autoincremental</strong>: Un nuevo proveedor entra al sistema. Inserta al proveedor de nombre 'Componentes Sur' de la ciudad de 'Sevilla'. Inmediatamente después, diseña un <code>INSERT</code> para dar de alta el producto 'Cable HDMI 2M' (8.50€, 30 de stock) aprovechándote de la función <code>LAST_INSERT_ID()</code> para no tener que buscar manualmente la Primary Key del proveedor anterior.</li>
-</ol>
-</details>
 <hr>
 <h3 id="2-modificacion-de-datos-update">🆙 2. Modificación de Datos (UPDATE)<a class="headerlink" href="#2-modificacion-de-datos-update" title="Permanent link">¶</a></h3>
-<h4 id="ac603-modificaciones-simples-y-con-subconsultas"><strong>AC603: Modificaciones simples y con subconsultas</strong><a class="headerlink" href="#ac603-modificaciones-simples-y-con-subconsultas" title="Permanent link">¶</a></h4>
+<h4 id="ac602-modificaciones-simples-y-con-subconsultas"><strong>AC602: Modificaciones simples y con subconsultas</strong><a class="headerlink" href="#ac602-modificaciones-simples-y-con-subconsultas" title="Permanent link">¶</a></h4>
 <details>
-<summary>Actividad AC603</summary>
+<summary>Actividad AC602</summary>
 <table>
 <thead>
 <tr>
@@ -1983,9 +1959,9 @@
 <li><strong>Actualización con Subconsulta</strong>: Sube un <code>15%</code> el precio de todos los productos suministrados por el proveedor de nombre 'ElectroComponentes'. ¡Ojo! No sabes su <code>id</code> y está prohibido usar JOIN. Utiliza una <strong>subconsulta</strong> en la cláusula <code>WHERE</code> para obtener dinámicamente el <code>id</code> a partir de su nombre.</li>
 </ol>
 </details>
-<h4 id="ac604-borrados-logicos-y-prevencion"><strong>AC604: Borrados Lógicos y Prevención</strong><a class="headerlink" href="#ac604-borrados-logicos-y-prevencion" title="Permanent link">¶</a></h4>
+<h4 id="ac603-borrados-logicos-y-prevencion"><strong>AC603: Borrados Lógicos y Prevención</strong><a class="headerlink" href="#ac603-borrados-logicos-y-prevencion" title="Permanent link">¶</a></h4>
 <details>
-<summary>Actividad AC604</summary>
+<summary>Actividad AC603</summary>
 <table>
 <thead>
 <tr>
@@ -2008,9 +1984,9 @@
 </details>
 <hr>
 <h3 id="3-borrado-fisico-delete">🗑️ 3. Borrado Físico (DELETE)<a class="headerlink" href="#3-borrado-fisico-delete" title="Permanent link">¶</a></h3>
-<h4 id="ac605-eliminacion-fisica"><strong>AC605: Eliminación física</strong><a class="headerlink" href="#ac605-eliminacion-fisica" title="Permanent link">¶</a></h4>
+<h4 id="ac604-eliminacion-fisica"><strong>AC604: Eliminación física</strong><a class="headerlink" href="#ac604-eliminacion-fisica" title="Permanent link">¶</a></h4>
 <details>
-<summary>Actividad AC605</summary>
+<summary>Actividad AC604</summary>
 <table>
 <thead>
 <tr>
@@ -2030,6 +2006,30 @@
 <li><strong>Purgado definitivo</strong>: El cliente 'Marta Lopez' jamás ha comprado nada y quiere darse de baja definita de nuestra BD. Realiza un borrado físico y definitivo de su registro usando la instrucción adecuada. <em>(Comprueba luego con <code>SELECT</code> que ha desaparecido).</em></li>
 <li><strong>Eliminación masiva condicional</strong>: Borra permanentemente de una sola vez a todos los clientes cuyo <code>email</code> termine en la cadena <code>'@test.com'</code> (usando el operador <code>LIKE</code>).</li>
 <li><strong>Borrado Físico usando Subconsultas</strong>: Elimina físicamente todos los productos cuyo proveedor original sea de la ciudad de 'Valencia' (TechAsia).  Debes utilizar una <em>subconsulta</em> referenciando a la tabla proveedores (<code>WHERE proveedor_id IN (SELECT ...)</code>).</li>
+</ol>
+</details>
+<h4 id="ac605-integridad-referencial-en-borrados-cascade-set-null-y-restrict"><strong>AC605: Integridad Referencial en Borrados (CASCADE, SET NULL y RESTRICT)</strong><a class="headerlink" href="#ac605-integridad-referencial-en-borrados-cascade-set-null-y-restrict" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC605</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CE4d</td>
+<td>1.5p</td>
+</tr>
+</tbody>
+</table>
+<p>La integridad referencial define cómo se comporta la base de datos cuando intentamos borrar registros que tienen dependencias.</p>
+<ol>
+<li><strong>Bloqueo por Restricción (RESTRICT/NO ACTION)</strong>: Intenta borrar físicamente al cliente 'Ana García' (ID 1). <em>Nota: Solo fallará si Ana ya tiene pedidos asociados. Si no tienes pedidos, inserta uno de prueba primero para observar el error de restricción.</em></li>
+<li><strong>Efecto Cascada (CASCADE)</strong>: Inserta un pedido de prueba y una línea en <code>detalle_pedido</code>. A continuación, borra el pedido. Verifica si las líneas de detalle asociadas desaparecen automáticamente. ¿Qué ventaja tiene esto frente al borrado manual de cada línea?</li>
+<li><strong>Anulación por Referencia (SET NULL)</strong>: Crea un proveedor temporal llamado 'Proveedor Test' y un producto asociado a él. Borra el proveedor y observa el <code>proveedor_id</code> del producto. ¿En qué situaciones es mejor <code>SET NULL</code> que <code>CASCADE</code>?</li>
 </ol>
 </details>
 <hr>
