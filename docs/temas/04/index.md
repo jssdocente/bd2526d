@@ -1363,6 +1363,44 @@ SELECT nombre FROM Estadio LIMIT 5;
 ```
 
 
+## **4.0 Metadatos y el Esquema de Información**
+
+A medida que trabajamos con bases de datos, a menudo necesitamos saber qué tablas existen, qué columnas tienen o qué restricciones se han aplicado. Toda esta información sobre la propia base de datos se denomina **metadatos**.
+
+En MariaDB y otros SGBDs siguiendo el estándar, existe una base de datos especial llamada [`information_schema`](https://mariadb.com/kb/en/information-schema/), que actúa como un catálogo o **diccionario de datos**. Es una base de datos de solo lectura que contiene vistas sobre todos los objetos que gestiona el servidor.
+
+Las tablas más interesantes para empezar son:
+
+- **`TABLES`**: Información sobre todas las tablas de todas las bases de datos.
+- **`COLUMNS`**: Detalles de cada columna (tipo de dato, si permite nulos, etc.).
+- **`STATISTICS`**: Información sobre los índices creados.
+- **`TABLE_CONSTRAINTS`**: Información sobre claves primarias, ajenas y unicidad.
+
+### Ejemplos de consulta de metadatos
+
+Si queremos saber qué tablas tenemos en nuestra base de datos actual:
+
+```sql
+SELECT table_name, table_type, engine 
+FROM information_schema.tables 
+WHERE table_schema = 'LigaFutbol';
+```
+
+O si queremos conocer los detalles técnicos de las columnas de la tabla `Jugador`:
+
+```sql
+SELECT column_name, data_type, is_nullable, column_default 
+FROM information_schema.columns 
+WHERE table_name = 'Jugador' AND table_schema = 'LigaFutbol';
+```
+
+!!! tip "Comandos resumidos"
+    Aunque `information_schema` es la forma estándar y más potente, MariaDB ofrece comandos cortos para obtener información rápida:
+    *   `SHOW TABLES;` (Lista las tablas)
+    *   `DESCRIBE nombreTabla;` (Muestra las columnas)
+    *   `SHOW CREATE TABLE nombreTabla;` (Muestra el SQL necesario para crear la tabla)
+
+
 ## Referencias
 
 *   Sintaxis SQL oficial de [PostgreSQL](https://www.postgresql.org/docs/current/sql-commands.html) y [MariaDB](https://mariadb.com/kb/en/sql-statements/).
