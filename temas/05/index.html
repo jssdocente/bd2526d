@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1680,6 +1680,106 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#30-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.0 Optimización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.0 Optimización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-plan-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Plan de ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretando-las-columnas-del-plan-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretando las columnas del Plan de Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.0 Índices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0 Índices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tipos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-forzando-planes-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Forzando planes de ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-gestion-de-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Gestión de índices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Buenas prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2236,6 +2336,106 @@
     <span class="md-ellipsis">
       
         Resumen Visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.0 Optimización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.0 Optimización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-plan-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Plan de ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretando-las-columnas-del-plan-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretando las columnas del Plan de Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.0 Índices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0 Índices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tipos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-forzando-planes-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Forzando planes de ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-gestion-de-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Gestión de índices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Buenas prácticas
       
     </span>
   </a>
@@ -4026,6 +4226,364 @@ Se usan habitualmente con <strong>subconsultas correlacionadas</strong>.</p>
 <p>Acostúmbrate a usar <strong>CTE</strong> siempre que necesites realizar un paso previo de preparación de datos antes de tu consulta final. Es el estándar profesional hoy en día. Deja las subconsultas en el <code>WHERE</code> para filtros simples (<code>IN</code>, <code>EXISTS</code>), pero usa CTEs para lógica estructural.</p>
 </div>
 <hr>
+<h2 id="30-optimizacion"><strong>3.0 Optimización</strong><a class="headerlink" href="#30-optimizacion" title="Permanent link">¶</a></h2>
+<p>La optimización de consultas es un aspecto clave en las bases de datos relacionales que permite mejorar el rendimiento de las operaciones y reducir los tiempos de ejecución.</p>
+<p>La optimización consiste en encontrar la forma más eficiente de ejecutar una consulta SQL, minimizando el tiempo y los recursos utilizados.</p>
+<ol>
+<li>
+<p>Proceso de optimización:</p>
+<ul>
+<li>Reescritura de la consulta: El sistema traduce la consulta en diferentes formas equivalentes y elige la más eficiente.</li>
+<li>Generación del <strong>plan de ejecución</strong>: Se analizan posibles estrategias para ejecutar la consulta.</li>
+<li>
+<p>Coste estimado: El SGBD calcula el coste de cada plan basándose en factores como el tamaño de las tablas, la selectividad de los índices y la cardinalidad de las columnas.
+2. Factores que afectan a la optimización:</p>
+</li>
+<li>
+<p>Selección de <strong>índices</strong>: Un índice es una estructura asociada a una o varias columnas y facilitan la búsqueda de un determinado valor, acelerando el acceso a los datos, de forma similar al índice de un libro. Un uso adecuado de los índices puede acelerar enormemente las búsquedas y las combinaciones de tablas. Por defecto, los SGBD crean un índice por cada clave primaria de las tablas que definimos, así como para las claves ajenas, tanto para optimizar el acceso a un elemento concreto, como para optimizar el <em>join</em> de las tablas. Así pues, su comprensión es clave a la hora de optimizar las consultas que utilizamos en nuestras aplicación.</p>
+</li>
+<li>Orden de los <em>joins</em>: Elegir qué tabla unir primero puede reducir significativamente el número de filas procesadas.</li>
+<li>Filtrado anticipado: Aplicar condiciones <code>WHERE</code> lo antes posible evita procesar datos innecesarios.</li>
+</ul>
+</li>
+</ol>
+<p>Y para saber si una consulta se está ejecutando de forma óptima, recurriremos al plan de ejecución.</p>
+<h3 id="31-plan-de-ejecucion">3.1 <strong>Plan de ejecución</strong><a class="headerlink" href="#31-plan-de-ejecucion" title="Permanent link">¶</a></h3>
+<p>El plan de ejecución es un mapa que muestra cómo el SGBD ejecutará una consulta. Incluye detalles como los operadores utilizados (escaneos, uniones, filtros) y su orden, así como cuando un índice se usa o no, si se usa correctamente, lo que permite averiguar si las consultas se ejecutan de forma óptima.</p>
+<p>Mediante <a href="https://mariadb.com/kb/en/explain/"><code>EXPLAIN consulta</code></a>, obtendremos el plan de ejecución de la consulta. Por ejemplo, si recuperamos para cada jugador, el nombre del equipo en el que juega:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">equipo</span>
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="w"> </span><span class="n">j</span>
+</span><span id="__span-64-3"><a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">Equipo</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">equipoID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">select_type</th>
+<th style="text-align: left;">table</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">possible_keys</th>
+<th style="text-align: left;">key</th>
+<th style="text-align: left;">key_len</th>
+<th style="text-align: left;">ref</th>
+<th style="text-align: left;">rows</th>
+<th style="text-align: left;">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">SIMPLE</td>
+<td style="text-align: left;">e</td>
+<td style="text-align: left;">ALL</td>
+<td style="text-align: left;">PRIMARY</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">SIMPLE</td>
+<td style="text-align: left;">j</td>
+<td style="text-align: left;">ref</td>
+<td style="text-align: left;">equipoID</td>
+<td style="text-align: left;">equipoID</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">ligafutbol.e.id</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="interpretando-las-columnas-del-plan-de-ejecucion"><strong>Interpretando las columnas del Plan de Ejecución</strong><a class="headerlink" href="#interpretando-las-columnas-del-plan-de-ejecucion" title="Permanent link">¶</a></h3>
+<p>El resultado de <code>EXPLAIN</code> puede parecer abrumador al principio, pero cada columna nos da una pista vital sobre la eficiencia de nuestra consulta. Aquí tienes el desglose detallado:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Columna</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">¿Qué debemos buscar?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>id</code></strong></td>
+<td style="text-align: left;">Identificador secuencial de la consulta.</td>
+<td style="text-align: left;">Si todas las filas tienen el mismo <code>id</code>, se ejecutan juntas (como en un <code>JOIN</code>). Si hay IDs distintos, indica subconsultas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>select_type</code></strong></td>
+<td style="text-align: left;">El tipo de <code>SELECT</code> que se está ejecutando.</td>
+<td style="text-align: left;"><code>SIMPLE</code> es lo ideal. <code>SUBQUERY</code> o <code>DERIVED</code> indican que la consulta es más compleja y podría ser más lenta.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>table</code></strong></td>
+<td style="text-align: left;">La tabla a la que se refieren los datos de esa fila.</td>
+<td style="text-align: left;">A veces el optimizador cambia el orden de las tablas respecto a cómo las escribiste en el <code>JOIN</code> para ganar velocidad.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>type</code></strong></td>
+<td style="text-align: left;"><strong>La columna más importante.</strong> Indica el "método de acceso" a los datos.</td>
+<td style="text-align: left;"><em>(Ver detalle abajo)</em>. Buscamos siempre evitar el valor <code>ALL</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>possible_keys</code></strong></td>
+<td style="text-align: left;">Los índices que el motor <em>podría</em> haber usado para esta consulta.</td>
+<td style="text-align: left;">Si está vacío pero la consulta es lenta, significa que te falta crear un índice.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>key</code></strong></td>
+<td style="text-align: left;">El índice que el optimizador <strong>realmente elige</strong> usar.</td>
+<td style="text-align: left;">Si es <code>NULL</code>, la consulta no está usando índices (peligro de bajo rendimiento).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>key_len</code></strong></td>
+<td style="text-align: left;">La longitud en bytes de la clave (índice) utilizada.</td>
+<td style="text-align: left;">Útil para saber qué parte de un índice compuesto se está usando realmente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ref</code></strong></td>
+<td style="text-align: left;">Muestra qué columnas o constantes se comparan con el índice de la columna <code>key</code>.</td>
+<td style="text-align: left;">Ver un nombre de columna aquí es buena señal en los <code>JOIN</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>rows</code></strong></td>
+<td style="text-align: left;">El número de filas que el motor <strong>estima</strong> que tendrá que examinar.</td>
+<td style="text-align: left;"><strong>Cuanto menor sea este número, mejor.</strong> Es una estimación, no el valor real exacto.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>filtered</code></strong></td>
+<td style="text-align: left;">Porcentaje estimado de filas que serán filtradas por la condición del <code>WHERE</code>.</td>
+<td style="text-align: left;">Un valor bajo (ej. 10%) indica que el motor examina muchas filas para quedarse con muy pocas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Extra</code></strong></td>
+<td style="text-align: left;">Información adicional sobre cómo SQL resuelve la consulta.</td>
+<td style="text-align: left;"><strong>Cuidado</strong> si ves <code>Using filesort</code> o <code>Using temporary</code>, ya que indican un alto consumo de memoria/CPU.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="jerarquia-del-tipo-de-acceso-type"><strong>Jerarquía del tipo de acceso (<code>type</code>)</strong><a class="headerlink" href="#jerarquia-del-tipo-de-acceso-type" title="Permanent link">¶</a></h4>
+<p>Es fundamental entender que el valor de <code>type</code> es un termómetro del rendimiento. De mejor a peor:</p>
+<ol>
+<li>🥇 <strong><code>const</code> / <code>system</code></strong>: El motor encuentra los datos al primer intento (ej. buscando por Clave Primaria). Es instantáneo.</li>
+<li>🥈 <strong><code>eq_ref</code></strong>: Se usa un índice único para unir tablas (como una PK). Muy eficiente.</li>
+<li>🥉 <strong><code>ref</code></strong>: Se usa un índice normal (no único) para buscar valores. Es el objetivo mínimo en la mayoría de consultas.</li>
+<li>🔸 <strong><code>range</code></strong>: El motor busca valores en un rango (ej. <code>WHERE edad &gt; 18</code> o <code>BETWEEN</code>). Usa índices.</li>
+<li>⚠️ <strong><code>index</code></strong>: Escaneo completo del índice. Mejor que la tabla entera, pero sigue siendo un recorrido largo.</li>
+<li>🚨 <strong><code>ALL</code></strong>: Escaneo completo de la tabla (<em>Full Table Scan</em>). El motor tiene que leer cada fila del disco. <strong>Evitar en tablas grandes.</strong></li>
+</ol>
+<p>En nuestro ejemplo anterior, la consulta procesa unas 20 filas en la tabla <code>e</code> (los equipos existentes) y unas 11 filas estimadas en la tabla <code>j</code> por cada equipo.</p>
+<p>Como en el plan nos han aparecido dos filas, el plan ejecuta dos etapas:</p>
+<ol>
+<li>Primera etapa: tabla e (<code>equipo</code>)<ul>
+<li>Se accede a la tabla de equipos. Si no hay filtros específicos, el optimizador puede optar por un escaneo completo (<code>ALL</code>) si la tabla es pequeña.</li>
+<li>Se procesan las filas de los equipos existentes.</li>
+</ul>
+</li>
+<li>Segunda etapa: tabla j (<code>jugador</code>)<ul>
+<li>Se accede a la tabla de jugadores mediante el índice de la clave ajena (<code>equipoID</code>) que conecta con la tabla <code>equipo</code>.</li>
+<li>El optimizador estima cuántos jugadores hay por equipo para refinar el plan.</li>
+</ul>
+</li>
+</ol>
+<p>Si quieres obtener un plan detallado con tiempos reales y cantidad de registros obtenidos, usaremos <code>EXPLAIN EXTENDED</code> o <code>EXPLAIN FORMAT=JSON</code>:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="p">{</span>
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">  </span><span class="nt">"query_block"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-65-3"><a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">    </span><span class="nt">"select_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-65-4"><a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="w">    </span><span class="nt">"table"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-65-5"><a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="w">      </span><span class="nt">"table_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e"</span><span class="p">,</span>
+</span><span id="__span-65-6"><a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="w">      </span><span class="nt">"access_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALL"</span><span class="p">,</span>
+</span><span id="__span-65-7"><a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="w">      </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+</span><span id="__span-65-8"><a id="__codelineno-65-8" name="__codelineno-65-8" href="#__codelineno-65-8"></a><span class="w">      </span><span class="nt">"filtered"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+</span><span id="__span-65-9"><a id="__codelineno-65-9" name="__codelineno-65-9" href="#__codelineno-65-9"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-65-10"><a id="__codelineno-65-10" name="__codelineno-65-10" href="#__codelineno-65-10"></a><span class="w">    </span><span class="nt">"table"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-65-11"><a id="__codelineno-65-11" name="__codelineno-65-11" href="#__codelineno-65-11"></a><span class="w">      </span><span class="nt">"table_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"j"</span><span class="p">,</span>
+</span><span id="__span-65-12"><a id="__codelineno-65-12" name="__codelineno-65-12" href="#__codelineno-65-12"></a><span class="w">      </span><span class="nt">"access_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref"</span><span class="p">,</span>
+</span><span id="__span-65-13"><a id="__codelineno-65-13" name="__codelineno-65-13" href="#__codelineno-65-13"></a><span class="w">      </span><span class="nt">"possible_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"equipoID"</span><span class="p">],</span>
+</span><span id="__span-65-14"><a id="__codelineno-65-14" name="__codelineno-65-14" href="#__codelineno-65-14"></a><span class="w">      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equipoID"</span><span class="p">,</span>
+</span><span id="__span-65-15"><a id="__codelineno-65-15" name="__codelineno-65-15" href="#__codelineno-65-15"></a><span class="w">      </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span>
+</span><span id="__span-65-16"><a id="__codelineno-65-16" name="__codelineno-65-16" href="#__codelineno-65-16"></a><span class="w">      </span><span class="nt">"filtered"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-65-17"><a id="__codelineno-65-17" name="__codelineno-65-17" href="#__codelineno-65-17"></a><span class="w">      </span><span class="nt">"using_index"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-65-18"><a id="__codelineno-65-18" name="__codelineno-65-18" href="#__codelineno-65-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-65-19"><a id="__codelineno-65-19" name="__codelineno-65-19" href="#__codelineno-65-19"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-65-20"><a id="__codelineno-65-20" name="__codelineno-65-20" href="#__codelineno-65-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Mediante <a href="https://mariadb.com/docs/server/reference/sql-statements/administrative-sql-statements/analyze-and-explain-statements/analyze-statement"><code>ANALYZE consulta</code></a> se ejecutará la consulta y devolverá la información sobre el plan de ejecución, con información más cercana a la realidad.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">ANALYZE</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">equipo</span>
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="w"> </span><span class="n">j</span>
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">Equipo</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">equipoID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="40-indices"><strong>4.0 Índices</strong><a class="headerlink" href="#40-indices" title="Permanent link">¶</a></h2>
+<p>Antes hemos comentado que un índice en una base de datos es similar a un índice de un libro; permite saltar directamente a la parte del libro en vez de tener que pasar las páginas buscando el tema o la palabra que nos interesa. Esta estructura permite recorrer los datos y ordenarlos de manera muy rápida. Así pues, los índices se utilizan tanto al buscar un elemento como al ordenar los datos de una consulta.</p>
+<p>Al buscar un valor concreto en una columna de una tabla, si la columna no tiene un índice, hay que recorrer toda la tabla comparando fila a fila. Si la tabla tiene pocas filas no hay problema.</p>
+<p>Para mejorar el rendimiento, podemos crear un índice para cada columna que se utiliza en la cláusula <code>WHERE</code> o en <code>ORDER BY</code>.</p>
+<p>Cuando se crea un índice sobre una columna, el motor de la base de datos construye el índice escaneando toda la tabla y registrando los valores de la columna indexada junto con los punteros a las filas correspondientes. Mediante estos punteros sobre las filas de la tabla, el SGBD puede determinar rápidamente cuáles son las filas necesarias. Internamente, los índices se traducen en estructura de datos en forma de árbol (<a href="https://es.wikipedia.org/wiki/%C3%81rbol-B"><em>b-tree</em></a>) que facilitan la búsqueda.</p>
+<figure>
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="img/b-tree.png" data-desc-position="bottom"><img src="img/b-tree.png" alt="Índice B-Tree" width="100%" align="center"></a>
+    <figcaption align="center">Índice B-Tree - https://severalnines.com/blog/overview-mysql-database-indexing/</figcaption>
+</figure>
+
+<h4 id="la-degradacion-de-los-indices-fragmentacion"><strong>La degradación de los índices: Fragmentación</strong><a class="headerlink" href="#la-degradacion-de-los-indices-fragmentacion" title="Permanent link">¶</a></h4>
+<p>Aunque los árboles B-Tree son muy eficientes, no son estructuras inmutables. A medida que realizamos operaciones de escritura (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>), el índice puede sufrir lo que conocemos como <strong>fragmentación</strong>.</p>
+<p>La fragmentación ocurre principalmente por dos motivos:</p>
+<ol>
+<li><strong>Huecos por borrado (Fragmentación Interna)</strong>: Cuando eliminamos filas, el espacio que ocupaban en las "hojas" del árbol no siempre se libera inmediatamente al sistema operativo. El motor de la base de datos mantiene esos huecos vacíos para futuros registros, pero si el patrón de uso cambia, podemos acabar con un índice que ocupa mucho más espacio del necesario (lo que los alumnos comprobaréis mediante <code>data_free</code> en las actividades).</li>
+<li><strong>División de páginas (Page Splits)</strong>: Si insertamos un dato en medio de un índice que ya está lleno, el motor debe "romper" la página actual en dos para hacer hueco. Esto puede provocar que las páginas de datos dejen de estar contiguas en el disco (fragmentación externa), obligando al cabezal del disco (en HDDs) o al controlador (en SSDs) a realizar más saltos para leer un rango de datos.</li>
+</ol>
+<p><strong>¿Cómo afecta al rendimiento?</strong>
+Un índice muy fragmentado provoca que:
+*   Las consultas de tipo <code>range</code> (ej: <code>BETWEEN</code>) sean más lentas, al tener que saltar entre páginas desordenadas.
+*   El motor tenga que cargar en memoria (Buffer Pool) muchas páginas que están "medio vacías", desperdiciando RAM preciosa.</p>
+<p><strong>La solución: Reconstrucción</strong>
+Como veremos más adelante, la sentencia <code>OPTIMIZE TABLE</code> es la herramienta clave para solucionar este problema. Internamente, reconstruye la tabla y sus índices desde cero, compactando las páginas y eliminando los huecos.</p>
+<div class="admonition warning">
+<p class="admonition-title">No abusar de los índices</p>
+<p>No es conveniente crear un índice para cada una de las columnas de una tabla.</p>
+<p>El exceso de índices innecesarios puede provocar un incremento del espacio de almacenamiento y una penalización en el rendimiento ya que el SGBD debe decidir qué índices necesita utilizar.</p>
+<p>Además añaden una sobrecarga a las operaciones de inserción, actualización y borrado, porque cada índice tiene que ser actualizado después de realizar cada una de estas operaciones.</p>
+</div>
+<h3 id="41-tipos">4.1 Tipos<a class="headerlink" href="#41-tipos" title="Permanent link">¶</a></h3>
+<p>Dependiendo del tipo de los campos, podemos crear diferentes índices sobre una o más columnas. En <em>MariaDB</em> existen los siguientes tipos de índices:</p>
+<ul>
+<li><code>PRIMARY KEY</code>: índice primario que no admite nulos ni valores repetidos. Sólo puede haber uno por tabla y se crea automáticamente al definir la clave primaria de una tabla.</li>
+<li><code>UNIQUE</code>: índice único que no permite valores repetidos pero sí nulos.</li>
+<li><code>INDEX</code>: indices normales que mejoran el rendimiento de las consultas (se pueden usar con columnas que admiten valores duplicados).</li>
+<li><code>FULLTEXT</code>: índices de texto completo, utilizados para optimizar las búsquedas de texto en columnas de tipo <code>TEXT</code> o <code>VARCHAR</code>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Índices FULLTEXT</p>
+<p>Los índices <a href="https://mariadb.com/kb/en/full-text-index-overview">FULLTEXT</a> mejoran la búsqueda de partes de texto en un campo (similar a las sentencias <code>LIKE</code>), pero utilizando el operador <a href="https://mariadb.com/kb/en/match-against/"><code>MATCH(campo) AGAINST (valorABuscar)</code></a>.</p>
+<p>Por ejemplo, si creamos un índice para el nombre de los estadios:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_nombre_estadio</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Estadio</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Luego podemos hacer búsquedas más eficientes:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciudad</span><span class="w"> </span>
+</span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Estadio</span><span class="w"> </span>
+</span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">'Santiago'</span><span class="p">);</span>
+</span></code></pre></div>
+<p>E incluso utilizar comodines:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciudad</span><span class="w"> </span>
+</span><span id="__span-69-2"><a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Estadio</span><span class="w"> </span>
+</span><span id="__span-69-3"><a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">'Sant*'</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+<h4 id="42-operaciones">4.2 Operaciones<a class="headerlink" href="#42-operaciones" title="Permanent link">¶</a></h4>
+<p>Sobre los índices, podemos realizar diversas operaciones, como:</p>
+<ul>
+<li>
+<p>Crear un índice, mediante la sentencia <a href="https://mariadb.com/kb/en/create-index/"><code>CREATE INDEX</code></a>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">nombreIndice</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">tabla</span><span class="p">(</span><span class="n">columna</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Por ejemplo, vamos a crear un índice sobre el apellido de los jugadores:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_apellido_jugador</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Jugador</span><span class="p">(</span><span class="n">apellido</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Si volvemos a ejecutar una consulta filtrando por apellido, vemos cómo ahora utiliza el índice recién creado:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'García'</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Obtener los índices de una tabla, mediante <a href="https://mariadb.com/kb/en/show-index"><code>SHOW INDEX</code></a>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">nombreTabla</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Si queremos recuperar los índices de la tabla <code>Jugador</code>, obtendremos:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="p">;</span>
+</span></code></pre></div>
+<blockquote>
+<p><strong>¿Por qué aparecen tantos índices?</strong><br>
+Si nosotros solo hemos creado un índice de manera explícita, ¿por qué nos aparecen 6? ¿Sabes deducir por el nombre de las columnas y el contenido el tipo de cada uno de ellos?</p>
+</blockquote>
+</li>
+<li>
+<p>Eliminar un índice concreto, mediante <a href="https://mariadb.com/kb/en/drop-index"><code>DROP INDEX</code></a>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">nombreIndice</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">nombreTabla</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Por lo tanto, si queremos eliminar el índice recién creado, haríamos:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_apellido_jugador</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Jugador</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="43-forzando-planes-de-ejecucion"><strong>4.3 Forzando planes de ejecución</strong><a class="headerlink" href="#43-forzando-planes-de-ejecucion" title="Permanent link">¶</a></h3>
+<p>En ocasiones, si queremos <a href="https://mariadb.com/kb/en/index-hints-how-to-force-query-plans/">forzar</a> a que el SGBD se comporte de una determinada manera, podemos emplear</p>
+<ul>
+<li>
+<p><code>STRAIGHT_JOIN</code>: fuerza el orden de unión de las tablas (la izquierda se lee antes que la derecha).</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">STRAIGHT_JOIN</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">est</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">estadio</span>
+</span><span id="__span-77-2"><a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Equipo</span><span class="w"> </span><span class="n">e</span>
+</span><span id="__span-77-3"><a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">Estadio</span><span class="w"> </span><span class="n">est</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">estadioID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">est</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><a href="https://mariadb.com/kb/en/use-index/"><code>USE INDEX</code></a> / <a href="https://mariadb.com/kb/en/force-index/"><code>FORCE INDEX</code></a> : propone o fuerza que se utilice un índice determinado. Se pone después de la tabla que contiene el índice.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="n">idx_apellido_jugador</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-78-2"><a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'García'</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p><a href="https://mariadb.com/kb/en/ignore-index/"><code>IGNORE INDEX</code></a>: fuerza que <strong>no</strong> se utilice un índice.</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Jugador</span><span class="w"> </span><span class="k">IGNORE</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="n">idx_apellido_jugador</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-79-2"><a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'García'</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+</ul>
+<h3 id="44-gestion-de-indices"><strong>4.4 Gestión de índices</strong><a class="headerlink" href="#44-gestion-de-indices" title="Permanent link">¶</a></h3>
+<p>Una vez creados los índices, aunque realmente es labor del DBA (<em>Database Administrator</em>), es conveniente vigilarlos y mantenerlos. Para ello, podemos:</p>
+<ul>
+<li>
+<p>Analizar el almacenamiento de los índices de una tabla, mediante <a href="https://mariadb.com/kb/en/analyze-table/"><code>ANALYZE TABLE nombreTabla</code></a>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Equipo</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Se usa para determinar el orden que el servidor seguirá para combinar tablas en un JOIN y qué índices se usarán en una consulta.</p>
+</li>
+<li>
+<p>Desfragmentar una tabla, mediante <a href="https://mariadb.com/kb/en/optimize-table/"><code>OPTIMIZE TABLE nombreTabla</code></a>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="n">OPTIMIZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Equipo</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Además de reorganizar los datos, actualiza y reordenar los índices, pero sólo para algunos motores de ejecución (las versiones actuales de <em>InnoDB</em> realizan un ajuste automático del espacio minimizando la fragmentación, y por lo tanto, por defecto esta sentencia no realiza nada).</p>
+</li>
+</ul>
+<h4 id="441-auditoria-de-indices"><strong>4.4.1 Auditoría de Índices</strong><a class="headerlink" href="#441-auditoria-de-indices" title="Permanent link">¶</a></h4>
+<p>Una de las utilidades más importantes del diccionario de datos de MariaDB (<a href="https://mariadb.com/kb/en/information-schema-tables-table/"><code>information_schema.TABLES</code></a>) es auditar el estado físico de nuestras tablas e índices. </p>
+<p>En entornos con muchos borrados y actualizaciones, el espacio en disco puede verse fragmentado. Podemos detectar este "espacio desperdiciado" mediante la columna <code>data_free</code>:</p>
+<p></p><div class="language-sql highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">table_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_length</span><span class="p">,</span><span class="w"> </span><span class="n">index_length</span><span class="p">,</span><span class="w"> </span><span class="n">data_free</span><span class="w"> </span>
+</span><span id="__span-82-2"><a id="__codelineno-82-2" name="__codelineno-82-2" href="#__codelineno-82-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span>
+</span><span id="__span-82-3"><a id="__codelineno-82-3" name="__codelineno-82-3" href="#__codelineno-82-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'LigaFutbol'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'EstadisticaPartido'</span><span class="p">;</span>
+</span></code></pre></div>
+- <strong><code>data_length</code></strong>: Espacio ocupado por los datos de la tabla.
+- <strong><code>index_length</code></strong>: Espacio ocupado exclusivamente por los índices.
+- <strong><code>data_free</code></strong>: Tamaño del espacio asignado pero no utilizado (wasted space). Si este valor es muy alto en relación con los anteriores, es señal de que necesitamos ejecutar un <code>OPTIMIZE TABLE</code>.<p></p>
+<p>Si queremos obtener un <strong>porcentaje real de fragmentación</strong>, podemos aplicar la siguiente consulta:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-83-1"><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-83-2"><a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a><span class="w">    </span><span class="k">table_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">'Tabla'</span><span class="p">,</span>
+</span><span id="__span-83-3"><a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a><span class="w">    </span><span class="n">data_length</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">'Bytes Datos'</span><span class="p">,</span>
+</span><span id="__span-83-4"><a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a><span class="w">    </span><span class="n">index_length</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">'Bytes Índices'</span><span class="p">,</span>
+</span><span id="__span-83-5"><a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a><span class="w">    </span><span class="n">data_free</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">'Bytes Libres'</span><span class="p">,</span>
+</span><span id="__span-83-6"><a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">((</span><span class="n">data_free</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">data_length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index_length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data_free</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">'% Frag'</span>
+</span><span id="__span-83-7"><a id="__codelineno-83-7" name="__codelineno-83-7" href="#__codelineno-83-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span>
+</span><span id="__span-83-8"><a id="__codelineno-83-8" name="__codelineno-83-8" href="#__codelineno-83-8"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'LigaFutbol'</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nivel de fragmentación aceptable</p>
+<p>En MariaDB (InnoDB), siempre existirá un mínimo de <code>data_free</code> debido a la pre-asignación de espacio. Por lo tanto, un porcentaje inferior al <strong>5% - 10%</strong> se considera óptimo y no requiere mantenimiento inmediato.</p>
+</div>
+<h3 id="45-buenas-practicas"><strong>4.5 Buenas prácticas</strong><a class="headerlink" href="#45-buenas-practicas" title="Permanent link">¶</a></h3>
+<p>Algunos consejos que debes tener en cuenta a la hora de hacer consultas son:</p>
+<ul>
+<li>
+<p>Filtra antes con <code>WHERE</code>: Como la cláusula <code>WHERE</code> se ejecuta antes que <code>GROUP BY</code> y <code>JOIN</code>, aplicar los filtros antes reduce el número de filas procesadas por las cláusulas posteriores, lo que mejora el rendimiento de la consulta. Al filtrar los datos no agrupados lo antes posible, limitas los datos que hay que agrupar o unir, ahorrando tiempo de procesamiento.</p>
+</li>
+<li>
+<p>Preagregar datos antes de unirlos: Sabiendo que <code>FROM</code> y <code>JOIN</code> son las primeras cláusulas que se ejecutan, preagrupar los datos mediante subconsultas o expresiones comunes de tabla (<em>CTE</em>) te permite reducir el conjunto de datos antes del proceso de unión. Esto garantiza que se procesen menos filas durante la unión.</p>
+</li>
+<li>
+<p>Optimizar <code>ORDER BY</code> con índices: Puesto que la cláusula ORDER BY es uno de los últimos pasos ejecutados, asegurarse de que las columnas ordenadas están indexadas acelerará el rendimiento de la consulta al ayudar a la base de datos a gestionar las operaciones de ordenación con mayor eficacia.</p>
+</li>
+<li>
+<p>Evitar <code>SELECT *</code> en las consultas de producción: La cláusula <code>SELECT</code> se ejecuta después de filtrar, agrupar y agregar, por lo que especificar sólo las columnas necesarias minimiza la cantidad de datos recuperados, reduciendo la sobrecarga innecesaria.</p>
+</li>
+</ul>
 
 
 

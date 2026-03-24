@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1416,6 +1416,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#40-metadatos-y-el-esquema-de-informacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.0 Metadatos y el Esquema de Información
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0 Metadatos y el Esquema de Información">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-consulta-de-metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos de consulta de metadatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#referencias" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1937,6 +1965,34 @@
     <span class="md-ellipsis">
       
         Operadores de conjuntos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-metadatos-y-el-esquema-de-informacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.0 Metadatos y el Esquema de Información
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0 Metadatos y el Esquema de Información">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-consulta-de-metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos de consulta de metadatos
       
     </span>
   </a>
@@ -4635,6 +4691,34 @@
 </span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="k">UNION</span><span class="w"> </span>
 </span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Estadio</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </span></code></pre></div>
+<h2 id="40-metadatos-y-el-esquema-de-informacion"><strong>4.0 Metadatos y el Esquema de Información</strong><a class="headerlink" href="#40-metadatos-y-el-esquema-de-informacion" title="Permanent link">¶</a></h2>
+<p>A medida que trabajamos con bases de datos, a menudo necesitamos saber qué tablas existen, qué columnas tienen o qué restricciones se han aplicado. Toda esta información sobre la propia base de datos se denomina <strong>metadatos</strong>.</p>
+<p>En MariaDB y otros SGBDs siguiendo el estándar, existe una base de datos especial llamada <a href="https://mariadb.com/kb/en/information-schema/"><code>information_schema</code></a>, que actúa como un catálogo o <strong>diccionario de datos</strong>. Es una base de datos de solo lectura que contiene vistas sobre todos los objetos que gestiona el servidor.</p>
+<p>Las tablas más interesantes para empezar son:</p>
+<ul>
+<li><strong><code>TABLES</code></strong>: Información sobre todas las tablas de todas las bases de datos.</li>
+<li><strong><code>COLUMNS</code></strong>: Detalles de cada columna (tipo de dato, si permite nulos, etc.).</li>
+<li><strong><code>STATISTICS</code></strong>: Información sobre los índices creados.</li>
+<li><strong><code>TABLE_CONSTRAINTS</code></strong>: Información sobre claves primarias, ajenas y unicidad.</li>
+</ul>
+<h3 id="ejemplos-de-consulta-de-metadatos">Ejemplos de consulta de metadatos<a class="headerlink" href="#ejemplos-de-consulta-de-metadatos" title="Permanent link">¶</a></h3>
+<p>Si queremos saber qué tablas tenemos en nuestra base de datos actual:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">table_name</span><span class="p">,</span><span class="w"> </span><span class="n">table_type</span><span class="p">,</span><span class="w"> </span><span class="n">engine</span><span class="w"> </span>
+</span><span id="__span-69-2"><a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span>
+</span><span id="__span-69-3"><a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'LigaFutbol'</span><span class="p">;</span>
+</span></code></pre></div>
+<p>O si queremos conocer los detalles técnicos de las columnas de la tabla <code>Jugador</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">is_nullable</span><span class="p">,</span><span class="w"> </span><span class="n">column_default</span><span class="w"> </span>
+</span><span id="__span-70-2"><a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span>
+</span><span id="__span-70-3"><a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Jugador'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'LigaFutbol'</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Comandos resumidos</p>
+<p>Aunque <code>information_schema</code> es la forma estándar y más potente, MariaDB ofrece comandos cortos para obtener información rápida:
+*   <code>SHOW TABLES;</code> (Lista las tablas)
+*   <code>DESCRIBE nombreTabla;</code> (Muestra las columnas)
+*   <code>SHOW CREATE TABLE nombreTabla;</code> (Muestra el SQL necesario para crear la tabla)</p>
+</div>
 <h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">¶</a></h2>
 <ul>
 <li>

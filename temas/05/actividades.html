@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../imagenes/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1447,6 +1447,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#optimizacion-e-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ Optimización e Índices
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1719,6 +1730,17 @@
     <span class="md-ellipsis">
       
         📦 Subconsultas y CTE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizacion-e-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ Optimización e Índices
       
     </span>
   </a>
@@ -2376,6 +2398,282 @@
 <li>Crea una CTE que agrupe los pagos por mes (Año-Mes) y sume el importe total.</li>
 <li>En la consulta final, muestra para cada mes: el total ingresado, el total del mes anterior (usando <code>LAG</code>) y la diferencia porcentual de crecimiento respecto al mes anterior.</li>
 </ul>
+</li>
+</ol>
+</details>
+<hr>
+<h2 id="optimizacion-e-indices">⚡ Optimización e Índices<a class="headerlink" href="#optimizacion-e-indices" title="Permanent link">¶</a></h2>
+<h4 id="ac518-el-escaneo-fantasma-explain-basico"><strong>AC518: El Escaneo Fantasma (EXPLAIN Básico)</strong><a class="headerlink" href="#ac518-el-escaneo-fantasma-explain-basico" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC518</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>4p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Aprender a identificar consultas ineficientes mediante el uso de <code>EXPLAIN</code> y comprender cómo la ausencia de un índice obliga al motor a realizar un escaneo completo de la tabla (<code>ALL</code>), penalizando el rendimiento.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>, realiza los siguientes pasos:</p>
+<ol>
+<li><strong>Diagnóstico</strong>: Ejecuta un <code>EXPLAIN</code> de una consulta que busque todas las películas cuyo <code>release_year</code> sea 2006. Observa el valor de la columna <code>type</code> y la cantidad de filas (<code>rows</code>) estimadas.</li>
+<li><strong>Solución</strong>: Crea un índice normal en la columna <code>release_year</code> de la tabla <code>film</code>.</li>
+<li><strong>Verificación</strong>: Vuelve a ejecutar el <code>EXPLAIN</code> de la misma consulta. Explica qué ha cambiado en el plan de ejecución (especialmente en las columnas <code>type</code>, <code>key</code> y <code>rows</code>).</li>
+</ol>
+</details>
+<h4 id="ac519-texto-vs-velocidad-busqueda-fulltext"><strong>AC519: Texto vs. Velocidad (Búsqueda FULLTEXT)</strong><a class="headerlink" href="#ac519-texto-vs-velocidad-busqueda-fulltext" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC519</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>4p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Comparar la eficiencia de las búsquedas de texto parcial usando el operador <code>LIKE</code> frente a los índices especializados <code>FULLTEXT</code>, entendiendo cuándo es necesario cada uno.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>:</p>
+<ol>
+<li><strong>Búsqueda tradicional</strong>: Ejecuta un <code>EXPLAIN</code> buscando las películas que contengan la palabra "Documentary" en su descripción usando <code>LIKE '%Documentary%'</code>.</li>
+<li><strong>Optimización</strong>: Crea un índice de tipo <code>FULLTEXT</code> que cubra las columnas <code>title</code> y <code>description</code> de la tabla <code>film</code>.</li>
+<li><strong>Búsqueda optimizada</strong>: Realiza la misma búsqueda utilizando el operador <code>MATCH() AGAINST()</code>. Compara los planes de ejecución. ¿Por qué el índice <code>FULLTEXT</code> es mucho más rápido para esta tarea que el índice normal o el escaneo completo?</li>
+</ol>
+</details>
+<h4 id="ac520-el-impacto-del-sin-indice-forzando-planes"><strong>AC520: El impacto del "Sin Índice" (Forzando Planes)</strong><a class="headerlink" href="#ac520-el-impacto-del-sin-indice-forzando-planes" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC520</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>4p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Visualizar la importancia de los índices en las operaciones de unión (<code>JOIN</code>) y aprender a manipular el comportamiento del optimizador mediante "hints" para diagnosticar problemas de rendimiento.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>:</p>
+<ol>
+<li><strong>Plan Automático</strong>: Realiza una consulta que una las tablas <code>film</code>, <code>inventory</code> y <code>rental</code> para listar los títulos de películas alquiladas. Observa el <code>EXPLAIN</code>. ¿Qué índices está usando el motor automáticamente para las claves ajenas?</li>
+<li><strong>Sabotaje (Simulación)</strong>: Utiliza la cláusula <code>IGNORE INDEX</code> para obligar al motor a no usar los índices de las claves ajenas (<code>fk_inventory_film</code>, <code>fk_rental_inventory</code>, etc.) durante la unión.</li>
+<li><strong>Análisis</strong>: Compara el número de filas procesadas y el tipo de acceso resultante. Describe qué ocurre cuando una base de datos "pierde" sus índices en tablas con miles de registros.</li>
+</ol>
+</details>
+<h4 id="ac521-indices-compuestos-y-el-prefijo-a-la-izquierda"><strong>AC521: Índices Compuestos y el Prefijo a la Izquierda</strong><a class="headerlink" href="#ac521-indices-compuestos-y-el-prefijo-a-la-izquierda" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC521</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Comprender el funcionamiento de los índices de múltiples columnas y la regla del "prefijo a la izquierda", que determina si un índice puede ser reutilizado para consultas que solo filtran por algunas de sus columnas.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>:</p>
+<ol>
+<li><strong>Creación</strong>: Crea un índice compuesto en la tabla <code>customer</code> que incluya las columnas <code>(active, last_name)</code>.</li>
+<li><strong>Prueba A</strong>: Ejecuta un <code>EXPLAIN</code> de una consulta que filtre por ambas columnas (<code>active</code> y <code>last_name</code>). Comprueba si usa el índice.</li>
+<li><strong>Prueba B</strong>: Ejecuta un <code>EXPLAIN</code> de una consulta que filtre <strong>solo</strong> por <code>last_name</code>. ¿Se utiliza el índice compuesto? ¿Por qué?</li>
+<li><strong>Prueba C</strong>: Ejecuta un <code>EXPLAIN</code> de una consulta que filtre <strong>solo</strong> por <code>active</code>. ¿Se utiliza el índice? Explica el concepto de la selectividad y el orden de las columnas en este caso.</li>
+</ol>
+</details>
+<h4 id="ac522-auditoria-y-mantenimiento-de-indices"><strong>AC522: Auditoría y Mantenimiento de Índices</strong><a class="headerlink" href="#ac522-auditoria-y-mantenimiento-de-indices" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC522</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>3p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Aprender a inspeccionar la estructura de indexación existente en una tabla real y conocer las herramientas de mantenimiento para mantener actualizadas las estadísticas del optimizador.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>:</p>
+<ol>
+<li><strong>Inspección</strong>: Utiliza el comando <code>SHOW INDEX</code> sobre la tabla <code>rental</code>. Enumera cuántos índices existen, cuáles son únicos y qué columnas los forman.</li>
+<li><strong>Interpretación</strong>: Explica la diferencia entre la columna <code>Key_name</code> y <code>Column_name</code> en el resultado del comando anterior.</li>
+<li><strong>Mantenimiento</strong>: Ejecuta el comando <code>ANALYZE TABLE rental;</code>. ¿Para qué sirve esta operación y en qué situaciones de la vida real deberíamos programarla periódicamente?</li>
+</ol>
+</details>
+<h4 id="ac523-el-consultor-de-rendimiento-reto-final"><strong>AC523: El Consultor de Rendimiento (Reto Final)</strong><a class="headerlink" href="#ac523-el-consultor-de-rendimiento-reto-final" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC523</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3f //</td>
+<td>6p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Integrar todos los conocimientos de la unidad para optimizar una consulta de negocio compleja, justificando cada decisión basada en los datos devueltos por el plan de ejecución.</p>
+</blockquote>
+<p>Tenemos la siguiente consulta que genera un informe de ingresos por ciudad para promociones de marketing:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_ventas</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">payment</span><span class="w"> </span><span class="n">p</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="n">cust</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cust</span><span class="p">.</span><span class="n">customer_id</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">cust</span><span class="p">.</span><span class="n">address_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">address_id</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">city_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">city_id</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">city</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_ventas</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Análisis Inicial</strong>: Genera el <code>EXPLAIN</code> de la consulta anterior. Identifica qué tablas generan un acceso de tipo <code>ALL</code> o <code>INDEX</code> (escaneo completo).</li>
+<li><strong>Estrategia</strong>: Sin modificar la consulta SQL, propón y crea los índices necesarios para que todas las uniones utilicen tipos de acceso <code>ref</code>, <code>eq_ref</code> o <code>const</code>.</li>
+<li><strong>Justificación</strong>: Muestra el <code>EXPLAIN</code> final y compara el "Total Cost" (si usas <code>FORMAT=JSON</code>) o la reducción de <code>rows</code> conseguida.</li>
+</ol>
+</details>
+<h4 id="ac524-rendimiento-en-subconsultas-independientes-vs-correlacionadas"><strong>AC524: Rendimiento en Subconsultas (Independientes vs. Correlacionadas)</strong><a class="headerlink" href="#ac524-rendimiento-en-subconsultas-independientes-vs-correlacionadas" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC524</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.3 // CE3c, CE3f //</td>
+<td>5p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Diferenciar a nivel técnico cómo el motor de la base de datos ejecuta una subconsulta independiente (que se calcula una sola vez) frente a una correlacionada (que se ejecuta fila por fila), y aprender a detectarlo en el plan de ejecución.</p>
+</blockquote>
+<p>Sobre la base de datos <strong>Sakila</strong>, realiza los siguientes experimentos:</p>
+<ol>
+<li>
+<p><strong>Subconsulta Independiente (Cálculo Único)</strong>:</p>
+<ul>
+<li><strong>Consulta</strong>: Obtener las películas (<code>film</code>) cuya duración sea mayor que la duración media global de todas las películas.</li>
+<li><strong>Análisis</strong>: Genera el <code>EXPLAIN</code>. Observa si el <code>select_type</code> indica que son subconsultas separadas. ¿Cuántas veces estima el motor que tiene que calcular el promedio?</li>
+</ul>
+</li>
+<li>
+<p><strong>Subconsulta Correlacionada (Cálculo Fila a Fila)</strong>:</p>
+<ul>
+<li><strong>Consulta</strong>: Obtener las películas que duran más que el promedio de su propia categoría (<code>rating</code>).</li>
+<li><strong>Análisis</strong>: Genera el <code>EXPLAIN</code>. Fíjate si aparece el término <code>DEPENDENT SUBQUERY</code>. Explica por qué el número de operaciones aumenta exponencialmente en este caso respecto al anterior.</li>
+</ul>
+</li>
+<li>
+<p><strong>El Salvavidas: Los Índices</strong>:</p>
+<ul>
+<li>En la subconsulta correlacionada del paso anterior, el motor tiene que buscar el promedio del <code>rating</code> constantemente. </li>
+<li><strong>Tarea</strong>: Borra (o simula que no existe) el índice de la columna <code>rating</code>. ¿Cómo afecta esto al número de filas analizadas en el <code>EXPLAIN</code>? ¿Qué conclusión sacas sobre el uso de subconsultas correlacionadas en columnas no indexadas?</li>
+</ul>
+</li>
+</ol>
+</details>
+<h4 id="ac525-fragmentacion-y-reconstruccion-mantenimiento"><strong>AC525: Fragmentación y Reconstrucción (Mantenimiento)</strong><a class="headerlink" href="#ac525-fragmentacion-y-reconstruccion-mantenimiento" title="Permanent link">¶</a></h4>
+<details>
+<summary>Actividad AC525</summary>
+<table>
+<thead>
+<tr>
+<th>Criterios de Evaluación</th>
+<th>Ponderación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RABD.2 // CE2f, CE3f //</td>
+<td>4p</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Objetivo</strong>: Provocar una fragmentación interna en los índices de una tabla mediante operaciones DML masivas, aprender a medir ese desperdicio de espacio y utilizar herramientas de mantenimiento para reconstruir la estructura y recuperar rendimiento.</p>
+</blockquote>
+<p>Realiza el siguiente experimento sobre la base de datos <strong>Sakila</strong>:</p>
+<ol>
+<li>
+<p><strong>Preparación</strong>: Para no dañar los datos originales, crea una copia de la tabla de alquileres:
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rental_copy</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">rental</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_copy_date</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">rental_copy</span><span class="p">(</span><span class="n">rental_date</span><span class="p">);</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Estado Inicial</strong>: Consulta el espacio que ocupa la tabla y su "espacio libre" (fragmentación) consultando los metadatos del SGBD:
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">table_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_length</span><span class="p">,</span><span class="w"> </span><span class="n">index_length</span><span class="p">,</span><span class="w"> </span><span class="n">data_free</span><span class="w"> </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w"> </span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'rental_copy'</span><span class="p">;</span>
+</span></code></pre></div>
+    <em>(Anota el valor de <code>data_free</code>, que debería ser 0 o muy cercano).</em><p></p>
+</li>
+<li>
+<p><strong>Provocando el caos</strong>: Vamos a borrar el 50% de la tabla, pero de forma alterna para dejar el índice "como un queso de gruyere":
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">rental_copy</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rental_id</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Observación</strong>: Vuelva a ejecutar la consulta del paso 2. </p>
+<ul>
+<li>¿Ha bajado el valor de <code>data_length</code> o <code>index_length</code> al borrar las filas? (Probablemente no, el espacio sigue reservado).</li>
+<li>¿Qué valor muestra ahora <code>data_free</code>? Ese número representa el espacio desperdiciado por la fragmentación.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cirugía estética</strong>: Ejecuta el comando de optimización:
+    </p><div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">OPTIMIZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">rental_copy</span><span class="p">;</span>
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>Verificación Final</strong>: Consulta de nuevo los metadatos. Explica qué ha ocurrido con <code>data_free</code> y por qué los valores de <code>data_length</code> e <code>index_length</code> ahora son menores.</p>
 </li>
 </ol>
 </details>
