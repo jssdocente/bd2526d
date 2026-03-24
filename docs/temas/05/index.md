@@ -1417,3 +1417,336 @@ JOIN nombre_cte_2 ...;
     Acostúmbrate a usar **CTE** siempre que necesites realizar un paso previo de preparación de datos antes de tu consulta final. Es el estándar profesional hoy en día. Deja las subconsultas en el `WHERE` para filtros simples (`IN`, `EXISTS`), pero usa CTEs para lógica estructural.
 
 ---
+
+
+## **3.0 Optimización**
+
+La optimización de consultas es un aspecto clave en las bases de datos relacionales que permite mejorar el rendimiento de las operaciones y reducir los tiempos de ejecución.
+
+La optimización consiste en encontrar la forma más eficiente de ejecutar una consulta SQL, minimizando el tiempo y los recursos utilizados.
+
+1. Proceso de optimización:
+    
+    - Reescritura de la consulta: El sistema traduce la consulta en diferentes formas equivalentes y elige la más eficiente.
+    - Generación del **plan de ejecución**: Se analizan posibles estrategias para ejecutar la consulta.
+    - Coste estimado: El SGBD calcula el coste de cada plan basándose en factores como el tamaño de las tablas, la selectividad de los índices y la cardinalidad de las columnas.
+2. Factores que afectan a la optimización:
+    
+    - Selección de **índices**: Un índice es una estructura asociada a una o varias columnas y facilitan la búsqueda de un determinado valor, acelerando el acceso a los datos, de forma similar al índice de un libro. Un uso adecuado de los índices puede acelerar enormemente las búsquedas y las combinaciones de tablas. Por defecto, los SGBD crean un índice por cada clave primaria de las tablas que definimos, así como para las claves ajenas, tanto para optimizar el acceso a un elemento concreto, como para optimizar el _join_ de las tablas. Así pues, su comprensión es clave a la hora de optimizar las consultas que utilizamos en nuestras aplicación.
+    - Orden de los _joins_: Elegir qué tabla unir primero puede reducir significativamente el número de filas procesadas.
+    - Filtrado anticipado: Aplicar condiciones `WHERE` lo antes posible evita procesar datos innecesarios.
+
+Y para saber si una consulta se está ejecutando de forma óptima, recurriremos al plan de ejecución.
+
+### 3.1 **Plan de ejecución**
+
+El plan de ejecución es un mapa que muestra cómo el SGBD ejecutará una consulta. Incluye detalles como los operadores utilizados (escaneos, uniones, filtros) y su orden, así como cuando un índice se usa o no, si se usa correctamente, lo que permite averiguar si las consultas se ejecutan de forma óptima.
+
+Mediante [`EXPLAIN consulta`](https://mariadb.com/kb/en/explain/), obtendremos el plan de ejecución de la consulta. Por ejemplo, si recuperamos para cada jugador, el nombre del equipo en el que juega:
+
+```sql
+EXPLAIN SELECT j.nombre, e.nombre AS equipo
+FROM Jugador j
+JOIN Equipo e ON j.equipoID = e.id;
+```
+
+| id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | SIMPLE | e | ALL | PRIMARY | NULL | NULL | NULL | 20 | |
+| 1 | SIMPLE | j | ref | equipoID | equipoID | 4 | ligafutbol.e.id | 11 | |
+
+
+### **Interpretando las columnas del Plan de Ejecución**
+
+El resultado de `EXPLAIN` puede parecer abrumador al principio, pero cada columna nos da una pista vital sobre la eficiencia de nuestra consulta. Aquí tienes el desglose detallado:
+
+| Columna | Significado | ¿Qué debemos buscar? |
+| :--- | :--- | :--- |
+| **`id`** | Identificador secuencial de la consulta. | Si todas las filas tienen el mismo `id`, se ejecutan juntas (como en un `JOIN`). Si hay IDs distintos, indica subconsultas. |
+| **`select_type`** | El tipo de `SELECT` que se está ejecutando. | `SIMPLE` es lo ideal. `SUBQUERY` o `DERIVED` indican que la consulta es más compleja y podría ser más lenta. |
+| **`table`** | La tabla a la que se refieren los datos de esa fila. | A veces el optimizador cambia el orden de las tablas respecto a cómo las escribiste en el `JOIN` para ganar velocidad. |
+| **`type`** | **La columna más importante.** Indica el "método de acceso" a los datos. | *(Ver detalle abajo)*. Buscamos siempre evitar el valor `ALL`. |
+| **`possible_keys`** | Los índices que el motor *podría* haber usado para esta consulta. | Si está vacío pero la consulta es lenta, significa que te falta crear un índice. |
+| **`key`** | El índice que el optimizador **realmente elige** usar. | Si es `NULL`, la consulta no está usando índices (peligro de bajo rendimiento). |
+| **`key_len`** | La longitud en bytes de la clave (índice) utilizada. | Útil para saber qué parte de un índice compuesto se está usando realmente. |
+| **`ref`** | Muestra qué columnas o constantes se comparan con el índice de la columna `key`. | Ver un nombre de columna aquí es buena señal en los `JOIN`. |
+| **`rows`** | El número de filas que el motor **estima** que tendrá que examinar. | **Cuanto menor sea este número, mejor.** Es una estimación, no el valor real exacto. |
+| **`filtered`** | Porcentaje estimado de filas que serán filtradas por la condición del `WHERE`. | Un valor bajo (ej. 10%) indica que el motor examina muchas filas para quedarse con muy pocas. |
+| **`Extra`** | Información adicional sobre cómo SQL resuelve la consulta. | **Cuidado** si ves `Using filesort` o `Using temporary`, ya que indican un alto consumo de memoria/CPU. |
+
+#### **Jerarquía del tipo de acceso (`type`)**
+Es fundamental entender que el valor de `type` es un termómetro del rendimiento. De mejor a peor:
+
+1.  🥇 **`const` / `system`**: El motor encuentra los datos al primer intento (ej. buscando por Clave Primaria). Es instantáneo.
+2.  🥈 **`eq_ref`**: Se usa un índice único para unir tablas (como una PK). Muy eficiente.
+3.  🥉 **`ref`**: Se usa un índice normal (no único) para buscar valores. Es el objetivo mínimo en la mayoría de consultas.
+4.  🔸 **`range`**: El motor busca valores en un rango (ej. `WHERE edad > 18` o `BETWEEN`). Usa índices.
+5.  ⚠️ **`index`**: Escaneo completo del índice. Mejor que la tabla entera, pero sigue siendo un recorrido largo.
+6.  🚨 **`ALL`**: Escaneo completo de la tabla (_Full Table Scan_). El motor tiene que leer cada fila del disco. **Evitar en tablas grandes.**
+
+En nuestro ejemplo anterior, la consulta procesa unas 20 filas en la tabla `e` (los equipos existentes) y unas 11 filas estimadas en la tabla `j` por cada equipo.
+
+
+Como en el plan nos han aparecido dos filas, el plan ejecuta dos etapas:
+
+1. Primera etapa: tabla e (`equipo`)
+    - Se accede a la tabla de equipos. Si no hay filtros específicos, el optimizador puede optar por un escaneo completo (`ALL`) si la tabla es pequeña.
+    - Se procesan las filas de los equipos existentes.
+2. Segunda etapa: tabla j (`jugador`)
+    - Se accede a la tabla de jugadores mediante el índice de la clave ajena (`equipoID`) que conecta con la tabla `equipo`.
+    - El optimizador estima cuántos jugadores hay por equipo para refinar el plan.
+
+Si quieres obtener un plan detallado con tiempos reales y cantidad de registros obtenidos, usaremos `EXPLAIN EXTENDED` o `EXPLAIN FORMAT=JSON`:
+
+```json
+{
+  "query_block": {
+    "select_id": 1,
+    "table": {
+      "table_name": "e",
+      "access_type": "ALL",
+      "rows": 20,
+      "filtered": 100
+    },
+    "table": {
+      "table_name": "j",
+      "access_type": "ref",
+      "possible_keys": ["equipoID"],
+      "key": "equipoID",
+      "rows": 11,
+      "filtered": 100,
+      "using_index": false
+    }
+  }
+}
+```
+
+
+Mediante [`ANALYZE consulta`](https://mariadb.com/docs/server/reference/sql-statements/administrative-sql-statements/analyze-and-explain-statements/analyze-statement) se ejecutará la consulta y devolverá la información sobre el plan de ejecución, con información más cercana a la realidad.
+
+```sql
+ANALYZE SELECT j.nombre, e.nombre AS equipo
+FROM Jugador j
+JOIN Equipo e ON j.equipoID = e.id;
+```
+
+
+## **4.0 Índices**
+
+Antes hemos comentado que un índice en una base de datos es similar a un índice de un libro; permite saltar directamente a la parte del libro en vez de tener que pasar las páginas buscando el tema o la palabra que nos interesa. Esta estructura permite recorrer los datos y ordenarlos de manera muy rápida. Así pues, los índices se utilizan tanto al buscar un elemento como al ordenar los datos de una consulta.
+
+Al buscar un valor concreto en una columna de una tabla, si la columna no tiene un índice, hay que recorrer toda la tabla comparando fila a fila. Si la tabla tiene pocas filas no hay problema.
+
+Para mejorar el rendimiento, podemos crear un índice para cada columna que se utiliza en la cláusula `WHERE` o en `ORDER BY`.
+
+Cuando se crea un índice sobre una columna, el motor de la base de datos construye el índice escaneando toda la tabla y registrando los valores de la columna indexada junto con los punteros a las filas correspondientes. Mediante estos punteros sobre las filas de la tabla, el SGBD puede determinar rápidamente cuáles son las filas necesarias. Internamente, los índices se traducen en estructura de datos en forma de árbol ([_b-tree_](https://es.wikipedia.org/wiki/%C3%81rbol-B)) que facilitan la búsqueda.
+
+
+<figure>
+    <img src="img/b-tree.png" alt="Índice B-Tree" width="100%" align="center"/>
+    <figcaption align="center">Índice B-Tree - https://severalnines.com/blog/overview-mysql-database-indexing/</figcaption>
+</figure>
+
+#### **La degradación de los índices: Fragmentación**
+
+Aunque los árboles B-Tree son muy eficientes, no son estructuras inmutables. A medida que realizamos operaciones de escritura (`INSERT`, `UPDATE`, `DELETE`), el índice puede sufrir lo que conocemos como **fragmentación**.
+
+La fragmentación ocurre principalmente por dos motivos:
+
+1.  **Huecos por borrado (Fragmentación Interna)**: Cuando eliminamos filas, el espacio que ocupaban en las "hojas" del árbol no siempre se libera inmediatamente al sistema operativo. El motor de la base de datos mantiene esos huecos vacíos para futuros registros, pero si el patrón de uso cambia, podemos acabar con un índice que ocupa mucho más espacio del necesario (lo que los alumnos comprobaréis mediante `data_free` en las actividades).
+2.  **División de páginas (Page Splits)**: Si insertamos un dato en medio de un índice que ya está lleno, el motor debe "romper" la página actual en dos para hacer hueco. Esto puede provocar que las páginas de datos dejen de estar contiguas en el disco (fragmentación externa), obligando al cabezal del disco (en HDDs) o al controlador (en SSDs) a realizar más saltos para leer un rango de datos.
+
+**¿Cómo afecta al rendimiento?**
+Un índice muy fragmentado provoca que:
+*   Las consultas de tipo `range` (ej: `BETWEEN`) sean más lentas, al tener que saltar entre páginas desordenadas.
+*   El motor tenga que cargar en memoria (Buffer Pool) muchas páginas que están "medio vacías", desperdiciando RAM preciosa.
+
+**La solución: Reconstrucción**
+Como veremos más adelante, la sentencia `OPTIMIZE TABLE` es la herramienta clave para solucionar este problema. Internamente, reconstruye la tabla y sus índices desde cero, compactando las páginas y eliminando los huecos.
+
+
+!!! warning "No abusar de los índices"
+
+    No es conveniente crear un índice para cada una de las columnas de una tabla.
+
+    El exceso de índices innecesarios puede provocar un incremento del espacio de almacenamiento y una penalización en el rendimiento ya que el SGBD debe decidir qué índices necesita utilizar.
+
+    Además añaden una sobrecarga a las operaciones de inserción, actualización y borrado, porque cada índice tiene que ser actualizado después de realizar cada una de estas operaciones.
+
+### 4.1 Tipos
+
+Dependiendo del tipo de los campos, podemos crear diferentes índices sobre una o más columnas. En _MariaDB_ existen los siguientes tipos de índices:
+
+- `PRIMARY KEY`: índice primario que no admite nulos ni valores repetidos. Sólo puede haber uno por tabla y se crea automáticamente al definir la clave primaria de una tabla.
+- `UNIQUE`: índice único que no permite valores repetidos pero sí nulos.
+- `INDEX`: indices normales que mejoran el rendimiento de las consultas (se pueden usar con columnas que admiten valores duplicados).
+- `FULLTEXT`: índices de texto completo, utilizados para optimizar las búsquedas de texto en columnas de tipo `TEXT` o `VARCHAR`.
+    
+!!! note "Índices FULLTEXT"
+    
+    Los índices [FULLTEXT](https://mariadb.com/kb/en/full-text-index-overview) mejoran la búsqueda de partes de texto en un campo (similar a las sentencias `LIKE`), pero utilizando el operador [`MATCH(campo) AGAINST (valorABuscar)`](https://mariadb.com/kb/en/match-against/).
+
+    Por ejemplo, si creamos un índice para el nombre de los estadios:
+
+    ```sql
+    CREATE FULLTEXT INDEX idx_nombre_estadio ON Estadio(nombre);
+    ```
+
+    Luego podemos hacer búsquedas más eficientes:
+
+    ```sql
+    SELECT nombre, ciudad 
+    FROM Estadio 
+    WHERE MATCH(nombre) AGAINST('Santiago');
+    ```
+        
+    E incluso utilizar comodines:
+
+    ```sql
+    SELECT nombre, ciudad 
+    FROM Estadio 
+    WHERE MATCH(nombre) AGAINST('Sant*' IN BOOLEAN MODE);
+    ```
+
+
+#### 4.2 Operaciones
+
+Sobre los índices, podemos realizar diversas operaciones, como:
+
+- Crear un índice, mediante la sentencia [`CREATE INDEX`](https://mariadb.com/kb/en/create-index/):
+    
+    ```sql
+    CREATE INDEX nombreIndice ON tabla(columna);
+    ```
+    
+    Por ejemplo, vamos a crear un índice sobre el apellido de los jugadores:
+
+    ```sql
+    CREATE INDEX idx_apellido_jugador ON Jugador(apellido);
+    ```
+
+    Si volvemos a ejecutar una consulta filtrando por apellido, vemos cómo ahora utiliza el índice recién creado:
+
+    ```sql
+    EXPLAIN SELECT * FROM Jugador WHERE apellido = 'García';
+    ```
+
+- Obtener los índices de una tabla, mediante [`SHOW INDEX`](https://mariadb.com/kb/en/show-index):
+    
+    ```sql
+    SHOW INDEX FROM nombreTabla;
+    ```
+    
+    Si queremos recuperar los índices de la tabla `Jugador`, obtendremos:
+
+    ```sql
+    SHOW INDEX FROM Jugador;
+    ```
+
+    > **¿Por qué aparecen tantos índices?**<br>
+    > Si nosotros solo hemos creado un índice de manera explícita, ¿por qué nos aparecen 6? ¿Sabes deducir por el nombre de las columnas y el contenido el tipo de cada uno de ellos?
+    
+- Eliminar un índice concreto, mediante [`DROP INDEX`](https://mariadb.com/kb/en/drop-index):
+    
+    ```sql
+    DROP INDEX nombreIndice ON nombreTabla;
+    ```
+    
+    Por lo tanto, si queremos eliminar el índice recién creado, haríamos:
+
+    ```sql
+    DROP INDEX idx_apellido_jugador ON Jugador;
+    ```
+    
+
+### **4.3 Forzando planes de ejecución**
+
+En ocasiones, si queremos [forzar](https://mariadb.com/kb/en/index-hints-how-to-force-query-plans/) a que el SGBD se comporte de una determinada manera, podemos emplear
+
+- `STRAIGHT_JOIN`: fuerza el orden de unión de las tablas (la izquierda se lee antes que la derecha).
+    
+    ```sql
+    SELECT STRAIGHT_JOIN e.nombre, est.nombre AS estadio
+    FROM Equipo e
+    JOIN Estadio est ON e.estadioID = est.id;
+    ```
+    
+- [`USE INDEX`](https://mariadb.com/kb/en/use-index/) / [`FORCE INDEX`](https://mariadb.com/kb/en/force-index/) : propone o fuerza que se utilice un índice determinado. Se pone después de la tabla que contiene el índice.
+    
+    ```sql
+    SELECT * FROM Jugador USE INDEX(idx_apellido_jugador) 
+    WHERE apellido = 'García';
+    ```
+    
+- [`IGNORE INDEX`](https://mariadb.com/kb/en/ignore-index/): fuerza que **no** se utilice un índice.
+    
+    ```sql
+    SELECT * FROM Jugador IGNORE INDEX(idx_apellido_jugador) 
+    WHERE apellido = 'García';
+    ```
+
+### **4.4 Gestión de índices**
+
+Una vez creados los índices, aunque realmente es labor del DBA (_Database Administrator_), es conveniente vigilarlos y mantenerlos. Para ello, podemos:
+
+- Analizar el almacenamiento de los índices de una tabla, mediante [`ANALYZE TABLE nombreTabla`](https://mariadb.com/kb/en/analyze-table/):
+    
+    ```sql
+    ANALYZE TABLE Equipo;
+    ```
+    
+    Se usa para determinar el orden que el servidor seguirá para combinar tablas en un JOIN y qué índices se usarán en una consulta.
+    
+- Desfragmentar una tabla, mediante [`OPTIMIZE TABLE nombreTabla`](https://mariadb.com/kb/en/optimize-table/):
+    
+    ```sql
+    OPTIMIZE TABLE Equipo;
+    ```
+    
+    Además de reorganizar los datos, actualiza y reordenar los índices, pero sólo para algunos motores de ejecución (las versiones actuales de _InnoDB_ realizan un ajuste automático del espacio minimizando la fragmentación, y por lo tanto, por defecto esta sentencia no realiza nada).
+
+#### **4.4.1 Auditoría de Índices**
+
+Una de las utilidades más importantes del diccionario de datos de MariaDB ([`information_schema.TABLES`](https://mariadb.com/kb/en/information-schema-tables-table/)) es auditar el estado físico de nuestras tablas e índices. 
+
+En entornos con muchos borrados y actualizaciones, el espacio en disco puede verse fragmentado. Podemos detectar este "espacio desperdiciado" mediante la columna `data_free`:
+
+```sql
+SELECT table_name, data_length, index_length, data_free 
+FROM information_schema.tables 
+WHERE table_schema = 'LigaFutbol' AND table_name = 'EstadisticaPartido';
+```
+- **`data_length`**: Espacio ocupado por los datos de la tabla.
+- **`index_length`**: Espacio ocupado exclusivamente por los índices.
+- **`data_free`**: Tamaño del espacio asignado pero no utilizado (wasted space). Si este valor es muy alto en relación con los anteriores, es señal de que necesitamos ejecutar un `OPTIMIZE TABLE`.
+
+Si queremos obtener un **porcentaje real de fragmentación**, podemos aplicar la siguiente consulta:
+
+```sql
+SELECT 
+    table_name AS 'Tabla',
+    data_length AS 'Bytes Datos',
+    index_length AS 'Bytes Índices',
+    data_free AS 'Bytes Libres',
+    ROUND((data_free / (data_length + index_length + data_free)) * 100, 2) AS '% Frag'
+FROM information_schema.tables 
+WHERE table_schema = 'LigaFutbol';
+```
+
+!!! note "Nivel de fragmentación aceptable"
+    En MariaDB (InnoDB), siempre existirá un mínimo de `data_free` debido a la pre-asignación de espacio. Por lo tanto, un porcentaje inferior al **5% - 10%** se considera óptimo y no requiere mantenimiento inmediato.
+
+
+
+
+### **4.5 Buenas prácticas**
+
+Algunos consejos que debes tener en cuenta a la hora de hacer consultas son:
+
+- Filtra antes con `WHERE`: Como la cláusula `WHERE` se ejecuta antes que `GROUP BY` y `JOIN`, aplicar los filtros antes reduce el número de filas procesadas por las cláusulas posteriores, lo que mejora el rendimiento de la consulta. Al filtrar los datos no agrupados lo antes posible, limitas los datos que hay que agrupar o unir, ahorrando tiempo de procesamiento.
+    
+- Preagregar datos antes de unirlos: Sabiendo que `FROM` y `JOIN` son las primeras cláusulas que se ejecutan, preagrupar los datos mediante subconsultas o expresiones comunes de tabla (_CTE_) te permite reducir el conjunto de datos antes del proceso de unión. Esto garantiza que se procesen menos filas durante la unión.
+    
+- Optimizar `ORDER BY` con índices: Puesto que la cláusula ORDER BY es uno de los últimos pasos ejecutados, asegurarse de que las columnas ordenadas están indexadas acelerará el rendimiento de la consulta al ayudar a la base de datos a gestionar las operaciones de ordenación con mayor eficacia.
+    
+- Evitar `SELECT *` en las consultas de producción: La cláusula `SELECT` se ejecuta después de filtrar, agrupar y agregar, por lo que especificar sólo las columnas necesarias minimiza la cantidad de datos recuperados, reduciendo la sobrecarga innecesaria.

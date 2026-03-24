@@ -401,3 +401,181 @@ He diseñado las actividades para que cubran progresivamente los conceptos teór
     4. **Comparativa mensual (Growth Rate)**:
         *   Crea una CTE que agrupe los pagos por mes (Año-Mes) y sume el importe total.
         *   En la consulta final, muestra para cada mes: el total ingresado, el total del mes anterior (usando `LAG`) y la diferencia porcentual de crecimiento respecto al mes anterior.
+
+---
+
+## ⚡ Optimización e Índices
+
+#### **AC518: El Escaneo Fantasma (EXPLAIN Básico)**
+
+??? "Actividad AC518"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 4p          |
+
+    > **Objetivo**: Aprender a identificar consultas ineficientes mediante el uso de `EXPLAIN` y comprender cómo la ausencia de un índice obliga al motor a realizar un escaneo completo de la tabla (`ALL`), penalizando el rendimiento.
+
+    Sobre la base de datos **Sakila**, realiza los siguientes pasos:
+
+    1.  **Diagnóstico**: Ejecuta un `EXPLAIN` de una consulta que busque todas las películas cuyo `release_year` sea 2006. Observa el valor de la columna `type` y la cantidad de filas (`rows`) estimadas.
+    2.  **Solución**: Crea un índice normal en la columna `release_year` de la tabla `film`.
+    3.  **Verificación**: Vuelve a ejecutar el `EXPLAIN` de la misma consulta. Explica qué ha cambiado en el plan de ejecución (especialmente en las columnas `type`, `key` y `rows`).
+
+#### **AC519: Texto vs. Velocidad (Búsqueda FULLTEXT)**
+
+??? "Actividad AC519"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 4p          |
+
+    > **Objetivo**: Comparar la eficiencia de las búsquedas de texto parcial usando el operador `LIKE` frente a los índices especializados `FULLTEXT`, entendiendo cuándo es necesario cada uno.
+
+    Sobre la base de datos **Sakila**:
+
+    1.  **Búsqueda tradicional**: Ejecuta un `EXPLAIN` buscando las películas que contengan la palabra "Documentary" en su descripción usando `LIKE '%Documentary%'`.
+    2.  **Optimización**: Crea un índice de tipo `FULLTEXT` que cubra las columnas `title` y `description` de la tabla `film`.
+    3.  **Búsqueda optimizada**: Realiza la misma búsqueda utilizando el operador `MATCH() AGAINST()`. Compara los planes de ejecución. ¿Por qué el índice `FULLTEXT` es mucho más rápido para esta tarea que el índice normal o el escaneo completo?
+
+#### **AC520: El impacto del "Sin Índice" (Forzando Planes)**
+
+??? "Actividad AC520"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 4p          |
+
+    > **Objetivo**: Visualizar la importancia de los índices en las operaciones de unión (`JOIN`) y aprender a manipular el comportamiento del optimizador mediante "hints" para diagnosticar problemas de rendimiento.
+
+    Sobre la base de datos **Sakila**:
+
+    1.  **Plan Automático**: Realiza una consulta que una las tablas `film`, `inventory` y `rental` para listar los títulos de películas alquiladas. Observa el `EXPLAIN`. ¿Qué índices está usando el motor automáticamente para las claves ajenas?
+    2.  **Sabotaje (Simulación)**: Utiliza la cláusula `IGNORE INDEX` para obligar al motor a no usar los índices de las claves ajenas (`fk_inventory_film`, `fk_rental_inventory`, etc.) durante la unión.
+    3.  **Análisis**: Compara el número de filas procesadas y el tipo de acceso resultante. Describe qué ocurre cuando una base de datos "pierde" sus índices en tablas con miles de registros.
+
+#### **AC521: Índices Compuestos y el Prefijo a la Izquierda**
+
+??? "Actividad AC521"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 5p          |
+
+    > **Objetivo**: Comprender el funcionamiento de los índices de múltiples columnas y la regla del "prefijo a la izquierda", que determina si un índice puede ser reutilizado para consultas que solo filtran por algunas de sus columnas.
+
+    Sobre la base de datos **Sakila**:
+
+    1.  **Creación**: Crea un índice compuesto en la tabla `customer` que incluya las columnas `(active, last_name)`.
+    2.  **Prueba A**: Ejecuta un `EXPLAIN` de una consulta que filtre por ambas columnas (`active` y `last_name`). Comprueba si usa el índice.
+    3.  **Prueba B**: Ejecuta un `EXPLAIN` de una consulta que filtre **solo** por `last_name`. ¿Se utiliza el índice compuesto? ¿Por qué?
+    4.  **Prueba C**: Ejecuta un `EXPLAIN` de una consulta que filtre **solo** por `active`. ¿Se utiliza el índice? Explica el concepto de la selectividad y el orden de las columnas en este caso.
+
+#### **AC522: Auditoría y Mantenimiento de Índices**
+
+??? "Actividad AC522"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 3p          |
+
+    > **Objetivo**: Aprender a inspeccionar la estructura de indexación existente en una tabla real y conocer las herramientas de mantenimiento para mantener actualizadas las estadísticas del optimizador.
+
+    Sobre la base de datos **Sakila**:
+
+    1.  **Inspección**: Utiliza el comando `SHOW INDEX` sobre la tabla `rental`. Enumera cuántos índices existen, cuáles son únicos y qué columnas los forman.
+    2.  **Interpretación**: Explica la diferencia entre la columna `Key_name` y `Column_name` en el resultado del comando anterior.
+    3.  **Mantenimiento**: Ejecuta el comando `ANALYZE TABLE rental;`. ¿Para qué sirve esta operación y en qué situaciones de la vida real deberíamos programarla periódicamente?
+
+#### **AC523: El Consultor de Rendimiento (Reto Final)**
+
+??? "Actividad AC523"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3f //       | 6p          |
+
+    > **Objetivo**: Integrar todos los conocimientos de la unidad para optimizar una consulta de negocio compleja, justificando cada decisión basada en los datos devueltos por el plan de ejecución.
+
+    Tenemos la siguiente consulta que genera un informe de ingresos por ciudad para promociones de marketing:
+
+    ```sql
+    SELECT c.city, SUM(p.amount) AS total_ventas
+    FROM payment p
+    JOIN customer cust ON p.customer_id = cust.customer_id
+    JOIN address a ON cust.address_id = a.address_id
+    JOIN city c ON a.city_id = c.city_id
+    GROUP BY c.city
+    ORDER BY total_ventas DESC;
+    ```
+
+    1.  **Análisis Inicial**: Genera el `EXPLAIN` de la consulta anterior. Identifica qué tablas generan un acceso de tipo `ALL` o `INDEX` (escaneo completo).
+    2.  **Estrategia**: Sin modificar la consulta SQL, propón y crea los índices necesarios para que todas las uniones utilicen tipos de acceso `ref`, `eq_ref` o `const`.
+    3.  **Justificación**: Muestra el `EXPLAIN` final y compara el "Total Cost" (si usas `FORMAT=JSON`) o la reducción de `rows` conseguida.
+
+#### **AC524: Rendimiento en Subconsultas (Independientes vs. Correlacionadas)**
+
+??? "Actividad AC524"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.3 // CE3c, CE3f // | 5p          |
+
+    > **Objetivo**: Diferenciar a nivel técnico cómo el motor de la base de datos ejecuta una subconsulta independiente (que se calcula una sola vez) frente a una correlacionada (que se ejecuta fila por fila), y aprender a detectarlo en el plan de ejecución.
+
+    Sobre la base de datos **Sakila**, realiza los siguientes experimentos:
+
+    1.  **Subconsulta Independiente (Cálculo Único)**:
+        *   **Consulta**: Obtener las películas (`film`) cuya duración sea mayor que la duración media global de todas las películas.
+        *   **Análisis**: Genera el `EXPLAIN`. Observa si el `select_type` indica que son subconsultas separadas. ¿Cuántas veces estima el motor que tiene que calcular el promedio?
+    
+    2.  **Subconsulta Correlacionada (Cálculo Fila a Fila)**:
+        *   **Consulta**: Obtener las películas que duran más que el promedio de su propia categoría (`rating`).
+        *   **Análisis**: Genera el `EXPLAIN`. Fíjate si aparece el término `DEPENDENT SUBQUERY`. Explica por qué el número de operaciones aumenta exponencialmente en este caso respecto al anterior.
+    
+    3.  **El Salvavidas: Los Índices**:
+        *   En la subconsulta correlacionada del paso anterior, el motor tiene que buscar el promedio del `rating` constantemente. 
+        *   **Tarea**: Borra (o simula que no existe) el índice de la columna `rating`. ¿Cómo afecta esto al número de filas analizadas en el `EXPLAIN`? ¿Qué conclusión sacas sobre el uso de subconsultas correlacionadas en columnas no indexadas?
+
+#### **AC525: Fragmentación y Reconstrucción (Mantenimiento)**
+
+??? "Actividad AC525"
+
+    | Criterios de Evaluación | Ponderación |
+    | ----------------------- | ----------- |
+    | RABD.2 // CE2f, CE3f // | 4p          |
+
+    > **Objetivo**: Provocar una fragmentación interna en los índices de una tabla mediante operaciones DML masivas, aprender a medir ese desperdicio de espacio y utilizar herramientas de mantenimiento para reconstruir la estructura y recuperar rendimiento.
+
+    Realiza el siguiente experimento sobre la base de datos **Sakila**:
+
+    1.  **Preparación**: Para no dañar los datos originales, crea una copia de la tabla de alquileres:
+        ```sql
+        CREATE TABLE rental_copy AS SELECT * FROM rental;
+        CREATE INDEX idx_copy_date ON rental_copy(rental_date);
+        ```
+    
+    2.  **Estado Inicial**: Consulta el espacio que ocupa la tabla y su "espacio libre" (fragmentación) consultando los metadatos del SGBD:
+        ```sql
+        SELECT table_name, data_length, index_length, data_free 
+        FROM information_schema.tables 
+        WHERE table_name = 'rental_copy';
+        ```
+        *(Anota el valor de `data_free`, que debería ser 0 o muy cercano).*
+
+    3.  **Provocando el caos**: Vamos a borrar el 50% de la tabla, pero de forma alterna para dejar el índice "como un queso de gruyere":
+        ```sql
+        DELETE FROM rental_copy WHERE rental_id % 2 = 0;
+        ```
+    
+    4.  **Observación**: Vuelva a ejecutar la consulta del paso 2. 
+        *   ¿Ha bajado el valor de `data_length` o `index_length` al borrar las filas? (Probablemente no, el espacio sigue reservado).
+        *   ¿Qué valor muestra ahora `data_free`? Ese número representa el espacio desperdiciado por la fragmentación.
+
+    5.  **Cirugía estética**: Ejecuta el comando de optimización:
+        ```sql
+        OPTIMIZE TABLE rental_copy;
+        ```
+    
+    6.  **Verificación Final**: Consulta de nuevo los metadatos. Explica qué ha ocurrido con `data_free` y por qué los valores de `data_length` e `index_length` ahora son menores.
+
