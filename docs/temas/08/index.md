@@ -254,11 +254,36 @@ Existen durante toda tu conexión a la base de datos (sesión). Se usan principa
 -- Ejemplo A: Guardar un valor manualmente
 SET @mi_descuento = 0.15;
 SELECT nombre, precio * @mi_descuento FROM productos;
-
--- Ejemplo B: Recibir un valor de un procedimiento (PARÁMETRO OUT)
-CALL precio_mas_caro(@p_max);
-SELECT @p_max;
 ```
+
+### 3. Asignación con `SELECT INTO`
+
+La forma más común de obtener un valor de una tabla y guardarlo en una variable para procesarlo más tarde es mediante `SELECT ... INTO`.
+
+**Sintaxis:**
+
+```sql
+SELECT columna1[, columna2...] INTO variable1[, variable2...]
+FROM tabla
+WHERE condicion;
+```
+
+!!! important "La regla de la fila única"
+    Para que `SELECT INTO` funcione correctamente dentro de un procedimiento o función, la consulta **debe devolver exactamente una fila**.
+    
+    - Si la consulta devuelve **0 filas**, MariaDB lanzará un error (1329 - *No data*).
+    - Si la consulta devuelve **más de una fila**, lanzará otro error (1172 - *Result consisted of more than one row*).
+
+!!! example "Ejemplo: Obtener el nombre de un proveedor"
+    ```sql
+    SET @id_buscado = 1;
+    -- Guardamos el nombre del proveedor 1 en una variable de usuario
+    SELECT nombre INTO @nom_prov FROM proveedores WHERE id = @id_buscado;
+    
+    SELECT CONCAT("El proveedor seleccionado es: ", @nom_prov) AS Info;
+    ```
+
+---
 
 ## **8.5 Estructuras de control**
 
