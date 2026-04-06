@@ -25,12 +25,12 @@
         - **CE5e**: Se ha hecho uso de las funciones proporcionadas por el sistema gestor.
         - **CE5f**: Se han definido procedimientos y funciones de usuario.
         - **CE5g**: Se han utilizado estructuras de control de flujo.
+
 !!! info "Bases de datos recursos"
 
     Aquí tienes los enlaces a las bases de datos de recursos para esta unidad:
 
     - [TechStore](../06/bd/bd_tech_store.sql)
-    - [Empresa](../04/bd/bd_empresa.sql)
 
 
 ## **8.1 Automatización de tareas**
