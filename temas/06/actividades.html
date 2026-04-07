@@ -1557,17 +1557,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#5-transacciones-e-integridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🛡️ 5. Transacciones e Integridad
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2038,17 +2027,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#5-transacciones-e-integridad" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🛡️ 5. Transacciones e Integridad
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2441,38 +2419,6 @@
 <li><strong>Actualización Relacional (UPDATE JOIN)</strong>: Aprovechando un subsidio de exportación para la capital, rebaja un <strong>10%</strong> el precio de todos los productos suministrados por proveedores ubicados en la ciudad de 'Madrid'.</li>
 <li><strong>Repercusión en la cadena (UPDATE JOIN)</strong>: Como nuestro proveedor número 3 ('TechAsia') cesó su actividad, marcamos su registro como inactivo. Ahora debemos reflejar esto en su catálogo. Actualiza el campo <code>activo</code> a falso únicamente en los <code>productos</code> que pertenezcan a proveedores inactivos (<code>activo = FALSE</code>), realizando un <code>UPDATE</code> que combine las dos tablas (JOIN).</li>
 <li><strong>Eliminación Relacional (DELETE JOIN)</strong>: Haz una limpieza exhaustiva del almacén local. Realiza un <strong>borrado físico y absoluto</strong> (DELETE) combinando las tablas correspondientes (JOIN) para eliminar los <code>productos</code> de aquellos proveedores situados en 'Barcelona' que tengan, además, exactamente 0 de stock.</li>
-</ol>
-</details>
-<hr>
-<h3 id="5-transacciones-e-integridad">🛡️ 5. Transacciones e Integridad<a class="headerlink" href="#5-transacciones-e-integridad" title="Permanent link">¶</a></h3>
-<h4 id="ac607-el-procesamiento-atomico-de-un-pedido"><strong>AC607: El Procesamiento Atómico de un Pedido</strong><a class="headerlink" href="#ac607-el-procesamiento-atomico-de-un-pedido" title="Permanent link">¶</a></h4>
-<details>
-<summary>Actividad AC607</summary>
-<table>
-<thead>
-<tr>
-<th>Criterios de Evaluación</th>
-<th>Ponderación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CE4f</td>
-<td>2p</td>
-</tr>
-</tbody>
-</table>
-<p>Es vital que el dinero se reste del monedero, el stock se descuente y quede registrado el ticket de manera atómica.</p>
-<p>Vamos a simular que el cliente <strong>1 (Ana García)</strong> quiere realizar un pedido de 2 unidades del producto <strong>2 (Teclado Mecánico RGB)</strong> (asumimos precio 45.00€). Sigue rigurosamente estos pasos construidos por ti mismo:</p>
-<ol>
-<li><strong>Comienzo</strong>: Inicia una transacción explícita.</li>
-<li><strong>Paso 1 (Creación de Cabecera)</strong>: Inserta un registro en <code>pedidos</code> para el cliente ID 1 con <code>estado = 'CONFIRMADO'</code> y sumándole el total (<code>90.00</code>).</li>
-<li><strong>Paso 2 (Línea de Pedido Dinámica)</strong>: Usando la función <code>LAST_INSERT_ID()</code> para referenciar a la ID del pedido que acabas de generar, inserta una línea en <code>detalle_pedido</code> relacionándolo al producto 2, con <code>cantidad=2</code> y <code>precio_unitario=45.00</code>.</li>
-<li><strong>Paso 3 (Descuento Monetario)</strong>: Realiza un <code>UPDATE</code> en clientes descontando <code>90.00</code> al saldo del cliente 1.</li>
-<li><strong>Paso 4 (Reducción Inventario)</strong>: Realiza un <code>UPDATE</code> restando 2 al <code>stock</code> del producto 2.</li>
-<li><strong>Punto de Control de Respaldo</strong>: Crea temporalmente un punto de guardado mediante <code>SAVEPOINT punto_verificacion;</code>.</li>
-<li><strong>Simulador de sabotaje</strong>: Falla la integridad en una hipotética segunda línea del carrito: intenta insertar una nueva línea dentro de detalle con un <code>#producto=99</code> (uno que no existe). Esto generará un error de clave foránea.</li>
-<li><strong>Recuperación y Confirmación</strong>: Emite el comando de <code>ROLLBACK TO SAVEPOINT punto_verificacion;</code> para volver al momento exacto previo al fallo y, finalmente, ejecuta <code>COMMIT;</code> para consolidar toda la compra maestra sin estropear el resto de los datos de Ana. </li>
 </ol>
 </details>
 
