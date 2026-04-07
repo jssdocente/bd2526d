@@ -183,27 +183,4 @@
     2. **Repercusión en la cadena (UPDATE JOIN)**: Como nuestro proveedor número 3 ('TechAsia') cesó su actividad, marcamos su registro como inactivo. Ahora debemos reflejar esto en su catálogo. Actualiza el campo `activo` a falso únicamente en los `productos` que pertenezcan a proveedores inactivos (`activo = FALSE`), realizando un `UPDATE` que combine las dos tablas (JOIN).
     3. **Eliminación Relacional (DELETE JOIN)**: Haz una limpieza exhaustiva del almacén local. Realiza un **borrado físico y absoluto** (DELETE) combinando las tablas correspondientes (JOIN) para eliminar los `productos` de aquellos proveedores situados en 'Barcelona' que tengan, además, exactamente 0 de stock.
 
----
 
-### 🛡️ 5. Transacciones e Integridad
-
-#### **AC607: El Procesamiento Atómico de un Pedido**
-
-??? "Actividad AC607"
-
-    | Criterios de Evaluación | Ponderación |
-    | ----------------------- | ----------- |
-    | CE4f                    | 2p          |
-
-    Es vital que el dinero se reste del monedero, el stock se descuente y quede registrado el ticket de manera atómica.
-
-    Vamos a simular que el cliente **1 (Ana García)** quiere realizar un pedido de 2 unidades del producto **2 (Teclado Mecánico RGB)** (asumimos precio 45.00€). Sigue rigurosamente estos pasos construidos por ti mismo:
-
-    1. **Comienzo**: Inicia una transacción explícita.
-    2. **Paso 1 (Creación de Cabecera)**: Inserta un registro en `pedidos` para el cliente ID 1 con `estado = 'CONFIRMADO'` y sumándole el total (`90.00`).
-    3. **Paso 2 (Línea de Pedido Dinámica)**: Usando la función `LAST_INSERT_ID()` para referenciar a la ID del pedido que acabas de generar, inserta una línea en `detalle_pedido` relacionándolo al producto 2, con `cantidad=2` y `precio_unitario=45.00`.
-    4. **Paso 3 (Descuento Monetario)**: Realiza un `UPDATE` en clientes descontando `90.00` al saldo del cliente 1.
-    5. **Paso 4 (Reducción Inventario)**: Realiza un `UPDATE` restando 2 al `stock` del producto 2.
-    6. **Punto de Control de Respaldo**: Crea temporalmente un punto de guardado mediante `SAVEPOINT punto_verificacion;`.
-    7. **Simulador de sabotaje**: Falla la integridad en una hipotética segunda línea del carrito: intenta insertar una nueva línea dentro de detalle con un `#producto=99` (uno que no existe). Esto generará un error de clave foránea.
-    8. **Recuperación y Confirmación**: Emite el comando de `ROLLBACK TO SAVEPOINT punto_verificacion;` para volver al momento exacto previo al fallo y, finalmente, ejecuta `COMMIT;` para consolidar toda la compra maestra sin estropear el resto de los datos de Ana. 

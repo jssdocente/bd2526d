@@ -1430,6 +1430,7 @@ La optimización consiste en encontrar la forma más eficiente de ejecutar una c
     - Reescritura de la consulta: El sistema traduce la consulta en diferentes formas equivalentes y elige la más eficiente.
     - Generación del **plan de ejecución**: Se analizan posibles estrategias para ejecutar la consulta.
     - Coste estimado: El SGBD calcula el coste de cada plan basándose en factores como el tamaño de las tablas, la selectividad de los índices y la cardinalidad de las columnas.
+
 2. Factores que afectan a la optimización:
     
     - Selección de **índices**: Un índice es una estructura asociada a una o varias columnas y facilitan la búsqueda de un determinado valor, acelerando el acceso a los datos, de forma similar al índice de un libro. Un uso adecuado de los índices puede acelerar enormemente las búsquedas y las combinaciones de tablas. Por defecto, los SGBD crean un índice por cada clave primaria de las tablas que definimos, así como para las claves ajenas, tanto para optimizar el acceso a un elemento concreto, como para optimizar el _join_ de las tablas. Así pues, su comprensión es clave a la hora de optimizar las consultas que utilizamos en nuestras aplicación.
@@ -1557,7 +1558,9 @@ La fragmentación ocurre principalmente por dos motivos:
 2.  **División de páginas (Page Splits)**: Si insertamos un dato en medio de un índice que ya está lleno, el motor debe "romper" la página actual en dos para hacer hueco. Esto puede provocar que las páginas de datos dejen de estar contiguas en el disco (fragmentación externa), obligando al cabezal del disco (en HDDs) o al controlador (en SSDs) a realizar más saltos para leer un rango de datos.
 
 **¿Cómo afecta al rendimiento?**
+
 Un índice muy fragmentado provoca que:
+
 *   Las consultas de tipo `range` (ej: `BETWEEN`) sean más lentas, al tener que saltar entre páginas desordenadas.
 *   El motor tenga que cargar en memoria (Buffer Pool) muchas páginas que están "medio vacías", desperdiciando RAM preciosa.
 
@@ -1567,9 +1570,8 @@ Como veremos más adelante, la sentencia `OPTIMIZE TABLE` es la herramienta clav
 
 !!! warning "No abusar de los índices"
 
-    No es conveniente crear un índice para cada una de las columnas de una tabla.
-
-    El exceso de índices innecesarios puede provocar un incremento del espacio de almacenamiento y una penalización en el rendimiento ya que el SGBD debe decidir qué índices necesita utilizar.
+    - No es conveniente crear un índice para cada una de las columnas de una tabla.
+    - El exceso de índices innecesarios puede provocar un incremento del espacio de almacenamiento y una penalización en el rendimiento ya que el SGBD debe decidir qué índices necesita utilizar.
 
     Además añaden una sobrecarga a las operaciones de inserción, actualización y borrado, porque cada índice tiene que ser actualizado después de realizar cada una de estas operaciones.
 
@@ -1609,7 +1611,40 @@ Dependiendo del tipo de los campos, podemos crear diferentes índices sobre una 
     ```
 
 
-#### 4.2 Operaciones
+
+### **4.2 Índices Compuestos y el Prefijo a la Izquierda**
+
+Un **índice compuesto** (o index multi-columna) es aquel que se crea sobre más de una columna de una tabla. Son extremadamente útiles cuando nuestras consultas suelen filtrar o buscar por varias condiciones de forma simultánea.
+
+```sql
+CREATE INDEX idx_nombre_apellido ON Jugador(nombre, apellido);
+```
+
+#### **La Regla del "Prefijo a la Izquierda"**
+
+Para que un índice compuesto sea efectivo, el motor de la base de datos sigue una regla estricta: solo puede utilizar el índice si los filtros de la consulta coinciden con el orden de las columnas del índice, empezando por la izquierda.
+
+!!! tip "La analogía de la Guía Telefónica"
+
+    Imagina que tenemos una **Guía Telefónica** (el índice) donde los datos están ordenados primero por **Apellido** y luego por **Nombre**.
+
+    - **Búsqueda por Apellido y Nombre**: Muy rápida. Vas directo al apellido y luego buscas al "Juan" de ese grupo. (Usa el índice completo).
+    - **Búsqueda solo por Apellido**: Muy rápida. Vas directo a la sección de apellidos. (Usa el prefijo del índice).
+    - **Búsqueda solo por Nombre**: **Muy lenta**. El índice no te ayuda porque los nombres están mezclados dentro de cada apellido. Tendrías que leer toda la guía. (No puede usar el índice).
+
+En SQL, si tenemos un índice sobre las columnas `(colA, colB, colC)`:
+
+| Consulta filtra por... | ¿Usa el índice? | Motivo |
+| :--- | :--- | :--- |
+| `colA` | **SÍ** | Es el prefijo principal. |
+| `colA` y `colB` | **SÍ** | Usa las dos primeras partes. |
+| `colA`, `colB` y `colC`| **SÍ** | Usa el índice completo. |
+| `colB` y `colC` | **NO** | Falta `colA`, la primera pieza del puzzle. |
+| `colB` | **NO** | No empieza por la izquierda. |
+
+> **Importante:** Al crear un índice compuesto, el orden de las columnas importa. Pon primero la columna que uses con más frecuencia o que tenga mayor **selectividad** (valores más únicos).
+
+#### 4.3 Operaciones
 
 Sobre los índices, podemos realizar diversas operaciones, como:
 
@@ -1659,7 +1694,7 @@ Sobre los índices, podemos realizar diversas operaciones, como:
     ```
     
 
-### **4.3 Forzando planes de ejecución**
+### **4.4 Forzando planes de ejecución**
 
 En ocasiones, si queremos [forzar](https://mariadb.com/kb/en/index-hints-how-to-force-query-plans/) a que el SGBD se comporte de una determinada manera, podemos emplear
 
@@ -1685,7 +1720,7 @@ En ocasiones, si queremos [forzar](https://mariadb.com/kb/en/index-hints-how-to-
     WHERE apellido = 'García';
     ```
 
-### **4.4 Gestión de índices**
+### **4.5 Gestión de índices**
 
 Una vez creados los índices, aunque realmente es labor del DBA (_Database Administrator_), es conveniente vigilarlos y mantenerlos. Para ello, podemos:
 
@@ -1705,7 +1740,7 @@ Una vez creados los índices, aunque realmente es labor del DBA (_Database Admin
     
     Además de reorganizar los datos, actualiza y reordenar los índices, pero sólo para algunos motores de ejecución (las versiones actuales de _InnoDB_ realizan un ajuste automático del espacio minimizando la fragmentación, y por lo tanto, por defecto esta sentencia no realiza nada).
 
-#### **4.4.1 Auditoría de Índices**
+#### **4.5.1 Auditoría de Índices**
 
 Una de las utilidades más importantes del diccionario de datos de MariaDB ([`information_schema.TABLES`](https://mariadb.com/kb/en/information-schema-tables-table/)) es auditar el estado físico de nuestras tablas e índices. 
 
@@ -1716,6 +1751,7 @@ SELECT table_name, data_length, index_length, data_free
 FROM information_schema.tables 
 WHERE table_schema = 'LigaFutbol' AND table_name = 'EstadisticaPartido';
 ```
+
 - **`data_length`**: Espacio ocupado por los datos de la tabla.
 - **`index_length`**: Espacio ocupado exclusivamente por los índices.
 - **`data_free`**: Tamaño del espacio asignado pero no utilizado (wasted space). Si este valor es muy alto en relación con los anteriores, es señal de que necesitamos ejecutar un `OPTIMIZE TABLE`.
@@ -1739,7 +1775,7 @@ WHERE table_schema = 'LigaFutbol';
 
 
 
-### **4.5 Buenas prácticas**
+### **4.6 Buenas prácticas**
 
 Algunos consejos que debes tener en cuenta a la hora de hacer consultas son:
 
