@@ -207,6 +207,18 @@ SHOW GRANTS for user01;
 -- 1 row in set (0.003 sec)
 ```
 
+#### **Entendiendo el resultado de `SHOW GRANTS`**
+
+Cuando ejecutamos este comando, lo que vemos es la sentencia `GRANT` exacta que generó (o generaría) esos permisos. Es fundamental entender sus componentes para saber qué puede hacer realmente un usuario:
+
+| Componente | Ejemplo | Descripción |
+| :--- | :--- | :--- |
+| **Privilegios** | `SELECT`, `ALL PRIVILEGES`, `USAGE` | Indica qué acciones puede realizar. `USAGE` significa que el usuario puede conectarse, pero no tiene permisos sobre datos todavía. |
+| **Objeto** | `*.*`, `techstore.*`, `techstore.productos` | Define el alcance. `*.*` es nivel global, `db.*` es nivel de base de datos y `db.tabla` es nivel de tabla. |
+| **Usuario** | `` `user01`@`%` `` | A quién pertenecen los permisos y desde qué host puede conectar (`%` es cualquier host). |
+| **Contraseña** | `IDENTIFIED BY PASSWORD '...'` | Muestra el *hash* de la contraseña del usuario (no la contraseña en texto plano). |
+| **Opciones** | `WITH GRANT OPTION` | Si está presente, el usuario puede dar estos mismos permisos a otros. |
+
 Tras crear un usuario, es necesario asignar permisos mediante el DCL con `GRANT` y retirarlos con `REVOKE`.
 
 #### Otorgando permisos
@@ -233,6 +245,18 @@ Por ejemplo, si nos conectamos con el usuario `root` el cual sí que tiene permi
 
 ```sql
 GRANT SELECT ON techstore.clientes TO user01;
+```
+
+Si ahora volvemos a consultar los permisos de `user01`, veremos cómo se ha añadido la nueva regla:
+
+```sql
+SHOW GRANTS FOR user01;
+-- +---------------------------------------------------------------------+
+-- | Grants for user01@%                                                 |
+-- +---------------------------------------------------------------------+
+-- | GRANT USAGE ON *.* TO `user01`@`%` IDENTIFIED BY PASSWORD '*DF...FD' |
+-- | GRANT SELECT ON `techstore`.`clientes` TO `user01`@`%`              |
+-- +---------------------------------------------------------------------+
 ```
 
 Si nos conectamos con ese nuevo usuario, y accedemos a la base de datos de `techstore`, podemos ver que sólo puede ver la tabla `clientes` :
