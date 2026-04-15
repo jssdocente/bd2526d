@@ -69,4 +69,13 @@ Triggers:
 - Validación de datos: usar un disparador para controlar/avisar sobre algún evento.
 - Auditoría: usar un disparador para registrar cambios en la base de datos con al menos los campos de fecha, usuario, tabla y acción realizada (Insert, update, delete). 
     
+---
 
+## Evaluación
+
+Se valorará:
+
+- Claridad del diseño conceptual y lógico.
+- Correcta implementación de objetos PL/SQL.
+- Organización del código y comentarios.
+- Manejo de permisos y usuarios.
