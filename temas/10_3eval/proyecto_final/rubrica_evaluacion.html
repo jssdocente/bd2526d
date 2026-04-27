@@ -2449,7 +2449,7 @@
 <tr>
 <td style="text-align: center;"><strong>9 – 10</strong> <br>Sobresaliente</td>
 <td>· E/R correcto y completo (≥8 tablas, cardinalidades, atributos bien definidos)<br>· Modelo lógico (DBML o equivalente) fiel al E/R, FK bien colocadas<br>· Decisiones de diseño justificadas con claridad (normalización, separación de entidades)<br>· 2 funcionalidades extra bien integradas y razonadas</td>
-<td>· Usuarios ADMIN y APP_USER creados con permisos exactos y verificados<br>· Todas las tablas con PK, FK, CHECK y NOT NULL adecuados<br>· Índices en campos de consulta frecuente con justificación<br>· Script ejecutable desde cero sin errores</td>
+<td>· Usuarios ADMIN y APP_USER creados con permisos exactos y verificados<br>· Todas las tablas con PK, FK, CHECK y NOT NULL adecuados<br>· Índices en campos de consulta frecuente con justificación<br>· Script ejecutable desde cero sin errores, con carga de datos de prueba incluida</td>
 <td><strong>CRUD:</strong><br>· Completo en ≥3 tablas (alta, baja, modificación, consulta)<br>· Funciones modulares y anidadas (<code>fn_</code> reutilizadas dentro de <code>sp_</code>)<br>· Procedimiento transaccional con <code>START TRANSACTION</code>, <code>ROLLBACK</code> y <code>SIGNAL</code><br>· Cursor con bucle <code>WHILE</code> y <code>FETCH</code> correcto<br>· Borrado seguro en cascada (eliminación completa de datos personales)<br><br><strong>TRIGGERS <em>(elemento clave)</em>:</strong><br>· Trigger de validación que bloquea datos incoherentes con <code>SIGNAL</code><br>· Trigger de auditoría completo: tabla de auditoría con campos fecha, usuario, tabla, acción y valores anterior/nuevo<br>· La tabla de auditoría tiene registros verificables y cubre ≥2 eventos distintos<br><br><strong>FUNCIONALIDADES EXTRA <em>(elemento clave)</em>:</strong><br>· Las 2 funcionalidades adicionales están completamente implementadas<br>· Son funcionales y se integran de forma coherente con el sistema</td>
 </tr>
 <tr>
@@ -2522,6 +2522,7 @@
 <hr>
 <h2 id="notas-de-aplicacion">Notas de aplicación<a class="headerlink" href="#notas-de-aplicacion" title="Permanent link">¶</a></h2>
 <ul>
+<li><strong>Condición bloqueante — Script no ejecutable:</strong> Si el script completo no se ejecuta sin errores desde cero, la <strong>nota máxima es un 2</strong>, independientemente del resto de criterios. El script debe incluir obligatoriamente la carga de datos de prueba suficientes para verificar el funcionamiento de procedimientos, triggers y cursores.</li>
 <li><strong>Condición mínima:</strong> Un proyecto sin ningún trigger funcional <strong>no puede superar el 4</strong>, independientemente del resto de criterios.</li>
 <li><strong>Penalización por copia:</strong> Evidencia de plagio entre alumnos → nota 0 en el criterio afectado.</li>
 <li><strong>Redondeo:</strong> Se aplica redondeo estándar (≥ 0,5 sube al entero superior).</li>
